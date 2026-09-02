@@ -27,3 +27,14 @@
 ## Provenance and Method
 
 Raw scraped files are stored in `raw/`. The build script replays the original numbered cleaner from `raw/original_scripts/` in a temporary local layout and writes this formatted CSV. Original script(s): `09_download_archived_ppe.py + 10_clean_archived_ppe.py`.
+
+## Data completeness
+
+- **Panel span:** FY2007-FY2017 (2029 district-years across 194 districts).
+- **Method:** only *interior* gaps are counted as missing -- years before a district first appears or after it last appears are treated as the district not operating/reporting, not as missing data.
+
+- **Districts with missing interior years (3):**
+
+  - Hartford School District: FY2015, FY2016
+  - New Beginnings Inc Family Academy District: FY2015
+  - Winchester School District: FY2014, FY2015

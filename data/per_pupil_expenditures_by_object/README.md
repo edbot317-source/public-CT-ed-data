@@ -27,3 +27,11 @@
 ## Provenance and Method
 
 Raw scraped files are stored in `raw/`. The build script stacks and tidies the copied per-year raw exports in `raw/`. For columns ending in `_real`, nominal dollars are converted to 2025 dollars using the CPI-U deflator from `data/cpi_u_deflator/cpi_u_deflator.csv`: real = nominal x (CPI-U 2025 / CPI-U fiscal/calendar year). Original script(s): `47_download_ppe_by_object_district.py; tuition parsing in 03_part1_figures.py`.
+
+## Data completeness
+
+- **Panel span:** FY2018-FY2025 (1561 district-years across 199 districts).
+- **Method:** only *interior* gaps are counted as missing -- years before a district first appears or after it last appears are treated as the district not operating/reporting, not as missing data.
+- **Grain note:** this series is disaggregated by object; a district-year is "present" if at least one cell exists. Individual sub-cells may still be suppressed by CSDE for small counts even when the district-year is present.
+
+- **District-by-district missing years:** none. Every district is complete across its active span.

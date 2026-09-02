@@ -47,6 +47,8 @@ The `datapackage.json` descriptor makes the release loadable with Frictionless t
 
 Each dataset directory contains the formatted CSV, a codebook README, a `build.py`, and the copied raw scraped files under `raw/`. For the nine datasets that already had verified clean panels in the source analysis repo, the formatted CSVs are copies of those committed panels; their build scripts replay the original cleaner scripts against this repo's copied raw files and reproduced the committed panels in verification.
 
+**Data completeness.** Each district-level dataset's README includes a `## Data completeness` section reporting its panel span and a district-by-district list of missing interior years (years missing *between* a district's first and last appearance; earlier/later non-appearances are treated as the district not operating or reporting, not as missing data). Statewide structural gaps are noted once rather than per district -- most notably, no SAT School Day or Smarter Balanced (SBAC) assessments were administered in FY2020 and FY2021 due to COVID-19. Across the finance and enrollment panels, district-specific missingness is minimal (typically zero to a handful of district-years); the one notable case is Hartford, which is absent from CSDE's archived financial collections for FY2015 and FY2016.
+
 ## License and Citation
 
 Released under the Creative Commons Attribution 4.0 International License (`CC-BY-4.0`); see `LICENSE`. Citation metadata are in `CITATION.cff`.

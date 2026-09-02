@@ -21,3 +21,7 @@
 ## Provenance and Method
 
 Raw scraped files are stored in `raw/`. The build script replays the original numbered cleaner from `raw/original_scripts/` in a temporary local layout and writes this formatted CSV. Original script(s): `34_download_accountability.py + 35_clean_accountability.py`.
+
+## Data completeness
+
+This panel covers a single fiscal year, **FY2025**; completeness is not applicable across years.

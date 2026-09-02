@@ -21,3 +21,14 @@
 ## Provenance and Method
 
 Raw scraped files are stored in `raw/`. The build script stacks and tidies the copied per-year raw exports in `raw/`. Original script(s): `52_download_grad_by_year.py`.
+
+## Data completeness
+
+- **Panel span:** FY2012-FY2025 (1971 district-years across 162 districts).
+- **Method:** only *interior* gaps are counted as missing -- years before a district first appears or after it last appears are treated as the district not operating/reporting, not as missing data.
+- **Grain note:** this series is disaggregated by needs group; a district-year is "present" if at least one cell exists. Individual sub-cells may still be suppressed by CSDE for small counts even when the district-year is present.
+
+- **Districts with missing interior years (2):**
+
+  - Department of Mental Health and Addiction Services: FY2015
+  - Unified School District #2: FY2024

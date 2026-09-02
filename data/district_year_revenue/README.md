@@ -27,3 +27,10 @@
 ## Provenance and Method
 
 Raw scraped files are stored in `raw/`. The build script replays the original numbered cleaner from `raw/original_scripts/` in a temporary local layout and writes this formatted CSV. Original script(s): `48_download_revenue_sources.py + 04_clean_revenue.py`.
+
+## Data completeness
+
+- **Panel span:** FY2018-FY2025 (1561 district-years across 199 districts).
+- **Method:** only *interior* gaps are counted as missing -- years before a district first appears or after it last appears are treated as the district not operating/reporting, not as missing data.
+
+- **District-by-district missing years:** none. Every district is complete across its active span.

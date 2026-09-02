@@ -27,3 +27,14 @@
 ## Provenance and Method
 
 Raw scraped files are stored in `raw/`. The build script stacks and tidies the copied per-year raw exports in `raw/`. Original script(s): `43_download_archived_total_expenditures.py + 44_compare_archived_denominators.py`.
+
+## Data completeness
+
+- **Panel span:** FY2006-FY2017 (2209 district-years across 194 districts).
+- **Method:** only *interior* gaps are counted as missing -- years before a district first appears or after it last appears are treated as the district not operating/reporting, not as missing data.
+
+- **Districts with missing interior years (3):**
+
+  - Hartford School District: FY2015, FY2016
+  - New Beginnings Inc Family Academy District: FY2015
+  - Winchester School District: FY2014, FY2015

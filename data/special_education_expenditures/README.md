@@ -24,3 +24,14 @@
 ## Provenance and Method
 
 Raw scraped files are stored in `raw/`. The build script stacks and tidies the copied per-year raw exports in `raw/`. For columns ending in `_real`, nominal dollars are converted to 2025 dollars using the CPI-U deflator from `data/cpi_u_deflator/cpi_u_deflator.csv`: real = nominal x (CPI-U 2025 / CPI-U fiscal/calendar year). Original script(s): `21_download_sped_expenditures.py; parsed for analysis by 22/23/24/26/29/30/33`.
+
+## Data completeness
+
+- **Panel span:** FY2007-FY2025 (3383 district-years across 199 districts).
+- **Method:** only *interior* gaps are counted as missing -- years before a district first appears or after it last appears are treated as the district not operating/reporting, not as missing data.
+- **Grain note:** this series is disaggregated by expenditure category; a district-year is "present" if at least one cell exists. Individual sub-cells may still be suppressed by CSDE for small counts even when the district-year is present.
+
+- **Districts with missing interior years (2):**
+
+  - Hartford School District: FY2015, FY2016
+  - Winchester School District: FY2014, FY2015

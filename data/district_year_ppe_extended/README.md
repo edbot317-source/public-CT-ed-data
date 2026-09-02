@@ -22,3 +22,14 @@
 ## Provenance and Method
 
 Raw scraped files are stored in `raw/`. The build script replays the original numbered cleaner from `raw/original_scripts/` in a temporary local layout and writes this formatted CSV. For columns ending in `_real`, nominal dollars are converted to 2025 dollars using the CPI-U deflator from `data/cpi_u_deflator/cpi_u_deflator.csv`: real = nominal x (CPI-U 2025 / CPI-U fiscal/calendar year). Original script(s): `09_download_archived_ppe.py + 10_clean_archived_ppe.py + 45_download_ppe_by_function_district.py + 01_clean_district.py`.
+
+## Data completeness
+
+- **Panel span:** FY2007-FY2025 (3590 district-years across 203 districts).
+- **Method:** only *interior* gaps are counted as missing -- years before a district first appears or after it last appears are treated as the district not operating/reporting, not as missing data.
+
+- **Districts with missing interior years (3):**
+
+  - Hartford School District: FY2015, FY2016
+  - New Beginnings Inc Family Academy District: FY2015
+  - Winchester School District: FY2014, FY2015
