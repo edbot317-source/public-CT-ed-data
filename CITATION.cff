@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this dataset, please cite it as below."
+title: "Public Connecticut Education Data Release"
+authors:
+  - family-names: Zimmerman
+    given-names: Seth
+    affiliation: Yale University
+license: CC-BY-4.0
+date-released: 2026-09-02

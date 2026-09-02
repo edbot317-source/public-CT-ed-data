@@ -1,0 +1,1594 @@
+{
+  "profile": "data-package",
+  "name": "public-ct-ed-data",
+  "title": "Public Connecticut Education Data Release",
+  "description": "Public Connecticut education datasets from CT EdSight with CPI-U deflators from FRED.",
+  "licenses": [
+    {
+      "name": "CC-BY-4.0",
+      "title": "Creative Commons Attribution 4.0 International",
+      "path": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "CT EdSight",
+      "path": "https://edsight.ct.gov/"
+    },
+    {
+      "title": "CT EdSight public reports",
+      "path": "https://public-edsight.ct.gov/"
+    },
+    {
+      "title": "FRED CPIAUCSL",
+      "path": "https://fred.stlouisfed.org/series/CPIAUCSL"
+    }
+  ],
+  "resources": [
+    {
+      "name": "district_year_enrollment",
+      "path": "data/district_year_enrollment/district_year_enrollment.csv",
+      "title": "District-year enrollment and demographics",
+      "description": "District-year enrollment and demographics (district x fiscal_year). Source: EdSight Enrollment.",
+      "schema": {
+        "fields": [
+          {
+            "name": "District",
+            "type": "string",
+            "description": "District name as reported by EdSight."
+          },
+          {
+            "name": "District Code",
+            "type": "integer",
+            "description": "EdSight district code."
+          },
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2025 corresponds to school year 2024-25."
+          },
+          {
+            "name": "enrollment_total",
+            "type": "number",
+            "description": "Enrollment count."
+          },
+          {
+            "name": "n_black",
+            "type": "number",
+            "description": "Student count: black."
+          },
+          {
+            "name": "n_hispanic",
+            "type": "number",
+            "description": "Student count: hispanic."
+          },
+          {
+            "name": "n_white",
+            "type": "number",
+            "description": "Student count: white."
+          },
+          {
+            "name": "n_native_american",
+            "type": "number",
+            "description": "Student count: native american."
+          },
+          {
+            "name": "n_asian",
+            "type": "number",
+            "description": "Student count: asian."
+          },
+          {
+            "name": "n_two_or_more",
+            "type": "number",
+            "description": "Student count: two or more."
+          },
+          {
+            "name": "n_pacific_islander",
+            "type": "number",
+            "description": "Student count: pacific islander."
+          },
+          {
+            "name": "n_ell",
+            "type": "number",
+            "description": "Student count: ell."
+          },
+          {
+            "name": "n_free_lunch",
+            "type": "number",
+            "description": "Student count: free lunch."
+          },
+          {
+            "name": "n_reduced_lunch",
+            "type": "number",
+            "description": "Student count: reduced lunch."
+          },
+          {
+            "name": "n_sped",
+            "type": "number",
+            "description": "Student count: sped."
+          },
+          {
+            "name": "n_frpl",
+            "type": "number",
+            "description": "Student count: frpl."
+          },
+          {
+            "name": "n_black_hispanic",
+            "type": "number",
+            "description": "Student count: black hispanic."
+          },
+          {
+            "name": "pct_white",
+            "type": "number",
+            "description": "Percent/share measure: white."
+          },
+          {
+            "name": "pct_black",
+            "type": "number",
+            "description": "Percent/share measure: black."
+          },
+          {
+            "name": "pct_hispanic",
+            "type": "number",
+            "description": "Percent/share measure: hispanic."
+          },
+          {
+            "name": "pct_asian",
+            "type": "number",
+            "description": "Percent/share measure: asian."
+          },
+          {
+            "name": "pct_native_american",
+            "type": "number",
+            "description": "Percent/share measure: native american."
+          },
+          {
+            "name": "pct_two_or_more",
+            "type": "number",
+            "description": "Percent/share measure: two or more."
+          },
+          {
+            "name": "pct_pacific_islander",
+            "type": "number",
+            "description": "Percent/share measure: pacific islander."
+          },
+          {
+            "name": "pct_black_hispanic",
+            "type": "number",
+            "description": "Percent/share measure: black hispanic."
+          },
+          {
+            "name": "pct_ell",
+            "type": "number",
+            "description": "Percent/share measure: ell."
+          },
+          {
+            "name": "pct_free_lunch",
+            "type": "number",
+            "description": "Percent/share measure: free lunch."
+          },
+          {
+            "name": "pct_frpl",
+            "type": "number",
+            "description": "Percent/share measure: frpl."
+          },
+          {
+            "name": "pct_sped",
+            "type": "number",
+            "description": "Percent/share measure: sped."
+          },
+          {
+            "name": "pct_nonwhite",
+            "type": "number",
+            "description": "Percent/share measure: nonwhite."
+          }
+        ]
+      }
+    },
+    {
+      "name": "district_year_spending",
+      "path": "data/district_year_spending/district_year_spending.csv",
+      "title": "District-year net current expenditures by function",
+      "description": "District-year net current expenditures by function (district x fiscal_year). Source: EdSight Net Current Expenditures by Function.",
+      "schema": {
+        "fields": [
+          {
+            "name": "District",
+            "type": "string",
+            "description": "District name as reported by EdSight."
+          },
+          {
+            "name": "District Code",
+            "type": "integer",
+            "description": "EdSight district code."
+          },
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2025 corresponds to school year 2024-25."
+          },
+          {
+            "name": "total_expenditures",
+            "type": "number",
+            "description": "Total expenditures."
+          },
+          {
+            "name": "ppe_total",
+            "type": "number",
+            "description": "Per-pupil expenditure in nominal dollars for total."
+          },
+          {
+            "name": "pupils_enrolled_plus_outplaced",
+            "type": "number",
+            "description": "Pupils enrolled plus outplaced."
+          },
+          {
+            "name": "pupils_enrolled_in_district",
+            "type": "number",
+            "description": "Pupils enrolled in district."
+          },
+          {
+            "name": "pupils_transported",
+            "type": "number",
+            "description": "Pupils transported."
+          },
+          {
+            "name": "exp_central_and_other_support_services",
+            "type": "number",
+            "description": "Nominal expenditures in dollars for central and other support services."
+          },
+          {
+            "name": "exp_enterprise_operations",
+            "type": "number",
+            "description": "Nominal expenditures in dollars for enterprise operations."
+          },
+          {
+            "name": "exp_food_services",
+            "type": "number",
+            "description": "Nominal expenditures in dollars for food services."
+          },
+          {
+            "name": "exp_instruction",
+            "type": "number",
+            "description": "Nominal expenditures in dollars for instruction."
+          },
+          {
+            "name": "exp_minor_school_construction",
+            "type": "number",
+            "description": "Nominal expenditures in dollars for minor school construction."
+          },
+          {
+            "name": "exp_operation_and_maintenance_of_plant",
+            "type": "number",
+            "description": "Nominal expenditures in dollars for operation and maintenance of plant."
+          },
+          {
+            "name": "exp_student_transportation_services",
+            "type": "number",
+            "description": "Nominal expenditures in dollars for student transportation services."
+          },
+          {
+            "name": "exp_support_services_general_administration",
+            "type": "number",
+            "description": "Nominal expenditures in dollars for support services general administration."
+          },
+          {
+            "name": "exp_support_services_instruction",
+            "type": "number",
+            "description": "Nominal expenditures in dollars for support services instruction."
+          },
+          {
+            "name": "exp_support_services_school_based_administration",
+            "type": "number",
+            "description": "Nominal expenditures in dollars for support services school based administration."
+          },
+          {
+            "name": "exp_support_services_students",
+            "type": "number",
+            "description": "Nominal expenditures in dollars for support services students."
+          },
+          {
+            "name": "ppe_central_and_other_support_services",
+            "type": "number",
+            "description": "Per-pupil expenditure in nominal dollars for central and other support services."
+          },
+          {
+            "name": "ppe_enterprise_operations",
+            "type": "number",
+            "description": "Per-pupil expenditure in nominal dollars for enterprise operations."
+          },
+          {
+            "name": "ppe_food_services",
+            "type": "number",
+            "description": "Per-pupil expenditure in nominal dollars for food services."
+          },
+          {
+            "name": "ppe_instruction",
+            "type": "number",
+            "description": "Per-pupil expenditure in nominal dollars for instruction."
+          },
+          {
+            "name": "ppe_minor_school_construction",
+            "type": "number",
+            "description": "Per-pupil expenditure in nominal dollars for minor school construction."
+          },
+          {
+            "name": "ppe_operation_and_maintenance_of_plant",
+            "type": "number",
+            "description": "Per-pupil expenditure in nominal dollars for operation and maintenance of plant."
+          },
+          {
+            "name": "ppe_student_transportation_services",
+            "type": "number",
+            "description": "Per-pupil expenditure in nominal dollars for student transportation services."
+          },
+          {
+            "name": "ppe_support_services_general_administration",
+            "type": "number",
+            "description": "Per-pupil expenditure in nominal dollars for support services general administration."
+          },
+          {
+            "name": "ppe_support_services_instruction",
+            "type": "number",
+            "description": "Per-pupil expenditure in nominal dollars for support services instruction."
+          },
+          {
+            "name": "ppe_support_services_school_based_administration",
+            "type": "number",
+            "description": "Per-pupil expenditure in nominal dollars for support services school based administration."
+          },
+          {
+            "name": "ppe_support_services_students",
+            "type": "number",
+            "description": "Per-pupil expenditure in nominal dollars for support services students."
+          },
+          {
+            "name": "cpi_u",
+            "type": "number",
+            "description": "Annual average CPI-U (FRED CPIAUCSL)."
+          },
+          {
+            "name": "deflator",
+            "type": "number",
+            "description": "Inflation factor equal to CPI-U in 2025 divided by CPI-U in this year; multiply nominal dollars by this to express them in 2025 dollars."
+          },
+          {
+            "name": "ppe_total_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for total."
+          },
+          {
+            "name": "total_expenditures_real",
+            "type": "number",
+            "description": "Total expenditures real."
+          },
+          {
+            "name": "exp_central_and_other_support_services_real",
+            "type": "number",
+            "description": "Expenditures in 2025 dollars for central and other support services."
+          },
+          {
+            "name": "exp_enterprise_operations_real",
+            "type": "number",
+            "description": "Expenditures in 2025 dollars for enterprise operations."
+          },
+          {
+            "name": "exp_food_services_real",
+            "type": "number",
+            "description": "Expenditures in 2025 dollars for food services."
+          },
+          {
+            "name": "exp_instruction_real",
+            "type": "number",
+            "description": "Expenditures in 2025 dollars for instruction."
+          },
+          {
+            "name": "exp_minor_school_construction_real",
+            "type": "number",
+            "description": "Expenditures in 2025 dollars for minor school construction."
+          },
+          {
+            "name": "exp_operation_and_maintenance_of_plant_real",
+            "type": "number",
+            "description": "Expenditures in 2025 dollars for operation and maintenance of plant."
+          },
+          {
+            "name": "exp_student_transportation_services_real",
+            "type": "number",
+            "description": "Expenditures in 2025 dollars for student transportation services."
+          },
+          {
+            "name": "exp_support_services_general_administration_real",
+            "type": "number",
+            "description": "Expenditures in 2025 dollars for support services general administration."
+          },
+          {
+            "name": "exp_support_services_instruction_real",
+            "type": "number",
+            "description": "Expenditures in 2025 dollars for support services instruction."
+          },
+          {
+            "name": "exp_support_services_school_based_administration_real",
+            "type": "number",
+            "description": "Expenditures in 2025 dollars for support services school based administration."
+          },
+          {
+            "name": "exp_support_services_students_real",
+            "type": "number",
+            "description": "Expenditures in 2025 dollars for support services students."
+          },
+          {
+            "name": "ppe_central_and_other_support_services_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for central and other support services."
+          },
+          {
+            "name": "ppe_enterprise_operations_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for enterprise operations."
+          },
+          {
+            "name": "ppe_food_services_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for food services."
+          },
+          {
+            "name": "ppe_instruction_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for instruction."
+          },
+          {
+            "name": "ppe_minor_school_construction_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for minor school construction."
+          },
+          {
+            "name": "ppe_operation_and_maintenance_of_plant_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for operation and maintenance of plant."
+          },
+          {
+            "name": "ppe_student_transportation_services_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for student transportation services."
+          },
+          {
+            "name": "ppe_support_services_general_administration_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for support services general administration."
+          },
+          {
+            "name": "ppe_support_services_instruction_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for support services instruction."
+          },
+          {
+            "name": "ppe_support_services_school_based_administration_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for support services school based administration."
+          },
+          {
+            "name": "ppe_support_services_students_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for support services students."
+          }
+        ]
+      }
+    },
+    {
+      "name": "district_year_ppe_archived",
+      "path": "data/district_year_ppe_archived/district_year_ppe_archived.csv",
+      "title": "Archived district-year per-pupil expenditures by function",
+      "description": "Archived district-year per-pupil expenditures by function (district x fiscal_year). Source: EdSight archived Per Pupil Expenditures.",
+      "schema": {
+        "fields": [
+          {
+            "name": "District",
+            "type": "string",
+            "description": "District name as reported by EdSight."
+          },
+          {
+            "name": "ppe_instructional_staff",
+            "type": "integer",
+            "description": "Per-pupil expenditure in nominal dollars for instructional staff."
+          },
+          {
+            "name": "ppe_instructional_supplies",
+            "type": "integer",
+            "description": "Per-pupil expenditure in nominal dollars for instructional supplies."
+          },
+          {
+            "name": "ppe_instruction_media",
+            "type": "integer",
+            "description": "Per-pupil expenditure in nominal dollars for instruction media."
+          },
+          {
+            "name": "ppe_student_support",
+            "type": "integer",
+            "description": "Per-pupil expenditure in nominal dollars for student support."
+          },
+          {
+            "name": "ppe_admin_support",
+            "type": "integer",
+            "description": "Per-pupil expenditure in nominal dollars for admin support."
+          },
+          {
+            "name": "ppe_plant",
+            "type": "integer",
+            "description": "Per-pupil expenditure in nominal dollars for plant."
+          },
+          {
+            "name": "ppe_transportation",
+            "type": "number",
+            "description": "Per-pupil expenditure in nominal dollars for transportation."
+          },
+          {
+            "name": "ppe_other",
+            "type": "integer",
+            "description": "Per-pupil expenditure in nominal dollars for other."
+          },
+          {
+            "name": "ppe_total",
+            "type": "integer",
+            "description": "Per-pupil expenditure in nominal dollars for total."
+          },
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2025 corresponds to school year 2024-25."
+          },
+          {
+            "name": "District Code",
+            "type": "number",
+            "description": "EdSight district code."
+          }
+        ]
+      }
+    },
+    {
+      "name": "district_year_ppe_extended",
+      "path": "data/district_year_ppe_extended/district_year_ppe_extended.csv",
+      "title": "Extended district-year total per-pupil expenditures",
+      "description": "Extended district-year total per-pupil expenditures (district x fiscal_year). Source: EdSight archived Per Pupil Expenditures and current Net Current Expenditures by Function.",
+      "schema": {
+        "fields": [
+          {
+            "name": "District",
+            "type": "string",
+            "description": "District name as reported by EdSight."
+          },
+          {
+            "name": "District Code",
+            "type": "number",
+            "description": "EdSight district code."
+          },
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2025 corresponds to school year 2024-25."
+          },
+          {
+            "name": "ppe_total",
+            "type": "number",
+            "description": "Per-pupil expenditure in nominal dollars for total."
+          },
+          {
+            "name": "cpi_u",
+            "type": "number",
+            "description": "Annual average CPI-U (FRED CPIAUCSL)."
+          },
+          {
+            "name": "deflator",
+            "type": "number",
+            "description": "Inflation factor equal to CPI-U in 2025 divided by CPI-U in this year; multiply nominal dollars by this to express them in 2025 dollars."
+          },
+          {
+            "name": "ppe_total_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for total."
+          }
+        ]
+      }
+    },
+    {
+      "name": "district_year_revenue",
+      "path": "data/district_year_revenue/district_year_revenue.csv",
+      "title": "District-year revenue sources",
+      "description": "District-year revenue sources (district x fiscal_year). Source: EdSight Revenues.",
+      "schema": {
+        "fields": [
+          {
+            "name": "District",
+            "type": "string",
+            "description": "District name as reported by EdSight."
+          },
+          {
+            "name": "District Code",
+            "type": "integer",
+            "description": "EdSight district code."
+          },
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2025 corresponds to school year 2024-25."
+          },
+          {
+            "name": "rev_local",
+            "type": "number",
+            "description": "Nominal revenue dollars: local."
+          },
+          {
+            "name": "rev_state",
+            "type": "number",
+            "description": "Nominal revenue dollars: state."
+          },
+          {
+            "name": "rev_federal",
+            "type": "number",
+            "description": "Nominal revenue dollars: federal."
+          },
+          {
+            "name": "rev_tuition_other",
+            "type": "number",
+            "description": "Nominal revenue dollars: tuition other."
+          },
+          {
+            "name": "rev_total",
+            "type": "number",
+            "description": "Nominal revenue dollars: total."
+          },
+          {
+            "name": "pct_local",
+            "type": "number",
+            "description": "Percent/share measure: local."
+          },
+          {
+            "name": "pct_state",
+            "type": "number",
+            "description": "Percent/share measure: state."
+          },
+          {
+            "name": "pct_federal",
+            "type": "number",
+            "description": "Percent/share measure: federal."
+          },
+          {
+            "name": "pct_tuition_other",
+            "type": "number",
+            "description": "Percent/share measure: tuition other."
+          }
+        ]
+      }
+    },
+    {
+      "name": "district_year_accountability",
+      "path": "data/district_year_accountability/district_year_accountability.csv",
+      "title": "District-year accountability and growth metrics",
+      "description": "District-year accountability and growth metrics (district x fiscal_year). Source: EdSight Next Generation Accountability and Smarter Balanced Growth Model.",
+      "schema": {
+        "fields": [
+          {
+            "name": "District",
+            "type": "string",
+            "description": "District name as reported by EdSight."
+          },
+          {
+            "name": "District Code",
+            "type": "integer",
+            "description": "EdSight district code."
+          },
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2025 corresponds to school year 2024-25."
+          },
+          {
+            "name": "ela_growth",
+            "type": "number",
+            "description": "Ela growth."
+          },
+          {
+            "name": "math_growth",
+            "type": "number",
+            "description": "Math growth."
+          },
+          {
+            "name": "accountability_index",
+            "type": "number",
+            "description": "Accountability index."
+          }
+        ]
+      }
+    },
+    {
+      "name": "school_year_enrollment_race",
+      "path": "data/school_year_enrollment_race/school_year_enrollment_race.csv",
+      "title": "School-year enrollment by race",
+      "description": "School-year enrollment by race (school x fiscal_year). Source: EdSight Enrollment.",
+      "schema": {
+        "fields": [
+          {
+            "name": "district",
+            "type": "string",
+            "description": "District name as reported by EdSight."
+          },
+          {
+            "name": "district_code",
+            "type": "integer",
+            "description": "EdSight district code."
+          },
+          {
+            "name": "school",
+            "type": "string",
+            "description": "School name as reported by EdSight."
+          },
+          {
+            "name": "school_code",
+            "type": "integer",
+            "description": "EdSight school code."
+          },
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2025 corresponds to school year 2024-25."
+          },
+          {
+            "name": "enrollment_total",
+            "type": "number",
+            "description": "Enrollment count."
+          },
+          {
+            "name": "n_native_american",
+            "type": "number",
+            "description": "Student count: native american."
+          },
+          {
+            "name": "n_asian",
+            "type": "number",
+            "description": "Student count: asian."
+          },
+          {
+            "name": "n_black",
+            "type": "number",
+            "description": "Student count: black."
+          },
+          {
+            "name": "n_hispanic",
+            "type": "number",
+            "description": "Student count: hispanic."
+          },
+          {
+            "name": "n_two_or_more",
+            "type": "number",
+            "description": "Student count: two or more."
+          },
+          {
+            "name": "n_white",
+            "type": "number",
+            "description": "Student count: white."
+          },
+          {
+            "name": "n_pacific_islander",
+            "type": "number",
+            "description": "Student count: pacific islander."
+          },
+          {
+            "name": "n_black_hispanic",
+            "type": "number",
+            "description": "Student count: black hispanic."
+          },
+          {
+            "name": "pct_white",
+            "type": "number",
+            "description": "Percent/share measure: white."
+          },
+          {
+            "name": "pct_black",
+            "type": "number",
+            "description": "Percent/share measure: black."
+          },
+          {
+            "name": "pct_hispanic",
+            "type": "number",
+            "description": "Percent/share measure: hispanic."
+          },
+          {
+            "name": "pct_asian",
+            "type": "number",
+            "description": "Percent/share measure: asian."
+          },
+          {
+            "name": "pct_native_american",
+            "type": "number",
+            "description": "Percent/share measure: native american."
+          },
+          {
+            "name": "pct_two_or_more",
+            "type": "number",
+            "description": "Percent/share measure: two or more."
+          },
+          {
+            "name": "pct_pacific_islander",
+            "type": "number",
+            "description": "Percent/share measure: pacific islander."
+          },
+          {
+            "name": "pct_black_hispanic",
+            "type": "number",
+            "description": "Percent/share measure: black hispanic."
+          },
+          {
+            "name": "pct_nonwhite",
+            "type": "number",
+            "description": "Percent/share measure: nonwhite."
+          }
+        ]
+      }
+    },
+    {
+      "name": "school_year_spending",
+      "path": "data/school_year_spending/school_year_spending.csv",
+      "title": "School-year net current expenditures by function",
+      "description": "School-year net current expenditures by function (school x fiscal_year). Source: EdSight Net Current Expenditures by Function, school level.",
+      "schema": {
+        "fields": [
+          {
+            "name": "district",
+            "type": "string",
+            "description": "District name as reported by EdSight."
+          },
+          {
+            "name": "district_code",
+            "type": "integer",
+            "description": "EdSight district code."
+          },
+          {
+            "name": "school",
+            "type": "string",
+            "description": "School name as reported by EdSight."
+          },
+          {
+            "name": "school_code",
+            "type": "integer",
+            "description": "EdSight school code."
+          },
+          {
+            "name": "low_grade",
+            "type": "string",
+            "description": "Lowest/highest grade span reported for the school."
+          },
+          {
+            "name": "high_grade",
+            "type": "string",
+            "description": "Lowest/highest grade span reported for the school."
+          },
+          {
+            "name": "enrollment",
+            "type": "integer",
+            "description": "Enrollment count."
+          },
+          {
+            "name": "pct_high_needs",
+            "type": "number",
+            "description": "Percent/share measure: high needs."
+          },
+          {
+            "name": "ppe_instruction",
+            "type": "integer",
+            "description": "Per-pupil expenditure in nominal dollars for instruction."
+          },
+          {
+            "name": "ppe_support_services_students",
+            "type": "integer",
+            "description": "Per-pupil expenditure in nominal dollars for support services students."
+          },
+          {
+            "name": "ppe_improvement_of_instruction",
+            "type": "integer",
+            "description": "Per-pupil expenditure in nominal dollars for improvement of instruction."
+          },
+          {
+            "name": "ppe_library_and_media_services",
+            "type": "integer",
+            "description": "Per-pupil expenditure in nominal dollars for library and media services."
+          },
+          {
+            "name": "ppe_support_services_instruction",
+            "type": "integer",
+            "description": "Per-pupil expenditure in nominal dollars for support services instruction."
+          },
+          {
+            "name": "ppe_support_services_school_based_administration",
+            "type": "integer",
+            "description": "Per-pupil expenditure in nominal dollars for support services school based administration."
+          },
+          {
+            "name": "ppe_operation_and_maintenance_of_plant",
+            "type": "integer",
+            "description": "Per-pupil expenditure in nominal dollars for operation and maintenance of plant."
+          },
+          {
+            "name": "ppe_transportation_other_than_to_from_home",
+            "type": "integer",
+            "description": "Per-pupil expenditure in nominal dollars for transportation other than to from home."
+          },
+          {
+            "name": "ppe_enterprise_operations",
+            "type": "integer",
+            "description": "Per-pupil expenditure in nominal dollars for enterprise operations."
+          },
+          {
+            "name": "ppe_minor_school_construction",
+            "type": "number",
+            "description": "Per-pupil expenditure in nominal dollars for minor school construction."
+          },
+          {
+            "name": "ppe_total",
+            "type": "integer",
+            "description": "Per-pupil expenditure in nominal dollars for total."
+          },
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2025 corresponds to school year 2024-25."
+          },
+          {
+            "name": "cpi_u",
+            "type": "number",
+            "description": "Annual average CPI-U (FRED CPIAUCSL)."
+          },
+          {
+            "name": "deflator",
+            "type": "number",
+            "description": "Inflation factor equal to CPI-U in 2025 divided by CPI-U in this year; multiply nominal dollars by this to express them in 2025 dollars."
+          },
+          {
+            "name": "ppe_instruction_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for instruction."
+          },
+          {
+            "name": "ppe_support_services_students_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for support services students."
+          },
+          {
+            "name": "ppe_improvement_of_instruction_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for improvement of instruction."
+          },
+          {
+            "name": "ppe_library_and_media_services_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for library and media services."
+          },
+          {
+            "name": "ppe_support_services_instruction_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for support services instruction."
+          },
+          {
+            "name": "ppe_support_services_school_based_administration_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for support services school based administration."
+          },
+          {
+            "name": "ppe_operation_and_maintenance_of_plant_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for operation and maintenance of plant."
+          },
+          {
+            "name": "ppe_transportation_other_than_to_from_home_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for transportation other than to from home."
+          },
+          {
+            "name": "ppe_enterprise_operations_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for enterprise operations."
+          },
+          {
+            "name": "ppe_minor_school_construction_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for minor school construction."
+          },
+          {
+            "name": "ppe_total_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for total."
+          }
+        ]
+      }
+    },
+    {
+      "name": "school_year_funding_source",
+      "path": "data/school_year_funding_source/school_year_funding_source.csv",
+      "title": "School-year per-pupil expenditures by funding source",
+      "description": "School-year per-pupil expenditures by funding source (school x fiscal_year). Source: EdSight Per Pupil Expenditures by Funding Source (Summary).",
+      "schema": {
+        "fields": [
+          {
+            "name": "district",
+            "type": "string",
+            "description": "District name as reported by EdSight."
+          },
+          {
+            "name": "district_code",
+            "type": "integer",
+            "description": "EdSight district code."
+          },
+          {
+            "name": "school",
+            "type": "string",
+            "description": "School name as reported by EdSight."
+          },
+          {
+            "name": "school_code",
+            "type": "integer",
+            "description": "EdSight school code."
+          },
+          {
+            "name": "ppe_federal",
+            "type": "integer",
+            "description": "Per-pupil expenditure in nominal dollars for federal."
+          },
+          {
+            "name": "ppe_state_local_other",
+            "type": "integer",
+            "description": "Per-pupil expenditure in nominal dollars for state local other."
+          },
+          {
+            "name": "ppe_total_source",
+            "type": "integer",
+            "description": "Per-pupil expenditure in nominal dollars for total source."
+          },
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2025 corresponds to school year 2024-25."
+          },
+          {
+            "name": "cpi_u",
+            "type": "number",
+            "description": "Annual average CPI-U (FRED CPIAUCSL)."
+          },
+          {
+            "name": "deflator",
+            "type": "number",
+            "description": "Inflation factor equal to CPI-U in 2025 divided by CPI-U in this year; multiply nominal dollars by this to express them in 2025 dollars."
+          },
+          {
+            "name": "ppe_federal_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for federal."
+          },
+          {
+            "name": "ppe_state_local_other_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for state local other."
+          },
+          {
+            "name": "ppe_total_source_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars for total source."
+          },
+          {
+            "name": "enrollment",
+            "type": "number",
+            "description": "Enrollment count."
+          }
+        ]
+      }
+    },
+    {
+      "name": "special_education_expenditures",
+      "path": "data/special_education_expenditures/special_education_expenditures.csv",
+      "title": "Special education expenditures",
+      "description": "Special education expenditures (district x fiscal_year x expenditure_category). Source: EdSight Special Education Expenditures.",
+      "schema": {
+        "fields": [
+          {
+            "name": "district",
+            "type": "string",
+            "description": "District name as reported by EdSight."
+          },
+          {
+            "name": "district_code",
+            "type": "integer",
+            "description": "EdSight district code."
+          },
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2025 corresponds to school year 2024-25."
+          },
+          {
+            "name": "expenditure_category",
+            "type": "string",
+            "description": "Special education expenditure line item/category."
+          },
+          {
+            "name": "amount",
+            "type": "integer",
+            "description": "Nominal dollar amount."
+          },
+          {
+            "name": "source_format",
+            "type": "string",
+            "description": "Raw source layout, archived wide export or current long export."
+          },
+          {
+            "name": "cpi_u",
+            "type": "number",
+            "description": "Annual average CPI-U (FRED CPIAUCSL)."
+          },
+          {
+            "name": "deflator",
+            "type": "number",
+            "description": "Inflation factor equal to CPI-U in 2025 divided by CPI-U in this year; multiply nominal dollars by this to express them in 2025 dollars."
+          },
+          {
+            "name": "amount_real",
+            "type": "number",
+            "description": "Dollar amount in 2025 dollars using CPI-U deflator."
+          }
+        ]
+      }
+    },
+    {
+      "name": "per_pupil_expenditures_by_object",
+      "path": "data/per_pupil_expenditures_by_object/per_pupil_expenditures_by_object.csv",
+      "title": "District-year net current expenditures by object",
+      "description": "District-year net current expenditures by object (district x fiscal_year x object). Source: EdSight Net Current Expenditures by Object.",
+      "schema": {
+        "fields": [
+          {
+            "name": "district",
+            "type": "string",
+            "description": "District name as reported by EdSight."
+          },
+          {
+            "name": "district_code",
+            "type": "integer",
+            "description": "EdSight district code."
+          },
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2025 corresponds to school year 2024-25."
+          },
+          {
+            "name": "object",
+            "type": "string",
+            "description": "Expenditure object category."
+          },
+          {
+            "name": "expenditures",
+            "type": "integer",
+            "description": "Nominal expenditures in dollars."
+          },
+          {
+            "name": "pupils",
+            "type": "integer",
+            "description": "Pupil denominator reported for the row."
+          },
+          {
+            "name": "pupil_basis",
+            "type": "integer",
+            "description": "EdSight pupil-basis code; object/function reports document the denominator used for PPE."
+          },
+          {
+            "name": "ppe",
+            "type": "integer",
+            "description": "Per-pupil expenditure in nominal dollars."
+          },
+          {
+            "name": "cpi_u",
+            "type": "number",
+            "description": "Annual average CPI-U (FRED CPIAUCSL)."
+          },
+          {
+            "name": "deflator",
+            "type": "number",
+            "description": "Inflation factor equal to CPI-U in 2025 divided by CPI-U in this year; multiply nominal dollars by this to express them in 2025 dollars."
+          },
+          {
+            "name": "expenditures_real",
+            "type": "number",
+            "description": "Expenditures in 2025 dollars using CPI-U deflator."
+          },
+          {
+            "name": "ppe_real",
+            "type": "number",
+            "description": "Per-pupil expenditure in 2025 dollars using CPI-U deflator."
+          }
+        ]
+      }
+    },
+    {
+      "name": "total_annual_expenditures_archived",
+      "path": "data/total_annual_expenditures_archived/total_annual_expenditures_archived.csv",
+      "title": "Archived district-year total annual expenditures by type",
+      "description": "Archived district-year total annual expenditures by type (district x fiscal_year). Source: EdSight Total Annual Expenditures by Type (archived).",
+      "schema": {
+        "fields": [
+          {
+            "name": "District",
+            "type": "string",
+            "description": "District name as reported by EdSight."
+          },
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2025 corresponds to school year 2024-25."
+          },
+          {
+            "name": "exp_instructional_staff",
+            "type": "number",
+            "description": "Nominal expenditures in dollars for instructional staff."
+          },
+          {
+            "name": "exp_instructional_supplies",
+            "type": "number",
+            "description": "Nominal expenditures in dollars for instructional supplies."
+          },
+          {
+            "name": "exp_instruction_media",
+            "type": "number",
+            "description": "Nominal expenditures in dollars for instruction media."
+          },
+          {
+            "name": "exp_student_support",
+            "type": "number",
+            "description": "Nominal expenditures in dollars for student support."
+          },
+          {
+            "name": "exp_admin_support",
+            "type": "number",
+            "description": "Nominal expenditures in dollars for admin support."
+          },
+          {
+            "name": "exp_plant",
+            "type": "number",
+            "description": "Nominal expenditures in dollars for plant."
+          },
+          {
+            "name": "exp_transportation",
+            "type": "number",
+            "description": "Nominal expenditures in dollars for transportation."
+          },
+          {
+            "name": "exp_tuitioned_out",
+            "type": "number",
+            "description": "Nominal expenditures in dollars for tuitioned out."
+          },
+          {
+            "name": "exp_other",
+            "type": "number",
+            "description": "Nominal expenditures in dollars for other."
+          },
+          {
+            "name": "total_expenditures",
+            "type": "number",
+            "description": "Total expenditures."
+          }
+        ]
+      }
+    },
+    {
+      "name": "sbac",
+      "path": "data/sbac/sbac.csv",
+      "title": "District-year Smarter Balanced assessment outcomes",
+      "description": "District-year Smarter Balanced assessment outcomes (district x fiscal_year x subject x needs_group). Source: EdSight Smarter Balanced Assessments.",
+      "schema": {
+        "fields": [
+          {
+            "name": "district",
+            "type": "string",
+            "description": "District name as reported by EdSight."
+          },
+          {
+            "name": "district_code",
+            "type": "integer",
+            "description": "EdSight district code."
+          },
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2025 corresponds to school year 2024-25."
+          },
+          {
+            "name": "subject",
+            "type": "string",
+            "description": "Test subject."
+          },
+          {
+            "name": "needs_group",
+            "type": "string",
+            "description": "Subgroup indicator: All Students, High Needs, or Non-High Needs depending on source export."
+          },
+          {
+            "name": "total_students",
+            "type": "number",
+            "description": "Total students in the assessment denominator."
+          },
+          {
+            "name": "total_tested",
+            "type": "number",
+            "description": "Total students tested."
+          },
+          {
+            "name": "participation_rate",
+            "type": "number",
+            "description": "Assessment participation rate in percent."
+          },
+          {
+            "name": "n_scored",
+            "type": "number",
+            "description": "Number of scored tests."
+          },
+          {
+            "name": "level1_count",
+            "type": "number",
+            "description": "Count for level1."
+          },
+          {
+            "name": "level1_pct",
+            "type": "number",
+            "description": "Percent for level1."
+          },
+          {
+            "name": "level2_count",
+            "type": "number",
+            "description": "Count for level2."
+          },
+          {
+            "name": "level2_pct",
+            "type": "number",
+            "description": "Percent for level2."
+          },
+          {
+            "name": "level3_count",
+            "type": "number",
+            "description": "Count for level3."
+          },
+          {
+            "name": "level3_pct",
+            "type": "number",
+            "description": "Percent for level3."
+          },
+          {
+            "name": "level4_count",
+            "type": "number",
+            "description": "Count for level4."
+          },
+          {
+            "name": "level4_pct",
+            "type": "number",
+            "description": "Percent for level4."
+          },
+          {
+            "name": "level3_4_count",
+            "type": "number",
+            "description": "Count for level3 4."
+          },
+          {
+            "name": "pct_prof",
+            "type": "number",
+            "description": "Percent meeting or exceeding proficiency benchmark."
+          }
+        ]
+      }
+    },
+    {
+      "name": "sat",
+      "path": "data/sat/sat.csv",
+      "title": "District-year Connecticut School Day SAT outcomes",
+      "description": "District-year Connecticut School Day SAT outcomes (district x fiscal_year x subject x needs_group). Source: EdSight CT School Day SAT.",
+      "schema": {
+        "fields": [
+          {
+            "name": "district",
+            "type": "string",
+            "description": "District name as reported by EdSight."
+          },
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2025 corresponds to school year 2024-25."
+          },
+          {
+            "name": "subject",
+            "type": "string",
+            "description": "Test subject."
+          },
+          {
+            "name": "needs_group",
+            "type": "string",
+            "description": "Subgroup indicator: All Students, High Needs, or Non-High Needs depending on source export."
+          },
+          {
+            "name": "total_students",
+            "type": "number",
+            "description": "Total students in the assessment denominator."
+          },
+          {
+            "name": "total_tested",
+            "type": "number",
+            "description": "Total students tested."
+          },
+          {
+            "name": "participation_rate",
+            "type": "number",
+            "description": "Assessment participation rate in percent."
+          },
+          {
+            "name": "n_scored",
+            "type": "number",
+            "description": "Number of scored tests."
+          },
+          {
+            "name": "pct_prof",
+            "type": "number",
+            "description": "Percent meeting or exceeding proficiency benchmark."
+          },
+          {
+            "name": "avg_score",
+            "type": "number",
+            "description": "Average scale score."
+          }
+        ]
+      }
+    },
+    {
+      "name": "graduation_4yr",
+      "path": "data/graduation_4yr/graduation_4yr.csv",
+      "title": "District-year four-year graduation rates",
+      "description": "District-year four-year graduation rates (district x fiscal_year x needs_group). Source: EdSight Graduation.",
+      "schema": {
+        "fields": [
+          {
+            "name": "district",
+            "type": "string",
+            "description": "District name as reported by EdSight."
+          },
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2025 corresponds to school year 2024-25."
+          },
+          {
+            "name": "needs_group",
+            "type": "string",
+            "description": "Subgroup indicator: All Students, High Needs, or Non-High Needs depending on source export."
+          },
+          {
+            "name": "cohort_count",
+            "type": "number",
+            "description": "Graduation cohort count."
+          },
+          {
+            "name": "graduation_count",
+            "type": "number",
+            "description": "Number of students graduating."
+          },
+          {
+            "name": "graduation_rate",
+            "type": "number",
+            "description": "Graduation rate in percent."
+          }
+        ]
+      }
+    },
+    {
+      "name": "graduation_5yr",
+      "path": "data/graduation_5yr/graduation_5yr.csv",
+      "title": "District-year five-year graduation rates",
+      "description": "District-year five-year graduation rates (district x fiscal_year x needs_group). Source: EdSight Graduation.",
+      "schema": {
+        "fields": [
+          {
+            "name": "district",
+            "type": "string",
+            "description": "District name as reported by EdSight."
+          },
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2025 corresponds to school year 2024-25."
+          },
+          {
+            "name": "needs_group",
+            "type": "string",
+            "description": "Subgroup indicator: All Students, High Needs, or Non-High Needs depending on source export."
+          },
+          {
+            "name": "cohort_count",
+            "type": "number",
+            "description": "Graduation cohort count."
+          },
+          {
+            "name": "graduation_count",
+            "type": "number",
+            "description": "Number of students graduating."
+          },
+          {
+            "name": "graduation_rate",
+            "type": "number",
+            "description": "Graduation rate in percent."
+          }
+        ]
+      }
+    },
+    {
+      "name": "swd_outplacement",
+      "path": "data/swd_outplacement/swd_outplacement.csv",
+      "title": "Students with disabilities attending out-of-district schools/programs",
+      "description": "Students with disabilities attending out-of-district schools/programs (district x fiscal_year x placement_type). Source: EdSight Students with Disabilities Out-of-District.",
+      "schema": {
+        "fields": [
+          {
+            "name": "district",
+            "type": "string",
+            "description": "District name as reported by EdSight."
+          },
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2025 corresponds to school year 2024-25."
+          },
+          {
+            "name": "school_year",
+            "type": "string",
+            "description": "School year label from source export."
+          },
+          {
+            "name": "placement_type",
+            "type": "string",
+            "description": "Out-of-district placement category."
+          },
+          {
+            "name": "count",
+            "type": "number",
+            "description": "Student count in placement category."
+          },
+          {
+            "name": "percent",
+            "type": "number",
+            "description": "Percent in placement category."
+          }
+        ]
+      }
+    },
+    {
+      "name": "cpi_u_deflator",
+      "path": "data/cpi_u_deflator/cpi_u_deflator.csv",
+      "title": "CPI-U annual average deflator",
+      "description": "CPI-U annual average deflator (calendar year). Source: FRED CPIAUCSL.",
+      "schema": {
+        "fields": [
+          {
+            "name": "year",
+            "type": "year",
+            "description": "Calendar year."
+          },
+          {
+            "name": "observation_date",
+            "type": "string",
+            "description": "FRED observation date for the annual CPI-U value."
+          },
+          {
+            "name": "cpi_u",
+            "type": "number",
+            "description": "Annual average CPI-U (FRED CPIAUCSL)."
+          },
+          {
+            "name": "deflator",
+            "type": "number",
+            "description": "Inflation factor equal to CPI-U in 2025 divided by CPI-U in this year; multiply nominal dollars by this to express them in 2025 dollars."
+          }
+        ]
+      }
+    }
+  ]
+}

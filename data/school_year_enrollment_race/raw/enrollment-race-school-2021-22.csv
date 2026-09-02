@@ -1,0 +1,1450 @@
+"Student Counts by School and Race"
+"All Districts, All Schools"
+"2021-22"
+
+"",,,,"Race",,,,,,,
+"District","District Code","School","School Code","American Indian or Alaska Native","Asian","Black or African American","Hispanic/Latino of any race","Native Hawaiian or Other Pacific Islander","Two or More Races","White","Total"
+"Achievement First Bridgeport Academy District","=""2850013""","Achievement First Bridgeport Academy","=""2850113""","*",10,586,481,"*",9,16,1105
+"Achievement First Hartford Academy District","=""2880013""","Achievement First Hartford Academy","=""2880113""",10,"*",818,276,0,15,"*",1123
+"Amistad Academy District","=""2790013""","Amistad Academy","=""2795113""","*","*",666,406,0,23,13,1115
+"Ansonia School District","=""0020011""","Mead School","=""0020311""","*",6,125,276,"*",32,139,581
+,,"Ansonia High School","=""0026111""",0,11,111,221,0,21,162,526
+,,"Ansonia Middle School","=""0025111""",0,10,88,244,0,33,139,514
+,,"Prendergast School","=""0020811""",0,14,101,280,0,31,157,583
+,,"P.A.C.E. (Positive And Creative Education)","=""0020111""",0,0,11,10,0,"*","*",25
+,,"P.A.C.E. - PM (Positive And Creative Education - PM)","=""0020411""",0,0,"*","*",0,0,"*",8
+,,"Ansonia 18-21 Transition Program","=""0021011""",0,0,0,"*",0,0,"*",10
+"Area Cooperative Educational Services","=""2440014""","ACES Chase Academy","=""2445114""","*","*",152,316,0,45,186,712
+,,"Whitney Academy","=""2449214""","*","*",22,24,"*","*",37,91
+,,"Wintergreen Interdistrict Magnet School","=""2440314""","*",19,241,139,"*",28,86,516
+,,"CREATE at Whitney Academy","=""2440114""",0,"*","*",24,0,0,31,76
+,,"Center for Autism Spectrum and Development Disorders","=""2449614""",0,"*",7,6,0,"*",20,37
+,,"Village School","=""2449514""",0,"*",47,32,0,"*",36,128
+,,"ACES Mill Elementary School","=""2440214""",0,0,28,18,0,6,9,61
+,,"ACES Mill Road School","=""2449414""",0,0,41,17,0,"*","*",77
+,,"ACES at Ansonia Middle School","=""2440514""",0,0,"*","*",0,0,0,"*"
+,,"ACES at Mead Elementary School","=""2440414""",0,0,"*","*",0,"*","*",11
+,,"Whitney High School North","=""2449114""",0,0,45,27,"*","*",23,106
+"Avon School District","=""0040011""","Avon High School","=""0046111""","*",184,55,65,0,"*",616,956
+,,"Avon Middle School","=""0045111""","*",113,30,46,0,"*",303,514
+,,"Pine Grove School","=""0040411""","*",114,41,37,0,"*",398,616
+,,"Roaring Brook School","=""0040311""","*",82,20,37,"*",21,299,465
+,,"Thompson Brook School","=""0040511""","*",104,28,32,0,"*",313,494
+,,"Avon Early Learning Center at Roaring Brook School","=""0040111""",0,"*",14,9,"*","*",32,63
+"Berlin School District","=""0070011""","Berlin High School","=""0076111""","*",29,"*",93,0,30,693,866
+,,"Catherine M. McGee Middle School","=""0075111""",0,25,15,79,0,17,464,600
+,,"Emma Hart Willard School","=""0070411""",0,19,"*",45,"*",19,339,435
+,,"Mary E. Griswold School","=""0070511""",0,10,10,64,0,16,408,508
+,,"Richard D. Hubbard School","=""0070111""",0,18,"*",33,0,"*",147,213
+,,"Central Connecticut Transition Academy","=""0070311""",0,0,0,"*",0,"*",14,20
+"Bethany School District","=""0080011""","Bethany Community School","=""0080111""","*",31,"*",32,0,6,312,388
+"Bethel School District","=""0090011""","Anna H. Rockwell School","=""0090411""","*",27,"*",83,0,17,163,309
+,,"Bethel High School","=""0096111""","*",72,43,218,"*",13,630,985
+,,"Bethel Middle School","=""0095111""","*",50,28,164,"*",32,481,771
+,,"Frank A. Berry School","=""0090111""","*",36,16,97,"*",13,216,386
+,,"Ralph M. T. Johnson School","=""0090511""","*",51,32,176,"*",25,384,679
+,,"Community Partnership Program","=""0090211""",0,"*","*","*",0,0,"*",8
+,,"TASK","=""0090311""",0,"*","*","*",0,0,8,13
+"Bloomfield School District","=""0110011""","Bloomfield High School","=""0116111""","*","*",429,63,0,14,11,525
+,,"Carmen Arace Middle School","=""0115211""","*","*",186,30,0,"*",7,229
+,,"Global Experience Magnet School","=""0116311""","*",0,79,70,"*",16,18,186
+,,"Laurel Literacy Academy","=""0110611""","*","*",224,53,"*",13,9,305
+,,"Metacomet School","=""0110511""","*",6,174,30,0,8,"*",223
+,,"Carmen Arace Intermediate School","=""0110711""",0,"*",178,35,0,10,"*",232
+,,"Wintonbury Early Childhood Magnet School","=""0110811""",0,26,111,39,0,14,113,303
+,,"Steps to Success","=""0110111""",0,0,"*","*",0,0,0,14
+"Branford School District","=""0140011""","Branford High School","=""0146111""","*",62,33,106,0,"*",563,788
+,,"Francis Walsh Intermediate School","=""0145111""","*",48,"*",115,0,33,557,787
+,,"Access Transition Program","=""0140311""",0,"*",0,"*",0,"*",7,11
+,,"Indian Neck School","=""0148011""",0,"*",0,"*",0,"*",31,38
+,,"John B. Sliney School","=""0141611""",0,18,10,48,0,23,171,270
+,,"Mary R. Tisko School","=""0141511""",0,8,"*",33,"*",18,288,354
+,,"Mary T. Murphy School","=""0141411""",0,43,19,66,0,18,203,349
+,,"Branford High School Atlas Program","=""0140211""",0,0,"*","*",0,0,18,24
+"Brass City Charter School District","=""2900013""","Brass City Charter School","=""2900113""","*","*",114,185,0,20,27,360
+"Bridgeport School District","=""0150011""","Aerospace/Hydrospace, Engineering and Physical Sciences Magnet High School","=""0150811""","*",13,89,153,0,"*",52,317
+,,"Barnum School","=""0150111""","*","*",158,414,0,"*",41,619
+,,"Bassick High School","=""0156111""","*","*",341,545,0,11,60,969
+,,"Beardsley School","=""0150211""","*","*",107,168,"*","*",13,297
+,,"Biotechnology, Research & Zoological Studies Magnet High School","=""0150611""","*",27,132,182,0,"*",56,402
+,,"Black Rock School","=""0150311""","*",10,70,261,"*","*",110,457
+,,"Blackham School","=""0154011""","*",23,237,576,"*",21,148,1020
+,,"Bridgeport Military Academy","=""0151611""","*","*",73,201,"*","*",33,312
+,,"Bryant School","=""0150411""","*","*",107,178,0,7,31,334
+,,"Central High School","=""0156211""","*",46,546,784,"*",17,172,1575
+,,"Cesar Batalla School","=""0151411""",7,9,196,748,"*","*",66,1033
+,,"Classical Studies Academy","=""0152111""","*",15,192,160,"*",6,25,401
+,,"Columbus School","=""0150511""","*","*",118,352,0,6,54,534
+,,"Geraldine Claytor Magnet Academy","=""0153111""","*","*",163,226,0,11,22,426
+,,"Geraldine Johnson School","=""0153211""",9,17,196,490,0,18,46,776
+,,"Hall School","=""0151111""","*","*",79,50,"*","*",10,147
+,,"Hallen School","=""0151211""","*",6,139,98,0,"*",14,264
+,,"High Horizons Magnet School","=""0154511""","*",9,157,214,0,"*",51,439
+,,"Information Technology & Software Engineering Magnet High School","=""0151511""","*",31,106,193,0,"*",65,402
+,,"Interdistrict Discovery Magnet School","=""0153711""","*",21,129,199,0,"*",120,482
+,,"James J. Curiale School","=""0154211""","*",21,181,284,"*",14,28,530
+,,"Jettie S. Tisdale School","=""0152211""","*",12,225,254,"*","*",36,536
+,,"John Winthrop School","=""0153611""","*",29,152,325,"*",16,87,614
+,,"Luis Munoz Marin School","=""0151011""","*","*",140,537,0,12,32,725
+,,"Madison School","=""0152011""","*","*",107,216,"*",15,71,417
+,,"Multicultural Magnet School","=""0154611""",19,6,27,268,"*","*",81,407
+,,"Park City Magnet School","=""0151711""","*",25,184,227,0,"*",48,495
+,,"Paul Laurence Dunbar School","=""0154111""","*","*",139,186,0,14,15,358
+,,"Read School","=""0152511""","*",7,252,392,"*",6,47,707
+,,"Roosevelt School","=""0152611""","*",16,148,275,0,"*",39,485
+,,"Thomas Hooker School","=""0151311""","*",0,105,130,"*",9,30,277
+,,"Waltersville School","=""0153011""","*",0,129,283,0,"*",20,440
+,,"Warren Harding High School","=""0156311""","*",7,352,691,"*",14,55,1124
+,,"Wilbur Cross School","=""0153911""","*","*",123,140,0,"*",19,287
+,,"A.B. Skane Center","=""0154411""",0,"*",63,118,0,"*",22,210
+,,"Edison School","=""0150711""",0,"*",66,87,"*",6,15,180
+,,"The Transition Academy","=""0152811""",0,"*",19,15,0,0,"*",37
+,,"Bridgeport Learning Center","=""0159011""",0,0,34,"*",0,0,"*",53
+"Bristol School District","=""0170011""","Bristol Eastern High School","=""0176211""","*",51,95,310,0,"*",628,1130
+,,"Greene-Hills School","=""0170511""","*",38,72,314,0,"*",426,887
+,,"South Side School","=""0171111""","*","*",33,185,0,22,241,491
+,,"Edgewood School","=""0170311""",0,8,9,98,0,18,126,259
+,,"Bristol Central High School","=""0176111""",0,26,79,447,0,52,616,1220
+,,"Chippens Hill Middle School","=""0175111""",0,32,58,254,"*","*",321,691
+,,"EXCEL - MS","=""0171611""",0,"*",0,"*",0,0,"*",6
+,,"Edgewood Pre-K Academy","=""0170411""",0,"*","*",54,0,10,49,116
+,,"Ellen P. Hubbell School","=""0171411""",0,11,30,145,0,22,129,337
+,,"Ivy Drive School","=""0171911""",0,9,30,99,0,21,200,359
+,,"LEAD","=""0173711""",0,"*","*",12,0,"*",10,31
+,,"LEAD Pre-K","=""0172911""",0,"*",0,"*",0,"*",6,12
+,,"Mountain View School","=""0171711""",0,16,21,100,0,23,180,340
+,,"Northeast Middle School","=""0175211""",0,19,29,95,0,22,222,387
+,,"Stafford School","=""0171211""",0,8,29,148,0,20,135,340
+,,"West Bristol School","=""0172011""",0,"*",60,348,"*",60,377,867
+,,"Breakthrough","=""0172611""",0,0,"*",6,0,"*",7,19
+,,"Bristol Preparatory Academy","=""0173311""",0,0,"*",14,0,"*",27,47
+,,"CHMS Learning Center","=""0173411""",0,0,"*","*",0,0,"*",6
+,,"Chippens Hill Middle School EXCEL","=""0171011""",0,0,"*","*",0,"*","*",10
+,,"Chippens Hilll Middle School Extended Resource","=""0170811""",0,0,"*",6,0,"*",0,9
+,,"Community/Vocational Program","=""0179211""",0,0,"*","*",0,"*",9,16
+,,"Destinations Academy","=""0179011""",0,0,"*",11,0,0,"*",25
+,,"Mountain View School EXCEL","=""0172311""",0,0,"*","*",0,"*","*",7
+,,"ACCESS","=""0170211""",0,0,0,"*",0,0,"*",6
+,,"Greene Hills Extended Resource","=""0173811""",0,0,0,"*",0,0,0,"*"
+,,"Greene-Hills GOAL","=""0170911""",0,0,0,"*",0,"*","*",6
+,,"Ivy Drive Extended Resource","=""0172211""",0,0,0,"*",0,0,0,"*"
+,,"Mt. View Extended Resource","=""0172411""",0,0,0,"*",0,0,0,"*"
+,,"Northeast MS/Extended Resource","=""0172711""",0,0,0,"*",0,0,"*","*"
+,,"Northeast Middle School Learning Center","=""0172811""",0,0,0,"*",0,0,"*","*"
+,,"South Side Extended Resource","=""0173011""",0,0,0,"*",0,"*","*",12
+,,"Hubbell/Extended Resource","=""0172111""",0,0,0,0,0,0,"*","*"
+"Brookfield School District","=""0180011""","Brookfield High School","=""0186111""","*",71,26,126,"*","*",673,903
+,,"Center Elementary School","=""0180311""","*",27,11,72,0,"*",264,381
+,,"Huckleberry Hill Elementary School","=""0180411""",8,36,14,61,0,10,385,514
+,,"Whisconier Middle School","=""0185311""","*",64,24,112,"*",13,568,790
+"Brooklyn School District","=""0190011""","Brooklyn Elementary School","=""0190111""","*","*",9,65,0,25,413,522
+,,"Brooklyn Middle School","=""0195111""",0,9,7,36,0,22,271,345
+"Canterbury School District","=""0220011""","Canterbury Elementary School","=""0220211""","*",0,"*",28,0,"*",234,267
+,,"Dr. Helen Baldwin Middle School","=""0225111""","*",0,"*",9,0,"*",182,194
+"Capital Preparatory Harbor School District","=""2970013""","Capital Preparatory Harbor School","=""2970113""","*",0,534,246,0,"*",6,793
+"Capitol Region Education Council","=""2410014""","Academy of Aerospace and Engineering","=""2415114""","*",73,268,303,"*",18,116,781
+,,"Academy of Aerospace and Engineering Elementary","=""2410714""","*",82,140,181,"*",27,105,538
+,,"Academy of Computer Science and Engineering","=""2415214""","*","*",133,232,0,21,68,462
+,,"Academy of Computer Science and Engineering Middle School","=""2415014""","*","*",192,311,0,29,76,628
+,,"Academy of International Studies 6-12","=""2416114""","*",14,355,202,"*",44,78,695
+,,"Academy of International Studies Elementary School","=""2410414""","*",90,162,170,0,"*",38,491
+,,"Academy of Science and Innovation","=""2416514""","*",36,173,380,0,"*",143,768
+,,"Glastonbury/East Hartford Magnet School","=""2410114""","*",46,121,195,0,"*",64,453
+,,"Museum Academy","=""2410514""","*","*",235,153,0,35,77,515
+,,"Reggio Magnet School of the Arts","=""2410314""","*","*",144,190,0,38,133,516
+,,"University of Hartford Magnet School","=""2410214""","*","*",221,116,0,38,78,474
+,,"Ana Grace Academy of the Arts","=""2410614""",0,"*",141,241,"*",37,76,507
+,,"Discovery Academy","=""2418114""",0,28,85,254,0,26,129,522
+,,"Greater Hartford Academy of the Arts High School - Full Day","=""2416414""",0,"*",96,229,0,"*",86,434
+,,"Greater Hartford Academy of the Arts Magnet Middle","=""2415314""",0,"*",94,157,0,"*",53,328
+,,"Montessori Magnet School","=""2413114""",0,11,41,222,0,18,66,358
+,,"River Street School","=""2419314""",0,"*",22,24,0,"*",47,102
+,,"River Street School Birken Campus","=""2419514""",0,"*",9,7,0,"*",24,46
+,,"STRIVE - Southern Transition Real-World and Independent Voc Ed","=""2419714""",0,"*",0,"*",0,0,14,16
+,,"CREC Impact Academy","=""2411914""",0,0,19,30,0,"*","*",51
+,,"Farmington Valley Regional Diagnostic Center","=""2419214""",0,0,"*","*",0,0,6,9
+,,"John J. Allison Polaris Center","=""2419014""",0,0,13,18,0,0,6,37
+,,"River Street School Early Learning Center","=""2411414""",0,0,"*",0,0,0,"*",11
+"Cheshire School District","=""0250011""","Cheshire High School","=""0256111""","*",147,46,89,0,"*",1007,1314
+,,"Dodd Middle School","=""0255111""","*",70,19,48,0,"*",464,614
+,,"Chapman School","=""0250111""",0,14,7,23,0,11,291,346
+,,"Cheshire Community Life","=""0251211""",0,"*",0,0,0,0,"*","*"
+,,"Cheshire Quinnipiac University Transition Collaborative","=""0250311""",0,"*","*",0,0,0,"*",6
+,,"Darcey School","=""0250211""",0,7,"*",20,0,"*",125,164
+,,"Doolittle School","=""0250611""",0,31,18,35,0,35,365,484
+,,"Highland School","=""0250411""",0,75,18,64,0,23,586,766
+,,"Highland School Autism Program","=""0250711""",0,"*","*","*",0,"*",13,20
+,,"Norton School","=""0250511""",0,40,18,25,0,14,339,436
+,,"QU College Life","=""0251011""",0,"*",0,0,0,0,"*",6
+,,"Humiston Alternative School","=""0250911""",0,0,"*","*",0,"*",20,25
+"Clinton School District","=""0270011""","Jared Eliot School","=""0275111""","*",13,"*",111,0,9,313,452
+,,"The Morgan School","=""0276111""","*",20,"*",81,0,7,422,534
+,,"Lewin G. Joel Jr. School","=""0270311""",0,"*","*",130,0,15,396,557
+"Colchester School District","=""0280011""","Colchester Elementary School","=""0280411""","*",7,"*",54,"*",27,504,599
+,,"Bacon Academy","=""0286111""",0,22,13,54,0,39,568,696
+,,"Jack Jackter Intermediate School","=""0280211""",0,"*","*",36,0,24,363,436
+,,"William J. Johnston Middle School","=""0285111""",0,8,8,35,0,25,402,478
+,,"East of the River Transition Academy","=""0280711""",0,0,"*",0,0,0,"*",7
+"Columbia School District","=""0300011""","Horace W. Porter School","=""0300111""","*","*","*",38,0,16,376,440
+"Connecticut Technical Education and Career System","=""9000016""","A. I. Prince Technical High School","=""9001516""","*",9,199,503,"*",24,47,786
+,,"Bullard-Havens Technical High School","=""9001116""","*","*",223,557,0,21,19,827
+,,"Ella T. Grasso Technical High School","=""9002716""","*",9,34,221,"*",71,277,621
+,,"H. C. Wilcox Technical High School","=""9001716""","*","*",35,359,0,40,347,791
+,,"H. H. Ellis Technical High School","=""9001316""","*","*",6,63,0,21,597,693
+,,"Henry Abbott Technical High School","=""9001216""","*",10,25,337,"*",26,312,712
+,,"Howell Cheney Technical High School","=""9001616""","*","*",74,217,0,41,313,661
+,,"Norwich Technical High School","=""9002016""","*",7,44,151,"*",43,412,666
+,,"Oliver Wolcott Technical High School","=""9002216""","*","*",6,91,0,35,503,638
+,,"Platt Technical High School","=""9002616""","*","*",125,345,0,36,292,808
+,,"Vinal Technical High School","=""9001816""","*","*",33,99,0,32,321,491
+,,"W. F. Kaynor Technical High School","=""9002316""","*",23,105,374,"*",48,233,792
+,,"E. C. Goodwin Technical High School","=""9001916""",0,"*",56,414,"*",25,186,685
+,,"Eli Whitney Technical High School","=""9001416""",0,"*",242,365,0,"*",44,678
+,,"Emmett O'Brien Technical High School","=""9002516""",0,"*",61,221,"*",35,360,686
+,,"J. M. Wright Technical High School","=""9002116""",0,"*",81,302,0,"*",67,465
+,,"Windham Technical High School","=""9002416""",0,0,6,194,0,22,278,500
+"Cooperative Educational Services","=""2430014""","Merit Academy","=""2439414""","*","*",15,34,0,8,55,114
+,,"Oakview Middle/High School","=""2439214""",0,"*",16,18,0,"*",15,54
+,,"Oakview Primary School","=""2439114""",0,"*",14,15,"*","*",15,49
+,,"Oakview Transition School","=""2430214""",0,"*",14,10,0,"*",17,47
+,,"School Readiness","=""2438014""",0,"*",23,44,0,0,"*",82
+,,"Six-Six Magnet School","=""2430114""",0,30,101,202,0,22,114,469
+,,"RISE Transitional Program","=""2439314""",0,0,0,"*","*",0,10,13
+"Coventry School District","=""0320011""","Coventry Grammar School","=""0320211""","*","*","*",21,0,15,330,372
+,,"Coventry High School","=""0326111""","*","*",6,25,0,11,356,403
+,,"George Hersey Robertson School","=""0320411""","*",6,"*",32,0,19,297,358
+,,"Capt. Nathan Hale School","=""0325111""",0,6,"*",26,"*",11,350,398
+,,"Hale Early Education Center","=""0320311""",0,"*","*",7,0,"*",91,104
+,,"Coventry Academy","=""0320111""",0,0,"*","*",0,"*",14,20
+"Cromwell School District","=""0330011""","Cromwell Middle School","=""0335111""","*",25,36,57,"*",22,315,459
+,,"Woodside Intermediate School","=""0330311""","*",21,"*",70,0,25,314,451
+,,"Cromwell High School","=""0336111""",0,45,44,58,"*","*",385,546
+,,"Edna C. Stevens School","=""0330211""",0,23,22,78,0,35,320,478
+"Danbury School District","=""0340011""","Broadview Middle School","=""0345111""","*",47,75,652,0,"*",255,1065
+,,"Danbury High School","=""0346111""","*",203,256,1872,"*",88,948,3373
+,,"Ellsworth Avenue School","=""0341411""","*",15,15,345,0,"*",66,452
+,,"Hayestown Avenue School","=""0340211""","*",42,29,252,0,"*",77,417
+,,"King Street Intermediate School","=""0341711""","*",10,30,218,0,"*",122,386
+,,"Rogers Park Middle School","=""0345211""","*",28,95,687,0,"*",206,1041
+,,"Shelter Rock School","=""0341211""","*",40,30,307,"*",20,122,521
+,,"South Street School","=""0341011""","*",21,19,273,0,"*",55,386
+,,"Stadley Rough School","=""0341611""","*","*",31,310,0,21,114,490
+,,"Westside Middle School Academy","=""0340311""","*",45,42,329,0,"*",279,716
+,,"Alternative Center For Excellence","=""0346211""",0,"*",7,42,0,"*",27,83
+,,"DPS Early Childhood Center","=""0340111""",0,"*",7,24,0,"*",11,48
+,,"DPS Early Childhood Center at Granville","=""0340411""",0,14,12,104,0,8,41,179
+,,"Great Plain School","=""0341111""",0,20,12,158,0,11,81,282
+,,"King Street Primary School","=""0341311""",0,10,14,243,0,14,100,381
+,,"Mill Ridge Primary School","=""0340511""",0,27,42,160,0,19,83,331
+,,"Morris Street School","=""0340611""",0,10,6,315,0,14,39,384
+,,"Park Avenue School","=""0340811""",0,23,21,452,"*","*",95,610
+,,"Pembroke School","=""0341511""",0,32,25,196,0,14,74,341
+,,"Western CT Academy of International Studies Elementary Magnet School","=""0341911""",0,28,35,135,0,18,111,327
+,,"Western Connection","=""0340711""",0,0,0,"*",0,0,"*",12
+"Darien School District","=""0350011""","Darien High School","=""0356111""","*",79,"*",99,0,30,1196,1422
+,,"Hindley Elementary School","=""0350211""","*",33,"*",26,0,21,357,443
+,,"Middlesex Middle School","=""0355111""","*",56,"*",67,0,40,926,1098
+,,"Holmes Elementary School","=""0350711""",0,36,0,26,0,28,361,451
+,,"Ox Ridge Elementary School","=""0351311""",0,23,0,34,0,31,410,498
+,,"Royle Elementary School","=""0350511""",0,17,7,34,0,16,302,376
+,,"Tokeneke Elementary School","=""0350611""",0,"*","*",29,0,27,355,437
+"Deep River School District","=""0360011""","Deep River Elementary School","=""0360111""","*","*","*",13,"*",10,176,204
+"East Granby School District","=""0400011""","R. Dudley Seymour School","=""0400211""","*",14,18,14,"*",8,146,203
+,,"Allgrove School","=""0400111""",0,8,7,9,0,6,142,172
+,,"East Granby High School","=""0406111""",0,23,25,16,0,8,180,252
+,,"East Granby Middle School","=""0405111""",0,14,16,19,0,8,134,191
+"East Haddam School District","=""0410011""","Nathan Hale-Ray Middle School","=""0415111""","*","*",0,31,0,12,323,370
+,,"East Haddam Elementary School","=""0410111""",0,"*","*",87,0,8,220,321
+,,"Nathan Hale-Ray High School","=""0416111""",0,7,"*",14,0,"*",244,269
+,,"East of the River Transition Academy","=""0410311""",0,0,0,0,0,0,8,8
+"East Hampton School District","=""0420011""","East Hampton Middle School","=""0425111""","*","*",7,26,0,18,376,432
+,,"Center School","=""0420311""",0,"*","*",22,0,11,245,288
+,,"The Transition Academy","=""0420211""",0,0,0,0,0,0,"*","*"
+,,"East Hampton High School","=""0426111""",0,"*","*",36,0,9,481,534
+,,"Memorial School","=""0420111""",0,"*",10,36,"*",21,443,519
+,,"The Learning Center at East Hampton","=""0429011""",0,0,0,"*",0,0,"*","*"
+"East Hartford School District","=""0430011""","Anna E. Norris School","=""0430911""","*","*",54,171,0,"*",20,256
+,,"Dr. Franklin H. Mayberry School","=""0430611""","*",15,97,186,"*",14,19,335
+,,"Dr. John A. Langford School","=""0432211""","*",6,94,172,0,"*",23,302
+,,"Dr. Thomas S. O'Connell School","=""0431011""","*","*",129,251,0,27,106,524
+,,"Early Childhood Learning Center at Hockanum School","=""0430211""","*",14,100,127,"*",7,34,285
+,,"East Hartford High School","=""0436211""","*",67,508,822,"*",62,165,1632
+,,"East Hartford Middle School","=""0435111""","*",31,306,500,"*",35,81,959
+,,"Governor William Pitkin School","=""0432011""","*",32,87,142,"*",17,50,330
+,,"Robert J. O'Brien School","=""0431811""","*",15,122,201,"*",8,19,367
+,,"Silver Lane School","=""0431211""","*","*",95,130,0,7,9,245
+,,"Connecticut IB Academy","=""0436311""",0,"*",62,47,0,"*",39,176
+,,"Joseph O. Goodwin School","=""0430411""",0,18,89,164,0,15,49,335
+,,"Sunset Ridge Middle School","=""0432411""",0,13,90,155,0,14,62,334
+,,"Synergy Alternative Program","=""0436411""",0,"*",19,40,0,"*",10,71
+,,"Woodland School","=""0439011""",0,"*",46,71,0,"*",20,145
+"East Haven School District","=""0440011""","Carbone School/East Haven Academy","=""0441711""","*","*",11,64,0,15,216,313
+,,"East Haven High School","=""0446111""","*",35,42,322,0,"*",459,868
+,,"Grove J. Tuttle School","=""0441011""","*",11,14,113,0,"*",121,270
+,,"Deer Run School","=""0440111""",0,10,11,84,0,16,145,266
+,,"Dominick H. Ferrara School","=""0441311""",0,11,11,59,"*","*",67,156
+,,"Joseph Melillo Middle School","=""0445111""",0,23,37,194,0,14,262,530
+,,"Momauguin School","=""0440711""",0,8,10,136,0,7,122,283
+,,"Overbrook Early Learning Center","=""0441811""",0,9,11,74,0,7,54,155
+"East Lyme School District","=""0450011""","East Lyme High School","=""0456111""","*",92,14,72,"*",57,729,970
+,,"Integrated Preschool","=""0458011""","*","*",0,"*",0,"*",51,60
+,,"Lillie B. Haynes School","=""0450411""","*",51,"*",37,0,17,217,334
+,,"Niantic Center School","=""0450211""","*",6,"*",22,0,14,185,229
+,,"East Lyme Middle School","=""0455111""",0,73,7,73,0,39,555,747
+,,"Flanders School","=""0450111""",0,24,"*","*",0,20,199,263
+,,"Abilities in Motion (AIM) Program","=""0450511""",0,0,"*","*",0,0,17,22
+,,"Coastal Connections","=""0450611""",0,0,0,"*",0,0,"*",13
+"East Windsor School District","=""0470011""","East Windsor Middle School","=""0475411""","*","*",47,81,0,10,164,310
+,,"Broad Brook Elementary School","=""0470111""",0,45,46,86,0,43,208,428
+,,"East Windsor High School","=""0476111""",0,"*",53,66,"*",15,139,280
+,,"East Windsor Transition Program","=""0470411""",0,0,"*","*",0,0,7,11
+"EdAdvance","=""2420014""","B.E.A.M Elementary School","=""2429014""","*","*",0,"*",0,0,11,15
+,,"EdAdvance Headstart","=""2428014""","*",6,7,68,0,"*",73,162
+,,"ACCESS HS- Expelled Student","=""2420414""",0,0,"*",0,0,0,"*","*"
+,,"ACCESS Middle and High School","=""2420714""",0,0,"*","*",0,0,"*",9
+,,"Steps Middle and High School","=""2420114""",0,0,"*",7,0,"*",17,27
+,,"UPP @ POST","=""2420514""",0,0,"*",0,0,0,"*",30
+,,"Partnership Learning Academy","=""2420614""",0,0,0,"*",0,0,"*",8
+,,"Steps-Expelled Student","=""2420314""",0,0,0,"*",0,0,0,"*"
+"Ellington School District","=""0480011""","Windermere School","=""0480611""","*",159,32,60,0,"*",367,647
+,,"Center School","=""0480111""",0,13,22,38,"*","*",380,465
+,,"Crystal Lake School","=""0480211""",0,15,12,24,0,12,256,319
+,,"ECLIPSE - Ellington Continuing Life Independence Post-Secondary Education","=""0480411""",0,"*",0,0,0,"*","*","*"
+,,"Ellington High School","=""0486111""",0,61,28,38,0,28,607,762
+,,"Ellington Middle School","=""0485111""",0,41,14,32,0,13,311,411
+,,"BASES - Behavioral, Academic, Social and Emotional Support Program","=""0480811""",0,0,"*","*",0,0,"*",9
+,,"TEPSEP - The Ellington Public Schools Expulsion Program","=""0480511""",0,0,0,0,0,0,"*","*"
+"Elm City College Preparatory School District","=""2890013""","Elm City College Preparatory School","=""2890113""","*",0,505,238,0,"*",24,776
+"Enfield School District","=""0490011""","Eli Whitney School","=""0491611""","*","*",21,71,0,9,227,336
+,,"Enfield Alternative Education Program","=""0492311""","*",0,"*","*",0,"*","*",8
+,,"Enfield High School","=""0496111""","*",52,89,272,"*",79,1007,1504
+,,"John F. Kennedy Middle School","=""0495211""","*","*",75,207,0,38,716,1064
+,,"Edgar H. Parkman School","=""0491311""",0,"*","*",53,0,17,214,298
+,,"Enfield High - Adaptive Learning Program (ALP)","=""0490111""",0,"*",0,"*",0,0,"*",7
+,,"Enfield Street School","=""0490211""",0,8,13,49,0,25,179,274
+,,"Enfield Transitional Learning Academy","=""0499011""",0,"*","*","*",0,"*",14,19
+,,"Hazardville Memorial School","=""0490411""",0,6,11,71,0,34,208,330
+,,"Henry Barnard - DLP","=""0490311""",0,"*",6,"*",0,"*",20,34
+,,"Henry Barnard School","=""0491811""",0,15,27,87,0,23,211,363
+,,"Prudence Crandall School","=""0491511""",0,"*",29,81,"*",24,207,356
+,,"SELC Integrated Pre-Kindergarten","=""0492211""",0,"*","*",11,0,"*",47,66
+,,"EPS PK STEAM Academy","=""0491011""",0,0,"*",13,0,"*",28,54
+,,"Eagle Academy - Elementary","=""0492611""",0,0,"*",0,0,0,"*",8
+,,"Eagle Academy - High","=""0492411""",0,0,"*","*",0,0,"*",6
+,,"Eagle Academy - Middle","=""0492511""",0,0,"*","*",0,0,7,9
+,,"Edgar H. Parkman - Adaptive Learning","=""0490511""",0,0,"*","*",0,0,"*",7
+,,"Eli Whitney - Adaptive Learning (IAL)","=""0491411""",0,0,"*",0,0,"*","*",6
+,,"Head Start Program","=""0498011""",0,0,"*",38,0,"*",42,100
+,,"John F. Kennedy - Adaptive Learning Program (ALP)","=""0490911""",0,0,"*","*",0,0,12,22
+,,"Prudence Crandall - SOAR","=""0490711""",0,0,"*","*",0,"*","*",7
+"Fairfield School District","=""0510011""","Burr Elementary School","=""0510211""","*",26,"*",32,0,30,242,339
+,,"Early Childhood Center at Stratfield","=""0510811""","*","*",0,21,0,"*",34,61
+,,"Fairfield Warde High School","=""0516211""","*",96,47,239,"*",62,951,1398
+,,"McKinley School","=""0510611""","*",43,44,135,0,"*",196,441
+,,"Mill Hill School","=""0510711""","*","*",0,23,0,23,299,368
+,,"Roger Ludlowe Middle School","=""0515311""","*",37,"*",51,0,42,657,807
+,,"Sherman School","=""0511311""",0,"*","*",18,0,16,352,402
+,,"Dwight Elementary School","=""0510111""",0,12,6,14,0,14,209,255
+,,"Early Childhood Center","=""0518011""",0,"*","*",19,0,7,53,86
+,,"Fairfield Ludlowe High School","=""0516011""",0,88,27,154,0,54,1206,1529
+,,"Fairfield School/Community Partnership","=""0510511""",0,"*",0,"*",0,0,19,22
+,,"Fairfield Woods Middle School","=""0515211""",0,67,26,115,0,37,557,802
+,,"Holland Hill School","=""0510411""",0,27,"*",72,"*",25,218,360
+,,"Jennings School","=""0511711""",0,"*","*",23,0,18,199,259
+,,"North Stratfield School","=""0511611""",0,25,8,43,0,25,312,413
+,,"Osborn Hill School","=""0511811""",0,23,7,31,0,30,318,409
+,,"Riverfield School","=""0511211""",0,"*","*",30,0,21,306,375
+,,"Stratfield School","=""0511411""",0,7,9,37,0,14,270,337
+,,"Tomlinson Middle School","=""0515111""",0,40,32,109,0,34,398,613
+,,"Walter Fitzgerald Campus","=""0510311""",0,0,"*","*",0,0,20,31
+"Farmington School District","=""0520011""","Farmington High School","=""0526111""","*",301,56,106,0,"*",766,1265
+,,"Irving A. Robbins Middle School","=""0525111""","*",168,37,63,0,"*",363,656
+,,"Noah Wallace School","=""0520211""","*",75,"*",46,0,23,166,323
+,,"West District School","=""0520311""","*",82,"*",29,0,21,224,376
+,,"East Farms School","=""0520411""",0,141,26,52,0,29,223,471
+,,"Farmington Collaborative PK","=""0528011""",0,17,"*",10,0,"*",43,83
+,,"Union School","=""0520111""",0,45,15,43,0,20,193,316
+,,"West Woods Upper Elementary School","=""0520511""",0,140,34,59,0,41,334,608
+,,"Farmington Alternative High School","=""0520611""",0,0,"*","*",0,"*","*","*"
+"Franklin School District","=""0530011""","Franklin Elementary School","=""0530111""","*","*","*",16,0,11,142,177
+"Glastonbury School District","=""0540011""","Gideon Welles School","=""0540811""","*",65,"*",74,0,31,329,511
+,,"Glastonbury High School","=""0546111""","*",234,68,176,"*",79,1305,1865
+,,"Nayaug Elementary School","=""0540911""","*",30,"*",45,0,27,391,511
+,,"Smith Middle School","=""0545211""","*",117,"*",91,0,49,579,865
+,,"Buttonball Lane School","=""0540211""",0,85,7,38,0,29,270,429
+,,"Glastonbury Transition Academy","=""0541411""",0,"*",0,"*",0,0,17,21
+,,"Hebron Avenue School","=""0540411""",0,62,8,56,0,22,305,453
+,,"Hopewell School","=""0540611""",0,83,13,46,0,26,304,472
+,,"Naubuc School","=""0540711""",0,54,24,97,0,44,208,427
+,,"PreK-Eastbury","=""0540511""",0,"*","*",12,0,"*",51,71
+,,"Links Academy","=""0540111""",0,0,"*",17,0,"*",31,56
+"Goodwin University Educational Services (GUES)","=""2310018""","Connecticut River Academy at Goodwin University","=""2310118""","*","*",156,309,0,24,79,587
+,,"Riverside Magnet School at Goodwin University","=""2310218""","*",10,139,214,"*",30,81,478
+"Granby School District","=""0560011""","Granby Memorial High School","=""0566111""","*",6,31,24,"*",17,494,574
+,,"Granby Memorial Middle School","=""0565111""","*","*",25,23,0,13,345,420
+,,"Kelly Lane Primary School","=""0560411""","*","*",26,16,0,10,344,406
+,,"Wells Road Intermediate School","=""0560311""",0,8,21,23,0,10,291,353
+"Greenwich School District","=""0570011""","Central Middle School","=""0575111""","*",29,"*",112,0,42,350,542
+,,"Greenwich High School","=""0576111""","*",215,85,634,"*",109,1624,2674
+,,"Hamilton Avenue School","=""0570511""","*",19,20,163,0,"*",104,324
+,,"New Lebanon School","=""0570611""","*",15,9,197,0,"*",87,314
+,,"North Mianus School","=""0570711""","*",79,"*",64,"*",32,319,498
+,,"North Street School","=""0570811""","*",22,"*",25,0,21,298,371
+,,"Old Greenwich School","=""0570911""","*","*",0,35,0,22,314,392
+,,"Western Middle School","=""0575311""","*",44,"*",246,0,31,285,629
+,,"Community Connections","=""0571211""",0,"*","*","*",0,0,11,18
+,,"Cos Cob School","=""0570211""",0,35,"*",67,0,"*",225,359
+,,"Eastern Middle School","=""0575211""",0,103,7,129,0,55,524,818
+,,"Glenville School","=""0570411""",0,"*","*",44,0,29,274,378
+,,"International School At Dundee","=""0571311""",0,94,"*",51,0,"*",159,344
+,,"Julian Curtiss School","=""0570311""",0,21,16,73,0,24,110,244
+,,"Parkway School","=""0571111""",0,8,0,16,0,17,176,217
+,,"Riverside School","=""0571011""",0,29,"*",72,0,"*",330,457
+,,"Windrose","=""0571511""",0,0,"*",11,0,"*",12,28
+"Griswold School District","=""0580011""","Griswold Elementary School","=""0580311""","*","*",15,89,0,52,521,696
+,,"Griswold High School","=""0586211""","*",8,14,59,"*",31,391,508
+,,"Griswold Middle School","=""0585111""","*",9,13,49,"*",40,374,491
+,,"Griswold Soule Street Academy","=""0580111""",0,0,0,"*",0,0,"*",17
+"Groton School District","=""0590011""","Catherine Kolnaski Magnet School","=""0592011""","*",41,"*",103,0,63,119,359
+,,"Central Office Academy","=""0590611""","*",0,0,"*",0,"*","*",10
+,,"Charles Barnum Magnet School","=""0591811""","*",10,22,78,"*",25,194,331
+,,"Groton Middle School","=""0591111""","*",54,59,215,"*",107,457,905
+,,"Mystic River Magnet School","=""0591311""","*",33,40,150,"*",54,240,525
+,,"New Beginnings Alternative Program","=""0590211""","*",0,"*","*",0,"*",7,18
+,,"Robert E. Fitch High School","=""0596111""","*",63,88,230,"*",119,506,1019
+,,"Thames River Magnet School","=""0591711""","*",49,39,143,"*",53,227,517
+,,"Northeast Academy Magnet School","=""0591911""",0,13,"*",59,"*",37,277,397
+,,"Transition Academy","=""0591011""",0,0,"*","*",0,0,7,11
+"Hamden School District","=""0620011""","Church Street School","=""0620211""","*",11,103,111,"*",8,20,256
+,,"Hamden High School","=""0626111""","*",111,592,395,"*",76,514,1693
+,,"Hamden Middle School","=""0625211""","*",48,278,200,"*",59,245,832
+,,"Helen Street School","=""0620411""","*",11,123,108,"*",19,48,311
+,,"Shepherd Glen School","=""0620111""","*",56,110,60,0,"*",59,297
+,,"Spring Glen School","=""0621011""","*",15,54,59,"*",24,248,402
+,,"Alice Peck Learning Center","=""0628011""",0,"*",25,24,0,"*",21,90
+,,"Bear Path School","=""0621211""",0,20,67,95,0,25,189,396
+,,"Dunbar Hill IIC","=""0621511""",0,"*","*","*",0,"*","*",9
+,,"Dunbar Hill School","=""0620311""",0,12,96,81,0,28,43,260
+,,"Hamden Transition Academy @ SCSU (AACPB)","=""0620611""",0,"*",10,"*",0,0,"*",16
+,,"Ridge Hill IIC","=""0621711""",0,"*",8,"*",0,"*","*",18
+,,"Ridge Hill School","=""0621111""",0,25,65,78,0,18,99,285
+,,"West Woods School","=""0621411""",0,36,73,60,0,24,119,312
+,,"Wintergreen Program","=""0620711""",0,8,33,14,0,"*","*",64
+,,"Bear Path IIC","=""0620911""",0,0,12,"*",0,0,"*",25
+,,"Church Street IIC","=""0621311""",0,0,"*","*",0,0,0,8
+,,"Hamden Collaborative Learning Center","=""0620511""",0,0,27,15,0,"*","*",55
+,,"Helen Street IIC","=""0621611""",0,0,7,"*",0,"*",0,11
+,,"Intensive Support Classroom","=""0621911""",0,0,"*","*",0,"*",8,16
+,,"West Woods IIC","=""0621811""",0,0,11,"*",0,"*","*",21
+,,"Intensive Support Classroom 7-8","=""0622011""",0,0,0,"*",0,0,0,"*"
+"Hampton School District","=""0630011""","Hampton Elementary School","=""0630111""","*","*",0,"*",0,"*",65,73
+"Hartford School District","=""0640011""","Betances Learning Lab Magnet School","=""0642811""","*",124,62,165,"*",11,30,394
+,,"Breakthrough Magnet School, North","=""0643511""","*",63,156,73,"*",26,14,336
+,,"Breakthrough Magnet School, South","=""0643311""","*",20,81,187,0,"*",35,339
+,,"Bulkeley High School","=""0647111""","*",6,125,462,"*",6,11,616
+,,"Burns Latino Studies Academy","=""0640611""","*","*",29,183,0,"*",12,232
+,,"Burr Middle School","=""0642311""","*",7,44,247,0,"*",7,308
+,,"Dwight-Bellizzi Dual Language Academy","=""0640711""","*",15,67,476,"*",9,18,594
+,,"Environmental Sciences Magnet at Hooker School","=""0640911""","*",37,69,341,0,"*",84,552
+,,"Expeditionary Learning Academy at Moylan School","=""0643211""","*","*",22,313,"*",6,12,363
+,,"Great Path Academy at CT State Manchester","=""0647911""","*",6,93,161,"*",8,40,310
+,,"Hartford Magnet Trinity College Academy","=""0645411""","*",36,262,513,"*",32,131,979
+,,"Hartford PreKindergarten Magnet School: North Campus","=""0641311""","*",70,54,41,0,"*",14,189
+,,"Hartford Public High School","=""0646211""","*",20,178,532,"*","*",33,771
+,,"Kennelly School","=""0641011""","*",20,76,456,"*",7,16,579
+,,"Kinsella Magnet School of Performing Arts: PK-8 Campus","=""0641111""",6,31,158,355,0,33,71,654
+,,"M. D. Fox School","=""0640811""","*",15,81,393,0,"*",11,504
+,,"McDonough Middle School","=""0641211""","*",6,35,259,0,"*",12,316
+,,"Montessori Magnet at Batchelder School","=""0640511""","*",13,44,234,0,"*",57,362
+,,"Montessori Magnet at Fisher School","=""0643711""","*",29,169,65,0,"*",52,333
+,,"Naylor/CCSU Leadership Academy","=""0641411""","*",17,41,282,0,"*",42,389
+,,"Parkville Community School","=""0641511""","*","*",42,321,"*","*",41,416
+,,"Pathways Academy of Technology and Design","=""0646611""","*","*",121,189,0,22,69,412
+,,"Rawson School","=""0641711""","*","*",149,68,0,"*","*",224
+,,"SAND School","=""0640111""","*",0,80,204,0,"*","*",291
+,,"STEM Magnet at Annie Fisher School","=""0642511""","*",64,179,66,"*",16,25,352
+,,"Sanchez School","=""0643011""","*","*",38,272,0,"*",7,324
+,,"Sport and Medical Sciences Academy","=""0646511""","*","*",127,308,0,23,98,579
+,,"University High School of Science and Engineering","=""0646711""","*",37,186,94,"*",16,75,413
+,,"Weaver High School","=""0646311""","*","*",327,280,0,7,6,626
+,,"Webster Micro Society Magnet School","=""0642011""","*",64,271,185,0,"*",79,629
+,,"iGOAL 2 - Moylan School","=""0648511""","*","*","*",7,0,0,0,14
+,,"Betances STEM Magnet School","=""0643811""",0,16,63,113,0,8,27,227
+,,"Capital Preparatory Magnet School","=""0646911""",0,"*",427,162,"*",26,19,647
+,,"Classical Magnet School","=""0646411""",0,"*",193,207,"*",14,35,455
+,,"Early Childhood Development Center (ECDC)","=""0644111""",0,"*",16,23,0,"*","*",43
+,,"Global Communications Academy","=""0643611""",0,"*",214,197,0,9,"*",431
+,,"M. L. King, Jr. Middle School","=""0641611""",0,"*",128,77,"*","*","*",215
+,,"Milner Middle School","=""0641911""",0,"*",107,195,"*","*","*",312
+,,"Renzulli Gifted and Talented Academy","=""0644011""",0,"*",41,43,0,"*",22,116
+,,"West Middle School","=""0642111""",0,14,111,156,0,8,6,295
+,,"Wish Museum School","=""0642211""",0,"*",109,170,"*","*","*",289
+,,"iGOAL 1 - HPHS","=""0644911""",0,"*",7,19,0,0,"*",29
+,,"iGOAL 1 - Milner School","=""0640110""",0,"*",6,13,0,"*",0,21
+,,"New Visions","=""0640910""",0,0,"*","*",0,0,0,11
+,,"Pre-K Integrated - Naylor School","=""0640510""",0,0,"*",9,0,"*",0,13
+,,"Pre-K Integrated - Parkville School","=""0640410""",0,0,"*","*",0,0,0,10
+,,"Pre-K Integrated - SAND School","=""0641110""",0,0,"*","*",0,0,0,7
+,,"Pre-K Integrated - Sanchez School","=""0641510""",0,0,7,10,0,0,0,17
+,,"Pre-K Integrated - West Middle School","=""0640610""",0,0,"*","*",0,0,"*","*"
+,,"Pre-K Integrated - Wish School","=""0641210""",0,0,"*","*",0,0,0,15
+,,"RISE - Bulkeley High School","=""0648311""",0,0,"*",11,0,0,"*",18
+,,"RISE - Hartford Public High School","=""0648211""",0,0,"*",19,0,"*",0,30
+,,"RISE - M.L. King Middle School","=""0641310""",0,0,"*","*",0,"*",0,11
+,,"RISE - West Middle School","=""0644611""",0,0,"*",0,0,0,0,"*"
+,,"STEP at Hartford Public High School","=""0648411""",0,0,18,23,0,0,0,41
+,,"Student Engagement Academy","=""0641010""",0,0,"*","*",0,0,0,8
+,,"iGOAL - Weaver High School","=""0641410""",0,0,"*","*",0,0,0,19
+,,"iGOAL 1 - Breakthrough Magnet School, North","=""0649511""",0,0,"*","*",0,0,0,12
+,,"iGOAL 1 - Burns School","=""0644711""",0,0,"*","*",0,0,0,29
+,,"iGOAL 1 - M.D. Fox School","=""0645711""",0,0,"*","*",0,0,0,15
+,,"iGOAL 1 - Parkville School","=""0648711""",0,0,"*",9,0,0,"*",12
+,,"iGOAL 1 - Rawson School","=""0644411""",0,0,13,"*",0,"*",0,20
+,,"iGOAL 2 - Kennelly School","=""0640210""",0,0,"*",6,0,"*",0,9
+,,"iGOAL Pre-K - Rawson School","=""0640810""",0,0,0,"*",0,0,0,"*"
+"Hebron School District","=""0670011""","Gilead Hill School","=""0670211""","*",8,"*",12,0,13,289,331
+,,"Hebron Elementary School","=""0670111""",0,"*","*",22,0,"*",311,348
+"Integrated Day Charter School District","=""2640013""","Integrated Day Charter School","=""2640113""","*",50,41,67,0,"*",158,353
+"Jumoke Academy District","=""2610013""","Jumoke Academy","=""2610113""","*","*",636,37,0,6,"*",686
+"Killingly School District","=""0690011""","Killingly Central School","=""0690111""","*",8,"*",48,0,27,278,365
+,,"Killingly High School","=""0696111""","*",28,13,65,"*",35,608,754
+,,"Killingly Intermediate School","=""0695211""","*","*",12,80,0,38,500,640
+,,"Killingly Memorial School","=""0690311""","*",9,9,60,"*",50,377,509
+,,"Goodyear Early Childhood Center","=""0698011""",0,"*","*",9,0,"*",79,94
+"Learn","=""2450014""","Marine Science Magnet High School","=""2456114""","*",10,"*",50,0,19,185,271
+,,"Regional Multicultural Magnet School","=""2450114""","*","*",68,218,0,76,127,502
+,,"The Friendship School","=""2450214""","*",19,49,195,"*",59,178,503
+,,"Three Rivers Middle College Magnet School","=""2456214""","*","*",6,14,0,7,38,67
+,,"Learn Intensive Program","=""2451114""",0,"*",6,9,0,"*",14,37
+,,"LEARN SAILS Program","=""2451614""",0,0,"*","*",0,"*",12,22
+,,"Learn High School","=""2450614""",0,0,"*","*",0,0,"*","*"
+,,"LEARN Transition Academy","=""2450414""",0,0,0,"*",0,0,"*",7
+"Lebanon School District","=""0710011""","Lebanon Elementary School","=""0710111""","*","*","*",30,"*",8,287,336
+,,"Lebanon Middle School","=""0715111""","*","*","*",16,"*","*",238,269
+,,"Lyman Memorial High School","=""0716211""","*",8,"*",22,0,"*",279,318
+"Ledyard School District","=""0720011""","Gales Ferry School","=""0720211""","*",14,11,27,"*",9,170,238
+,,"Gallup Hill School","=""0720411""",27,"*",20,70,"*",31,451,618
+,,"Ledyard High School","=""0726111""",23,"*",49,94,"*",36,533,760
+,,"Ledyard Middle School","=""0725111""","*",22,19,57,"*",38,393,547
+,,"Juliet W. Long School","=""0720311""",0,14,"*",34,"*",13,194,266
+,,"Ledyard Transition Academy","=""0720511""",0,"*",0,0,0,0,"*",9
+"Lisbon School District","=""0730011""","Lisbon Central School","=""0730111""","*","*",6,51,"*",22,340,426
+"Litchfield School District","=""0740011""","Center School","=""0740211""","*","*","*",16,0,"*",249,278
+,,"Litchfield High School","=""0746111""",0,6,"*",20,"*",6,194,232
+,,"Litchfield Intermediate School","=""0740311""",0,"*",0,16,0,"*",166,189
+,,"Litchfield Middle School","=""0746011""",0,"*",0,9,0,"*",125,137
+"Madison School District","=""0760011""","Daniel Hand High School","=""0766111""","*",30,7,49,"*",39,749,877
+,,"Dr. Robert H. Brown Elementary School","=""0760611""",0,19,"*",24,0,"*",284,338
+,,"J. Milton Jeffrey Elementary School","=""0760111""",0,15,"*",27,"*",12,299,356
+,,"Kathleen H. Ryerson Elementary School","=""0760311""",0,"*","*",16,0,9,250,284
+,,"Walter C. Polson Middle School","=""0765211""",0,"*","*",36,0,21,461,539
+,,"Town Campus Learning Center","=""0769011""",0,0,0,"*",0,"*",46,51
+"Manchester School District","=""0770011""","Bowers School","=""0770111""","*",16,63,119,"*",8,128,337
+,,"Buckley School","=""0770311""","*",34,79,77,0,"*",123,316
+,,"Elisabeth M. Bennet Academy","=""0771711""","*",59,217,259,"*",12,284,837
+,,"Illing Middle School","=""0775311""","*",63,220,309,"*",15,242,858
+,,"Keeney School","=""0770611""","*",21,54,86,"*",0,123,289
+,,"Manchester Head Start","=""0778011""","*",8,42,50,0,"*",35,140
+,,"Manchester High School","=""0776111""","*",136,430,505,"*",60,555,1702
+,,"New Horizons","=""0770711""","*",0,9,15,0,"*",11,37
+,,"Verplanck School","=""0771211""","*",34,128,184,"*",7,93,450
+,,"Waddell School","=""0771311""","*",90,118,166,"*",8,90,474
+,,"Highland Park School","=""0770411""",0,"*",63,113,0,"*",135,334
+,,"Manchester Transition Center","=""0779111""",0,"*",10,"*",0,0,10,28
+,,"Martin School","=""0771611""",0,21,48,59,"*","*",80,213
+,,"Manchester High School-Site 2","=""0770211""",0,0,"*",21,0,"*",12,43
+,,"Manchester Middle Academy","=""0771511""",0,0,12,20,0,"*","*",38
+,,"Manchester Regional Academy","=""0779011""",0,0,"*",23,0,"*",21,57
+"Mansfield School District","=""0780011""","Mansfield Middle School","=""0785111""","*",55,"*",71,0,20,309,474
+,,"Southeast Elementary School","=""0780511""","*",11,"*",29,0,"*",114,161
+,,"Mansfield Elementary at Goodwin","=""0780211""",0,29,"*",21,0,"*",89,152
+,,"Mansfield Elementary at Vinton","=""0780411""",0,32,9,35,0,9,124,209
+"Marlborough School District","=""0790011""","Elmer Thienes-Mary Hall Elementary School","=""0790111""","*","*",7,35,0,11,388,447
+"Meriden School District","=""0800011""","Thomas Hooker School","=""0801011""",0,11,25,175,0,18,112,341
+,,"Casimir Pulaski School","=""0801111""","*","*",61,410,0,31,91,599
+,,"Francis T. Maloney High School","=""0806111""","*",46,137,664,"*",46,339,1235
+,,"John Barry School","=""0800511""","*","*",67,320,0,21,54,470
+,,"Lincoln Middle School","=""0805211""","*","*",56,452,0,17,187,724
+,,"Nathan Hale School","=""0800711""","*","*",62,303,0,26,132,531
+,,"Orville H. Platt High School","=""0806211""","*","*",157,651,0,28,213,1069
+,,"Roger Sherman School","=""0800811""","*","*",52,328,0,26,71,486
+,,"Benjamin Franklin School","=""0800111""",0,"*",28,194,"*",23,103,353
+,,"Community Classroom Collaborative","=""0800211""",0,"*","*","*",0,"*",6,14
+,,"Edison Middle School","=""0802711""",0,16,52,324,0,18,92,502
+,,"Hanover School","=""0800311""",0,6,24,261,0,16,128,435
+,,"Israel Putnam School","=""0800411""",0,16,64,269,0,34,117,500
+,,"PRIDE","=""0802611""",0,"*","*",49,0,"*",27,82
+,,"STARS - HS","=""0801811""",0,"*",0,7,0,0,"*",12
+,,"STARS - Hanover","=""0800611""",0,"*",6,35,0,"*",12,63
+,,"TLC - MHS","=""0802011""",0,"*",8,22,0,"*",7,39
+,,"TLC - PHS","=""0801911""",0,"*","*",12,0,0,"*",23
+,,"Washington Middle School","=""0805411""",0,12,82,398,0,28,198,718
+,,"Community Collaborative Classroom - ACADEMY","=""0802111""",0,0,"*",9,0,0,"*",15
+,,"SOAR - Middle","=""0802411""",0,0,"*",25,0,0,"*",33
+,,"SOAR- Elementary","=""0802211""",0,0,"*",7,0,0,"*",10
+,,"STARS - MS","=""0801511""",0,0,"*",13,0,0,"*",21
+,,"STEP - ES","=""0800911""",0,0,9,24,0,"*","*",43
+,,"STEPS - MS","=""0801211""",0,0,"*",13,0,0,"*",25
+,,"Success Academy","=""0801411""",0,0,"*",18,0,"*","*",25
+,,"TSC - MHS","=""0801611""",0,0,"*",8,0,"*",6,17
+,,"TSC - PHS","=""0801711""",0,0,"*",13,0,0,"*",18
+,,"Venture Academy","=""0801311""",0,0,"*",44,0,"*",13,66
+,,"SOAR - High","=""0802511""",0,0,0,6,0,0,0,6
+"Middletown School District","=""0830011""","Beman Middle School","=""0835411""","*",47,189,166,"*",110,452,975
+,,"Middletown High School","=""0836211""","*",55,294,212,"*",95,589,1251
+,,"Middletown Transition Center","=""0839111""","*","*","*","*",0,"*",9,23
+,,"Snow School","=""0831111""","*",22,81,51,"*",44,175,376
+,,"Spencer School","=""0830111""","*","*",42,40,0,32,125,249
+,,"Bielefield School","=""0830211""",0,"*",72,51,"*",35,84,258
+,,"Evening Program - MHS","=""0831611""",0,"*","*","*",0,"*",7,12
+,,"Farm Hill School","=""0830511""",0,7,60,47,0,35,135,284
+,,"Lawrence School","=""0831311""",0,28,70,"*","*",43,151,322
+,,"Moody School","=""0831211""",0,"*",34,18,"*",32,100,199
+,,"Wesley School","=""0831411""",0,"*",41,"*",0,25,114,205
+,,"ICM - Farm Hill","=""0830611""",0,0,"*","*",0,0,"*","*"
+,,"ICM - Moody 3-5","=""0830711""",0,0,"*","*",0,"*","*",7
+,,"ICM - Moody K-2","=""0830811""",0,0,"*",0,0,0,0,"*"
+,,"ICM - Spencer","=""0832011""",0,0,"*","*",0,0,"*",6
+,,"ICM- Beman Middle School","=""0830411""",0,0,"*","*",0,"*",0,"*"
+,,"MHS - Alternative Education Program 2","=""0831911""",0,0,"*","*",0,"*",0,6
+,,"Virtual Learning Academy - MHS","=""0831711""",0,0,0,"*",0,0,"*",6
+"Milford School District","=""0840011""","East Shore Middle School","=""0845111""","*",23,19,41,0,"*",321,415
+,,"Jonathan Law High School","=""0846211""","*",75,51,129,"*",9,558,826
+,,"Joseph A. Foran High School","=""0846311""","*",58,39,95,0,"*",580,786
+,,"Calf Pen Meadow School","=""0840111""",0,"*","*",28,0,13,199,251
+,,"Harborside Middle School","=""0845211""",0,52,14,42,"*","*",291,410
+,,"J. F. Kennedy School","=""0841911""",0,22,"*",82,"*",17,194,324
+,,"Live Oaks School","=""0841611""",0,34,13,23,0,27,189,286
+,,"Mathewson School","=""0841711""",0,44,11,46,0,14,212,327
+,,"Meadowside School","=""0840711""",0,66,"*",49,"*",18,139,286
+,,"Orange Avenue School","=""0840811""",0,21,18,57,0,17,282,395
+,,"Orchard Hills School","=""0841811""",0,12,12,47,0,17,255,343
+,,"Post Grad Transitional Academy","=""0840611""",0,"*","*","*",0,0,12,15
+,,"Pumpkin Delight School","=""0841011""",0,10,12,47,0,20,156,245
+,,"The Academy","=""0840311""",0,"*",0,"*",0,0,19,26
+,,"West Shore Middle School","=""0845311""",0,52,21,75,"*","*",254,419
+,,"Fifth Year Vocational Experience","=""0840411""",0,0,"*",0,0,0,"*",10
+"Monroe School District","=""0850011""","Fawn Hollow Elementary School","=""0850511""","*",27,12,112,"*",25,474,653
+,,"Masuk High School","=""0856111""","*",63,"*",139,0,29,795,1053
+,,"Stepney Elementary School","=""0850311""","*",21,16,79,"*",34,303,456
+,,"Jockey Hollow School","=""0855211""",0,51,"*",109,"*",33,556,781
+,,"Monroe Elementary School","=""0850111""",0,12,12,54,0,9,289,376
+,,"Masuk Alternative Program","=""0850211""",0,0,0,"*",0,0,"*",11
+,,"Monroe Oxford Community Program","=""0850711""",0,0,0,0,0,0,"*","*"
+"Montville School District","=""0860011""","Leonard J. Tyl Middle School","=""0865111""","*",30,"*",77,0,62,298,490
+,,"Mohegan School","=""0860111""",6,52,19,54,0,39,145,315
+,,"Montville High School","=""0866111""","*",49,15,62,"*",58,308,496
+,,"Montville Transition and Vocational Training Academy","=""0860611""","*","*","*","*",0,0,"*",11
+,,"Dr. Charles E. Murphy School","=""0860711""",0,7,12,47,0,28,194,288
+,,"Oakdale School","=""0860511""",0,"*","*",41,0,31,226,308
+,,"Pre School Program","=""0860311""",0,0,"*",8,0,"*",29,42
+,,"The Palmer School","=""0869011""",0,0,"*","*",0,"*",25,33
+"Naugatuck School District","=""0880011""","City Hill Middle School","=""0885111""","*","*",79,230,0,33,314,683
+,,"Cross Street Intermediate School","=""0880211""","*","*",27,105,0,14,160,316
+,,"Maple Hill School","=""0880311""","*","*",34,168,0,25,205,446
+,,"Naugatuck High School","=""0886111""","*",43,138,423,"*",52,620,1284
+,,"Western School","=""0880711""","*",10,33,85,"*",17,121,269
+,,"Andrew Avenue School","=""0880811""",0,"*",24,99,0,"*",102,238
+,,"Head Start","=""0888111""",0,"*",19,44,0,"*",41,123
+,,"Hillside Intermediate School","=""0880411""",0,"*",36,125,0,"*",146,327
+,,"Hop Brook Elementary School","=""0880511""",0,7,43,106,0,20,132,308
+,,"Naugatuck Community Program","=""0881011""",0,"*","*","*",0,0,10,18
+,,"Salem School","=""0880611""",0,"*",21,109,0,"*",97,250
+,,"Central Avenue Preschool","=""0888211""",0,0,"*",11,0,"*",10,26
+,,"Genesis Academy","=""0880911""",0,0,"*","*",0,"*","*",9
+"New Beginnings Inc Family Academy District","=""2800013""","New Beginnings Inc Family Academy","=""2800113""","*",0,270,196,0,"*",9,484
+"New Britain School District","=""0890011""","Chamberlain Elementary School","=""0890311""","*","*",46,296,0,24,35,410
+,,"New Britain High School","=""0896111""","*",68,292,1491,"*",76,430,2363
+,,"Slade Middle School","=""0895211""","*",17,87,592,"*",34,103,835
+,,"Smith Elementary School","=""0891311""","*","*",51,323,0,28,57,468
+,,"Holmes Elementary School","=""0890611""",0,22,55,209,0,36,126,448
+,,"DiLoreto Elementary & Middle School","=""0891111""",0,11,63,640,0,14,77,805
+,,"Gaffney Elementary School","=""0890511""",0,12,37,270,0,25,79,423
+,,"Gaffney KEY Elementary","=""0891611""",0,"*",11,56,0,"*",16,93
+,,"House of Arts Letters and Science (HALS) Academy","=""0895411""",0,"*",18,65,0,"*",51,146
+,,"Jefferson Elementary School","=""0890711""",0,16,37,241,0,14,81,389
+,,"Lincoln Elementary School","=""0890811""",0,"*",44,366,0,"*",78,516
+,,"New Britain High School Satellite Careers Academy","=""0899511""",0,"*",12,106,0,"*",21,147
+,,"Northend Elementary School","=""0890911""",0,"*",41,168,"*",17,28,259
+,,"Pulaski Middle School","=""0895311""",0,"*",90,600,"*",31,150,889
+,,"Pulaski Pathways","=""0892311""",0,"*","*",17,0,0,"*",20
+,,"Roosevelt Early Learning Center","=""0890111""",0,"*","*",121,0,21,28,191
+,,"Smalley Elementary School","=""0891211""",0,"*",45,469,"*",25,45,591
+,,"The Catalyst Academy","=""0899011""",0,"*","*",31,0,0,6,42
+,,"Vance Elementary School","=""0891511""",0,"*",54,311,0,"*",51,431
+,,"Brookside School","=""0899111""",0,0,"*",28,0,0,"*",32
+,,"CLIMB","=""0899411""",0,0,7,24,0,"*","*",37
+,,"Chamberlain Bridges","=""0890211""",0,0,"*",13,0,"*","*",18
+,,"Holmes Bridges","=""0890411""",0,0,"*",8,0,"*","*",11
+,,"Lincoln KEY Elementary","=""0892011""",0,0,"*",12,0,"*","*",17
+,,"Slade Bridges","=""0892211""",0,0,"*",23,0,"*","*",29
+,,"Slade KEY Middle","=""0891711""",0,0,"*",17,0,"*","*",26
+,,"Smith KEY Elementary","=""0892111""",0,0,"*",11,0,0,"*",17
+,,"Smith Pathways","=""0891911""",0,0,"*",16,0,"*","*",21
+,,"Lincoln SCS","=""0891011""",0,0,0,"*",0,0,0,"*"
+"New Canaan School District","=""0900011""","New Canaan High School","=""0906111""","*",89,"*",77,0,37,1069,1287
+,,"Saxe Middle School","=""0905111""","*",98,23,70,"*",53,1078,1327
+,,"South School","=""0900211""","*",40,"*",31,0,37,407,522
+,,"West School","=""0900311""","*",28,"*",26,0,29,370,457
+,,"East School","=""0900411""",0,34,11,37,0,34,409,525
+,,"Launch","=""0900111""",0,0,0,"*",0,0,"*",7
+"New Fairfield School District","=""0910011""","Consolidated School","=""0910111""","*","*","*",76,"*",14,385,486
+,,"New Fairfield Elementary School","=""0910211""","*","*","*",77,"*",15,338,442
+,,"New Fairfield High School","=""0916111""","*",12,"*",100,0,18,520,665
+,,"New Fairfield Middle School","=""0915211""","*","*",11,93,0,15,389,517
+,,"Alternative Learning Center","=""0910311""",0,0,0,"*",0,0,"*","*"
+,,"STRIDES - Striving To Reach Individual & Diverse Eductl. Success","=""0910511""",0,0,0,0,0,0,6,6
+"New Haven School District","=""0930011""","Nathan Hale School","=""0931411""","*","*",78,259,0,20,182,544
+,,"Barnard Environmental Magnet School","=""0930211""","*",49,187,154,0,"*",58,467
+,,"Beecher School","=""0930311""","*","*",276,146,0,23,45,500
+,,"Benjamin Jepson Magnet School","=""0931811""","*","*",126,270,"*",30,59,489
+,,"Bishop Woods Architecture and Design Magnet School","=""0934311""","*","*",145,239,0,13,32,437
+,,"Brennan Rogers School","=""0932111""","*",0,205,133,"*",13,19,374
+,,"Clinton Avenue School","=""0930611""","*","*",65,359,0,8,25,459
+,,"Conte/West Hills Magnet School","=""0933111""","*",9,235,312,"*",18,38,616
+,,"Cooperative High School - Inter-District Magnet","=""0936411""","*","*",240,208,0,11,107,575
+,,"East Rock Community Magnet School","=""0934611""","*",17,151,202,"*",16,61,451
+,,"Edgewood School","=""0931211""","*","*",181,87,0,31,98,407
+,,"Engineering - Science University Magnet School","=""0931711""","*",46,195,143,0,"*",167,580
+,,"Hill Central Music Academy","=""0930711""","*",10,72,341,0,"*",13,440
+,,"Hill Regional Career High School","=""0936311""","*",24,263,293,0,"*",39,637
+,,"James Hillhouse High School","=""0936211""","*","*",594,474,0,28,49,1171
+,,"John S. Martinez Sea and Sky STEM School","=""0930811""","*","*",34,426,"*","*",11,477
+,,"King/Robinson Magnet School","=""0933011""","*",28,312,81,0,"*",25,466
+,,"Mauro-Sheridan Magnet School","=""0931911""","*","*",280,140,0,18,78,529
+,,"New Haven Academy","=""0937011""","*","*",181,103,0,6,36,332
+,,"Sound School","=""0936711""","*",0,40,138,0,"*",154,340
+,,"Truman School","=""0932911""","*",15,43,420,"*",8,15,505
+,,"Wilbur Cross High School","=""0936111""","*",35,366,980,0,"*",171,1563
+,,"Augusta Lewis Troup School","=""0931511""",0,14,206,161,0,25,19,425
+,,"Barack H. Obama Magnet University School","=""0932811""",0,10,132,147,0,12,16,317
+,,"Celentano BioTech, Health and Medical Magnet School","=""0934811""",0,16,181,119,0,11,21,348
+,,"Davis Academy for Arts & Design Innovation","=""0930911""",0,8,293,103,0,18,69,491
+,,"Dr. Reginald Mayo Early Learning Center","=""0932711""",0,9,147,84,0,"*","*",253
+,,"East Rock Self Contained MD","=""0937511""",0,"*",16,19,0,0,"*",40
+,,"Fair Haven School","=""0931611""",0,27,49,624,"*","*",29,737
+,,"Family Academy of Multilingual Exploration","=""0934111""",0,"*",10,412,0,"*",10,436
+,,"High School In The Community","=""0936611""",0,"*",113,127,0,"*",23,268
+,,"John C. Daniels","=""0931311""",0,6,70,356,0,8,50,490
+,,"Lincoln-Bassett School","=""0932011""",0,"*",193,78,0,"*",10,286
+,,"Metropolitan Business Academy","=""0936011""",0,12,150,185,0,6,36,389
+,,"Roberto Clemente Leadership Academy for Global Awareness","=""0934211""",0,30,104,217,"*","*",27,389
+,,"Ross/Woodward School","=""0931011""",0,18,226,310,0,24,58,636
+,,"Worthington Hooker School","=""0933811""",0,77,74,56,0,23,163,393
+,,"Barack H. Obama Self Contained Autism","=""0937611""",0,0,10,"*",0,0,"*",23
+,,"Benjamin Jepson Head Start","=""0933411""",0,0,"*","*",0,0,"*",7
+,,"Betsy Ross Arts and Design Academy","=""0935511""",0,0,144,138,0,13,53,348
+,,"Bishop Woods Self Contained Autism","=""0937911""",0,0,"*",8,0,0,"*",14
+,,"Brennan Rogers Self Contained Autism","=""0937211""",0,0,17,11,0,"*","*",30
+,,"Celentano Self Contained ID","=""0937411""",0,0,14,8,0,"*","*",26
+,,"Clemente SC","=""0930610""",0,0,"*","*",0,0,0,10
+,,"Fair Haven Self Contained ID","=""0938711""",0,0,7,"*",0,"*",0,14
+,,"Gateway to College Program","=""0930110""",0,0,33,16,0,"*","*",52
+,,"James Hillhouse Self Contained MD","=""0930210""",0,0,"*","*",0,0,0,"*"
+,,"Lincoln Bassett Integrated PK","=""0930510""",0,0,"*","*",0,0,0,8
+,,"Lincoln Bassett Self Contained","=""0930310""",0,0,"*",10,0,0,"*",14
+,,"Nathan Hale Self Contained ID","=""0937711""",0,0,10,"*",0,0,"*",19
+,,"Off-Campus Classroom Program (OCC)","=""0937311""",0,0,32,"*",0,0,"*",56
+,,"Riverside Education Academy","=""0939111""",0,0,36,"*",0,0,"*",64
+,,"Wexler/Grant - Lincoln Bassett Self Contained","=""0938611""",0,0,"*","*",0,0,0,"*"
+,,"Wexler/Grant - Lincoln/Bassett Community School","=""0933211""",0,0,206,80,0,19,10,315
+,,"Wilbur Cross Self Contained MD","=""0938511""",0,0,"*",7,0,0,"*",13
+,,"Clinton Self Contained ID","=""0937811""",0,0,0,"*",0,0,"*",15
+"New London School District","=""0950011""","Bennie Dover Jackson Middle School","=""0955111""","*","*",47,236,"*",20,27,337
+,,"C.B. Jennings International Elementary Magnet","=""0950311""","*","*",63,293,0,23,39,425
+,,"Harbor Elementary School","=""0950611""","*","*",36,144,"*",32,17,236
+,,"New London High School","=""0956111""","*","*",94,347,"*",32,31,511
+,,"New London Visual and Performing Arts Magnet Pathway","=""0951411""","*","*",62,99,0,45,49,260
+,,"Science and Technology Magnet Pathway for High School Grades","=""0951311""","*","*",49,103,0,43,41,245
+,,"Science and Technology Magnet Pathway for Middle Grades","=""0951211""","*","*",33,51,0,20,21,128
+,,"Winthrop STEM Elementary Magnet School","=""0950811""","*",7,76,171,"*",81,91,430
+,,"Nathan Hale Arts Magnet School","=""0950911""",0,8,57,227,0,71,89,452
+,,"Preschool Program at B.P. Learned Mission","=""0951111""",0,"*",12,38,0,"*",10,65
+"New Milford School District","=""0960011""","Hill And Plain School","=""0960511""","*",13,"*",84,0,18,235,356
+,,"New Milford High School","=""0966111""","*",43,"*",233,0,56,932,1306
+,,"Schaghticoke Middle School","=""0965211""","*","*",37,181,0,35,531,810
+,,"Northville Elementary School","=""0960811""",0,13,13,90,0,14,315,445
+,,"Sarah Noble Intermediate School","=""0960911""",0,"*",23,161,"*",31,513,749
+,,"Litchfield Hills Transition Center","=""0969011""",0,0,0,"*",0,0,"*",14
+"Newington School District","=""0940011""","Anna Reynolds School","=""0940611""","*",44,"*",88,0,28,199,387
+,,"Martin Kellogg Middle School","=""0945111""","*",55,32,173,0,"*",287,580
+,,"Newington High School","=""0946111""","*",112,69,295,0,"*",765,1309
+,,"Ruth Chaffee School","=""0940711""","*",35,18,74,0,"*",174,319
+,,"Elizabeth Green School","=""0940211""",0,37,14,106,0,12,138,307
+,,"John Paterson School","=""0940811""",0,20,23,94,0,20,239,396
+,,"John Wallace Middle School","=""0945311""",0,58,39,131,"*","*",340,601
+"Newtown School District","=""0970011""","Newtown Middle School","=""0975111""","*",18,14,52,"*",17,479,582
+,,"Reed Intermediate School","=""0970511""","*","*",14,75,0,15,463,578
+,,"Hawley Elementary School","=""0970111""",0,"*","*",33,0,"*",260,301
+,,"Head O'Meadow Elementary School","=""0970411""",0,"*",8,31,0,"*",266,313
+,,"Middle Gate Elementary School","=""0970311""",0,7,10,52,"*","*",315,389
+,,"Newtown High School","=""0976111""",0,46,25,135,0,23,1169,1398
+,,"Reaching Independence through Structured Education","=""0970711""",0,"*",0,"*",0,0,7,10
+,,"Sandy Hook Elementary School","=""0970211""",0,8,7,49,"*","*",299,372
+,,"Newtown Preschool","=""0978011""",0,0,"*","*",0,"*",61,67
+,,"Newtown Community Partnership","=""0970611""",0,0,0,"*",0,0,"*",15
+,,"Program for Adaptive Learning","=""0970811""",0,0,0,0,0,0,7,7
+"North Haven School District","=""1010011""","Clintonville Elementary School","=""1010811""","*",13,15,46,"*",10,273,359
+,,"Montowese Elementary School","=""1010211""","*",16,16,40,0,"*",224,304
+,,"Ridge Road Elementary School","=""1010311""","*",23,32,42,0,"*",267,382
+,,"Green Acres Elementary School","=""1010711""",0,39,23,48,0,13,285,408
+,,"North Haven High School","=""1016111""",0,56,39,108,"*","*",745,973
+,,"North Haven Middle School","=""1015211""",0,58,32,91,0,18,510,709
+,,"North Haven Transition Partnership","=""1010111""",0,"*",0,"*",0,0,8,10
+"North Stonington School District","=""1020011""","North Stonington Elementary School","=""1020111""","*",7,12,24,"*",0,390,439
+,,"Wheeler High School","=""1026111""","*","*","*",13,0,15,289,328
+"Norwalk School District","=""1030011""","Brien McMahon High School","=""1036211""","*",53,225,975,0,"*",385,1665
+,,"Concord Magnet School","=""1030311""","*",14,45,97,"*",17,123,301
+,,"Jefferson Marine Science Elementary School","=""1030711""","*",27,61,298,0,"*",25,427
+,,"Norwalk Early Childhood Center","=""1030111""","*",9,22,81,0,"*",35,156
+,,"Norwalk High School","=""1036111""","*",37,251,789,"*",34,393,1508
+,,"P-TECH Norwalk","=""1030911""","*",28,72,187,0,"*",102,395
+,,"Ponus Ridge STEAM Academy","=""1035311""","*",42,120,412,0,"*",82,677
+,,"Roton Middle School","=""1035511""","*",19,62,277,"*",13,175,548
+,,"Wolfpit Integrated Arts Elementary School","=""1032411""","*","*",55,136,0,17,106,328
+,,"Brookside Elementary School","=""1030211""",0,"*",51,302,"*",18,54,439
+,,"Center for Global Studies","=""1030511""",0,23,38,96,0,10,113,280
+,,"Cranbury Elementary School","=""1030411""",0,25,47,149,"*","*",176,416
+,,"Fox Run Elementary School","=""1032011""",0,20,70,161,0,23,92,366
+,,"Kendall College & Career Academy","=""1030811""",0,22,64,297,0,11,31,425
+,,"Marvin Elementary School","=""1032211""",0,15,47,224,0,18,102,406
+,,"Naramake Elementary School","=""1032111""",0,17,45,176,0,20,106,364
+,,"Nathan Hale Middle School","=""1035211""",0,24,79,283,0,13,148,547
+,,"Norwalk 18-21 Next Steps (NNS)","=""1031111""",0,"*","*",10,0,0,10,29
+,,"Rowayton School","=""1031311""",0,"*",42,149,0,"*",247,467
+,,"Silvermine Dual Language Magnet School","=""1032311""",0,"*",30,369,0,"*",39,463
+,,"Tracey Magnet School","=""1031411""",0,18,68,282,0,22,73,463
+,,"West Rocks Middle School","=""1035411""",0,33,107,413,"*","*",156,719
+,,"Norwalk 18-21 Project SEARCH at CTSCC Norwalk","=""1030611""",0,0,"*","*",0,0,8,19
+,,"Norwalk Alternative Opportunity Program","=""1031011""",0,0,"*",0,0,0,0,"*"
+"Norwich Free Academy District","=""9010022""","Norwich Free Academy","=""9016122""",21,126,293,481,7,110,1036,2074
+,,"Wildcat Learning Academy","=""9010422""",0,0,"*","*",0,0,0,"*"
+,,"Night School","=""9010222""",0,0,0,"*",0,0,0,"*"
+"Norwich School District","=""1040011""","Bishop School Early Learning Center","=""1040111""","*","*",17,41,0,9,30,101
+,,"Kelly STEAM Magnet Middle School","=""1045111""","*",44,122,232,"*",58,177,639
+,,"Moriarty Magnet School","=""1042011""","*","*",60,142,0,32,152,395
+,,"Samuel Huntington School","=""1040811""","*",20,47,79,"*",40,101,289
+,,"Teachers' Memorial Middle School","=""1045211""","*",18,73,166,"*",39,91,395
+,,"Thomas W. Mahan School","=""1041711""","*",57,37,59,0,"*",70,232
+,,"Veterans' Memorial School","=""1041811""","*",18,52,98,"*",24,64,258
+,,"Wequonnoc Magnet School","=""1041511""","*",0,47,90,"*",28,61,230
+,,"John B. Stanton School","=""1041411""",0,"*",81,136,"*",41,98,384
+,,"Special Needs Program @ Mahan","=""1040511""",0,"*",0,"*",0,0,"*","*"
+,,"Transition Academy","=""1041011""",0,"*",7,8,0,"*",12,30
+,,"Uncas Elementary School","=""1041911""",0,"*",55,104,"*",22,42,236
+,,"Strive Autism Program @ Huntington","=""1040411""",0,0,"*",6,0,0,"*",10
+,,"Strive Program @ Stanton","=""1041211""",0,0,"*","*",0,"*","*",7
+,,"STRIVE Program @ Case","=""1041311""",0,0,0,"*",0,0,"*","*"
+,,"Strive Program @ Kelly","=""1041111""",0,0,0,"*",0,"*","*",6
+,,"Virtual Learning Academy","=""1049211""",0,0,0,0,0,0,"*","*"
+"Odyssey Community School District","=""2630013""","Odyssey Community School","=""2635113""","*",70,71,68,0,"*",96,328
+"Orange School District","=""1070011""","Mary L. Tracy School","=""1070211""","*",20,"*",11,0,8,168,212
+,,"Race Brook School","=""1070311""","*",54,"*",37,0,17,257,381
+,,"Peck Place School","=""1070511""",0,54,"*",26,"*",16,241,346
+,,"Turkey Hill School","=""1070411""",0,36,"*",18,0,"*",241,317
+"Oxford School District","=""1080011""","Great Oak Elementary School","=""1080111""","*",11,7,36,"*","*",295,354
+,,"Oxford High School","=""1086011""","*",14,10,42,0,"*",464,536
+,,"Quaker Farms School","=""1080311""","*",9,"*",33,0,"*",336,387
+,,"Community Explorations","=""1080511""",0,"*",0,0,0,0,"*","*"
+,,"Oxford Middle School","=""1085111""",0,"*",11,43,0,"*",333,401
+,,"Connections Alternative Learning Center","=""1080411""",0,0,"*","*",0,"*",6,10
+"Park City Prep Charter School District","=""2830013""","Park City Prep Charter School","=""2835113""","*","*",172,155,0,"*",22,361
+"Plainfield School District","=""1090011""","Moosup Elementary School","=""1090111""","*","*",6,26,"*",14,221,274
+,,"Plainfield Central School","=""1095111""","*",8,20,41,"*","*",382,463
+,,"Plainfield High School","=""1096111""","*","*",22,35,"*","*",456,530
+,,"Plainfield Memorial School","=""1090311""","*",7,12,25,"*","*",256,311
+,,"Early Childhood Center","=""1098011""",0,"*","*",8,0,"*",98,114
+,,"Shepard Hill Elementary School","=""1090411""",0,"*",7,28,"*",8,235,284
+"Plainville School District","=""1100011""","Frank T. Wheeler School","=""1100411""","*",6,20,84,"*",21,220,353
+,,"Louis Toffolon School","=""1100511""","*",8,15,67,"*",12,268,374
+,,"Middle School of Plainville","=""1105211""","*",13,30,132,"*",27,344,548
+,,"Plainville High School","=""1106111""","*",26,33,132,0,"*",441,658
+,,"Linden Street School","=""1100211""",0,6,15,92,0,13,211,337
+,,"Plainville Transition Program","=""1100111""",0,0,"*",0,0,0,"*",7
+"Plymouth School District","=""1110011""","Terryville High School","=""1116111""","*",13,"*",40,0,10,298,371
+,,"Eli Terry Jr. Middle School","=""1115111""",0,"*","*",48,0,18,248,318
+,,"Harry S. Fisher Elementary School","=""1110411""",0,"*","*",43,0,14,210,274
+,,"Plymouth Center School","=""1110211""",0,"*","*",51,0,25,253,336
+"Redding School District","=""1170011""","John Read Middle School","=""1175111""","*",6,"*",27,0,11,284,335
+,,"Redding Elementary School","=""1170111""","*",9,8,61,"*",20,391,492
+"Regional School District 01","=""2010012""","Housatonic Valley Regional High School","=""2016112""","*",8,"*",46,0,15,267,340
+,,"SELC","=""2010312""",0,0,0,0,0,0,"*","*"
+"Regional School District 04","=""2040012""","John Winthrop Middle School","=""2045112""","*",6,"*",20,0,14,202,247
+,,"Region 4 Transition Academy","=""2040112""",0,"*","*",0,0,0,11,13
+,,"Valley Regional High School","=""2046112""",0,"*","*",32,0,17,483,546
+"Regional School District 05","=""2050012""","Amity Middle School: Bethany","=""2055112""","*",48,19,41,0,"*",228,355
+,,"Amity Middle School: Orange","=""2055212""","*",55,"*",24,0,11,255,355
+,,"Amity Regional High School","=""2056112""","*",223,"*",96,0,47,985,1395
+,,"Amity Transition Academy - Albertus Magnus","=""2050112""",0,"*",0,0,0,0,"*",13
+,,"SAILS","=""2050212""",0,"*","*",0,0,0,"*","*"
+,,"Spartan Prep","=""2050312""",0,0,0,0,0,0,"*","*"
+"Regional School District 06","=""2060012""","Wamogo Regional High School","=""2066112""","*","*","*",27,"*",7,337,380
+,,"Goshen Center School","=""2060112""",0,"*","*",8,0,12,136,159
+,,"Warren Elementary School","=""2060312""",0,"*",0,"*",0,"*",54,60
+,,"Wamogo Regional Middle School","=""2060512""",0,0,"*",7,0,"*",149,165
+,,"Wamogo Transition Program","=""2060412""",0,0,"*",0,0,0,"*","*"
+,,"James Morris School","=""2060212""",0,0,0,"*",0,"*",108,115
+"Regional School District 07","=""2070012""","Northwestern Regional High School","=""2076112""","*",6,"*",23,"*",9,560,604
+,,"Highlander Transition Academy","=""2070112""",0,0,"*","*",0,0,18,23
+,,"Northwestern Regional Middle School","=""2075112""",0,0,"*",7,0,"*",217,227
+,,"STEP","=""2079312""",0,0,0,0,0,"*","*",21
+,,"AIM","=""2079112""",0,0,0,0,0,0,17,17
+,,"FLEX","=""2079012""",0,0,0,0,0,0,7,7
+,,"Links","=""2079212""",0,0,0,0,0,0,9,9
+"Regional School District 08","=""2080012""","RHAM High School","=""2086112""","*",14,9,56,"*",9,732,823
+,,"RHAM Middle School","=""2085112""",0,"*","*",28,0,13,330,379
+"Regional School District 10","=""2100012""","Har-Bur Middle School","=""2105112""","*",0,"*",38,0,151,498,691
+,,"Lake Garda Elementary School","=""2100212""",0,"*","*",26,0,96,297,424
+,,"Lewis S. Mills High School","=""2106112""",0,"*","*",39,0,152,462,668
+,,"Harwinton Consolidated School","=""2100312""",0,0,0,21,0,80,271,372
+"Regional School District 13","=""2130012""","Frederick Brewster School","=""2130112""","*","*",0,15,0,"*",203,222
+,,"Coginchaug Regional High School","=""2136112""",0,"*","*",26,0,11,353,402
+,,"Frank Ward Strong School","=""2135112""",0,6,"*",25,0,"*",257,298
+,,"John Lyman School","=""2130512""",0,"*",0,22,0,"*",160,190
+,,"Middlefield Memorial School","=""2130412""",0,"*","*",14,0,7,207,230
+,,"Middlesex Transition Academy","=""2130312""",0,0,"*",0,0,"*",13,16
+,,"Coginchaug Academy","=""2130612""",0,0,0,"*",0,0,"*",6
+"Regional School District 14","=""2140012""","Bethlehem Elementary School","=""2140112""","*","*","*",22,0,12,230,274
+,,"Woodbury Middle School","=""2145112""","*","*","*",23,0,"*",276,310
+,,"Mitchell Elementary School","=""2140212""",0,"*","*",35,0,14,271,329
+,,"Nonnewaug High School","=""2146112""",0,9,7,52,0,13,590,671
+,,"Region 14 Transition Academy","=""2140412""",0,0,0,0,0,0,"*","*"
+"Regional School District 15","=""2150012""","Pomperaug Regional High School","=""2156212""","*",54,30,84,"*",35,915,1123
+,,"Rochambeau Middle School","=""2155112""","*",17,"*",42,0,11,293,373
+,,"Gainfield Elementary School","=""2150412""",0,8,8,22,0,16,291,345
+,,"Long Meadow Elementary School","=""2150712""",0,28,19,35,0,29,427,538
+,,"Memorial Middle School","=""2155212""",0,27,"*",29,"*",10,348,423
+,,"Middlebury Elementary School","=""2150612""",0,22,"*",24,0,"*",265,321
+,,"Pomperaug Elementary School","=""2150512""",0,16,11,33,0,12,313,385
+,,"MIJ Program","=""2150112""",0,0,0,"*",0,0,"*",8
+"Regional School District 16","=""2160012""","Laurel Ledge School","=""2160112""","*",10,12,50,0,"*",194,273
+,,"Woodland Regional High School","=""2166012""","*","*",26,44,0,8,551,634
+,,"Long River Middle School","=""2165112""",0,"*",16,39,0,"*",395,465
+,,"Prospect Elementary School","=""2160512""",0,8,26,21,0,19,518,592
+"Regional School District 17","=""2170012""","Haddam-Killingworth Middle School","=""2175112""","*",9,"*",21,0,8,355,396
+,,"Killingworth Elementary School","=""2170312""","*","*","*",11,0,9,229,254
+,,"Burr District Elementary School","=""2170212""",0,"*","*",12,0,6,278,302
+,,"Haddam-Killingworth High School","=""2176112""",0,14,6,14,0,16,496,546
+,,"Haddam-Killingworth Intermediate School","=""2170512""",0,"*","*",9,0,8,248,274
+,,"RSD17 Transition Program","=""2170412""",0,0,0,0,0,0,"*","*"
+"Regional School District 19","=""2190012""","E. O. Smith High School","=""2196112""","*",76,47,132,"*","*",836,1099
+,,"STAAR Program","=""2190312""",0,0,"*","*",0,"*",13,18
+,,"E.O. Smith High School at the Depot Campus","=""2190112""",0,0,0,"*",0,"*",8,10
+"Ridgefield School District","=""1180011""","Branchville Elementary School","=""1180611""","*",14,"*",27,0,14,295,353
+,,"Ridgefield High School","=""1186111""","*",97,14,127,"*",55,1221,1518
+,,"Scotland Elementary School","=""1180511""","*",13,"*",24,0,15,279,334
+,,"Scotts Ridge Middle School","=""1185211""","*",42,"*",48,0,19,407,521
+,,"Barlow Mountain Elementary School","=""1180811""",0,31,"*",31,0,"*",263,350
+,,"District Program BMES","=""1180111""",0,"*",0,"*",0,0,"*",6
+,,"District Program FES","=""1181211""",0,"*",0,"*",0,0,"*",7
+,,"District Program RES","=""1180711""",0,"*",0,"*",0,0,6,8
+,,"District Program RHS","=""1181311""",0,"*",0,0,0,0,"*",13
+,,"District Program SES","=""1180911""",0,"*",0,"*",0,0,"*",7
+,,"East Ridge Middle School","=""1185111""",0,36,"*",53,"*",26,381,499
+,,"Farmingville Elementary School","=""1180411""",0,14,0,20,0,21,243,298
+,,"Ridgebury Elementary School","=""1180311""",0,22,"*",39,0,"*",279,350
+,,"Veterans Park Elementary School","=""1180211""",0,24,"*",22,0,"*",189,253
+,,"Alternative High School","=""1188011""",0,0,"*","*",0,0,16,20
+,,"District Program SRMS","=""1181111""",0,0,0,"*",0,0,"*","*"
+,,"Ridgefield Transition Program","=""1189011""",0,0,0,"*",0,0,"*",9
+,,"District Program ERMS","=""1181011""",0,0,0,0,0,"*","*","*"
+"Rocky Hill School District","=""1190011""","Moser School","=""1190611""","*",108,"*",42,0,14,188,363
+,,"Rocky Hill High School","=""1196111""","*",125,23,97,"*",17,440,705
+,,"Albert D. Griswold Middle School","=""1195111""",0,197,21,71,0,26,321,636
+,,"Myrtle H. Stevens School","=""1190411""",0,78,17,44,0,18,227,384
+,,"Rocky Hill DREAM Transition Academy","=""1190711""",0,"*","*",0,0,"*","*",7
+,,"West Hill School","=""1190511""",0,248,11,26,0,17,136,438
+"Salem School District","=""1210011""","Salem Elementary School","=""1210111""","*","*",6,30,0,22,321,386
+"Seymour School District","=""1240011""","Chatfield-LoPresti School","=""1240211""","*",12,34,121,0,"*",340,520
+,,"Seymour High School","=""1246111""","*",23,48,116,0,"*",409,605
+,,"Seymour Middle School","=""1245111""","*","*",25,99,0,17,339,496
+,,"Bungay School","=""1240111""",0,23,22,75,0,6,312,438
+"Shelton School District","=""1260011""","Mohegan School","=""1260911""",0,12,15,72,0,12,230,341
+,,"Shelton High School","=""1266111""","*",73,78,243,0,"*",817,1275
+,,"Alternative Learning Center 1","=""1260211""",0,"*",0,"*",0,"*","*",8
+,,"Alternative Learning Center 2","=""1261311""",0,"*",0,"*",0,"*","*",10
+,,"Booth Hill School","=""1261011""",0,13,19,48,"*","*",192,280
+,,"Elizabeth Shelton School","=""1260511""",0,21,25,77,"*","*",241,381
+,,"Intermediate School","=""1265111""",0,39,58,147,0,36,457,737
+,,"Life Skills","=""1260311""",0,"*",0,"*",0,0,"*","*"
+,,"Long Hill School","=""1260811""",0,21,27,102,"*","*",169,340
+,,"Perry Hill Elementary School","=""1261111""",0,33,60,169,0,24,429,715
+,,"Pre-Kindergarten","=""1260111""",0,"*",0,14,0,"*",37,59
+,,"Sunnyside School","=""1260611""",0,14,24,67,"*","*",130,243
+,,"Transition Program","=""1260711""",0,0,"*",0,0,0,"*",7
+,,"Therapeutic Learning Center","=""1261211""",0,0,0,"*",0,0,"*","*"
+"Sherman School District","=""1270011""","Sherman School","=""1270111""","*","*",6,19,0,9,220,261
+"Simsbury School District","=""1280011""","Central School","=""1280111""","*",38,23,49,0,"*",247,380
+,,"Farmington Valley Transition Academy","=""1280211""",0,"*","*","*",0,0,29,38
+,,"Henry James Memorial School","=""1285111""",0,38,34,66,0,30,468,636
+,,"Latimer Lane School","=""1280611""",0,36,23,50,0,26,302,437
+,,"Simsbury High School","=""1286111""",0,91,70,127,"*","*",937,1274
+,,"Squadron Line School","=""1280711""",0,38,26,86,0,32,512,694
+,,"Tariffville School","=""1280311""",0,11,41,28,0,19,144,243
+,,"Tootin' Hills School","=""1280411""",0,11,16,52,0,26,258,363
+"Somers School District","=""1290011""","Mabelle B. Avery Middle School","=""1295111""","*","*",6,15,0,"*",246,275
+,,"Somers Elementary School","=""1290411""","*","*",16,31,0,15,561,627
+,,"Somers High School","=""1296111""",0,8,13,21,"*","*",389,439
+"South Windsor School District","=""1320011""","Eli Terry School","=""1320711""","*",94,28,59,0,"*",267,473
+,,"South Windsor High School","=""1326211""","*",300,89,113,"*",61,715,1282
+,,"Timothy Edwards School","=""1325111""","*",351,80,115,0,"*",551,1145
+,,"Orchard Hill School","=""1320611""",0,235,24,59,0,38,286,642
+,,"Philip R. Smith School","=""1320111""",0,104,16,46,0,21,264,451
+,,"Pleasant Valley School","=""1320211""",0,290,33,52,0,33,234,642
+,,"Preschool Outreach Program","=""1320511""",0,17,"*",17,0,"*",46,91
+,,"South Windsor Transition Program","=""1329011""",0,"*","*","*",0,0,12,20
+,,"Alternative Education Program","=""1320311""",0,0,"*","*",0,0,"*",8
+"Southington School District","=""1310011""","John F. Kennedy Middle School","=""1315311""",0,34,"*",92,"*",24,566,730
+,,"Joseph A. Depaolo Middle School","=""1315111""","*",33,13,66,"*",36,556,706
+,,"Southington High School","=""1316211""","*",75,57,203,"*",59,1553,1954
+,,"Comprehensive Learning Center (CLC) - SHS","=""1311711""",0,"*","*","*",0,0,9,13
+,,"Flanders Elementary School","=""1311311""",0,13,"*",42,0,"*",204,277
+,,"R. E. Thalberg Elementary School","=""1310911""",0,23,11,45,0,34,310,423
+,,"South End Elementary School","=""1310711""",0,"*","*",19,0,11,192,230
+,,"Specialized Learning Center (SLC) - HES","=""1311111""",0,"*","*","*",0,0,"*",10
+,,"Therapeutic Learning Center (TLC) - Primary - KES","=""1312311""",0,"*",0,"*",0,"*",6,9
+,,"Urbin T. Kelley School","=""1311411""",0,"*","*",29,0,16,234,292
+,,"Walter A. Derynoski Elementary School","=""1311511""",0,17,"*",57,"*",36,420,539
+,,"William H. Hatton Elementary School","=""1310211""",0,6,12,37,0,18,251,324
+,,"William M. Strong Elementary School","=""1310811""",0,15,7,18,0,27,196,263
+,,"Wrinn Integrated Preschool - SES","=""1312111""",0,"*","*",6,0,6,41,56
+,,"Zaya A. Oshana Elementary School","=""1310611""",0,11,8,41,"*","*",176,244
+,,"Comprehensive Learning Center (CLC) - HES","=""1311811""",0,0,"*","*",0,"*",12,17
+,,"Comprehensive Learning Center (CLC) - JFK","=""1310511""",0,0,"*",6,0,0,"*",13
+,,"Therapeutic Learning Center (TLC) - SHS","=""1311211""",0,0,"*","*",0,0,7,14
+,,"Wrinn Integrated Preschool - HES","=""1312011""",0,0,"*",7,0,"*",32,41
+,,"Karen Smith Academy","=""1310111""",0,0,0,"*",0,"*",28,36
+,,"Therapeutic Learning Center (TLC) - Intermediate - DES","=""1310411""",0,0,0,"*",0,0,"*",8
+,,"Therapeutic Learning Center (TLC) - JAD","=""1311611""",0,0,0,"*",0,0,"*",11
+,,"STELLAR (Southington's Transitional Education in Life, Learning Adult Responsibilities)","=""1312211""",0,0,0,0,0,0,20,20
+"Sprague School District","=""1330011""","Sayles School","=""1330111""","*","*",10,42,"*",38,184,281
+"Stafford School District","=""1340011""","Stafford High School","=""1346111""","*","*","*",34,0,12,313,367
+,,"Stafford Middle School","=""1345211""","*","*","*",22,0,15,312,353
+,,"Stafford Elementary School","=""1340611""",0,"*","*",47,0,20,394,468
+,,"West Stafford School","=""1340411""",0,"*","*",13,0,7,163,187
+"Stamford Charter School for Excellence District","=""2960013""","Stamford Charter School for Excellence","=""2960113""","*",161,206,109,0,"*",14,506
+"Stamford School District","=""1350011""","Hart School","=""1352211""","*",69,61,282,0,"*",86,532
+,,"Julia A. Stark School","=""1351211""","*","*",58,344,0,21,130,574
+,,"Newfield School","=""1350611""","*",25,86,277,0,"*",116,524
+,,"Rippowam Middle School","=""1355811""","*",35,128,357,"*",21,202,746
+,,"Rogers International School","=""1350811""","*",49,63,335,0,"*",281,755
+,,"Scofield Middle School","=""1355711""","*",60,61,234,0,"*",211,587
+,,"Springdale School","=""1351111""","*","*",62,315,0,24,132,548
+,,"Stamford High School","=""1356111""","*",102,390,842,"*",45,587,1974
+,,"Stillmeadow School","=""1352111""","*",31,39,345,"*",40,172,629
+,,"Strawberry Hill an ext. of Rogers International","=""1350711""","*",92,80,241,0,"*",194,659
+,,"Toquam Magnet School","=""1351911""","*",27,58,391,"*",21,71,570
+,,"Westhill High School","=""1356311""","*",152,309,1092,"*",54,673,2285
+,,"Apples PreK","=""1350111""",0,8,23,64,0,10,52,157
+,,"Cloonan School","=""1355611""",0,52,140,295,"*","*",121,626
+,,"Davenport Ridge School","=""1352011""",0,39,60,248,"*","*",239,611
+,,"Dolan School","=""1355311""",0,27,99,296,"*","*",182,626
+,,"K. T. Murphy School","=""1350511""",0,47,53,267,0,9,55,431
+,,"Northeast School","=""1351811""",0,"*",70,223,"*",27,224,564
+,,"Preschool Team","=""1358011""",0,"*","*",26,0,0,13,48
+,,"Roxbury School","=""1350911""",0,25,71,303,0,20,143,562
+,,"Stamford Transition Services","=""1350211""",0,"*",8,"*",0,0,10,24
+,,"Strawberry Hill Special","=""1351011""",0,"*","*",7,0,"*","*",13
+,,"The Academy of Information, Technology & Engineering","=""1356411""",0,68,87,204,0,25,241,625
+,,"Turn of River School","=""1355511""",0,30,89,346,0,24,183,672
+,,"Westover School","=""1351411""",0,54,125,240,0,26,89,534
+,,"Anchor","=""1350411""",0,0,27,33,0,"*","*",77
+,,"PAVE (Post-Secondary Adaptive Vocational Experience)","=""1351311""",0,0,0,"*",0,0,"*",9
+,,"The Academy of Information, Technology, & Engineering ARBOR","=""1351511""",0,0,0,0,0,0,"*","*"
+"Sterling School District","=""1360011""","Sterling Community School","=""1360311""","*","*",6,34,0,27,260,330
+"Stonington School District","=""1370011""","Deans Mill School","=""1370511""","*",7,"*",25,0,24,392,451
+,,"Stonington High School","=""1376111""","*",14,"*",37,0,21,519,600
+,,"Stonington Middle School","=""1375211""","*",7,0,26,"*",27,332,397
+,,"SAILS","=""1370711""",0,0,0,0,0,0,"*","*"
+,,"West Vine Street School","=""1370611""",0,"*","*",30,0,35,274,350
+,,"The Learning Annex","=""1370911""",0,0,0,"*",0,0,"*",6
+"Stratford School District","=""1380011""","Eli Whitney School","=""1381311""","*","*",89,157,0,18,186,466
+,,"David Wooster Middle School","=""1385211""","*",15,169,208,"*",19,159,573
+,,"Franklin School","=""1380411""","*","*",92,141,0,11,40,293
+,,"Harry B. Flood Middle School","=""1385311""","*","*",122,192,0,18,161,508
+,,"High School Sails","=""1380711""","*",0,10,7,0,"*","*",23
+,,"Johnson House Elementary School","=""1381511""","*",9,166,281,"*",31,71,560
+,,"Nichols School","=""1380911""","*",10,98,209,"*",23,103,446
+,,"Stratford High School","=""1386111""","*",28,296,386,"*",34,321,1069
+,,"Wilcoxson School","=""1381411""","*",8,66,102,"*",18,172,371
+,,"Bunnell High School","=""1386211""",0,29,263,369,"*","*",371,1062
+,,"Chapel School","=""1380311""",0,8,70,103,0,8,112,301
+,,"Lordship School","=""1380811""",0,"*",64,67,0,"*",73,217
+,,"SHL - ABA - K-6","=""1380611""",0,"*",16,14,0,"*",14,48
+,,"Second Hill Lane School","=""1381011""",0,"*",100,199,"*",24,154,492
+,,"Victoria Soto Preschool","=""1382211""",0,6,57,134,0,13,51,261
+,,"ALPHA","=""1380511""",0,0,11,11,0,"*","*",33
+,,"BRIDGES 9-12","=""1380111""",0,0,"*",6,0,0,"*",11
+,,"Middle School Sails","=""1381811""",0,0,"*","*",0,0,"*",6
+,,"PDLC Whitney","=""1382311""",0,0,"*","*",0,0,"*","*"
+,,"STEPS 7-8","=""1381911""",0,0,"*",0,0,0,"*","*"
+,,"STEPS K-6","=""1382811""",0,0,7,"*",0,0,"*",15
+,,"Strive-Stratford","=""1389011""",0,0,"*",8,0,0,"*",19
+"Suffield School District","=""1390011""","A. Ward Spaulding School","=""1390411""","*",18,15,32,0,"*",399,471
+,,"Suffield High School","=""1396111""","*",29,28,62,"*","*",594,720
+,,"McAlister Intermediate School","=""1390311""",0,17,"*",28,0,"*",342,402
+,,"Suffield Middle School","=""1395111""",0,"*",26,34,0,"*",360,441
+"The Woodstock Academy District","=""9030022""","The Woodstock Academy","=""9036122""","*",66,20,53,"*",19,898,1060
+"Thompson School District","=""1410011""","Thompson Middle School","=""1415111""","*","*","*",31,0,7,252,298
+,,"Mary R. Fisher Elementary School","=""1410111""",0,"*","*",22,0,8,378,414
+,,"Tourtellotte Memorial High School","=""1416111""",0,"*","*",23,0,9,186,223
+"Tolland School District","=""1420011""","Tolland High School","=""1426111""","*",39,18,54,"*",7,620,741
+,,"Tolland Intermediate School","=""1420211""","*",18,13,38,0,"*",357,437
+,,"Birch Grove Primary School","=""1420111""",0,12,14,50,0,30,392,498
+,,"Tolland Middle School","=""1425111""",0,12,17,46,0,9,449,533
+,,"TALC","=""1420311""",0,0,"*",0,0,0,"*","*"
+,,"Tolland Transition Academy","=""1420611""",0,0,0,"*",0,0,"*",6
+"Torrington School District","=""1430011""","Forbes School","=""1430211""","*",14,16,128,0,"*",165,334
+,,"Southwest School","=""1430811""","*",11,16,96,0,"*",159,293
+,,"Torringford School","=""1430911""","*",32,37,222,"*",12,296,601
+,,"Torrington High School","=""1436111""","*",47,68,344,"*",32,452,948
+,,"Torrington Middle School","=""1435111""","*",42,49,362,"*",36,518,1009
+,,"Integrated PreK","=""1432611""",0,"*","*",7,0,0,13,23
+,,"Pre-K SpEd","=""1431611""",0,"*","*",22,0,"*",19,48
+,,"Vogel-Wetmore School","=""1431311""",0,16,28,206,"*","*",281,543
+,,"TPS Preschool Lab","=""1430611""",0,0,"*",0,0,0,"*",19
+,,"Post Secondary Transition Services","=""1430311""",0,0,0,"*",0,0,"*",13
+"Trumbull School District","=""1440011""","Frenchtown Elementary School","=""1441011""","*",45,52,145,0,"*",268,534
+,,"Hillcrest Middle School","=""1445211""","*",74,51,117,"*",17,482,744
+,,"Madison Middle School","=""1445111""","*",85,46,146,"*",11,502,793
+,,"Middlebrook School","=""1440311""","*",71,39,114,"*",8,273,507
+,,"Trumbull High School","=""1446111""","*",189,135,328,"*",48,1435,2141
+,,"Booth Hill School","=""1440111""",0,49,38,91,"*","*",318,515
+,,"Daniels Farm School","=""1440811""",0,62,20,63,0,14,362,521
+,,"Educating Learners in Transitional Environments (ELITE)","=""1440611""",0,"*","*","*",0,0,13,20
+,,"Jane Ryan School","=""1440411""",0,40,16,87,0,11,283,437
+,,"REACH","=""1440511""",0,"*","*","*",0,"*",10,15
+,,"Tashua School","=""1440911""",0,52,17,54,0,10,278,411
+,,"Trumbull Early Childhood Education Center","=""1448011""",0,21,17,46,0,7,139,230
+,,"Trumbull Alternative School","=""1440211""",0,0,0,"*",0,0,"*","*"
+"Vernon School District","=""1460011""","Center Road School","=""1461411""","*","*",44,92,0,44,239,456
+,,"Rockville High School","=""1466111""","*","*",103,194,0,55,556,962
+,,"Skinner Road School","=""1461011""","*",54,35,65,0,"*",133,309
+,,"Vernon Center Middle School","=""1465111""","*","*",65,162,0,68,378,712
+,,"Northeast School","=""1460311""",0,23,13,35,0,14,101,186
+,,"Elementary Activities Based Learning Program","=""1461111""",0,"*","*","*",0,"*","*",11
+,,"Lake Street School","=""1460111""",0,23,12,51,0,16,143,245
+,,"Maple Street School","=""1460211""",0,"*",39,87,"*",38,89,271
+,,"Next Step Program","=""1469011""",0,0,"*","*",0,0,10,14
+,,"Renaissance Program","=""1460811""",0,0,0,0,0,"*","*",7
+"Wallingford School District","=""1480011""","Lyman Hall High School","=""1486111""","*",48,"*",188,0,30,665,956
+,,"Mark T. Sheehan High School","=""1486211""","*",45,17,149,"*",21,512,746
+,,"Moses Y. Beach School","=""1480111""","*",11,"*",63,"*",15,221,315
+,,"Parker Farms School","=""1480311""","*",7,7,74,0,"*",130,222
+,,"Highland School","=""1480211""",0,16,"*",40,0,"*",232,301
+,,"Ben Haven ABC Middle School Program","=""1481511""",0,"*",0,"*",0,0,"*",7
+,,"Benhaven ABC Intermediate Program","=""1480611""",0,"*",0,"*",0,0,"*",6
+,,"Cook Hill School","=""1481011""",0,18,"*",79,0,"*",233,350
+,,"Dag Hammarskjold Middle School","=""1485211""",0,26,"*",127,"*",16,426,607
+,,"Evarts C. Stevens School","=""1480911""",0,"*","*",64,0,15,196,288
+,,"Inspire High School","=""1481711""",0,"*",0,"*",0,"*",10,17
+,,"Inspire Middle School","=""1481311""",0,"*","*",6,0,"*",7,16
+,,"James H. Moran Middle School","=""1485311""",0,30,"*",121,"*",27,380,567
+,,"Mary G. Fritz Elementary School of Yalesville","=""1480811""",0,"*","*",34,0,16,230,296
+,,"Pond Hill School","=""1481211""",0,"*","*",51,0,12,179,252
+,,"Rock Hill School","=""1480411""",0,18,"*",60,0,"*",212,307
+,,"STARS Intermediate Program","=""1481111""",0,"*",0,"*",0,0,"*",7
+,,"STARS Preschool Program","=""1481811""",0,"*",0,"*",0,0,"*","*"
+,,"STARS Primary Program","=""1480711""",0,"*",0,"*",0,"*",9,16
+,,"WISE Intermediate Program","=""1489211""",0,0,0,"*",0,"*",9,12
+,,"WISE Primary Program","=""1481611""",0,0,0,"*",0,0,"*",6
+,,"Wallingford Transition Academy","=""1489111""",0,0,0,"*",0,0,"*",7
+"Waterbury School District","=""1510011""","Bunker Hill School","=""1510611""","*","*",102,275,0,23,38,446
+,,"Carrington School","=""1512711""",6,15,103,215,0,28,102,469
+,,"Crosby High School","=""1516211""",11,11,334,851,0,25,111,1343
+,,"Driggs School","=""1510911""","*","*",111,294,0,22,37,475
+,,"Enlightenment School","=""1519111""","*","*",26,53,0,"*",9,95
+,,"Gilmartin School","=""1512611""","*",12,99,308,"*",13,46,484
+,,"H. S. Chase School","=""1510711""",7,31,147,348,0,30,84,647
+,,"Hopeville School","=""1511311""","*",0,59,214,0,"*",31,320
+,,"John F. Kennedy High School","=""1516411""",15,22,308,777,0,34,170,1326
+,,"Margaret M. Generali Elementary School","=""1511111""","*","*",96,271,0,26,43,456
+,,"Michael F. Wallace Middle School","=""1515111""",9,16,263,672,0,38,111,1109
+,,"North End Middle School","=""1515311""","*","*",173,505,0,34,55,776
+,,"Reed School","=""1513411""","*","*",106,309,0,10,32,460
+,,"Regan School","=""1512811""","*",7,45,141,0,"*",33,236
+,,"Rotella Interdistrict Magnet School","=""1513311""","*","*",100,279,0,47,169,614
+,,"Walsh School","=""1512211""","*","*",104,222,0,21,13,365
+,,"Washington School","=""1512311""","*","*",35,216,0,7,21,283
+,,"Waterbury Arts Magnet School","=""1516011""","*","*",152,330,0,41,271,811
+,,"Waterbury Career Academy","=""1516711""",9,27,197,400,0,25,138,796
+,,"Wendell L. Cross School","=""1510811""","*","*",72,256,0,22,82,446
+,,"West Side Middle School","=""1515211""",9,12,188,511,0,34,101,855
+,,"Wilby High School","=""1516311""","*","*",288,727,0,33,82,1140
+,,"B. W. Tinker School","=""1512111""",0,9,83,324,0,26,99,541
+,,"Bucks Hill Autism","=""1514611""",0,"*",9,31,0,"*",7,51
+,,"Bucks Hill School","=""1510511""",0,"*",57,222,0,"*",13,304
+,,"Carrington ESC","=""1511911""",0,"*","*",6,0,"*","*",16
+,,"Duggan School","=""1511611""",0,"*",115,285,0,"*",48,475
+,,"F. J. Kingsbury School","=""1511411""",0,7,131,279,0,15,26,458
+,,"Generali Autism","=""1513511""",0,"*",17,23,0,"*","*",45
+,,"Maloney Interdistrict Magnet School","=""1513111""",0,7,91,282,0,29,178,587
+,,"Maloney Prek","=""1519811""",0,"*","*",9,0,"*","*",17
+,,"Reed ESC","=""1512411""",0,"*",6,10,0,"*","*",23
+,,"Special Education Preschool","=""1518011""",0,"*",35,129,0,"*",21,193
+,,"Sprague School","=""1512011""",0,"*",82,296,0,"*",28,426
+,,"Wendell Cross ESC","=""1517611""",0,"*","*",14,0,0,"*",20
+,,"Wilby Autism","=""1514511""",0,"*",7,9,0,0,"*",20
+,,"Woodrow Wilson School","=""1513211""",0,"*",106,276,0,"*",15,410
+,,"Bunker Hill BDLC","=""1510111""",0,0,9,"*",0,"*","*",17
+,,"Gilmartin Scope","=""1516911""",0,0,"*",17,0,0,"*",26
+,,"North End Autism","=""1512911""",0,0,"*",6,0,"*","*",14
+,,"North End BDLC","=""1513711""",0,0,"*",10,0,0,"*",18
+,,"North End ESC","=""1511811""",0,0,"*","*",0,0,0,11
+,,"Roberto Clemente International Dual Language School","=""1517311""",0,0,17,93,0,"*","*",122
+,,"State Street School","=""1519011""",0,0,21,54,0,6,7,88
+,,"Wallace BDLC","=""1514411""",0,0,"*",8,0,"*","*",16
+,,"Wallace SCOPE","=""1514911""",0,0,"*","*",0,0,0,8
+,,"West Side BDLC","=""1514711""",0,0,"*",9,0,0,"*",17
+,,"West Side SCOPE","=""1515511""",0,0,"*",6,0,0,"*",11
+,,"Wilby ESC","=""1511711""",0,0,"*",14,0,0,"*",27
+,,"Woodrow Wilson BDLC","=""1511211""",0,0,"*",6,0,"*",0,9
+,,"Bucks Hill Bilingual","=""1514311""",0,0,0,231,0,0,0,231
+,,"Chase Bilingual","=""1514111""",0,0,0,96,0,0,18,114
+,,"Hearing Lab","=""1517211""",0,0,0,"*",0,0,"*","*"
+,,"Hopeville Bilingual","=""1514211""",0,0,0,"*",0,0,"*",141
+,,"North End Bilingual","=""1515711""",0,0,0,49,0,0,0,49
+,,"North End SCOPE","=""1514811""",0,0,0,"*",0,"*",0,8
+,,"Wallace Bilingual","=""1515811""",0,0,0,34,0,0,0,34
+,,"West Side Bilingual","=""1515611""",0,0,0,74,0,0,0,74
+"Waterford School District","=""1520011""","Clark Lane Middle School","=""1525111""","*",26,18,65,"*",37,419,569
+,,"Quaker Hill Elementary School","=""1520711""","*",24,10,49,"*",20,226,331
+,,"Waterford High School","=""1526111""","*",47,13,99,"*",35,547,748
+,,"Autism Class","=""1521111""",0,"*",0,"*",0,0,"*",6
+,,"Great Neck Elementary School","=""1520211""",0,12,"*",38,"*",16,238,310
+,,"Oswegatchie Elementary School","=""1520611""",0,8,"*",35,"*",17,225,289
+,,"The Early Childhood Center II","=""1521011""",0,"*",0,"*",0,"*",27,32
+,,"Avery Point Transition Program","=""1520311""",0,0,"*","*",0,0,12,14
+,,"The Early Childhood Center","=""1520811""",0,0,"*","*","*","*",17,25
+"Watertown School District","=""1530011""","Fletcher W. Judson School","=""1530311""","*","*",6,13,0,9,238,272
+,,"John Trumbull Primary School","=""1530211""","*",6,21,49,"*",36,514,632
+,,"Polk School","=""1530411""","*","*",11,34,0,14,253,317
+,,"Swift Middle School","=""1535111""","*","*",19,68,"*",16,465,574
+,,"Watertown High School","=""1536111""",0,15,30,75,0,19,639,778
+,,"Watertown Transition Academy","=""1530811""",0,0,0,0,0,0,7,7
+"West Hartford School District","=""1550011""","Aiken School","=""1551611""","*",56,"*",50,0,29,239,404
+,,"Bugbee School","=""1550411""","*",26,"*",28,0,32,262,368
+,,"Charter Oak International Academy","=""1550511""","*",63,58,174,"*",40,159,501
+,,"Conard High School","=""1556111""","*",178,114,307,"*",53,781,1436
+,,"Duffy School","=""1550611""","*",28,24,47,0,"*",347,471
+,,"Hall High School","=""1556211""","*",144,136,201,"*",81,869,1433
+,,"King Philip Middle School","=""1555111""","*",79,87,149,"*",44,466,829
+,,"Sedgwick Middle School","=""1555211""","*",87,65,187,"*",40,479,861
+,,"Webster Hill School","=""1551211""","*",27,26,82,"*",9,191,337
+,,"REACH","=""1557311""",0,"*",10,18,0,"*",12,43
+,,"Braeburn School","=""1550211""",0,21,21,25,0,26,230,323
+,,"Bristow Middle School","=""1555311""",0,24,25,68,0,16,176,309
+,,"Morley School","=""1550911""",0,9,20,28,0,29,194,280
+,,"Norfeldt Learning Center","=""1559411""",0,"*","*",0,0,"*","*",8
+,,"Norfeldt School","=""1551011""",0,40,31,34,0,32,185,322
+,,"Smith School","=""1551711""",0,56,31,114,0,18,111,330
+,,"West Hartford Post Secondary Transition Program - Cogswell","=""1559011""",0,"*",11,11,0,"*",20,50
+,,"Whiting Lane Learning Center","=""1559511""",0,"*","*","*",0,"*",9,21
+,,"Whiting Lane School","=""1551311""",0,42,36,80,"*","*",187,377
+,,"Wolcott School","=""1551511""",0,45,33,77,"*","*",171,359
+,,"Morley Learning Center","=""1559711""",0,0,"*","*",0,0,"*","*"
+,,"Strive-West Hartford","=""1559211""",0,0,6,12,0,"*","*",27
+,,"Alternative Educational Program","=""1550111""",0,0,0,"*",0,0,0,"*"
+,,"Braeburn Learning Center","=""1559311""",0,0,0,"*",0,0,"*",6
+,,"Wolcott Learning Center","=""1559611""",0,0,0,"*",0,0,"*",7
+"West Haven School District","=""1560011""","Washington School","=""1561211""",0,22,64,188,0,34,91,399
+,,"Carrigan 5/6 Intermediate School","=""1565311""","*",37,186,339,0,"*",241,834
+,,"Harry M. Bailey Middle School","=""1565111""","*","*",206,334,0,43,230,847
+,,"Life Skills","=""1560111""",0,0,"*","*",0,0,0,8
+,,"Alma E. Pagels School","=""1560811""",0,28,86,102,0,21,124,361
+,,"Edith E. Mackrille School","=""1560611""",0,21,67,111,0,15,100,314
+,,"Forest School","=""1560311""",0,"*",118,204,"*",27,60,430
+,,"PACE","=""1560211""",0,"*",10,12,0,"*",17,45
+,,"Savin Rock Community School","=""1561411""",0,11,115,187,0,32,106,451
+,,"Seth G. Haley School","=""1560411""",0,19,70,108,0,19,166,382
+,,"West Haven High School","=""1566111""",0,61,443,658,"*","*",441,1661
+,,"Blended","=""1560711""",0,0,"*",14,0,0,"*",23
+"Westbrook School District","=""1540011""","Westbrook High School","=""1546111""","*",6,0,44,0,"*",156,211
+,,"Daisy Ingraham School","=""1540211""",0,"*","*",65,0,7,168,245
+,,"Westbrook Middle School","=""1545111""",0,"*","*",39,0,"*",126,172
+"Weston School District","=""1570011""","Weston Intermediate School","=""1570211""",14,32,7,50,0,28,339,470
+,,"Hurlbutt Elementary School","=""1570111""",0,22,6,47,0,44,337,456
+,,"Weston High School","=""1576111""",0,37,10,50,0,43,620,760
+,,"Weston Middle School","=""1575111""",0,37,7,44,0,30,422,540
+"Westport School District","=""1580011""","Bedford Middle School","=""1585111""","*",44,"*",60,0,49,586,758
+,,"Coleytown Elementary School","=""1580311""","*",33,"*",35,0,33,333,446
+,,"Saugatuck Elementary School","=""1580811""","*",22,"*",29,0,32,327,421
+,,"Coleytown Middle School","=""1585311""",0,33,8,30,0,38,322,431
+,,"GFS Intensive Resource","=""1580211""",0,"*","*","*",0,0,7,11
+,,"Green's Farms School","=""1580411""",0,23,14,36,0,29,324,426
+,,"King's Highway Elementary School","=""1580511""",0,29,14,43,0,39,321,446
+,,"LLS Intensive Resource","=""1580111""",0,"*",0,"*",0,"*",6,10
+,,"Long Lots School","=""1580711""",0,51,9,45,0,36,425,566
+,,"Staples High School","=""1586111""",0,109,33,95,0,88,1390,1715
+,,"Stepping Stones Preschool","=""1588011""",0,"*",0,"*",0,9,58,72
+,,"Westport Connections","=""1580911""",0,0,0,0,0,0,"*","*"
+"Wethersfield School District","=""1590011""","Charles Wright School","=""1591011""","*",15,"*",88,0,17,139,274
+,,"Samuel B. Webb Elementary School","=""1591211""","*",23,9,75,"*",7,210,327
+,,"Silas Deane Middle School","=""1595211""","*",20,22,112,0,"*",388,563
+,,"Wethersfield High School","=""1596111""","*",46,48,216,"*",46,779,1141
+,,"ABA","=""1590411""",0,"*","*",11,0,"*","*",21
+,,"Alfred W. Hanmer School","=""1590811""",0,17,20,55,"*","*",230,335
+,,"Emerson-Williams School","=""1590211""",0,22,"*",94,"*",27,271,432
+,,"Highcrest School","=""1591111""",0,29,11,67,0,29,339,475
+,,"Wethersfield Transition Academy","=""1590111""",0,"*","*","*",0,0,9,17
+,,"STRIVE","=""1590311""",0,0,0,"*",0,0,"*",7
+"Wilton School District","=""1610011""","Middlebrook School","=""1615211""",0,104,"*",61,"*",60,663,895
+,,"Wilton High School","=""1616111""","*",130,"*",82,0,70,918,1221
+,,"Cider Mill School","=""1610711""",0,87,"*",64,0,"*",576,784
+,,"Genesis","=""1610211""",0,"*",0,"*",0,0,13,18
+,,"Miller-Driscoll School","=""1610511""",0,90,8,52,0,57,601,808
+,,"Community Steps","=""1610311""",0,0,0,0,0,0,10,10
+"Windham School District","=""1630011""","Charles H. Barrows STEM Academy","=""1630411""","*",10,"*",254,0,22,250,542
+,,"Natchaug School","=""1630111""","*","*",18,209,0,"*",46,278
+,,"North Windham School","=""1630311""","*","*",13,301,0,"*",74,392
+,,"W. B. Sweeney School","=""1630611""","*","*",6,173,0,"*",29,213
+,,"Windham High School","=""1636111""","*","*",26,492,0,13,82,617
+,,"Windham Middle School","=""1635111""","*","*",25,496,0,15,91,632
+,,"Early Headstart","=""1638011""",0,0,"*",31,0,0,"*",36
+,,"Natchaug Emotional Disturbance Program","=""1630711""",0,0,"*","*",0,0,"*",7
+,,"Windham Center School","=""1630511""",0,0,"*",170,0,"*",67,247
+,,"Windham Early Childhood Center","=""1638311""",0,0,"*",153,0,"*",19,179
+,,"Assisted Work Program","=""1631411""",0,0,0,12,0,0,8,20
+,,"CORE","=""1631511""",0,0,0,"*",0,0,"*",9
+,,"Medically Fragile Program","=""1630911""",0,0,0,"*",0,0,"*","*"
+,,"Sweeney ASD Program","=""1631111""",0,0,0,15,0,"*","*",18
+"Windsor Locks School District","=""1650011""","North Street School","=""1650111""","*",20,36,58,"*",26,246,388
+,,"South Elementary School","=""1650411""",0,26,41,50,0,20,174,311
+,,"Windsor Locks High School","=""1656111""",0,30,56,75,"*","*",244,427
+,,"Windsor Locks Middle School","=""1655111""",0,25,43,52,0,21,175,316
+,,"Pine Meadow Academy","=""1650611""",0,0,"*",9,0,"*",21,40
+,,"RISE Transition Academy","=""1650211""",0,0,6,"*",0,"*",9,21
+,,"SISU Academy","=""1650311""",0,0,"*","*",0,"*","*",7
+"Windsor School District","=""1640011""","John F. Kennedy School","=""1640811""","*","*",128,101,0,38,80,370
+,,"Oliver Ellsworth School","=""1640911""","*","*",133,105,0,45,121,439
+,,"Sage Park Middle School","=""1645311""","*","*",322,187,0,52,139,725
+,,"Windsor High School","=""1646111""","*",27,476,218,"*",86,263,1072
+,,"Clover Street School","=""1640111""",0,9,103,68,0,20,74,274
+,,"Community Based Transition Academy","=""1640211""",0,"*",11,"*",0,"*",6,22
+,,"Poquonock Elementary School","=""1640511""",0,17,111,93,0,30,71,322
+,,"Expulsion","=""1640411""",0,0,"*",0,0,0,0,"*"
+,,"Spark","=""1640311""",0,0,9,"*",0,0,"*",19
+"Wolcott School District","=""1660011""","Alcott School","=""1660611""","*",8,9,60,"*","*",213,299
+,,"Frisbie School","=""1660211""","*","*",9,46,0,8,206,275
+,,"Tyrrell Middle School","=""1665111""","*","*",19,59,0,14,399,506
+,,"Wakelee School","=""1660511""",0,11,14,44,0,16,295,380
+,,"Wolcott High School","=""1666111""",0,"*",30,78,"*",29,524,678
+,,"ABC Classroom","=""1660311""",0,0,"*","*",0,"*","*",8
+,,"Phoenix Program","=""1660411""",0,0,0,"*",0,0,"*",7
+"Woodbridge School District","=""1670011""","Beecher Road School","=""1670311""","*",128,"*",66,0,73,552,846
+"Woodstock School District","=""1690011""","Woodstock Elementary School","=""1690211""","*","*","*",19,0,22,395,445
+,,"Woodstock Middle School","=""1695111""",0,"*","*",13,0,17,306,345
+"Ashford School District","=""0030011""","Ashford School","=""0030111""",0,7,"*",34,"*",18,314,381
+"Barkhamsted School District","=""0050011""","Barkhamsted Elementary School","=""0050111""",0,"*","*",6,0,10,165,183
+,,"Bridges at Barkhamsted Elementary School","=""0050211""",0,0,"*","*",0,"*",6,10
+,,"Shared Services Integrated Preschool","=""0058011""",0,0,0,0,0,0,14,14
+"Bolton School District","=""0120011""","Bolton Center School","=""0120111""",0,8,22,57,0,29,381,497
+,,"Bolton High School","=""0126111""",0,"*",14,28,0,"*",195,249
+,,"Bolton Transition Program","=""0120211""",0,0,0,0,0,0,"*","*"
+"Bozrah School District","=""0130011""","Fields Memorial School","=""0130111""",0,"*","*",23,0,14,123,165
+"Canton School District","=""0230011""","Canton High School","=""0236111""",0,11,29,38,0,9,379,466
+,,"Canton Intermediate School","=""0230311""",0,"*",23,22,0,"*",268,330
+,,"Canton Middle School","=""0235111""",0,"*",23,11,0,"*",195,242
+,,"Cherry Brook Primary School","=""0230211""",0,"*",15,29,"*",18,387,459
+"Chaplin School District","=""0240011""","Chaplin Elementary School","=""0240211""",0,"*",6,12,0,"*",132,154
+"Chester School District","=""0260011""","Chester Elementary School","=""0260111""",0,"*",0,17,0,"*",186,210
+"Common Ground High School District","=""2680013""","Common Ground High School","=""2686113""",0,"*",73,99,"*",7,50,231
+"Cornwall School District","=""0310011""","Cornwall Consolidated School","=""0310111""",0,6,"*",10,0,"*",92,111
+"Derby School District","=""0370011""","Bradley School","=""0370611""",0,"*",47,78,"*",19,93,245
+,,"Derby High School","=""0376111""",0,"*",76,138,"*",18,135,375
+,,"Derby Middle School","=""0375011""",0,"*",67,123,"*",18,87,303
+,,"Irving School","=""0370411""",0,7,62,140,0,21,70,300
+,,"Little Raiders University","=""0370111""",0,"*","*",22,0,"*",21,50
+,,"RAISE Academy","=""0370511""",0,0,"*",0,0,0,"*",6
+"Eastern Connecticut Regional Educational Service Center (EASTCONN)","=""2530014""","Quinebaug Middle College","=""2536114""",0,"*","*",23,0,12,114,155
+,,"Arts at the Capitol Theater Magnet School (ACT)","=""2536014""",0,0,"*",41,0,"*",82,135
+,,"EastConn Special Education","=""2539014""",0,0,"*",17,"*",10,89,121
+,,"EastConn Transition Academy","=""2530114""",0,0,0,0,0,0,6,6
+"Easton School District","=""0460011""","Helen Keller Middle School","=""0465111""",0,23,"*",26,0,"*",251,316
+,,"Samuel Staples Elementary School","=""0460111""",0,44,23,44,"*","*",441,577
+"Elm City Montessori School District","=""2910013""","Elm City Montessori School","=""2910113""",0,6,89,78,0,21,88,282
+"Essex School District","=""0500011""","Essex Elementary School","=""0500111""",0,"*","*",29,0,14,254,301
+"Guilford School District","=""0600011""","A. Baldwin Middle School","=""0600711""",0,17,"*",36,"*",20,386,468
+,,"A. W. Cox School","=""0600611""",0,20,"*",23,0,"*",192,249
+,,"Calvin Leete School","=""0600411""",0,9,"*","*",0,24,183,229
+,,"E. C. Adams Middle School","=""0605111""",0,21,"*",35,"*",32,371,465
+,,"Guilford High School","=""0606111""",0,55,"*",93,"*",45,884,1094
+,,"Guilford Lakes School","=""0600211""",0,"*","*",39,0,24,250,332
+,,"Melissa Jones School","=""0600311""",0,"*",0,32,"*",12,221,274
+"Interdistrict School for Arts and Comm District","=""2650013""","Interdistrict School For Arts And Communication","=""2655113""",0,"*",44,183,0,"*",40,279
+"Kent School District","=""0680011""","Kent Center School","=""0680111""",0,"*","*",18,0,9,181,212
+"New Hartford School District","=""0920011""","Ann Antolini School","=""0920311""",0,"*","*",11,0,8,227,249
+,,"New Hartford Elementary School","=""0920211""",0,"*",0,7,0,"*",67,79
+,,"Bakerville Consolidated School","=""0920111""",0,0,0,"*",0,"*",94,100
+"North Branford School District","=""0990011""","Jerome Harrison School","=""0990411""",0,"*","*",32,0,10,351,403
+,,"North Branford High School","=""0996111""",0,9,11,41,0,7,375,443
+,,"North Branford Intermediate School","=""0995111""",0,8,"*",40,0,"*",330,388
+,,"Totoket Valley Elementary School","=""0990611""",0,"*","*",31,0,9,293,336
+,,"School to Work Program","=""0999011""",0,0,0,0,0,0,7,7
+"North Canaan School District","=""1000011""","North Canaan Elementary School","=""1000111""",0,"*","*",30,0,10,190,234
+"Old Saybrook School District","=""1060011""","Kathleen E. Goodwin School","=""1060211""",0,16,"*",66,"*",8,294,390
+,,"Old Saybrook Middle School","=""1065211""",0,11,"*",42,"*",15,262,334
+,,"Old Saybrook Senior High School","=""1066111""",0,14,"*",39,0,"*",295,361
+"Pomfret School District","=""1120011""","Pomfret Community School","=""1120111""",0,6,"*",12,0,"*",335,359
+"Portland School District","=""1130011""","Brownstone Intermediate School","=""1130511""",0,7,8,35,0,7,149,206
+,,"Gildersleeve School","=""1130411""",0,"*","*",58,0,16,222,307
+,,"Portland High School","=""1136111""",0,"*","*",48,0,13,258,332
+,,"Portland Middle School","=""1135111""",0,"*","*",31,0,12,141,197
+,,"Valley View School","=""1130211""",0,"*","*",37,0,14,130,191
+"Preston School District","=""1140011""","Preston Plains School","=""1145111""",0,"*","*",8,"*",7,106,128
+,,"Preston Veterans' Memorial School","=""1140411""",0,9,"*",26,"*",10,243,295
+"Putnam School District","=""1160011""","Putnam Elementary School","=""1160311""",0,"*",10,96,"*",33,396,545
+,,"Putnam High School","=""1166111""",0,"*","*",40,"*",11,189,247
+,,"Putnam Middle School","=""1165111""",0,"*","*",42,0,15,260,329
+,,"Helping Hands","=""1169011""",0,0,0,0,0,0,"*","*"
+"Regional School District 09","=""2090012""","Joel Barlow High School","=""2096112""",0,36,11,60,0,37,669,813
+"Regional School District 11","=""2110012""","Parish Hill High School","=""2116112""",0,"*","*",12,0,7,184,207
+"Regional School District 12","=""2120012""","Shepaug Valley Partnership","=""2120512""",0,"*",0,0,0,0,"*","*"
+,,"Shepaug Valley School","=""2120312""",0,"*","*",46,0,15,400,472
+,,"Booth Free School","=""2120212""",0,0,"*","*",0,"*",68,74
+,,"The Burnham School","=""2120112""",0,0,0,"*",0,"*",54,59
+,,"Washington Primary School","=""2120412""",0,0,0,"*",0,"*",129,154
+"Regional School District 18","=""2180012""","Center School","=""2180312""",0,0,"*","*",0,0,81,87
+,,"Lyme Consolidated School","=""2180112""",0,"*","*",13,0,8,173,197
+,,"Lyme-Old Lyme High School","=""2186112""",0,15,6,28,0,11,385,445
+,,"Lyme-Old Lyme Middle School","=""2185112""",0,11,0,20,0,14,226,271
+,,"Mile Creek School","=""2180212""",0,"*","*",20,0,13,254,295
+,,"Alternative Program","=""2180412""",0,0,0,0,0,0,"*","*"
+"Salisbury School District","=""1220011""","Salisbury Central School","=""1220111""",0,"*","*",33,0,18,241,305
+"Sharon School District","=""1250011""","Sharon Center School","=""1250111""",0,"*",0,10,0,"*",82,96
+"Side By Side Charter School District","=""2700013""","Side By Side Charter School","=""2700113""",0,"*",63,132,0,"*",26,236
+"The Bridge Academy District","=""2690013""","The Bridge Academy","=""2696113""",0,"*",154,120,0,0,"*",279
+"The Gilbert School District","=""9020022""","The Gilbert School","=""9026122""",0,28,11,95,0,19,285,438
+"Thomaston School District","=""1400011""","Black Rock School","=""1400111""",0,"*","*",40,0,10,247,310
+,,"Thomaston Center School","=""1400211""",0,"*","*",26,0,7,158,195
+,,"Thomaston High School","=""1406211""",0,"*","*",19,0,11,281,319
+,,"PATHS","=""1400311""",0,0,"*","*",0,"*",12,15
+"Unified School District #2","=""3470015""","Albert J. Solnit - South Campus","=""3470315""",0,"*",11,16,0,"*",11,42
+,,"Albert J. Solnit Children's Center - North Campus","=""3470115""",0,"*",7,"*",0,0,6,18
+"Voluntown School District","=""1470011""","Voluntown Elementary School","=""1470111""",0,"*","*",11,"*",11,219,246
+"Willington School District","=""1600011""","Center School","=""1600111""",0,"*","*",10,0,"*",178,200
+,,"Hall Memorial School","=""1605111""",0,"*","*",14,0,0,163,185
+"Winchester School District","=""1620011""","Batcheller Early Education Center","=""1620411""",0,"*","*",31,0,8,233,277
+,,"Pearson School","=""1625111""",0,6,"*",32,"*",11,228,283
+"Andover School District","=""0010011""","Andover Elementary School","=""0010111""",0,0,"*",20,0,"*",162,191
+"Booker T. Washington Academy District","=""2950013""","Booker T. Washington Academy","=""2950113""",0,0,431,74,0,"*","*",519
+"Colebrook School District","=""0290011""","Colebrook Consolidated School","=""0290111""",0,0,"*","*",0,"*",72,77
+"Eastford School District","=""0390011""","Eastford Elementary School","=""0390111""",0,0,"*",13,0,"*",118,142
+"Explorations District","=""2720013""","Explorations","=""2726113""",0,0,"*",12,0,"*",70,89
+"Great Oaks Charter School District","=""2940013""","Great Oaks Charter School","=""2940113""",0,0,298,318,"*","*",24,650
+"Hartland School District","=""0650011""","Hartland School","=""0650111""",0,0,"*","*",0,15,118,140
+"Highville Charter School District","=""2860013""","Highville Charter School","=""2860113""",0,0,430,54,"*",9,"*",501
+"Unified School District #1","=""3360015""","Bridgeport Correctional Center","=""3360115""",0,0,"*",0,0,0,"*","*"
+,,"Cheshire Correctional Institution","=""3360315""",0,0,"*","*",0,0,"*","*"
+,,"Corrigan Correctional Institution","=""3362415""",0,0,"*","*",0,"*",0,10
+,,"Garner Correctional Institution","=""3361915""",0,0,"*","*",0,0,"*",7
+,,"MacDougall/Walker Correctional Institution","=""3362215""",0,0,"*","*",0,0,"*",6
+,,"Manson Youth Institution","=""3361115""",0,0,59,39,0,7,10,115
+,,"Hartford Correctional Center","=""3360615""",0,0,0,"*",0,0,0,"*"
+,,"Osborn Correctional Institution","=""3361215""",0,0,0,"*",0,0,0,"*"
+,,"York Correctional Institution","=""3362515""",0,0,0,"*",0,0,"*",6
+"Canaan School District","=""0210011""","Lee H. Kellogg School","=""0210111""",0,0,0,"*",0,0,"*",74
+"Norfolk School District","=""0980011""","Botelle Elementary School","=""0980111""",0,0,0,"*",0,"*",61,70
+"Scotland School District","=""1230011""","Scotland Elementary School","=""1230111""",0,0,0,"*",0,"*",90,101
+"Union School District","=""1450011""","Union School","=""1450111""",0,0,0,"*",0,0,"*",41
+
