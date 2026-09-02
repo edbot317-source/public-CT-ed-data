@@ -93,21 +93,6 @@ def build_district_year_accountability():
     def setup(t): copy_files(RAW, t/'data'/'accountability', '*')
     return replay_clean('35_clean_accountability.py', 'district_year_accountability.csv', setup)
 
-def build_school_year_enrollment_race():
-    def setup(t): copy_files(RAW, t/'data'/'enrollment'/'race-school', 'enrollment-race-school-*.csv')
-    return replay_clean('17_clean_school_enrollment_race.py', 'school_year_enrollment_race.csv', setup)
-
-def build_school_year_spending():
-    def setup(t): copy_files(RAW, t/'data'/'per-pupil-expenditures-by-function-school', 'spending-school-*.csv'); cpi_source(t)
-    return replay_clean('02_clean_school.py', 'school_year_spending.csv', setup)
-
-def build_school_year_funding_source():
-    def setup(t):
-        copy_files(RAW, t/'data'/'per-pupil-expenditures-by-funding-source-school', 'funding-source-school-*.csv')
-        copy_files(RAW/'_dependencies', t/'clean-data', '*.csv')
-        cpi_source(t)
-    return replay_clean('42_clean_funding_source_school.py', 'school_year_funding_source.csv', setup)
-
 def build_cpi_u_deflator():
     df=pd.read_csv(RAW/'cpi-u-annual-avg-fred.csv')
     df['year']=pd.to_datetime(df['observation_date']).dt.year
