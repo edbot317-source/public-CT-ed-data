@@ -1,6 +1,6 @@
 # Public Connecticut Education Data Release
 
-This repository releases a self-contained set of Connecticut education finance, enrollment, accountability, assessment, graduation, special education, and CPI deflator datasets assembled for public reuse. The data are statewide Connecticut district-level data, with coverage used in a Hartford-region education finance analysis; topline sources are CT EdSight (`edsight.ct.gov` and `public-edsight.ct.gov`) and FRED from the Federal Reserve Bank of St. Louis.
+This repository releases a self-contained set of Connecticut education finance, enrollment, accountability, assessment, graduation, special education, Education Cost Sharing (ECS) grant, and CPI deflator datasets assembled for public reuse. The data are statewide Connecticut district-level data, with coverage used in a Hartford-region education finance analysis; topline sources are CT EdSight (`edsight.ct.gov` and `public-edsight.ct.gov`), FRED from the Federal Reserve Bank of St. Louis, the CSDE Bureau of Fiscal Services (ECS entitlements), and the School and State Finance Project's republication of the Office of Fiscal Analysis ECS calculation worksheets (ECS formula inputs).
 
 ## Datasets
 
@@ -21,6 +21,14 @@ This repository releases a self-contained set of Connecticut education finance, 
 | `graduation_5yr` | District-year five-year graduation rates | district x fiscal_year x needs_group | FY2012-FY2023 | 4,990 |
 | `swd_outplacement` | Students with disabilities attending out-of-district schools/programs | district x fiscal_year x placement_type | FY2018-FY2025 | 2,624 |
 | `cpi_u_deflator` | CPI-U annual average deflator | calendar year | 2006-2025 | 20 |
+| `seda_k_grade_subject` | Grade levels per standard deviation, by grade and subject (SEDA) | grade x subject | - | 12 |
+| `town_grade_subject_seda_baseline` | Town baseline achievement by grade and subject (SEDA) | town x grade x subject | - | 1,821 |
+| `district_year_seda_gcs` | District-year achievement in grade levels (SEDA) | district x fiscal_year x subgroup | FY2009-FY2025 | 18,353 |
+| `district_year_ncep` | District-year net current expenditures per pupil | district x fiscal_year | FY2008-FY2025 | 2,675 |
+| `town_year_ecs_entitlement` | Town-year ECS entitlements | town x fiscal_year | FY2001-FY2027 | 4,563 |
+| `town_year_ecs_payment` | Town-year ECS payment list | town x fiscal_year | FY2026 | 169 |
+| `town_year_ecs_inputs` | Town-year ECS formula inputs and calculation | town x fiscal_year | FY2018-FY2027 | 1,690 |
+| `ecs_formula_parameters` | ECS formula parameters by shell | shell (fiscal_year x source sheet) | FY2021-FY2027 | 10 |
 
 ## How to Load
 
@@ -44,7 +52,15 @@ The `datapackage.json` descriptor makes the release loadable with Frictionless t
 
 Each dataset directory contains the formatted CSV, a codebook README, a `build.py`, and the copied raw scraped files under `raw/`. For the six datasets that already had verified clean panels in the source analysis repo, the formatted CSVs are copies of those committed panels; their build scripts replay the original cleaner scripts against this repo's copied raw files and reproduced the committed panels in verification.
 
+**ECS datasets (added 2026-09-14).** The four `*ecs*` datasets are at TOWN grain (169 towns; `town_code` equals the local board of education's district code, and regional school districts receive no ECS directly). Grant amounts come from CSDE's official spreadsheets. Formula inputs come from the School and State Finance Project workbooks that republish the legislature's OFA calculation shells, because CSDE does not post per-town worksheets; `data/town_year_ecs_inputs/VALIDATION.md` documents that the parsed inputs reproduce the statutory formula exactly, match OPM's equalized-net-grand-list file and the cited ACS median-income vintages, and match CSDE's published entitlements for all but a few towns per year.
+
 **Data completeness.** Each district-level dataset's README includes a `## Data completeness` section reporting its panel span and a district-by-district list of missing interior years (years missing *between* a district's first and last appearance; earlier/later non-appearances are treated as the district not operating or reporting, not as missing data). Statewide structural gaps are noted once rather than per district -- most notably, no SAT School Day or Smarter Balanced (SBAC) assessments were administered in FY2020 and FY2021 due to COVID-19. Across the finance and enrollment panels, district-specific missingness is minimal (typically zero to a handful of district-years); the one notable case is Hartford, which is absent from CSDE's archived financial collections for FY2015 and FY2016.
+
+**SEDA-derived simulation inputs (added 2026-09-14).** `seda_k_grade_subject` converts student-level standard deviations to grade levels using the NAEP parameters SEDA publishes in Table 9 of its 2025.2 documentation, exactly as SEDA defines its CS and GCS scales, with a regression cross-check; `town_grade_subject_seda_baseline` gives each town's spring 2023-2025 baseline by grade and subject. Both are built by replaying the original script; the two ~119 MB national SEDA long files behind the cross-check are not redistributed, so the build uses the logged per-year slopes in `raw/`.
+
+## ECS Formula Explorer and test-score simulation
+
+`tools/ecs_formula_explorer/` holds the source, build scripts and built page of an interactive dashboard that rebuilds every town's ECS grant for FY2023-FY2027 from the datasets above, lets the user change the formula (sliders and stackable presets), maps and charts the results in constant 2025 dollars, and simulates the effect of the spending change on SEDA test scores using Jackson & Mackevicius (2024). It also contains the Python reference implementation of the simulation with unit tests and a log of every run. See `tools/ecs_formula_explorer/README.md`.
 
 ## License and Citation
 

@@ -2,7 +2,7 @@
   "profile": "data-package",
   "name": "public-ct-ed-data",
   "title": "Public Connecticut Education Data Release",
-  "description": "Public Connecticut education datasets from CT EdSight with CPI-U deflators from FRED.",
+  "description": "Public Connecticut education datasets from CT EdSight, with CPI-U deflators from FRED and Education Cost Sharing (ECS) grant amounts and formula inputs from CSDE and the School and State Finance Project.",
   "licenses": [
     {
       "name": "CC-BY-4.0",
@@ -22,6 +22,14 @@
     {
       "title": "FRED CPIAUCSL",
       "path": "https://fred.stlouisfed.org/series/CPIAUCSL"
+    },
+    {
+      "title": "CSDE Bureau of Fiscal Services, ECS grant documents",
+      "path": "https://portal.ct.gov/SDE/Fiscal-Services/Education-Cost-Sharing-Grant-ECS-MBR/Documents"
+    },
+    {
+      "title": "School and State Finance Project, ECS formula tools",
+      "path": "https://schoolstatefinance.org/issues/ecs-formula"
     }
   ],
   "resources": [
@@ -1206,6 +1214,911 @@
             "name": "deflator",
             "type": "number",
             "description": "Inflation factor equal to CPI-U in 2025 divided by CPI-U in this year; multiply nominal dollars by this to express them in 2025 dollars."
+          }
+        ]
+      }
+    },
+    {
+      "name": "seda_k_grade_subject",
+      "path": "data/seda_k_grade_subject/seda_k_grade_subject.csv",
+      "title": "Grade levels per standard deviation, by grade and subject (SEDA)",
+      "description": "Grade levels per standard deviation, by grade and subject (SEDA) (grade x subject). Source: Stanford Education Data Archive 2025.2 technical documentation, Table 9 (national NAEP means and SDs by year and grade) and Step 7 scale definitions; regression cross-check from the SEDA admin-district long GCS and CS files.",
+      "schema": {
+        "fields": [
+          {
+            "name": "subject",
+            "type": "string",
+            "description": "Subject: mth (math) or rla (reading/language arts)."
+          },
+          {
+            "name": "grade",
+            "type": "integer",
+            "description": "Tested grade, 3-8."
+          },
+          {
+            "name": "k",
+            "type": "number",
+            "description": "Grade levels per student-level standard deviation for this grade and subject: national NAEP SD (naep_sd_ref) divided by per-grade NAEP growth (naep_growth_per_grade), from SEDA 2025.2 documentation Table 9 and equations 7.2-7.4."
+          },
+          {
+            "name": "naep_mean_ref",
+            "type": "number",
+            "description": "National NAEP mean for the grade and subject, averaged over the four SEDA reference cohorts (in 4th grade in 2009, 2011, 2013, 2015), NAEP scale points."
+          },
+          {
+            "name": "naep_sd_ref",
+            "type": "number",
+            "description": "National NAEP student-level standard deviation for the grade and subject, averaged over the four reference cohorts, NAEP scale points."
+          },
+          {
+            "name": "naep_growth_per_grade",
+            "type": "number",
+            "description": "Per-grade NAEP growth for the subject: (grade 8 mean - grade 4 mean) / 4 averaged over the four reference cohorts, NAEP scale points."
+          },
+          {
+            "name": "k_regression",
+            "type": "number",
+            "description": "Cross-check: slope of SEDA's GCS on CS district means across all U.S. administrative districts within grade x subject x year, averaged over years."
+          },
+          {
+            "name": "k_regression_min",
+            "type": "number",
+            "description": "Minimum of the yearly regression slopes."
+          },
+          {
+            "name": "k_regression_max",
+            "type": "number",
+            "description": "Maximum of the yearly regression slopes."
+          },
+          {
+            "name": "regression_years",
+            "type": "integer",
+            "description": "Number of test years in the regression cross-check."
+          },
+          {
+            "name": "flag",
+            "type": "boolean",
+            "description": "True if k and k_regression differ by more than 0.05 grade levels per SD (none do)."
+          }
+        ]
+      }
+    },
+    {
+      "name": "town_grade_subject_seda_baseline",
+      "path": "data/town_grade_subject_seda_baseline/town_grade_subject_seda_baseline.csv",
+      "title": "Town baseline achievement by grade and subject (SEDA)",
+      "description": "Town baseline achievement by grade and subject (SEDA) (town x grade x subject). Source: Stanford Education Data Archive 2025.2, administrative-district long GCS file, Connecticut rows, all students.",
+      "schema": {
+        "fields": [
+          {
+            "name": "town_code",
+            "type": "integer",
+            "description": "Connecticut town code, 1-169 (alphabetical); equals the local board of education's CSDE district code."
+          },
+          {
+            "name": "town",
+            "type": "string",
+            "description": "Town name."
+          },
+          {
+            "name": "grade",
+            "type": "integer",
+            "description": "Tested grade, 3-8."
+          },
+          {
+            "name": "subject",
+            "type": "string",
+            "description": "Subject: mth (math) or rla (reading/language arts)."
+          },
+          {
+            "name": "gcs_baseline",
+            "type": "number",
+            "description": "Mean achievement on SEDA's grade-cohort-standardized (GCS) scale for the town's district, this grade and subject, averaged over spring 2023-2025 (all students)."
+          },
+          {
+            "name": "vs_national_baseline",
+            "type": "number",
+            "description": "gcs_baseline minus grade: grade levels above (+) or below (-) the national average for the same grade."
+          },
+          {
+            "name": "n_tests",
+            "type": "number",
+            "description": "Mean number of test scores behind the estimate over the years used (weight for aggregation)."
+          },
+          {
+            "name": "years_used",
+            "type": "integer",
+            "description": "Number of spring test years (of 2023, 2024, 2025) with an estimate."
+          },
+          {
+            "name": "town_match",
+            "type": "string",
+            "description": "How the estimate was assigned to a town: local district (town board of education), regional district (K-12 regional district serving the town's grades 3-8), or blank (charter, magnet, RESC, secondary-only region)."
+          },
+          {
+            "name": "sedaadmin",
+            "type": "integer",
+            "description": "SEDA administrative-district id (NCES LEA id)."
+          }
+        ]
+      }
+    },
+    {
+      "name": "district_year_seda_gcs",
+      "path": "data/district_year_seda_gcs/district_year_seda_gcs.csv",
+      "title": "District-year achievement in grade levels (SEDA)",
+      "description": "District-year achievement in grade levels (SEDA) (district x fiscal_year x subgroup). Source: Stanford Education Data Archive 2025.2 (Reardon, Fahle, Ho, Shear, Saliba, Min, Shim & Kalogrides, 2026), administrative-district annual and annual-by-subject GCS files, Connecticut rows.",
+      "schema": {
+        "fields": [
+          {
+            "name": "sedaadmin",
+            "type": "integer",
+            "description": "SEDA administrative-district id (NCES LEA id)."
+          },
+          {
+            "name": "district",
+            "type": "string",
+            "description": "District name as printed in the CSDE report (title case)."
+          },
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2026 corresponds to school year 2025-26."
+          },
+          {
+            "name": "subcat",
+            "type": "string",
+            "description": "Subgroup category: all, ecd (economic disadvantage) or race."
+          },
+          {
+            "name": "subgroup",
+            "type": "string",
+            "description": "Subgroup: all; ecd / nec (economically disadvantaged / not); asn, blk, hsp, wht, nam, mtr (race/ethnicity)."
+          },
+          {
+            "name": "gradecenter",
+            "type": "number",
+            "description": "Grade center of the pooled estimate (5.5 for grades 3-8)."
+          },
+          {
+            "name": "tot_asmts",
+            "type": "integer",
+            "description": "Number of test scores underlying the estimate."
+          },
+          {
+            "name": "gcs_mn_avg_eb",
+            "type": "number",
+            "description": "Mean achievement, grades 3-8 pooled over math and RLA, GCS scale, empirical-Bayes estimate."
+          },
+          {
+            "name": "gcs_mn_avg_eb_se",
+            "type": "number",
+            "description": "Standard error of gcs_mn_avg_eb."
+          },
+          {
+            "name": "gcs_mn_avg_ol",
+            "type": "number",
+            "description": "Same mean, ordinary least squares estimate."
+          },
+          {
+            "name": "gcs_mn_avg_ol_se",
+            "type": "number",
+            "description": "Standard error of gcs_mn_avg_ol."
+          },
+          {
+            "name": "grade_levels_vs_national",
+            "type": "number",
+            "description": "gcs_mn_avg_eb minus gradecenter: grade levels above (+) or below (-) the national average of the 2009-2015 cohorts in the same grades."
+          },
+          {
+            "name": "grade_levels_vs_national_ol",
+            "type": "number",
+            "description": "Same, from the OLS estimate."
+          },
+          {
+            "name": "gcs_mn_avg_mth_eb",
+            "type": "number",
+            "description": "Math mean, grades 3-8 pooled, GCS scale, empirical Bayes."
+          },
+          {
+            "name": "gcs_mn_avg_mth_eb_se",
+            "type": "number",
+            "description": "Standard error of the math mean."
+          },
+          {
+            "name": "gcs_mn_avg_rla_eb",
+            "type": "number",
+            "description": "Reading/language-arts mean, grades 3-8 pooled, GCS scale, empirical Bayes."
+          },
+          {
+            "name": "gcs_mn_avg_rla_eb_se",
+            "type": "number",
+            "description": "Standard error of the RLA mean."
+          },
+          {
+            "name": "grade_levels_vs_national_mth",
+            "type": "number",
+            "description": "Math grade levels vs the national average (gcs_mn_avg_mth_eb - gradecenter)."
+          },
+          {
+            "name": "grade_levels_vs_national_rla",
+            "type": "number",
+            "description": "RLA grade levels vs the national average (gcs_mn_avg_rla_eb - gradecenter)."
+          },
+          {
+            "name": "town_code",
+            "type": "integer",
+            "description": "Connecticut town code, 1-169 (alphabetical); equals the local board of education's CSDE district code."
+          },
+          {
+            "name": "town",
+            "type": "string",
+            "description": "Town name."
+          },
+          {
+            "name": "town_match",
+            "type": "string",
+            "description": "How the estimate was assigned to a town: local district (town board of education), regional district (K-12 regional district serving the town's grades 3-8), or blank (charter, magnet, RESC, secondary-only region)."
+          }
+        ]
+      }
+    },
+    {
+      "name": "district_year_ncep",
+      "path": "data/district_year_ncep/district_year_ncep.csv",
+      "title": "District-year net current expenditures per pupil",
+      "description": "District-year net current expenditures per pupil (district x fiscal_year). Source: CSDE Bureau of Fiscal Services annual NCEP / Excess Cost basic-contribution reports (current year from CSDE; prior years as archived by the School and State Finance Project).",
+      "schema": {
+        "fields": [
+          {
+            "name": "district_code",
+            "type": "integer",
+            "description": "CSDE district code: 1-169 town boards of education (equal to the ECS town_code), 201-220 regional school districts."
+          },
+          {
+            "name": "district",
+            "type": "string",
+            "description": "District name as printed in the CSDE report (title case)."
+          },
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2026 corresponds to school year 2025-26."
+          },
+          {
+            "name": "adm",
+            "type": "number",
+            "description": "Average daily membership (CGS 10-261(a)(2)): resident students educated in and out of district, adjusted for sessions over 180 days, free summer school and Open Choice; the October count of the spending year."
+          },
+          {
+            "name": "nce",
+            "type": "number",
+            "description": "Net current expenditures, nominal dollars: all-source current spending net of tuition revenue, capital outlay, debt service and reimbursable regular-education transportation (CGS 10-261(a)(3))."
+          },
+          {
+            "name": "ncep",
+            "type": "number",
+            "description": "Net current expenditures per pupil = nce / adm, nominal dollars."
+          },
+          {
+            "name": "source",
+            "type": "string",
+            "description": "File the row was parsed from (CSDE current-year workbook, or an archived annual PDF)."
+          }
+        ]
+      }
+    },
+    {
+      "name": "town_year_ecs_entitlement",
+      "path": "data/town_year_ecs_entitlement/town_year_ecs_entitlement.csv",
+      "title": "Town-year ECS entitlements",
+      "description": "Town-year ECS entitlements (town x fiscal_year). Source: CSDE Bureau of Fiscal Services ECS entitlement and Alliance/non-Alliance breakout spreadsheets.",
+      "schema": {
+        "fields": [
+          {
+            "name": "town_code",
+            "type": "integer",
+            "description": "Connecticut town code, 1-169 (alphabetical); equals the local board of education's CSDE district code."
+          },
+          {
+            "name": "district_code",
+            "type": "integer",
+            "description": "Local board of education district code (= town_code). Regional school districts receive no ECS directly."
+          },
+          {
+            "name": "town",
+            "type": "string",
+            "description": "Town name."
+          },
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2026 corresponds to school year 2025-26."
+          },
+          {
+            "name": "entitlement",
+            "type": "number",
+            "description": "ECS entitlement, nominal dollars (CSDE; excludes prior-year adjustments)."
+          },
+          {
+            "name": "alliance_portion",
+            "type": "number",
+            "description": "Alliance District portion of the entitlement, nominal dollars (FY2012+)."
+          },
+          {
+            "name": "education_diversity_portion",
+            "type": "number",
+            "description": "Education Diversity portion of the entitlement, nominal dollars (FY2025+)."
+          },
+          {
+            "name": "non_alliance_portion",
+            "type": "number",
+            "description": "Non-Alliance portion of the entitlement, nominal dollars (FY2012+)."
+          }
+        ]
+      }
+    },
+    {
+      "name": "town_year_ecs_payment",
+      "path": "data/town_year_ecs_payment/town_year_ecs_payment.csv",
+      "title": "Town-year ECS payment list",
+      "description": "Town-year ECS payment list (town x fiscal_year). Source: CSDE Bureau of Fiscal Services ECS April payment list.",
+      "schema": {
+        "fields": [
+          {
+            "name": "town_code",
+            "type": "integer",
+            "description": "Connecticut town code, 1-169 (alphabetical); equals the local board of education's CSDE district code."
+          },
+          {
+            "name": "entitlement",
+            "type": "number",
+            "description": "ECS entitlement, nominal dollars (CSDE; excludes prior-year adjustments)."
+          },
+          {
+            "name": "alliance_setaside",
+            "type": "number",
+            "description": "Alliance District set-aside paid to the board of education rather than the town, nominal dollars."
+          },
+          {
+            "name": "comp_ed_setaside",
+            "type": "number",
+            "description": "Compensatory-education ECS set-aside, nominal dollars."
+          },
+          {
+            "name": "local_entitlement",
+            "type": "number",
+            "description": "Entitlement paid to the town: entitlement minus the two set-asides."
+          },
+          {
+            "name": "previous_local_payments",
+            "type": "number",
+            "description": "Local payments made earlier in the fiscal year."
+          },
+          {
+            "name": "sped_prior_year_adjustment",
+            "type": "number",
+            "description": "Special-education prior-year adjustment applied in this payment."
+          },
+          {
+            "name": "town",
+            "type": "string",
+            "description": "Town name."
+          },
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2026 corresponds to school year 2025-26."
+          },
+          {
+            "name": "district_code",
+            "type": "integer",
+            "description": "Local board of education district code (= town_code). Regional school districts receive no ECS directly."
+          }
+        ]
+      }
+    },
+    {
+      "name": "town_year_ecs_inputs",
+      "path": "data/town_year_ecs_inputs/town_year_ecs_inputs.csv",
+      "title": "Town-year ECS formula inputs and calculation",
+      "description": "Town-year ECS formula inputs and calculation (town x fiscal_year). Source: School and State Finance Project workbooks republishing the Office of Fiscal Analysis ECS calculation shells.",
+      "schema": {
+        "fields": [
+          {
+            "name": "town_code",
+            "type": "integer",
+            "description": "Connecticut town code, 1-169 (alphabetical); equals the local board of education's CSDE district code."
+          },
+          {
+            "name": "district_code",
+            "type": "integer",
+            "description": "Local board of education district code (= town_code). Regional school districts receive no ECS directly."
+          },
+          {
+            "name": "town",
+            "type": "string",
+            "description": "Town name."
+          },
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2026 corresponds to school year 2025-26."
+          },
+          {
+            "name": "source_sheet",
+            "type": "string",
+            "description": "Worksheet the row was parsed from (OFA/SSFP shell name)."
+          },
+          {
+            "name": "source_file",
+            "type": "string",
+            "description": "Workbook the row was parsed from."
+          },
+          {
+            "name": "count_date",
+            "type": "string",
+            "description": "October-1 PSIS count date used for the student inputs (MM/YYYY)."
+          },
+          {
+            "name": "drg",
+            "type": "string",
+            "description": "District Reference Group (A-I)."
+          },
+          {
+            "name": "wealth_decile",
+            "type": "integer",
+            "description": "OFA wealth decile of the town (1 = poorest)."
+          },
+          {
+            "name": "alliance_flag",
+            "type": "integer",
+            "description": "1 if the town's district is an Alliance District that year."
+          },
+          {
+            "name": "psd_flag",
+            "type": "integer",
+            "description": "1 if a Priority School District."
+          },
+          {
+            "name": "reform_flag",
+            "type": "integer",
+            "description": "1 if a reform district (older shells)."
+          },
+          {
+            "name": "pic_rank_raw",
+            "type": "integer",
+            "description": "Public Investment Community index rank as printed in the shell (0 = not in that year's ranked set)."
+          },
+          {
+            "name": "pic_score",
+            "type": "number",
+            "description": "Public Investment Community index score (SSFP backend table)."
+          },
+          {
+            "name": "resident_students",
+            "type": "number",
+            "description": "Resident students the town is fiscally responsible for (ECS definition), October-1 count."
+          },
+          {
+            "name": "frpl_count",
+            "type": "number",
+            "description": "Students eligible for free or reduced-price meals, October-1 PSIS."
+          },
+          {
+            "name": "frpl_pct",
+            "type": "number",
+            "description": "frpl_count / resident_students."
+          },
+          {
+            "name": "frpl_weighted",
+            "type": "number",
+            "description": "frpl_count x 0.30 (low-income need weight)."
+          },
+          {
+            "name": "conc_pov_threshold",
+            "type": "number",
+            "description": "Concentrated-poverty threshold share of resident students (0.75 through FY2021; 0.60 after)."
+          },
+          {
+            "name": "conc_pov_threshold_students",
+            "type": "number",
+            "description": "resident_students x conc_pov_threshold."
+          },
+          {
+            "name": "excess_frpl_students",
+            "type": "number",
+            "description": "FRPL students above the concentrated-poverty threshold (0 if below)."
+          },
+          {
+            "name": "excess_frpl_weighted",
+            "type": "number",
+            "description": "Concentrated-poverty need add-on: excess_frpl_students x 0.05 (through FY2021) or x 0.15."
+          },
+          {
+            "name": "conc_pov_students_above_threshold",
+            "type": "number",
+            "description": "Shell's own count of FRPL students above the threshold."
+          },
+          {
+            "name": "ell_count",
+            "type": "number",
+            "description": "English learners, October-1 PSIS."
+          },
+          {
+            "name": "ell_pct",
+            "type": "number",
+            "description": "ell_count / resident_students."
+          },
+          {
+            "name": "ell_weighted",
+            "type": "number",
+            "description": "ell_count x 0.15 (through FY2021) or x 0.25."
+          },
+          {
+            "name": "need_students",
+            "type": "number",
+            "description": "Total need students: resident + weighted low-income + concentrated-poverty + ELL terms."
+          },
+          {
+            "name": "engl_grand_list_years",
+            "type": "string",
+            "description": "Grand-list years averaged for the ENGL input (comma-separated)."
+          },
+          {
+            "name": "engl_avg",
+            "type": "number",
+            "description": "Three-year average equalized net grand list, dollars."
+          },
+          {
+            "name": "population_year",
+            "type": "integer",
+            "description": "Year of the population estimate used."
+          },
+          {
+            "name": "population",
+            "type": "number",
+            "description": "Town population used by the formula (DPH/OPM estimate series)."
+          },
+          {
+            "name": "engl_per_capita",
+            "type": "number",
+            "description": "engl_avg / population."
+          },
+          {
+            "name": "engl_median",
+            "type": "number",
+            "description": "Statewide median ENGL per capita that year."
+          },
+          {
+            "name": "engl_threshold",
+            "type": "number",
+            "description": "engl_median x 1.35."
+          },
+          {
+            "name": "engl_factor",
+            "type": "number",
+            "description": "engl_per_capita / engl_threshold."
+          },
+          {
+            "name": "mhi_year",
+            "type": "integer",
+            "description": "ACS 5-year vintage of the median household income input."
+          },
+          {
+            "name": "mhi",
+            "type": "number",
+            "description": "Town median household income (ACS 5-year), dollars."
+          },
+          {
+            "name": "mhi_median",
+            "type": "number",
+            "description": "Statewide median of town MHI that year."
+          },
+          {
+            "name": "mhi_threshold",
+            "type": "number",
+            "description": "mhi_median x 1.35."
+          },
+          {
+            "name": "mhi_factor",
+            "type": "number",
+            "description": "mhi / mhi_threshold."
+          },
+          {
+            "name": "wealth_adj_factor",
+            "type": "number",
+            "description": "1 - (0.70 x engl_factor + 0.30 x mhi_factor)."
+          },
+          {
+            "name": "base_aid_ratio",
+            "type": "number",
+            "description": "max(wealth_adj_factor, minimum aid ratio: 0.10 Alliance/PSD, 0.01 other)."
+          },
+          {
+            "name": "pic_bar_adjustment",
+            "type": "number",
+            "description": "Base-aid-ratio bonus for the 19 highest-ranked Public Investment Communities (0.03-0.06)."
+          },
+          {
+            "name": "final_base_aid_ratio",
+            "type": "number",
+            "description": "base_aid_ratio + pic_bar_adjustment."
+          },
+          {
+            "name": "rsd_students",
+            "type": "number",
+            "description": "Students the town sends to regional school districts, October-1."
+          },
+          {
+            "name": "rsd_grades",
+            "type": "number",
+            "description": "Number of grades in those regional districts."
+          },
+          {
+            "name": "rsd_per_pupil_bonus",
+            "type": "number",
+            "description": "Regional-district per-pupil bonus (pre-FY2022 form of the bonus)."
+          },
+          {
+            "name": "rsd_bonus",
+            "type": "number",
+            "description": "Regional school district bonus, dollars (students x grades x $100 from FY2022)."
+          },
+          {
+            "name": "endowed_students",
+            "type": "number",
+            "description": "Students the town sends to endowed academies, October-1."
+          },
+          {
+            "name": "endowed_grades",
+            "type": "number",
+            "description": "Number of grades at those endowed academies."
+          },
+          {
+            "name": "endowed_bonus",
+            "type": "number",
+            "description": "Endowed-academy bonus, dollars (students x grades x $100)."
+          },
+          {
+            "name": "foundation",
+            "type": "number",
+            "description": "Foundation amount per need student, dollars ($11,525)."
+          },
+          {
+            "name": "base_formula_aid",
+            "type": "number",
+            "description": "need_students x final_base_aid_ratio x foundation, dollars."
+          },
+          {
+            "name": "fully_funded_grant",
+            "type": "number",
+            "description": "base_formula_aid + rsd_bonus + endowed_bonus, dollars."
+          },
+          {
+            "name": "fully_funded_grant_hh",
+            "type": "number",
+            "description": "Fully funded grant with the Alliance/PSD hold-harmless applied, dollars."
+          },
+          {
+            "name": "fy2017_actual",
+            "type": "number",
+            "description": "FY2017 ECS entitlement (statutory base grant), dollars."
+          },
+          {
+            "name": "prior_year_entitlement",
+            "type": "number",
+            "description": "Prior fiscal year's ECS entitlement (CSDE final), dollars."
+          },
+          {
+            "name": "grant_adjustment",
+            "type": "number",
+            "description": "Absolute gap between the fully funded grant and the prior-year entitlement, dollars."
+          },
+          {
+            "name": "ff_greater_than_prior",
+            "type": "string",
+            "description": "Yes if the fully funded grant exceeds the prior-year entitlement (underfunded town)."
+          },
+          {
+            "name": "phase_in_amount",
+            "type": "number",
+            "description": "Dollars of the gap phased in that year under the statutory schedule."
+          },
+          {
+            "name": "entitlement_no_hh",
+            "type": "number",
+            "description": "Entitlement computed by the shell before the Alliance/PSD hold-harmless, dollars."
+          },
+          {
+            "name": "entitlement",
+            "type": "number",
+            "description": "ECS entitlement, nominal dollars (CSDE; excludes prior-year adjustments)."
+          },
+          {
+            "name": "excess_frpl_weighted_note",
+            "type": "string",
+            "description": "Set when the concentrated-poverty weighted term was derived from the shell's own arithmetic."
+          },
+          {
+            "name": "ell_weighted_note",
+            "type": "string",
+            "description": "Set when ell_weighted was derived from ell_count x 0.25 (FY2022-FY2023 OFA shells lack the column)."
+          },
+          {
+            "name": "entitlement_note",
+            "type": "string",
+            "description": "Set when the shell has no hold-harmless column (entitlement = entitlement_no_hh)."
+          },
+          {
+            "name": "backend_resident_students",
+            "type": "number",
+            "description": "Cross-check: resident students from SSFP's backend_data table."
+          },
+          {
+            "name": "backend_frpl_count",
+            "type": "number",
+            "description": "Cross-check: FRPL count from SSFP's backend_data table."
+          },
+          {
+            "name": "backend_ell_count",
+            "type": "number",
+            "description": "Cross-check: ELL count from SSFP's backend_data table."
+          },
+          {
+            "name": "backend_engl_per_capita",
+            "type": "number",
+            "description": "Cross-check: ENGL per capita from SSFP's backend_data table."
+          },
+          {
+            "name": "backend_mhi",
+            "type": "number",
+            "description": "Cross-check: MHI from SSFP's backend_data table."
+          },
+          {
+            "name": "backend_fully_funded_grant",
+            "type": "number",
+            "description": "Cross-check: fully funded grant from SSFP's backend_data table."
+          },
+          {
+            "name": "backend_final_base_aid_ratio",
+            "type": "number",
+            "description": "Cross-check: final base aid ratio from SSFP's backend_data table (FY2023+)."
+          },
+          {
+            "name": "backend_pic_score",
+            "type": "number",
+            "description": "Cross-check: PIC score from SSFP's backend_data table."
+          }
+        ]
+      }
+    },
+    {
+      "name": "ecs_formula_parameters",
+      "path": "data/ecs_formula_parameters/ecs_formula_parameters.csv",
+      "title": "ECS formula parameters by shell",
+      "description": "ECS formula parameters by shell (shell (fiscal_year x source sheet)). Source: School and State Finance Project workbooks republishing the Office of Fiscal Analysis ECS calculation shells.",
+      "schema": {
+        "fields": [
+          {
+            "name": "need_weight_frpl",
+            "type": "number",
+            "description": "Weight on FRPL students in need students."
+          },
+          {
+            "name": "wealth_threshold_factor",
+            "type": "number",
+            "description": "Multiplier applied to the statewide median ENGL per capita and MHI (1.35)."
+          },
+          {
+            "name": "engl_weight",
+            "type": "number",
+            "description": "Weight on the ENGL factor in the wealth adjustment factor."
+          },
+          {
+            "name": "mhi_weight",
+            "type": "number",
+            "description": "Weight on the MHI factor in the wealth adjustment factor."
+          },
+          {
+            "name": "min_bar_nonalliance",
+            "type": "number",
+            "description": "Minimum base aid ratio, non-Alliance / non-PSD towns."
+          },
+          {
+            "name": "min_bar_alliance",
+            "type": "number",
+            "description": "Minimum base aid ratio, Alliance Districts and PSDs."
+          },
+          {
+            "name": "foundation",
+            "type": "number",
+            "description": "Foundation amount per need student, dollars ($11,525)."
+          },
+          {
+            "name": "adj_pct_overfunded",
+            "type": "number",
+            "description": "Share of the gap phased out for overfunded towns that year."
+          },
+          {
+            "name": "adj_pct_underfunded",
+            "type": "number",
+            "description": "Share of the gap phased in for underfunded towns that year."
+          },
+          {
+            "name": "engl_median",
+            "type": "number",
+            "description": "Statewide median ENGL per capita that year."
+          },
+          {
+            "name": "engl_threshold",
+            "type": "number",
+            "description": "engl_median x 1.35."
+          },
+          {
+            "name": "mhi_median",
+            "type": "number",
+            "description": "Statewide median of town MHI that year."
+          },
+          {
+            "name": "mhi_threshold",
+            "type": "number",
+            "description": "mhi_median x 1.35."
+          },
+          {
+            "name": "count_date",
+            "type": "string",
+            "description": "October-1 PSIS count date used for the student inputs (MM/YYYY)."
+          },
+          {
+            "name": "engl_grand_list_years",
+            "type": "string",
+            "description": "Grand-list years averaged for the ENGL input (comma-separated)."
+          },
+          {
+            "name": "population_year",
+            "type": "integer",
+            "description": "Year of the population estimate used."
+          },
+          {
+            "name": "mhi_year",
+            "type": "integer",
+            "description": "ACS 5-year vintage of the median household income input."
+          },
+          {
+            "name": "conc_pov_threshold",
+            "type": "number",
+            "description": "Concentrated-poverty threshold share of resident students (0.75 through FY2021; 0.60 after)."
+          },
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2026 corresponds to school year 2025-26."
+          },
+          {
+            "name": "source_sheet",
+            "type": "string",
+            "description": "Worksheet the row was parsed from (OFA/SSFP shell name)."
+          },
+          {
+            "name": "source_file",
+            "type": "string",
+            "description": "Workbook the row was parsed from."
+          },
+          {
+            "name": "n_towns",
+            "type": "integer",
+            "description": "Number of town rows parsed from the shell."
+          },
+          {
+            "name": "missing_columns",
+            "type": "string",
+            "description": "Canonical columns absent from this shell's layout (semicolon-separated)."
+          },
+          {
+            "name": "is_primary",
+            "type": "boolean",
+            "description": "True if this shell feeds the main inputs panel for its fiscal year."
           }
         ]
       }

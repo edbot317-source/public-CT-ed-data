@@ -52,13 +52,16 @@ def cpi_source(tmp: Path):
         df = pd.read_csv(cp)[['observation_date','cpi_u']].rename(columns={'cpi_u':'CPIAUCSL'})
         df.to_csv(out, index=False)
 
-def replay_clean(script_name: str, output: str, setup):
-    with tempfile.TemporaryDirectory() as td:
+def replay_clean(script_name: str, output: str, setup, nullable_ints: bool=False):
+    # nullable_ints=True keeps integer columns that contain blanks as Int64 on the
+    # read-back (otherwise pandas upcasts them to float and writes "7.0").
+    with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as td:
         tmp=Path(td); (tmp/'code').mkdir(); (tmp/'clean-data').mkdir(); (tmp/'data').mkdir()
         setup(tmp)
         shutil.copy2(RAW/'original_scripts'/script_name, tmp/'code'/script_name)
         runpy.run_path(str(tmp/'code'/script_name), run_name='__main__')
-        return pd.read_csv(tmp/'clean-data'/output)
+        kw = {'dtype_backend': 'numpy_nullable'} if nullable_ints else {}
+        return pd.read_csv(tmp/'clean-data'/output, **kw)
 
 def build_district_year_enrollment():
     def setup(t): copytree(RAW, t/'data'/'enrollment')
@@ -174,6 +177,53 @@ def build_graduation_5yr():
 
 def build_swd_outplacement():
     df=pd.read_csv(RAW/'swd_district_all_years.csv'); df['fiscal_year']=df['School Year'].map(fiscal_year); return df.rename(columns={'School Year':'school_year','Type':'placement_type','DistrictName':'district','Count*':'count','Percent*':'percent'})[['district','fiscal_year','school_year','placement_type','count','percent']]
+
+def _ecs_csde_setup(t):
+    copy_files(RAW, t/'data'/'ecs'/'csde', '*.xlsx')
+
+def _ecs_ssfp_setup(t):
+    copy_files(RAW, t/'data'/'ecs'/'ssfp', '*.xls*')
+
+def build_town_year_ecs_entitlement():
+    return replay_clean('64_clean_ecs_csde.py', 'town_year_ecs_entitlement.csv', _ecs_csde_setup, nullable_ints=True)
+
+def build_town_year_ecs_payment():
+    return replay_clean('64_clean_ecs_csde.py', 'town_year_ecs_payment.csv', _ecs_csde_setup, nullable_ints=True)
+
+def build_town_year_ecs_inputs():
+    return replay_clean('65_parse_ecs_shells.py', 'town_year_ecs_inputs.csv', _ecs_ssfp_setup, nullable_ints=True)
+
+def build_ecs_formula_parameters():
+    return replay_clean('65_parse_ecs_shells.py', 'ecs_parameters.csv', _ecs_ssfp_setup, nullable_ints=True)
+
+def build_district_year_ncep():
+    def setup(t): copy_files(RAW, t/'data'/'ncep', '*.pdf'); copy_files(RAW, t/'data'/'ncep', '*.xls')
+    return replay_clean('69_clean_ncep.py', 'district_year_ncep.csv', setup, nullable_ints=True)
+
+def build_district_year_seda_gcs():
+    def setup(t):
+        copy_files(RAW, t/'data'/'seda', '*_CT.csv')
+        copy_files(RAW/'_dependencies', t/'clean-data', '*.csv')   # town names/codes for the town mapping
+    return replay_clean('71_clean_seda_ct.py', 'district_year_seda_gcs.csv', setup, nullable_ints=True)
+
+def _seda73_setup(t):
+    # 73_seda_k_and_baselines.py: k from SEDA's published NAEP parameters (Table 9) + CT grade-level baselines.
+    # The national long files it uses for the regression cross-check are ~119 MB each and are not redistributed;
+    # the script falls back to the logged per-year slopes (k_gcs_on_cs_by_year.csv) when they are absent.
+    kraw = DATA/'seda_k_grade_subject'/'raw'; braw = DATA/'town_grade_subject_seda_baseline'/'raw'
+    copy_files(braw, t/'data'/'seda', '*_CT.csv')
+    copy_files(kraw, t/'data'/'seda', 'seda_table9_naep_params.csv')
+    (t/'output'/'ecs'/'sim').mkdir(parents=True, exist_ok=True)
+    shutil.copy2(kraw/'k_gcs_on_cs_by_year.csv', t/'output'/'ecs'/'sim'/'k_by_year.csv')
+    copy_files(braw/'_dependencies', t/'clean-data', '*.csv')
+    (t/'output'/'ecs'/'dashboard'/'sim').mkdir(parents=True, exist_ok=True)
+    shutil.copy2(kraw/'original_scripts'/'seda_spending_sim.py', t/'output'/'ecs'/'dashboard'/'sim'/'seda_spending_sim.py')
+
+def build_seda_k_grade_subject():
+    return replay_clean('73_seda_k_and_baselines.py', 'seda_k_grade_subject.csv', _seda73_setup)
+
+def build_town_grade_subject_seda_baseline():
+    return replay_clean('73_seda_k_and_baselines.py', 'town_grade_subject_seda_baseline.csv', _seda73_setup)
 
 BUILDERS={name:obj for name,obj in globals().items() if name.startswith('build_')}
 if __name__ == '__main__':

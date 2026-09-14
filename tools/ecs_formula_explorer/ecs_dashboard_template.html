@@ -1,0 +1,765 @@
+<title>ECS Formula Explorer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<style>
+:root{
+  color-scheme:light;
+  --ground:#f3f5f8; --surface:#ffffff; --surface-2:#e9edf2; --line:#d5dce4; --line-strong:#b9c3ce;
+  --ink:#16202a; --ink-2:#4f5d6a; --ink-3:#7b8894;
+  --accent:#1c5cab; --accent-ink:#ffffff;
+  --s-actual:#1baf7a; --s-observed:#2a78d6; --s-scenario:#eb6834;
+  --div-neg:#3987e5; --div-mid:#f0efec; --div-pos:#d03b3b;
+  --good:#0ca30c; --warn:#fab219; --crit:#d03b3b;
+  --shadow:0 1px 2px rgba(22,32,42,.06),0 8px 24px rgba(22,32,42,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#12171c; --surface:#1a2129; --surface-2:#232c36; --line:#2f3a46; --line-strong:#465463;
+    --ink:#eceff2; --ink-2:#a6b1bc; --ink-3:#7f8b97;
+    --accent:#6fa3e6; --accent-ink:#0f1620;
+    --s-actual:#199e70; --s-observed:#3987e5; --s-scenario:#d95926;
+    --div-neg:#3987e5; --div-mid:#383835; --div-pos:#d03b3b;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#12171c; --surface:#1a2129; --surface-2:#232c36; --line:#2f3a46; --line-strong:#465463;
+  --ink:#eceff2; --ink-2:#a6b1bc; --ink-3:#7f8b97;
+  --accent:#6fa3e6; --accent-ink:#0f1620;
+  --s-actual:#199e70; --s-observed:#3987e5; --s-scenario:#d95926;
+  --div-neg:#3987e5; --div-mid:#383835; --div-pos:#d03b3b;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:14px;line-height:1.45;padding-inline:20px;padding-block:0 48px}
+h1,h2,h3{margin:0;text-wrap:balance}
+h1{font-family:"Newsreader",Georgia,"Times New Roman",serif;font-weight:600;font-size:30px;line-height:1.1;letter-spacing:-.01em}
+h2{font-family:"Newsreader",Georgia,serif;font-weight:600;font-size:20px;line-height:1.2}
+h3{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-2)}
+p{margin:0}
+a{color:var(--accent)}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:1380px;margin:0 auto}
+header{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:flex-end;justify-content:space-between;padding-block:26px 18px;border-bottom:1px solid var(--line)}
+header .lede{max-width:64ch;color:var(--ink-2);margin-top:8px}
+.eyebrow{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);margin-bottom:6px}
+.layout{display:grid;grid-template-columns:320px minmax(0,1fr);gap:24px;align-items:start;padding-top:20px}
+@media (max-width:920px){.layout{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow)}
+.controls{position:sticky;top:12px;display:flex;flex-direction:column;gap:18px;padding:18px}
+@media (max-width:920px){.controls{position:static}}
+.presets{display:flex;flex-direction:column;gap:6px}
+.preset{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:inherit;text-align:left;cursor:pointer}
+.preset[aria-pressed="true"]{border-color:var(--accent);background:color-mix(in oklab,var(--accent) 12%,var(--surface));box-shadow:inset 0 0 0 1px var(--accent)}
+.preset small{display:block;color:var(--ink-2);font-size:12px;line-height:1.3}
+.preset .dot{width:10px;height:10px;border-radius:50%;flex:none;background:var(--s-scenario)}
+.preset[data-preset="observed"] .dot{background:var(--s-observed)}
+.reset{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:8px;border:none;background:var(--accent);color:var(--accent-ink);font:inherit;font-weight:600;cursor:pointer}
+.reset:disabled{opacity:.45;cursor:default}
+.slider{display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center}
+.slider label{font-size:13px;color:var(--ink)}
+.slider output{font-size:13px;font-weight:600;color:var(--ink);min-width:6ch;text-align:right}
+.slider input[type=range]{grid-column:1/-1;width:100%;accent-color:var(--accent);margin:2px 0 4px}
+.slider .obs{grid-column:1/-1;font-size:11px;color:var(--ink-3)}
+.slider.changed output{color:var(--s-scenario)}
+.group{display:flex;flex-direction:column;gap:10px}
+.toggle{display:flex;align-items:center;gap:10px;font-size:13px}
+.toggle input{accent-color:var(--accent);width:16px;height:16px;margin:0}
+.main{display:flex;flex-direction:column;gap:20px;min-width:0}
+.card{padding:18px 20px}
+.card-head{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;justify-content:space-between;margin-bottom:10px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{display:inline-block;width:18px;height:0;border-top:2px solid currentColor}
+.legend i.dash{border-top-style:dashed}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:14px}
+.stat{padding:10px 12px;border-radius:8px;background:var(--surface-2)}
+.stat .v{font-size:20px;font-weight:600;line-height:1.1;margin-top:3px}
+.stat .l{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3)}
+.stat .d{font-size:12px;color:var(--ink-2);margin-top:3px}
+svg{display:block;width:100%;height:auto;max-height:480px;overflow:visible}
+.axis text{font-size:11px;fill:var(--ink-3);font-family:inherit}
+.axis line,.axis path{stroke:var(--line);shape-rendering:crispEdges}
+.grid line{stroke:var(--line);stroke-dasharray:2 3}
+.two{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:20px}
+@media (max-width:1100px){.two{grid-template-columns:1fr}}
+.map-toolbar{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:12px;color:var(--ink-2);margin-bottom:8px}
+select,button.mini{font:inherit;font-size:12px;padding:4px 8px;border-radius:6px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink)}
+.slider select{grid-column:1/-1;width:100%;margin:2px 0 4px}
+.town path{stroke:var(--surface);stroke-width:.6;cursor:pointer;transition:stroke-width .1s}
+.town path:hover{stroke:var(--ink);stroke-width:1.2}
+.town path.sel{stroke:var(--ink);stroke-width:2}
+.pt{cursor:pointer}
+.pt.sel{stroke:var(--ink);stroke-width:2}
+.ramp{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--ink-2)}
+.ramp .bar{height:10px;width:140px;border-radius:3px;background:linear-gradient(90deg,var(--div-neg),var(--div-mid),var(--div-pos))}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:1px 8px;border-radius:999px;font-size:11px;font-weight:600;border:1px solid transparent;white-space:nowrap}
+.chip.exact{color:var(--good);border-color:color-mix(in oklab,var(--good) 45%,transparent);background:color-mix(in oklab,var(--good) 12%,var(--surface))}
+.chip.close{color:#8a6100;border-color:color-mix(in oklab,var(--warn) 60%,transparent);background:color-mix(in oklab,var(--warn) 18%,var(--surface))}
+.chip.off{color:var(--crit);border-color:color-mix(in oklab,var(--crit) 45%,transparent);background:color-mix(in oklab,var(--crit) 12%,var(--surface))}
+.chip.na{color:var(--ink-3);border-color:var(--line)}
+:root[data-theme="dark"] .chip.close{color:#f2c14e}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .chip.close{color:#f2c14e}}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{padding:6px 8px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-3);font-weight:600}
+th:first-child,td:first-child{text-align:left}
+.tbl-wrap{overflow-x:auto}
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--ground);padding:8px 10px;border-radius:6px;font-size:12px;line-height:1.35;box-shadow:var(--shadow);z-index:10;max-width:280px}
+.tip b{font-weight:600}
+.tip[hidden]{display:none}
+.assume{columns:2;column-gap:28px;font-size:13px;color:var(--ink-2)}
+@media (max-width:760px){.assume{columns:1}}
+.assume li{break-inside:avoid;margin-bottom:8px}
+.assume ul{padding-left:18px;margin:0}
+.muted{color:var(--ink-3);font-size:12px}
+.delta-pos{color:var(--div-pos)} .delta-neg{color:var(--div-neg)}
+footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-3);max-width:90ch}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+<header>
+  <div>
+    <div class="eyebrow">Connecticut Education Cost Sharing · CGS §10-262f–h · FY2023–FY2027 · constant 2025 dollars</div>
+    <h1>ECS Formula Explorer</h1>
+    <p class="lede">Rebuild every town's ECS grant from the state's own worksheet inputs for FY2023 through FY2027, then change the formula. Start from the enacted policy, move a slider, and see what the grant series would have been for the state and for any town on the map.</p>
+  </div>
+  <div class="legend" aria-label="Series legend">
+    <span style="color:var(--s-actual)"><i></i><span style="color:var(--ink-2)">CSDE published entitlement</span></span>
+    <span style="color:var(--s-observed)"><i class="dash"></i><span style="color:var(--ink-2)">Enacted policy, rebuilt</span></span>
+    <span style="color:var(--s-scenario)"><i></i><span style="color:var(--ink-2)">Your scenario</span></span>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="panel controls" aria-label="Policy controls">
+    <div class="group">
+      <h3>Policy</h3>
+      <p class="muted" style="margin:-6px 0 2px">Scenarios stack: switch on any combination. Sliders apply on top.</p>
+      <div class="presets" id="presets">
+        <button class="preset" data-preset="observed" aria-pressed="true"><span class="dot"></span><span>Enacted policy<small>Weights, thresholds, foundation and phase-in as adopted each year. Clears every scenario and resets the sliders.</small></span></button>
+        <button class="preset" data-preset="inflation" aria-pressed="false"><span class="dot"></span><span>Inflation-adjusted foundation<small>$11,525 (set for FY2014) grown with CPI-U each year. Replaces the $13,087 option.</small></span></button>
+        <button class="preset" data-preset="f13087" aria-pressed="false"><span class="dot"></span><span>Foundation of $13,087<small>The figure used for the FY2027 supplemental education aid runs. Replaces the inflation option.</small></span></button>
+        <button class="preset" data-preset="fullfund" aria-pressed="false"><span class="dot"></span><span>Full formula, no phase-in<small>Every town paid its fully funded grant every year; no hold-harmless</small></span></button>
+      </div>
+      <button class="reset" id="reset" disabled>Back to enacted policy</button>
+      <div class="slider" style="margin-top:4px"><label for="s-start">Changes take effect from</label><select id="s-start"></select><span class="obs">Years before this follow enacted policy exactly; the change then chains forward from that year's actual prior-year grant.</span></div>
+    </div>
+
+    <div class="group">
+      <h3>Need students</h3>
+      <div class="slider" id="s-foundation-wrap"><label for="s-foundation">Foundation per need student (nominal)</label><output id="o-foundation" class="num"></output><input type="range" id="s-foundation" min="8000" max="16000" step="25" data-key="foundation"><span class="obs">Enacted: $11,525 every year</span></div>
+      <div class="slider"><label for="s-w_frpl">Low-income weight</label><output id="o-w_frpl" class="num"></output><input type="range" id="s-w_frpl" min="0" max="0.6" step="0.01" data-key="w_frpl"><span class="obs">Enacted: 30% of FRPL-eligible students</span></div>
+      <div class="slider"><label for="s-cp_thr">Concentrated-poverty threshold</label><output id="o-cp_thr" class="num"></output><input type="range" id="s-cp_thr" min="0.4" max="0.9" step="0.01" data-key="cp_thr"><span class="obs">Enacted: 60% of resident students</span></div>
+      <div class="slider"><label for="s-w_cp">Concentrated-poverty weight</label><output id="o-w_cp" class="num"></output><input type="range" id="s-w_cp" min="0" max="0.4" step="0.01" data-key="w_cp"><span class="obs">Enacted: 15% of FRPL students above the threshold</span></div>
+      <div class="slider"><label for="s-w_ell">English-learner weight</label><output id="o-w_ell" class="num"></output><input type="range" id="s-w_ell" min="0" max="0.5" step="0.01" data-key="w_ell"><span class="obs">Enacted: 25%</span></div>
+    </div>
+
+    <div class="group">
+      <h3>Base aid ratio</h3>
+      <div class="slider"><label for="s-thr_factor">Wealth threshold factor</label><output id="o-thr_factor" class="num"></output><input type="range" id="s-thr_factor" min="1" max="2" step="0.01" data-key="thr_factor"><span class="obs">Enacted: 1.35 × statewide median (ENGL per capita and MHI)</span></div>
+      <label class="toggle"><input type="checkbox" id="t-ahi">Use average household income instead of median (ACS S1901)</label>
+      <div class="slider"><label for="s-w_engl">Property-wealth share of the wealth factor</label><output id="o-w_engl" class="num"></output><input type="range" id="s-w_engl" min="0" max="1" step="0.05" data-key="w_engl"><span class="obs">Enacted: 70% ENGL per capita, 30% median household income</span></div>
+      <div class="slider"><label for="s-min_bar">Minimum aid ratio, other towns</label><output id="o-min_bar" class="num"></output><input type="range" id="s-min_bar" min="0" max="0.2" step="0.005" data-key="min_bar"><span class="obs">Enacted: 1%</span></div>
+      <div class="slider"><label for="s-min_bar_hh">Minimum aid ratio, Alliance / Priority districts</label><output id="o-min_bar_hh" class="num"></output><input type="range" id="s-min_bar_hh" min="0" max="0.3" step="0.005" data-key="min_bar_hh"><span class="obs">Enacted: 10%</span></div>
+    </div>
+
+    <div class="group">
+      <h3>Phase-in</h3>
+      <div class="slider"><label for="s-phase">Phase-in speed</label><output id="o-phase" class="num"></output><input type="range" id="s-phase" min="0" max="3" step="0.05" data-key="phase"><span class="obs">1.0× = the schedule as applied (16.67% of the gap in FY2023, 20% in FY2024, 56.5% in FY2025, 100% from FY2026); 3× is capped at the full gap</span></div>
+      <div class="slider"><label for="s-hh">Hold-harmless (never below prior year or FY2017)</label><select id="s-hh"><option value="alliance">Alliance / Priority districts (enacted)</option><option value="none">No district</option><option value="all">Every town</option></select><span class="obs">Enacted: Alliance and Priority School Districts only; membership follows each year's list (three towns joined in FY2023).</span></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <section class="panel card">
+      <div class="card-head"><h2>Statewide ECS, constant 2025 dollars</h2><span class="muted" id="state-note"></span></div>
+      <div class="stats" id="state-stats"></div>
+      <div id="state-chart"></div>
+    </section>
+
+    <div class="two">
+      <section class="panel card">
+        <div class="card-head"><h2>Your scenario minus enacted policy, by town</h2></div>
+        <div class="map-toolbar">
+          <label>Fiscal year <select id="map-year"></select></label>
+          <label>Show <select id="map-mode"><option value="pct">% of enacted grant</option><option value="abs">2025 dollars</option><option value="pp">2025 dollars per resident student</option></select></label>
+          <span class="ramp"><span>less</span><span class="bar"></span><span>more</span><span id="ramp-scale"></span></span>
+        </div>
+        <div id="map"></div>
+        <p class="muted" style="margin-top:6px">Click a town to see its series. Grey means no change from enacted policy.</p>
+      </section>
+
+      <section class="panel card">
+        <div class="card-head"><h2 id="town-title">Hartford</h2><span class="muted" id="town-sub"></span></div>
+        <div id="town-chart"></div>
+        <div id="town-ach-title" style="margin:16px 0 4px;font-family:Newsreader,Georgia,serif;font-size:1.05rem;font-weight:600;color:var(--ink)">Achievement, grade levels vs the national average</div>
+        <div id="town-ach"></div>
+        <p class="muted" id="town-ach-note" style="margin-top:6px"></p>
+        <div class="tbl-wrap"><table id="town-table"></table></div>
+      </section>
+    </div>
+
+    <section class="panel card">
+      <div class="card-head"><h2>Funding per student against the low-income share</h2><span class="muted" id="scatter-sub"></span></div>
+      <div class="map-toolbar"><label>Fiscal year <select id="scatter-year"></select></label><label>Vertical axis <select id="s-yaxis"><option value="ecs">ECS entitlement per resident student</option><option value="ncep">Total net current spending per student (NCEP)</option></select></label><label class="toggle"><input type="checkbox" id="t-weight">Weight the fit by resident students</label><span id="scatter-note" style="flex-basis:100%">Each dot is a town in the chosen fiscal year, constant 2025 dollars. Horizontal axis: FRPL-eligible students as a share of resident students. Lines are ordinary least squares fits.</span></div>
+      <div class="stats" id="scatter-stats"></div>
+      <div id="scatter"></div>
+    </section>
+
+    <section class="panel card">
+      <div class="card-head"><h2>Achievement, in grade levels, against funding and need</h2><span class="muted" id="ach-sub"></span></div>
+      <div class="map-toolbar"><label>Spring test year <select id="ach-year"></select></label><label>Horizontal axis <select id="ach-x"><option value="frpl">FRPL-eligible share of resident students</option><option value="ecs">ECS entitlement per resident student (scenario)</option><option value="ncep">Total net current spending per student (NCEP)</option></select></label><label>Subject <select id="ach-subj"><option value="gl">Math and reading combined</option><option value="mth">Math</option><option value="rla">Reading / language arts</option></select></label><label class="toggle"><input type="checkbox" id="t-ach-weight" checked>Weight the fit by tests taken</label><span id="ach-note" style="flex-basis:100%"></span></div>
+      <div class="stats" id="ach-stats"></div>
+      <div id="ach-chart"></div>
+    </section>
+
+    <section class="panel card">
+      <div class="card-head"><h2>Simulated effect of the scenario on test scores</h2><span class="muted" id="sim-sub"></span></div>
+      <div class="map-toolbar"><label class="toggle"><input type="checkbox" id="t-sim-hetero">Income-heterogeneity sensitivity (Option A)</label><label>District chart year <select id="sim-year"></select></label><span id="sim-note" style="flex-basis:100%"></span></div>
+      <div class="stats" id="sim-stats"></div>
+      <div class="tbl-wrap"><table id="sim-table"></table></div>
+      <div id="sim-chart" style="margin-top:12px"></div>
+    </section>
+
+    <section class="panel card">
+      <div class="card-head"><h2>Where the rebuild reproduces the state's calculation</h2></div>
+      <p style="max-width:80ch;color:var(--ink-2);margin-bottom:10px">For each town-year, the enacted-policy rebuild is run from the actual prior-year entitlement and compared with what CSDE published. <span class="chip exact">exact</span> means within $1, <span class="chip close">close</span> within 0.5%, <span class="chip off">not reproduced</span> beyond that. Counterfactual scenarios inherit whatever error the rebuild has for that town and year.</p>
+      <div class="stats" id="repro-stats"></div>
+      <div class="tbl-wrap"><table id="repro-table"></table></div>
+    </section>
+
+    <section class="panel card">
+      <div class="card-head"><h2>Assumptions and limits</h2></div>
+      <div class="assume">
+        <ul>
+          <li><b>Formula.</b> Fully funded grant = need students × foundation × final base aid ratio + regional-district bonus + endowed-academy bonus. Need students = resident students + (FRPL weight × FRPL-eligible) + (concentrated-poverty weight × FRPL students above the threshold share of residents) + (ELL weight × English learners). Base aid ratio = max(1 − [property share × ENGL factor + income share × MHI factor], minimum), plus the Public Investment Community bonus. Factors divide a town's ENGL per capita and MHI by the statewide town median × the threshold factor.</li>
+          <li><b>Inputs are held fixed.</b> Resident, FRPL and ELL counts, ENGL, population, MHI, PIC bonus points and the two bonuses are taken from each year's calculation worksheet exactly as the state used them. Changing a parameter never changes behavior, enrollment, or property values.</li>
+          <li><b>Statewide medians</b> are recomputed from the 169 towns only when a slider changes the wealth threshold factor; the medians themselves equal the state's worksheet values in every year.</li>
+          <li><b>Phase-in</b> follows the schedule actually applied each year: underfunded towns received 16.67% of their gap in FY2023, 20% in FY2024, 56.5% in FY2025 and 100% from FY2026; overfunded towns lost nothing in these years because the budget acts held them harmless. The speed slider scales these shares, capped at 100%.</li>
+          <li><b>Counterfactual chaining.</b> Scenarios start from every town's actual FY2022 entitlement and then chain year to year on the simulated prior-year grant, so a change compounds through the phase-in. The enacted-policy line is chained the same way, which is why it can differ slightly from CSDE's published line.</li>
+          <li><b>Hold-harmless</b> is the greater of the computed grant, the prior year, and the FY2017 base. Enacted policy applies it to Alliance and Priority School Districts, using each year's membership list (33 towns in FY2022, 36 from FY2023 when Enfield, Plainfield and Stratford were added). The control can switch it off for every district or extend it to every town.</li>
+          <li><b>Start year.</b> Years before the chosen start year follow enacted policy exactly; from the start year on, the scenario applies and chains forward on its own simulated prior-year grant.</li>
+          <li><b>Per-student chart.</b> The student measure is the ECS resident-student count (students the town is fiscally responsible for on October 1), because it is the denominator the formula itself uses and it exists for every town and year; it excludes charter and technical-high-school students. The low-income share is FRPL-eligible students over resident students from the same worksheet. The fitted line is ordinary least squares across the 169 towns, unweighted unless the box is ticked; the slope is reported per 10-percentage-point rise in the FRPL share.</li>
+          <li><b>Total spending per student (NCEP).</b> The second vertical-axis option uses CSDE's net current expenditures per pupil: all-source current spending (net of tuition revenue, capital, debt service and reimbursable transportation) divided by average daily membership. ADM is the resident-student count, the same count the ECS formula uses, so the denominator is consistent in construction. The two are one October apart: the FY2025 NCEP divides FY2025 spending by the October 2024 count, while the FY2025 ECS grant was computed on the October 2023 count (FY2025 ADM equals the FY2026 ECS resident count to the cent for 135 of 148 towns). Under a scenario, the town's spending is moved by its ECS change one for one, which assumes no offsetting local tax response. NCEP exists only for the 148 towns with a local board (regional-district members carry their tuition payments, not the region's spending) and is published through FY2025; FY2023 onward comes from CSDE's reports as archived by the School and State Finance Project, with the current year from CSDE's own file.</li>
+          <li><b>Achievement (SEDA).</b> Scores are the Stanford Education Data Archive 2025.2 administrative-district estimates (Reardon, Fahle, Ho, Shear, Saliba, Min, Shim and Kalogrides, 2026), grades 3-8 pooled, empirical-Bayes means on the grade-cohort-standardized (GCS) scale, minus the grade center of 5.5. On that scale the national average of the 2009-2015 cohorts in grade g equals g, so the value plotted is grade levels above or below that national benchmark, not the 2025 national average. SEDA advises the GCS scale for reporting rather than research use. Town boards are matched by name; the 21 towns whose grades 3-8 are run by a K-12 regional district (Regions 10, 12-18 and 20; Region 6 before 2024-25) carry the region's score and are drawn hollow; small districts that SEDA suppresses have no score. Charter and magnet districts are not assigned to towns. When a scenario is active the chart also draws scenario points and a second fitted line: each town's observed score plus the simulated change from the test-score simulation below, so the slope change reflects the simulated policy effect, not an estimated relationship.</li>
+          <li><b>Test-score simulation.</b> Follows the simulation instructions of 2026-09-14. The shock is the scenario's ECS entitlement minus enacted policy, per ECS resident student, in each fiscal year from the chosen start year, deflated to 2018 dollars with CPI-U and treated as an operating (noncapital) spending increase spent one for one. Effect size β = 0.0343 student-level SD per $1,000 per pupil at four years of exposure, the noncapital marginal effect in Jackson & Mackevicius (2024, <i>AEJ: Applied</i> 16(1), Table 3 col 2). Exposure assumes no churn since kindergarten: min(policy year, grade + 1); the dose rises linearly to four years and is flat after, so with a phased-in shock the effect is β/4 times the sum of the last min(exposure, 4) years' increases. SD are converted to grade levels with k taken from SEDA's own scale definitions: k = national NAEP SD for the grade and subject ÷ the per-grade NAEP growth for the subject, from Table 9 of the SEDA 2025.2 documentation averaged over the four reference cohorts (grade 3 math 2.70 to grade 8 math 3.71, reading 3.30–3.46; SEDA's rule of thumb is about 3). The slope of GCS on CS across all U.S. districts reproduces these to within 0.006. Baselines and weights are SEDA 2025.2 grade-by-subject means averaged over spring 2023–2025. Because the dashboard runs only through FY2025, no cohort reaches the four-year plateau. Statewide and tercile figures are test-weighted; terciles are by FY2025 FRPL share. The Option A sensitivity scales β by the district's FRPL share using the low-income (0.0312) and non-low-income (0.0161) effects relative to the 0.0359 constant (Table 3 col 3) and is not normalized to average one. This is a partial-equilibrium projection with no behavioral responses beyond those embedded in the reduced-form estimates, and no uncertainty is shown. A Python reference implementation with unit tests, an aggregation check of the grade-level files against the pooled estimates, and a log of every run live in the working repository under output/ecs/dashboard/sim and output/ecs/sim.</li>
+          <li><b>Average household income</b> is an option, not the statute. It substitutes the ACS 5-year mean household income (subject table S1901, same vintage as the median the state used) for the town's median, and replaces the statewide median of medians with the statewide median of town means, so the wealth threshold is rebuilt the same way. Towns with no published mean keep their median.</li>
+          <li><b>Inflation preset</b> grows the $11,525 foundation from calendar 2013 (the year it was set for FY2014) by the CPI-U annual average of the calendar year before each fiscal year; FY2027 uses the last complete year available. The $13,087 preset applies a 2027 figure to every year, which overstates it for earlier years.</li>
+          <li><b>FY2023 and FY2027</b> worksheets are the School and State Finance Project's projections rather than CSDE's final runs: FY2023 was built on preliminary October counts, and FY2027 awaits CSDE's final calculation. The reproduction flags show where that matters.</li>
+          <li><b>Not modeled:</b> minimum budget requirement interactions, Alliance set-asides (which change who receives the money, not the entitlement), supplemental education aid, special-education adjustments, and any statutory earmark or one-off grant outside the formula.</li>
+          <li><b>Real dollars.</b> Every dollar figure on the page is in constant 2025 dollars: fiscal year t is deflated with the CPI-U annual average for calendar year t, the convention of the public data release. FY2026 and FY2027 use the 2025 index because later annual averages are not yet complete, so they appear at 2025 prices. The formula itself runs in nominal dollars, so the foundation slider and the $11,525 and $13,087 presets are nominal amounts; the inflation preset raises the nominal foundation with CPI-U from 2013.</li>
+          <li><b>Data.</b> Amounts: CSDE Bureau of Fiscal Services entitlement files. Inputs: Office of Fiscal Analysis calculation shells as republished by the School and State Finance Project, validated against OPM's equalized net grand list, Census ACS median income and CSDE's published entitlements. Series start in FY2023: earlier worksheets are either incomplete (FY2018–FY2019), use the pre-2022 formula, or were recalculated after the fact (FY2020–FY2021), so only FY2023 onward is used. The FY2022 grant enters only as each town's starting prior-year amount.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>
+<footer>Data assembled September 2026 from the public-CT-ed-data release (datasets town_year_ecs_entitlement, town_year_ecs_inputs, ecs_formula_parameters). Town boundaries: Census Bureau cartographic boundary files, 2023.</footer>
+</div>
+<div class="tip" id="tip" hidden></div>
+
+<script type="application/json" id="data">/*__DATA__*/</script>
+<script type="application/json" id="geo">/*__GEO__*/</script>
+<script>
+(function(){
+const D = JSON.parse(document.getElementById('data').textContent);
+const GEO = JSON.parse(document.getElementById('geo').textContent);
+const START = 2023;                           // first year used: full worksheets on final counts
+const YEARS = D.years.filter(fy=>fy>=START);
+const ENT_YEARS = D.ent_years.filter(fy=>fy>=START);
+const BASE_YEAR = 2025;
+const towns = D.towns;
+const byName = new Map(towns.map(t=>[t.name,t]));
+const cpi = D.cpi;
+const cpiYears = Object.keys(cpi).map(Number);
+const cpiLast = Math.max(...cpiYears);
+// constant BASE_YEAR dollars: fiscal year t deflated with calendar-year t CPI-U (same convention as the public data release); years past the last complete CPI year use that year
+const DEFL = fy => cpi[BASE_YEAR] / cpi[Math.min(fy, cpiLast)];
+
+// ---------- enacted policy per year ----------
+const OBS = {};
+YEARS.forEach(fy=>{ OBS[fy] = Object.assign({}, D.policy[String(fy)]); });
+const CURRENT = {w_frpl:0.30, cp_thr:0.60, w_cp:0.15, w_ell:0.25, thr_factor:1.35, w_engl:0.70, min_bar:0.01, min_bar_hh:0.10, foundation:11525};
+const LEGACY_YEARS = new Set([2020,2021]);
+
+// ---------- controls state ----------
+const keys = ['foundation','w_frpl','cp_thr','w_cp','w_ell','thr_factor','w_engl','min_bar','min_bar_hh'];
+const S = {}; keys.forEach(k=>S[k]=CURRENT[k]); S.phase = 1; S.hh = 'alliance'; S.on = new Set(); S.start = YEARS[0]; S.ahi = false; S.weight = false; S.yaxis = 'ecs'; S.achYear = 2025; S.achX = 'frpl'; S.achSubj = 'gl'; S.achWeight = true; S.simHetero = false; S.simYear = 2025;
+// statewide median of mean household income per year (median across the 169 towns, same construction as the MHI median)
+const AHI_MEDIAN = {}; YEARS.forEach(fy=>{ AHI_MEDIAN[fy] = D.policy[String(fy)].ahi_median; });
+const PRESET_NAMES = {inflation:'inflation-adjusted foundation', f13087:'$13,087 foundation', fullfund:'full formula, no phase-in'};
+function slidersDefault(){ return keys.every(k=>Math.abs(S[k]-CURRENT[k])<1e-9) && S.phase===1 && S.hh==='alliance' && !S.ahi; }
+function isEnacted(){ return S.on.size===0 && slidersDefault(); }
+const el = id=>document.getElementById(id);
+const fmtMoney = v=> (v<0?'−':'')+'$'+Math.abs(Math.round(v)).toLocaleString();
+const fmtM = v=> (v<0?'−':'')+'$'+(Math.abs(v)/1e6).toLocaleString(undefined,{maximumFractionDigits:1})+'M';
+const fmtB = v=> (v<0?'−':'')+'$'+(Math.abs(v)/1e9).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})+'B';
+const fmtPct = v=> (v*100).toLocaleString(undefined,{maximumFractionDigits:0})+'%';
+const outFmt = {foundation:v=>'$'+Math.round(v).toLocaleString(), w_frpl:fmtPct, cp_thr:fmtPct, w_cp:fmtPct, w_ell:fmtPct,
+  thr_factor:v=>v.toFixed(2)+'×', w_engl:v=>fmtPct(v)+' / '+fmtPct(1-v), min_bar:v=>(v*100).toFixed(1)+'%', min_bar_hh:v=>(v*100).toFixed(1)+'%', phase:v=>v.toFixed(2)+'×'};
+
+// parameters for a given year under the current sliders / preset
+function paramsFor(fy){
+  const o = OBS[fy];
+  if (fy < S.start) return enactedParams(fy);
+  const p = {};
+  const legacy = false;
+  p.w_frpl = S.w_frpl;
+  p.cp_thr = legacy ? o.cp_thr : S.cp_thr;
+  p.w_cp   = legacy ? o.w_cp   : S.w_cp;
+  p.w_ell  = legacy ? o.w_ell  : S.w_ell;
+  p.thr_factor = S.thr_factor; p.w_engl = S.w_engl; p.w_mhi = 1 - S.w_engl;
+  p.min_bar = S.min_bar; p.min_bar_hh = S.min_bar_hh;
+  p.foundation = S.foundation;
+  if (S.on.has('inflation')){ const y = Math.min(fy-1, cpiLast); p.foundation = 11525 * cpi[y] / cpi[2013]; }
+  if (S.on.has('f13087')){ p.foundation = 13087; }
+  const full = S.on.has('fullfund');
+  p.pct_under = Math.min(1, o.pct_under * S.phase);
+  p.pct_over  = Math.min(1, o.pct_over  * S.phase);
+  if (full){ p.pct_under = 1; p.pct_over = 1; }
+  p.hh = full ? 'none' : S.hh;
+  p.engl_median = o.engl_median;
+  p.income = S.ahi ? 'ahi' : 'mhi';
+  p.mhi_median = S.ahi ? AHI_MEDIAN[fy] : o.mhi_median;
+  return p;
+}
+function enactedParams(fy){ const o=OBS[fy]; return {w_frpl:o.w_frpl,cp_thr:o.cp_thr,w_cp:o.w_cp,w_ell:o.w_ell,thr_factor:o.thr_factor,w_engl:o.w_engl,w_mhi:o.w_mhi,min_bar:o.min_bar,min_bar_hh:o.min_bar_hh,foundation:o.foundation,pct_under:o.pct_under,pct_over:o.pct_over,hh:'alliance',income:'mhi',engl_median:o.engl_median,mhi_median:o.mhi_median}; }
+
+// ---------- the formula ----------
+function fullyFunded(y, p){
+  const excess = Math.max(y.frpl - p.cp_thr*y.res, 0);
+  const need = y.res + p.w_frpl*y.frpl + p.w_cp*excess + p.w_ell*y.ell;
+  const englf = y.eepc/(p.engl_median*p.thr_factor);
+  const inc = (p.income==='ahi' && y.ahi!=null) ? y.ahi : y.mhi;   // falls back to the median where ACS has no mean
+  const mhif  = inc /(p.mhi_median*p.thr_factor);
+  const waf = 1 - (p.w_engl*englf + p.w_mhi*mhif);
+  const bar = Math.max(waf, y.hh ? p.min_bar_hh : p.min_bar);
+  const finalBar = bar + (y.pic||0);
+  const base = Math.round(need*finalBar*p.foundation);
+  return {need, finalBar, base, ff: base + (y.rsd||0) + (y.end||0)};
+}
+function step(y, p, prior){
+  const r = fullyFunded(y,p);
+  let ent = r.ff > prior ? prior + p.pct_under*(r.ff-prior) : prior - p.pct_over*(prior-r.ff);
+  const protect = p.hh==='all' || (p.hh==='alliance' && y.hh);
+  if (protect) ent = Math.max(ent, prior, y.fy17||0);
+  return Object.assign(r,{ent:Math.round(ent)});
+}
+// chained series for one town under a param function
+function simulate(t, pf){
+  let prior = t.ent[START-1]; const out={};
+  YEARS.forEach(fy=>{ const y=t.yr[fy]; const p=pf(fy); const r=step(y,p,prior); out[fy]=r; prior=r.ent; });
+  return out;
+}
+// reproduction flags: enacted params from ACTUAL prior
+const REPRO = new Map();
+towns.forEach(t=>{
+  const m={};
+  YEARS.forEach(fy=>{
+    const y=t.yr[fy]; const actual=t.ent[fy]; const prior=t.ent[fy-1];
+    const r=step(y,enactedParams(fy),prior);
+    const diff=r.ent-actual; const rel=Math.abs(diff)/Math.max(actual,1);
+    m[fy]={sim:r.ent, actual, diff, flag: Math.abs(diff)<=1 ? 'exact' : rel<=0.005 ? 'close' : 'off'};
+  });
+  REPRO.set(t.code,m);
+});
+const OBS_SIM = new Map(towns.map(t=>[t.code, simulate(t, enactedParams)]));
+
+// ---------- state ----------
+let SCEN = new Map();
+let selected = byName.get('Hartford') || towns[0];
+let mapYear = 2025, mapMode = 'pct';   // FY2025 is the latest year with both ECS and NCEP
+
+function recompute(){
+  SCEN = new Map(towns.map(t=>[t.code, simulate(t, paramsFor)]));
+  renderAll();
+}
+function stateTotals(){
+  const actual = ENT_YEARS.map(fy=>({fy, v: DEFL(fy)*d3.sum(towns, t=>t.ent[fy]||0)}));
+  const obs = YEARS.map(fy=>({fy, v: DEFL(fy)*d3.sum(towns, t=>OBS_SIM.get(t.code)[fy].ent)}));
+  const scen = YEARS.map(fy=>({fy, v: DEFL(fy)*d3.sum(towns, t=>SCEN.get(t.code)[fy].ent)}));
+  return {actual, obs, scen};
+}
+
+// ---------- rendering ----------
+function chartWidth(c){ const w=c.clientWidth||0; if(w>=320) return w; const card=c.closest('.card'); const cw=card? card.clientWidth-40 : 0; return cw>=320? cw : 800; }
+const tip = el('tip');
+function showTip(html, ev){ tip.innerHTML=html; tip.hidden=false; const x=ev.clientX+14, y=ev.clientY+14; tip.style.left=Math.min(x, window.innerWidth-300)+'px'; tip.style.top=(y+120>window.innerHeight? ev.clientY-120 : y)+'px'; }
+function hideTip(){ tip.hidden=true; }
+
+function lineChart(container, series, opts){
+  const W = Math.max(320, chartWidth(container)), H = opts.height||260, m={t:14,r:16,b:30,l:56};
+  const allX = series.flatMap(s=>s.pts.map(p=>p.fy)); const allY = series.flatMap(s=>s.pts.map(p=>p.v));
+  const x = d3.scaleLinear().domain(d3.extent(allX)).range([m.l, W-m.r]);
+  const y = opts.signed
+    ? d3.scaleLinear().domain((()=>{ const [lo,hi]=d3.extent(allY.filter(v=>v!=null)); const pad=Math.max(0.15,(hi-lo)*0.12); return [Math.min(0,lo-pad), Math.max(0,hi+pad)]; })()).nice().range([H-m.b, m.t])
+    : d3.scaleLinear().domain([0, d3.max(allY)*1.06]).nice().range([H-m.b, m.t]);
+  const svg = d3.create('svg').attr('viewBox',`0 0 ${W} ${H}`).attr('role','img').attr('aria-label',opts.label||'');
+  const g = svg.append('g');
+  g.append('g').attr('class','grid').selectAll('line').data(y.ticks(5)).join('line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',d=>y(d)).attr('y2',d=>y(d));
+  if (opts.signed) g.append('line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',y(0)).attr('y2',y(0)).attr('stroke','var(--line-strong)');
+  const yAxis = d3.axisLeft(y).ticks(5).tickFormat(v=>(v===0&&!opts.signed)?'':opts.yfmt(v)).tickSize(0); g.append('g').attr('class','axis').attr('transform',`translate(${m.l},0)`).call(yAxis).select('.domain').remove();
+  const xt = allX.filter((v,i,a)=>a.indexOf(v)===i).sort((a,b)=>a-b); const every = xt.length>12 ? 3 : 1;
+  const xAxis = d3.axisBottom(x).tickValues(xt.filter((v,i)=>i%every===0)).tickFormat(d=>"FY"+String(d).slice(2)).tickSize(0); g.append('g').attr('class','axis').attr('transform',`translate(0,${H-m.b})`).call(xAxis).select('.domain').attr('stroke','var(--line-strong)');
+  const line = d3.line().defined(p=>p.v!=null).x(p=>x(p.fy)).y(p=>y(p.v));
+  series.forEach(s=>{
+    g.append('path').datum(s.pts).attr('fill','none').attr('stroke',s.color).attr('stroke-width',2).attr('stroke-dasharray', s.dash?'5 4':null).attr('stroke-linejoin','round').attr('d',line);
+    const last = s.pts.filter(p=>p.v!=null).slice(-1)[0]; if (!last) return; g.append('circle').attr('cx',x(last.fy)).attr('cy',y(last.v)).attr('r',4).attr('fill',s.color).attr('stroke','var(--surface)').attr('stroke-width',2);
+  });
+  // hover crosshair
+  const cross = g.append('line').attr('stroke','var(--line-strong)').attr('y1',m.t).attr('y2',H-m.b).style('display','none');
+  svg.append('rect').attr('x',m.l).attr('y',m.t).attr('width',W-m.l-m.r).attr('height',H-m.t-m.b).attr('fill','transparent')
+    .on('mousemove',ev=>{ const [mx]=d3.pointer(ev); const fy=Math.round(x.invert(mx)); cross.attr('x1',x(fy)).attr('x2',x(fy)).style('display',null);
+      const rows=series.map(s=>{const p=s.pts.find(q=>q.fy===fy && q.v!=null); return p?`<div><span style="color:${s.color}">●</span> ${s.name}: <b>${opts.yfmt(p.v)}</b></div>`:''}).join('');
+      showTip(`<b>FY${fy}</b>${rows}`, ev); })
+    .on('mouseleave',()=>{cross.style('display','none'); hideTip();});
+  container.replaceChildren(svg.node());
+}
+
+function renderState(){
+  const {actual, obs, scen} = stateTotals();
+  const s = [
+    {name:'CSDE published', color:'var(--s-actual)', pts:actual},
+    {name:'Enacted, rebuilt', color:'var(--s-observed)', dash:true, pts:obs},
+    {name:'Your scenario', color:'var(--s-scenario)', pts:scen},
+  ];
+  lineChart(el('state-chart'), s, {height:280, yfmt:v=>'$'+(v/1e9).toFixed(1)+'B', label:'Statewide ECS entitlements by fiscal year'});
+  const y=mapYear; const a=actual.find(p=>p.fy===y).v, o=obs.find(p=>p.fy===y).v, c=scen.find(p=>p.fy===y).v;
+  const cum = d3.sum(YEARS, fy=> scen.find(p=>p.fy===fy).v - obs.find(p=>p.fy===fy).v);
+  const gain = towns.filter(t=>SCEN.get(t.code)[y].ent - OBS_SIM.get(t.code)[y].ent > 1).length, loss = towns.filter(t=>SCEN.get(t.code)[y].ent - OBS_SIM.get(t.code)[y].ent < -1).length;
+  el('state-stats').innerHTML = [
+    ['FY'+y+' scenario total', fmtB(c), (c-o>=0?'+':'−')+fmtM(Math.abs(c-o))+' vs enacted'],
+    ['FY'+y+' enacted, rebuilt', fmtB(o), 'CSDE published '+fmtB(a)+' · 2025$'],
+    ['FY2023–27 cumulative change', (cum>=0?'+':'−')+fmtM(Math.abs(cum)), 'scenario minus enacted'],
+    ['Towns affected in FY'+y, gain+' up · '+loss+' down', (169-gain-loss)+' unchanged'],
+  ].map(([l,v,d])=>`<div class="stat"><div class="l">${l}</div><div class="v num">${v}</div><div class="d">${d}</div></div>`).join('');
+  const parts = [...S.on].map(k=>PRESET_NAMES[k]); if(!slidersDefault()) parts.push('custom settings'); if(S.start>YEARS[0] && !isEnacted()) parts.push('from FY'+S.start);
+  el('state-note').textContent = isEnacted() ? 'Scenario equals enacted policy' : 'Scenario: '+parts.join(' + ');
+}
+
+let mapSvg, mapPaths, colorScale;
+function metric(t){ const k=DEFL(mapYear); const o=OBS_SIM.get(t.code)[mapYear].ent, c=SCEN.get(t.code)[mapYear].ent; if(mapMode==='abs') return k*(c-o); if(mapMode==='pp') return k*(c-o)/Math.max(t.yr[mapYear].res,1); return o>0 ? (c-o)/o : 0; }
+function renderMap(){
+  const container = el('map');
+  const W = Math.max(320, chartWidth(container)), H = Math.round(W*0.68);
+  if(!mapSvg){
+    mapSvg = d3.create('svg').attr('viewBox',`0 0 ${W} ${H}`).attr('role','img').attr('aria-label','Map of Connecticut towns');
+    const proj = d3.geoMercator().fitExtent([[6,6],[W-6,H-6]], GEO); const path = d3.geoPath(proj);
+    mapPaths = mapSvg.append('g').attr('class','town').selectAll('path').data(GEO.features).join('path').attr('d',path)
+      .on('click',(ev,f)=>{ const t=byName.get(f.properties.name); if(t){selected=t; renderTown(); mapPaths.classed('sel',d=>d.properties.name===selected.name);} })
+      .on('mousemove',(ev,f)=>{ const t=byName.get(f.properties.name); if(!t) return; const k=DEFL(mapYear); const o=k*OBS_SIM.get(t.code)[mapYear].ent, c=k*SCEN.get(t.code)[mapYear].ent; const r=REPRO.get(t.code)[mapYear];
+        showTip(`<b>${t.name}</b> · FY${mapYear}, ${BASE_YEAR}$<div>Scenario: <b>${fmtMoney(c)}</b></div><div>Enacted, rebuilt: ${fmtMoney(o)}</div><div>Change: <b>${(c-o>=0?'+':'')+fmtMoney(c-o)}</b> (${o?((c-o)/o*100).toFixed(1):'0'}%)</div><div>CSDE published: ${fmtMoney(k*t.ent[mapYear])} · rebuild ${r.flag==='exact'?'exact':r.flag==='close'?'within 0.5%':'not reproduced'}</div>`, ev); })
+      .on('mouseleave',hideTip);
+    container.replaceChildren(mapSvg.node());
+  }
+  const vals = towns.map(metric); const mx = d3.max(vals, v=>Math.abs(v)) || 1;
+  colorScale = d3.scaleLinear().domain([-mx,0,mx]).range([getCss('--div-neg'),getCss('--div-mid'),getCss('--div-pos')]).interpolate(d3.interpolateLab);
+  mapPaths.attr('fill',f=>{ const t=byName.get(f.properties.name); if(!t) return 'var(--surface-2)'; const v=metric(t); return Math.abs(v)<(mapMode==='pct'?1e-6:0.5) ? getCss('--div-mid') : colorScale(v); }).classed('sel',f=>f.properties.name===selected.name);
+  el('ramp-scale').textContent = '±'+(mapMode==='pct'? (mx*100).toFixed(1)+'%' : mapMode==='pp' ? '$'+Math.round(mx).toLocaleString()+' / student' : fmtM(mx));
+}
+function getCss(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+function renderTown(){
+  const t=selected; const os=OBS_SIM.get(t.code), sc=SCEN.get(t.code), rp=REPRO.get(t.code);
+  el('town-title').textContent = t.name;
+  const y=t.yr[mapYear]; el('town-sub').textContent = (y.hh?'Alliance / Priority district · ':'')+'DRG '+(y.drg||'–')+' · '+Math.round(y.res).toLocaleString()+' resident students FY'+mapYear;
+  const s=[
+    {name:'CSDE published', color:'var(--s-actual)', pts:ENT_YEARS.filter(fy=>t.ent[fy]!=null).map(fy=>({fy,v:DEFL(fy)*t.ent[fy]}))},
+    {name:'Enacted, rebuilt', color:'var(--s-observed)', dash:true, pts:YEARS.map(fy=>({fy,v:DEFL(fy)*os[fy].ent}))},
+    {name:'Your scenario', color:'var(--s-scenario)', pts:YEARS.map(fy=>({fy,v:DEFL(fy)*sc[fy].ent}))},
+  ];
+  lineChart(el('town-chart'), s, {height:230, yfmt:v=>fmtM(v), label:t.name+' ECS entitlements by fiscal year'});
+  renderTownAchievement(t);
+  const rows = YEARS.map(fy=>{ const r=rp[fy], o=os[fy], c=sc[fy]; const k=DEFL(fy); const d=k*(c.ent-o.ent);
+    return `<tr><td>FY${fy}</td><td class="num">${fmtMoney(k*t.ent[fy])}</td><td><span class="chip ${r.flag}">${r.flag==='exact'?'exact':r.flag==='close'?'close':'off'}</span></td><td class="num">${fmtMoney(k*c.ff)}</td><td class="num">${fmtMoney(k*c.ent)}</td><td class="num ${d>1?'delta-pos':d<-1?'delta-neg':''}">${Math.abs(d)<1?'–':(d>0?'+':'')+fmtMoney(d)}</td><td class="num">${Math.round(c.need).toLocaleString()}</td><td class="num">${(c.finalBar*100).toFixed(1)}%</td></tr>`; }).join('');
+  el('town-table').innerHTML = `<thead><tr><th>Year</th><th>CSDE published</th><th>Rebuild</th><th>Scenario fully funded</th><th>Scenario entitlement</th><th>vs enacted</th><th>Need students</th><th>Aid ratio</th></tr></thead><tbody>${rows}</tbody>`;
+}
+
+function renderTownAchievement(t){
+  const subj = S.achSubj || 'gl', si = {gl:0, mth:1, rla:2}[subj], subjLab = {gl:'math and reading', mth:'math', rla:'reading'}[subj];
+  const sh = t.sedah || {}; const yrs = Object.keys(sh).map(Number).filter(fy=>fy>=YEARS[0]).sort((a,b)=>a-b);
+  const box = el('town-ach'), note = el('town-ach-note');
+  el('town-ach-title').textContent = 'Achievement, grade levels vs the national average · '+subjLab;
+  if (!yrs.length){ box.replaceChildren(); note.textContent = 'No SEDA score: this town\'s grades 3-8 sit in a district SEDA suppresses or does not map to a single town.'; return; }
+  const y0 = yrs[0], y1 = yrs[yrs.length-1];
+  const allYrs = d3.range(y0, y1+1);
+  const obs = allYrs.map(fy=>({fy, v: sh[fy] && sh[fy][si]!=null ? sh[fy][si] : null}));
+  const series = [{name:'Observed (SEDA)', color:'var(--s-observed)', pts:obs}];
+  const same = isEnacted(); let simTown = null, sr = null;
+  if (!same){ sr = runSim(); if (sr) simTown = sr.towns.find(x=>x.t.code===t.code); }
+  if (simTown){
+    const sc = sr.fys.map((fy,i)=>{ const o = sh[fy] && sh[fy][si]!=null ? sh[fy][si] : null; const b = simTown.byYear[i]; const dg = subj==='gl' ? b.dgcs : (b.bySubj[subj]||0); return {fy, v: o==null ? null : o + dg, dg}; });
+    series.push({name:'Your scenario (observed + simulated effect)', color:'var(--s-scenario)', pts:sc});
+  }
+  const fmt = v => (v>=0?'+':'−')+Math.abs(v).toFixed(2);
+  lineChart(box, series, {height:190, signed:true, yfmt:fmt, label:t.name+' achievement, grade levels vs the national average'});
+  const lastFy = yrs.filter(fy=>sh[fy][si]!=null).slice(-1)[0]; const last = lastFy ? sh[lastFy] : null;
+  const via = t.yr[2025] && t.yr[2025].seda ? t.yr[2025].seda : (t.yr[2024] && t.yr[2024].seda) || null;
+  let txt = last ? `Spring ${lastFy}: ${fmt(last[si])} grade levels vs the national average (${last[3].toLocaleString()} tests${via ? ' · '+via.district+(via.via==='regional district'?', a K-12 regional district':'') : ''}). ` : '';
+  txt += 'SEDA 2025.2 admin-district estimates, spring '+YEARS[0]+'-2025, the dashboard window (SEDA has no scores after 2025).';
+  if (simTown){ const lastSim = simTown.byYear[simTown.byYear.length-1]; const dg = subj==='gl' ? lastSim.dgcs : (lastSim.bySubj[subj]||0);
+    txt += ` Scenario adds the simulated effect from FY${S.start}: ${(dg>=0?'+':'−')+Math.abs(dg).toFixed(3)} grade levels by FY${lastSim.fy} (see the simulation card).`; }
+  else if (!same) txt += ' No simulated effect for this town (no grade-level baseline).';
+  note.textContent = txt;
+}
+
+function renderRepro(){
+  const counts={exact:0,close:0,off:0}; const perYear={};
+  YEARS.forEach(fy=>{ perYear[fy]={exact:0,close:0,off:0}; });
+  const offTowns=[];
+  towns.forEach(t=>{ const m=REPRO.get(t.code); let bad=0; YEARS.forEach(fy=>{counts[m[fy].flag]++; perYear[fy][m[fy].flag]++; if(m[fy].flag!=='exact') bad++;}); if(bad) offTowns.push([t,bad]); });
+  const n=towns.length*YEARS.length;
+  el('repro-stats').innerHTML = [['Town-years rebuilt exactly', counts.exact+' / '+n, 'within $1 of CSDE'],['Within 0.5%', counts.close, 'small revisions or rounding'],['Not reproduced', counts.off, 'see table'],['Towns exact in every year', towns.length-offTowns.length+' / 169','']]
+    .map(([l,v,d])=>`<div class="stat"><div class="l">${l}</div><div class="v num">${v}</div><div class="d">${d}</div></div>`).join('');
+  const head = `<thead><tr><th>Year</th><th>Exact</th><th>Close</th><th>Not reproduced</th><th>Largest gap (2025$)</th><th>Where</th></tr></thead>`;
+  const body = YEARS.map(fy=>{ let worst=null; towns.forEach(t=>{const r=REPRO.get(t.code)[fy]; if(!worst||Math.abs(r.diff)>Math.abs(worst.diff)) worst=Object.assign({t},r);});
+    return `<tr><td>FY${fy}</td><td class="num">${perYear[fy].exact}</td><td class="num">${perYear[fy].close}</td><td class="num">${perYear[fy].off}</td><td class="num">${(worst.diff>0?'+':'')+fmtMoney(DEFL(fy)*worst.diff)}</td><td style="text-align:left">${worst.t.name}${fy===2023?' — worksheet is a projection on preliminary counts':''}</td></tr>`; }).join('');
+  el('repro-table').innerHTML = head+'<tbody>'+body+'</tbody>';
+}
+
+function ols(pts, w){
+  // slope/intercept of y on x, optionally weighted
+  const sw = d3.sum(pts, p=>w?p.w:1); const mx = d3.sum(pts, p=>(w?p.w:1)*p.x)/sw, my = d3.sum(pts, p=>(w?p.w:1)*p.y)/sw;
+  const sxx = d3.sum(pts, p=>(w?p.w:1)*(p.x-mx)*(p.x-mx)), sxy = d3.sum(pts, p=>(w?p.w:1)*(p.x-mx)*(p.y-my));
+  const b = sxy/sxx; const a = my - b*mx;
+  const ssr = d3.sum(pts, p=>(w?p.w:1)*Math.pow(p.y-(a+b*p.x),2)), sst = d3.sum(pts, p=>(w?p.w:1)*Math.pow(p.y-my,2));
+  return {a, b, r2: 1-ssr/sst};
+}
+function renderScatter(){
+  const fy = mapYear, k = DEFL(fy);
+  if (el('scatter-year')) el('scatter-year').value = fy;
+  const useN = S.yaxis==='ncep';
+  const hasN = towns.some(t=>t.yr[fy].ncep!=null);
+  const note = el('scatter-note');
+  if (useN && !hasN){
+    el('scatter-stats').innerHTML = `<div class="stat"><div class="l">No NCEP for FY${fy}</div><div class="v">Not published yet</div><div class="d">CSDE's net-current-expenditure report is available through FY2025; pick FY2023-FY2025 in the year menu.</div></div>`;
+    el('scatter').replaceChildren(); el('scatter-sub').textContent='FY'+fy; return;
+  }
+  // ECS mode: entitlement / ECS resident students. NCEP mode: (NCE + scenario ECS - actual ECS) / ADM,
+  // i.e. every extra or lost ECS dollar is assumed to change current spending one for one.
+  const mk = sim => towns.filter(t=>!useN || t.yr[fy].ncep!=null).map(t=>{ const y=t.yr[fy];
+    let val;
+    if (useN){ const delta = sim.get(t.code)[fy].ent - t.ent[fy]; val = k*(y.nce + delta)/Math.max(y.adm,1); }
+    else { val = k*sim.get(t.code)[fy].ent/Math.max(y.res,1); }
+    return {t, x: y.frpl/Math.max(y.res,1), y: val, w: useN ? y.adm : y.res}; });
+  const obsPts = mk(OBS_SIM), scPts = mk(SCEN);
+  note.textContent = useN
+    ? `Each dot is a town in FY${fy}, constant 2025 dollars. Vertical axis: net current expenditures per pupil (CSDE NCEP: all-source current spending over average daily membership, the resident-student count), with the scenario's ECS change added to spending one for one. Horizontal axis: FRPL-eligible share of resident students. ${obsPts.length} towns with a local board have an NCEP.`
+    : 'Each dot is a town in the map\'s fiscal year, constant 2025 dollars. Vertical axis: ECS entitlement per resident student. Horizontal axis: FRPL-eligible students as a share of resident students. Lines are ordinary least squares fits.';
+  const fo = ols(obsPts, S.weight), fs = ols(scPts, S.weight);
+  const same = isEnacted();
+  const per10 = b => (b>=0?'+':'−')+'$'+Math.abs(Math.round(b*0.10)).toLocaleString();
+  el('scatter-stats').innerHTML = [
+    ['Enacted slope', per10(fo.b)+' per student', 'per 10-point rise in FRPL share · R² '+fo.r2.toFixed(2)],
+    ['Scenario slope', same?'same as enacted':per10(fs.b)+' per student', same?'':'per 10-point rise in FRPL share · R² '+fs.r2.toFixed(2)],
+    ['Change in slope', same?'–':per10(fs.b-fo.b)+' per student', same?'':'scenario minus enacted, per 10 points'],
+    ['Fit', S.weight?'weighted by resident students':'unweighted, one dot per town', 'FY'+fy+' · '+obsPts.length+' towns'],
+  ].map(([l,v,d])=>`<div class="stat"><div class="l">${l}</div><div class="v num">${v}</div><div class="d">${d}</div></div>`).join('');
+  el('scatter-sub').textContent = 'FY'+fy+' · y = '+(useN?'total current spending per pupil (NCEP)':'ECS $ per resident student')+' · x = FRPL share';
+  const container = el('scatter');
+  const W = Math.max(320, chartWidth(container)), H = 340, m={t:14,r:16,b:36,l:64};
+  const allPts = same ? obsPts : obsPts.concat(scPts);
+  const x = d3.scaleLinear().domain([0, Math.min(1, d3.max(allPts,p=>p.x)*1.04)]).nice().range([m.l, W-m.r]);
+  const y = d3.scaleLinear().domain([0, d3.max(allPts,p=>p.y)*1.06]).nice().range([H-m.b, m.t]);
+  const svg = d3.create('svg').attr('viewBox',`0 0 ${W} ${H}`).attr('role','img').attr('aria-label',(useN?'Net current spending per pupil':'ECS dollars per resident student')+' against FRPL share, by town');
+  const g = svg.append('g');
+  g.append('g').attr('class','grid').selectAll('line').data(y.ticks(5)).join('line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',d=>y(d)).attr('y2',d=>y(d));
+  g.append('g').attr('class','axis').attr('transform',`translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickFormat(v=>v===0?'':'$'+v.toLocaleString()).tickSize(0)).select('.domain').remove();
+  g.append('g').attr('class','axis').attr('transform',`translate(0,${H-m.b})`).call(d3.axisBottom(x).ticks(6).tickFormat(v=>Math.round(v*100)+'%').tickSize(0)).select('.domain').attr('stroke','var(--line-strong)');
+  g.append('text').attr('class','axis').attr('x',W-m.r).attr('y',H-6).attr('text-anchor','end').attr('font-size',11).attr('fill','var(--ink-3)').text('FRPL-eligible share of resident students');
+  const fitLine = (f, color, dash, label, above) => { const x0=x.domain()[0], x1=x.domain()[1];
+    g.append('line').attr('x1',x(x0)).attr('y1',y(f.a+f.b*x0)).attr('x2',x(x1)).attr('y2',y(f.a+f.b*x1)).attr('stroke',color).attr('stroke-width',2).attr('stroke-dasharray',dash?'5 4':null);
+    // direct label on the line: slope per 10-point rise in FRPL share, anchored at the right end
+    const xl = x0 + 0.72*(x1-x0), yl = Math.min(Math.max(y(f.a+f.b*xl), m.t+12), H-m.b-6);
+    const txt = g.append('text').attr('x',x(xl)).attr('y', yl + (above?-9:15)).attr('text-anchor','middle').attr('font-size',11).attr('font-weight',600).attr('fill','var(--ink)').attr('paint-order','stroke').attr('stroke','var(--surface)').attr('stroke-width',3).attr('stroke-linejoin','round')
+      .text(`${label}: ${per10(f.b)} per 10 pts · R² ${f.r2.toFixed(2)}`); };
+  const dots = (pts, color, filled) => g.append('g').selectAll('circle').data(pts).join('circle').attr('class','pt').classed('sel',p=>p.t===selected).attr('cx',p=>x(p.x)).attr('cy',p=>y(p.y)).attr('r',4.5).attr('fill',filled?color:'var(--surface)').attr('stroke',color).attr('stroke-width',1.5).attr('fill-opacity',filled?.75:1)
+    .on('mousemove',(ev,p)=>showTip(`<b>${p.t.name}</b> · FY${fy}<div>FRPL share: <b>${(p.x*100).toFixed(1)}%</b></div><div>${useN?'Spending per pupil':'ECS per resident student'}: <b>$${Math.round(p.y).toLocaleString()}</b></div><div>${Math.round(p.w).toLocaleString()} ${useN?'ADM':'resident students'}</div>`, ev)).on('mouseleave',hideTip)
+    .on('click',(ev,p)=>{ selected=p.t; renderTown(); renderScatter(); if(mapPaths) mapPaths.classed('sel',d=>d.properties.name===selected.name); });
+  if(same){ dots(obsPts,'var(--s-observed)',true); fitLine(fo,'var(--s-observed)',true,'Enacted',true); }
+  else { dots(obsPts,'var(--s-observed)',false); dots(scPts,'var(--s-scenario)',true); fitLine(fo,'var(--s-observed)',true,'Enacted', fo.b>=fs.b); fitLine(fs,'var(--s-scenario)',false,'Scenario', fs.b>fo.b); }
+  container.replaceChildren(svg.node());
+}
+function renderAchievement(){
+  const fy = S.achYear, k = DEFL(fy), xm = S.achX, subj = S.achSubj;
+  const same = isEnacted();
+  const simRes = same ? null : runSim();
+  const simIdx = simRes ? simRes.fys.indexOf(fy) : -1;
+  const simByTown = new Map(); if (simRes && simIdx >= 0) simRes.towns.forEach(x => simByTown.set(x.t.code, x.byYear[simIdx]));
+  const mk = (scen) => towns.filter(t=>t.yr[fy] && t.yr[fy].seda && t.yr[fy].seda[subj]!=null && (xm!=='ncep' || t.yr[fy].ncep!=null)).map(t=>{ const y=t.yr[fy], sd=y.seda;
+    const sim = scen ? simByTown.get(t.code) : null;
+    const entv = scen ? SCEN.get(t.code)[fy].ent : OBS_SIM.get(t.code)[fy].ent;
+    let xv;
+    if (xm==='frpl') xv = y.frpl/Math.max(y.res,1);
+    else if (xm==='ecs') xv = k*entv/Math.max(y.res,1);
+    else { const delta = entv - t.ent[fy]; xv = k*(y.nce + delta)/Math.max(y.adm,1); }
+    const dg = sim ? (subj==='gl' ? sim.dgcs : (sim.bySubj[subj] || 0)) : 0;
+    return {t, x: xv, y: sd[subj] + dg, dg, w: sd.n, via: sd.via, se: sd.se, district: sd.district}; });
+  const pts = mk(false), scPts = same ? [] : mk(true);
+  const container = el('ach-chart');
+  if (!pts.length){ el('ach-stats').innerHTML = `<div class="stat"><div class="l">No scores for FY${fy}</div><div class="v">Not available</div><div class="d">SEDA 2025.2 covers spring 2009-2025 (no 2020-2021 tests); the ECS panel starts in FY2023.</div></div>`; container.replaceChildren(); return; }
+  const f = ols(pts, S.achWeight); const fs = scPts.length ? ols(scPts, S.achWeight) : null;
+  const unit = xm==='frpl' ? 0.10 : 1000;
+  const slopeTxt = b => (b>=0?'+':'−') + Math.abs(b*unit).toFixed(2) + ' grade levels';
+  const per = xm==='frpl' ? 'per 10-point rise in FRPL share' : 'per $1,000 per student';
+  const xlab = xm==='frpl' ? 'FRPL-eligible share of resident students' : xm==='ecs' ? 'ECS entitlement per resident student, 2025$ (scenario)' : 'Net current spending per pupil, 2025$ (with scenario ECS change)';
+  const subjLab = {gl:'math and reading', mth:'math', rla:'reading'}[subj];
+  const mean = d3.mean(pts, p=>p.y), wmean = d3.sum(pts,p=>p.y*p.w)/d3.sum(pts,p=>p.w);
+  const swmean = scPts.length ? d3.sum(scPts,p=>p.y*p.w)/d3.sum(scPts,p=>p.w) : null;
+  const simNote = same ? '' : (simIdx >= 0 ? 'scenario scores = observed + simulated effect' : 'no simulated effect for this year (before the start year or after FY2025)');
+  el('ach-stats').innerHTML = [
+    ['Enacted slope', slopeTxt(f.b), per+' · R² '+f.r2.toFixed(2)],
+    ['Scenario slope', fs ? slopeTxt(fs.b) : 'same as enacted', fs ? per+' · R² '+fs.r2.toFixed(2)+' · change '+slopeTxt(fs.b-f.b) : simNote],
+    ['Connecticut average, weighted by tests', (wmean>=0?'+':'−')+Math.abs(wmean).toFixed(2)+' grade levels', (swmean!=null ? 'scenario '+(swmean>=0?'+':'−')+Math.abs(swmean).toFixed(3)+' · ' : '')+'unweighted town mean '+(mean>=0?'+':'−')+Math.abs(mean).toFixed(2)],
+    ['Fit', S.achWeight?'weighted by tests taken':'unweighted, one dot per town', 'spring '+fy+' · '+subjLab+' · '+pts.length+' towns ('+pts.filter(p=>p.via==='regional district').length+' via a region)'],
+  ].map(([l,v,d])=>`<div class="stat"><div class="l">${l}</div><div class="v num">${v}</div><div class="d">${d}</div></div>`).join('');
+  el('ach-sub').textContent = 'spring '+fy+' · y = grade levels above (+) or below (−) the national average · x = '+(xm==='frpl'?'FRPL share':xm==='ecs'?'ECS $ per student':'NCEP $ per pupil');
+  el('ach-note').textContent = 'Each dot is a town. Vertical axis: SEDA 2025.2 average achievement in grades 3-8, grade-cohort-standardized scale, minus the grade center, so 0 is the national average for the same grades (referenced to the 2009-2015 national cohorts) and +1 is one grade level ahead. Towns whose grades 3-8 are run by a K-12 regional district carry the region\'s score (hollow when only enacted is shown); small districts SEDA suppresses have no dot. Lines are least squares fits, weighted by the number of tests unless the box is cleared. When a scenario is on, orange dots add each town\'s simulated score change (see the simulation card) to its observed score, and the horizontal axis uses scenario dollars where it is a dollar measure.';
+  const W = Math.max(320, chartWidth(container)), H = 340, m={t:14,r:16,b:36,l:56};
+  const allP = pts.concat(scPts);
+  const x = d3.scaleLinear().domain(xm==='frpl' ? [0, Math.min(1, d3.max(allP,p=>p.x)*1.04)] : [0, d3.max(allP,p=>p.x)*1.06]).nice().range([m.l, W-m.r]);
+  const ye = d3.extent(allP,p=>p.y); const y = d3.scaleLinear().domain([Math.min(ye[0],-0.5)-0.25, Math.max(ye[1],0.5)+0.25]).nice().range([H-m.b, m.t]);
+  const svg = d3.create('svg').attr('viewBox',`0 0 ${W} ${H}`).attr('role','img').attr('aria-label','Achievement in grade levels against '+xlab+', by town');
+  const g = svg.append('g');
+  g.append('g').attr('class','grid').selectAll('line').data(y.ticks(6)).join('line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',d=>y(d)).attr('y2',d=>y(d));
+  g.append('line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',y(0)).attr('y2',y(0)).attr('stroke','var(--ink-3)').attr('stroke-width',1.2);
+  g.append('text').attr('x',m.l+4).attr('y',y(0)-4).attr('font-size',10).attr('fill','var(--ink-3)').text('national average');
+  g.append('g').attr('class','axis').attr('transform',`translate(${m.l},0)`).call(d3.axisLeft(y).ticks(6).tickFormat(v=>(v>0?'+':'')+v.toFixed(1)).tickSize(0)).select('.domain').remove();
+  g.append('g').attr('class','axis').attr('transform',`translate(0,${H-m.b})`).call(d3.axisBottom(x).ticks(6).tickFormat(v=> xm==='frpl' ? Math.round(v*100)+'%' : '$'+Math.round(v).toLocaleString()).tickSize(0)).select('.domain').attr('stroke','var(--line-strong)');
+  g.append('text').attr('class','axis').attr('x',W-m.r).attr('y',H-6).attr('text-anchor','end').attr('font-size',11).attr('fill','var(--ink-3)').text(xlab);
+  const x0=x.domain()[0], x1=x.domain()[1];
+  const line = (ff, color, dash, label, above) => { g.append('line').attr('x1',x(x0)).attr('y1',y(ff.a+ff.b*x0)).attr('x2',x(x1)).attr('y2',y(ff.a+ff.b*x1)).attr('stroke',color).attr('stroke-width',2).attr('stroke-dasharray',dash?'5 4':null);
+    const xl = x0 + 0.72*(x1-x0); g.append('text').attr('x',x(xl)).attr('y',Math.min(Math.max(y(ff.a+ff.b*xl),m.t+12),H-m.b-6)+(above?-9:15)).attr('text-anchor','middle').attr('font-size',11).attr('font-weight',600).attr('fill','var(--ink)').attr('paint-order','stroke').attr('stroke','var(--surface)').attr('stroke-width',3).text(`${label}: ${slopeTxt(ff.b)} ${per} · R² ${ff.r2.toFixed(2)}`); };
+  const dots = (P, color, filled, scen) => g.append('g').selectAll('circle').data(P).join('circle').attr('class','pt').classed('sel',p=>p.t===selected).attr('cx',p=>x(p.x)).attr('cy',p=>y(p.y)).attr('r',4.5)
+    .attr('fill',p=>(filled && p.via!=='regional district')?color:'var(--surface)').attr('stroke',color).attr('stroke-width',1.5).attr('fill-opacity',.8)
+    .on('mousemove',(ev,p)=>showTip(`<b>${p.t.name}</b> · spring ${fy}${scen?' · scenario':''}<div>${(p.y>=0?'+':'−')+Math.abs(p.y).toFixed(2)} grade levels vs national${scen?' (simulated change '+(p.dg>=0?'+':'−')+Math.abs(p.dg).toFixed(3)+')':' (±'+(1.96*p.se).toFixed(2)+')'}</div><div>${xm==='frpl'?'FRPL share: <b>'+(p.x*100).toFixed(1)+'%</b>':'$'+Math.round(p.x).toLocaleString()+' per student'}</div><div>${p.w.toLocaleString()} tests · ${p.district}${p.via==='regional district'?' (regional district)':''}</div>`, ev)).on('mouseleave',hideTip)
+    .on('click',(ev,p)=>{ selected=p.t; renderTown(); renderScatter(); renderAchievement(); if(mapPaths) mapPaths.classed('sel',d=>d.properties.name===selected.name); });
+  if (!fs){ line(f,'var(--s-observed)',true,'Enacted',true); dots(pts,'var(--s-observed)',true,false); }
+  else { line(f,'var(--s-observed)',true,'Enacted', f.b>=fs.b); line(fs,'var(--s-scenario)',false,'Scenario', fs.b>f.b); dots(pts,'var(--s-observed)',false,false); dots(scPts,'var(--s-scenario)',true,true); }
+  container.replaceChildren(svg.node());
+}
+// ---------- test-score simulation (Jackson & Mackevicius 2024 mapping; see assumptions) ----------
+const SIM = D.sim || {};
+const SIM_GRADES = [3,4,5,6,7,8], SIM_SUBJ = ['mth','rla'];
+const toBase = (nominal, fy) => nominal * cpi[SIM.base_year] / cpi[Math.min(fy, cpiLast)];   // nominal FY dollars -> 2018$
+function exposureYears(t, g){ return t < 1 ? 0 : Math.min(t, g + 1); }
+function effectSdPath(deltas, t, g, beta){ const n = Math.min(exposureYears(t, g), SIM.dose_years); if (n <= 0) return 0; let sum = 0; for (let i = t - n; i < t; i++) sum += deltas[i] / 1000; return beta / SIM.dose_years * sum; }
+function incomeMultiplier(share){ return share * (SIM.beta_li / SIM.beta_col3) + (1 - share) * (SIM.beta_nli / SIM.beta_col3); }
+function runSim(){
+  if (!SIM.k) return null;
+  const start = S.start, fys = YEARS.filter(fy => fy >= start && fy <= 2025);
+  if (!fys.length) return {fys:[], towns:[]};
+  const res = { fys, towns: [] };
+  towns.forEach(t => {
+    if (!t.simw) return;
+    const deltasNom = fys.map(fy => (SCEN.get(t.code)[fy].ent - OBS_SIM.get(t.code)[fy].ent) / Math.max(t.yr[fy].res, 1));
+    const deltas = fys.map((fy, i) => toBase(deltasNom[i], fy));
+    const share = t.yr[2025].frpl / Math.max(t.yr[2025].res, 1);
+    const beta = SIM.beta * (S.simHetero ? incomeMultiplier(share) : 1);
+    const byYear = fys.map((fy, i) => {
+      const tIdx = i + 1; let wsum = 0, gsum = 0, sdsum = 0; const cells = [];
+      SIM_GRADES.forEach(g => SIM_SUBJ.forEach(b => { const w = t.simw[g + '_' + b]; if (!w) return; const k = SIM.k[g + '_' + b] || 3.0;
+        const dsd = effectSdPath(deltas, tIdx, g, beta); const dg = dsd * k; wsum += w[0]; gsum += w[0] * dg; sdsum += w[0] * dsd; cells.push({g, b, dsd, dg, n: w[0]}); }));
+      const bySubj = {}; SIM_SUBJ.forEach(b => { let w = 0, g = 0; cells.filter(c => c.b === b).forEach(c => { w += c.n; g += c.n * c.dg; }); bySubj[b] = w ? g / w : 0; });
+      return { fy, t: tIdx, delta_nom: deltasNom[i], delta_2018: deltas[i], dgcs: wsum ? gsum / wsum : 0, dsd: wsum ? sdsum / wsum : 0, n: wsum, cells, bySubj };
+    });
+    res.towns.push({ t, share, byYear });
+  });
+  return res;
+}
+function renderSim(){
+  const r = runSim();
+  const wrap = el('sim-stats');
+  if (!r){ wrap.innerHTML = '<div class="stat"><div class="l">Simulation inputs missing</div><div class="v">n/a</div></div>'; return; }
+  const sy = el('sim-year'); sy.replaceChildren(); r.fys.forEach(fy => { const o = document.createElement('option'); o.value = fy; o.textContent = 'FY' + fy; sy.appendChild(o); });
+  if (!r.fys.includes(S.simYear)) S.simYear = r.fys[r.fys.length - 1]; sy.value = S.simYear;
+  const enacted = isEnacted();
+  const state = r.fys.map((fy, i) => { let w = 0, g = 0, sd = 0, dn = 0, wr = 0; r.towns.forEach(x => { const y = x.byYear[i]; w += y.n; g += y.n * y.dgcs; sd += y.n * y.dsd; dn += x.t.yr[fy].res * y.delta_2018; wr += x.t.yr[fy].res; }); return { fy, t: i + 1, dgcs: w ? g / w : 0, dsd: w ? sd / w : 0, delta_2018: wr ? dn / wr : 0 }; });
+  // terciles by FY2025 FRPL share
+  const sorted = [...r.towns].sort((a, b) => a.share - b.share); const n3 = Math.ceil(sorted.length / 3);
+  const terc = [sorted.slice(0, n3), sorted.slice(n3, 2 * n3), sorted.slice(2 * n3)];
+  const tercRow = (i) => terc.map(grp => { let w = 0, g = 0; grp.forEach(x => { const y = x.byYear[i]; w += y.n; g += y.n * y.dgcs; }); return w ? g / w : 0; });
+  const last = r.fys.length - 1; const tl = tercRow(last); const sl = state[last];
+  const fmtG = v => (v >= 0 ? '+' : '−') + Math.abs(v).toFixed(3);
+  wrap.innerHTML = enacted ? `<div class="stat"><div class="l">No policy change</div><div class="v">0 grade levels</div><div class="d">Scenario equals enacted policy, so the simulated effect is zero. Switch on a scenario or move a slider.</div></div>` : [
+    ['Statewide, FY' + sl.fy, fmtG(sl.dgcs) + ' grade levels', fmtG(sl.dsd) + ' SD · test-weighted · policy year ' + sl.t],
+    ['Average shock, FY' + sl.fy, (sl.delta_2018 >= 0 ? '+' : '−') + '$' + Math.abs(Math.round(sl.delta_2018)).toLocaleString() + ' / pupil', '2018 dollars, resident-student weighted'],
+    ['High-FRPL tercile, FY' + sl.fy, fmtG(tl[2]) + ' grade levels', 'low tercile ' + fmtG(tl[0]) + ' · gap change ' + fmtG(tl[2] - tl[0])],
+    ['Towns simulated', r.towns.length + ' of 169', S.simHetero ? 'Option A multiplier on' : 'pooled β = ' + SIM.beta],
+  ].map(([l, v, d]) => `<div class="stat"><div class="l">${l}</div><div class="v num">${v}</div><div class="d">${d}</div></div>`).join('');
+  el('sim-sub').textContent = 'changes from FY' + S.start + ' · effects in grade levels (GCS) · ' + (S.simHetero ? 'income-heterogeneity sensitivity' : 'pooled effect size');
+  el('sim-note').textContent = 'Maps the scenario\'s ECS change per resident student (deflated to 2018 dollars, treated as operating spending) to test scores using Jackson & Mackevicius (2024): β = ' + SIM.beta + ' SD per $1,000 per pupil at four years of exposure, ramped linearly over exposure years (min of policy year and grade + 1) and converted to grade levels with k from SEDA\'s published scale parameters (2.7–3.7 per SD by grade and subject). Test-weighted over grades 3–8 and both subjects. Terciles use the FY2025 FRPL share. No uncertainty bands are shown.';
+  const rows = r.fys.map((fy, i) => { const st = state[i], tr = tercRow(i); return `<tr><td>FY${fy}</td><td class="num">${st.t}</td><td class="num">${(st.delta_2018 >= 0 ? '+' : '−')}$${Math.abs(Math.round(st.delta_2018)).toLocaleString()}</td><td class="num">${fmtG(st.dsd)}</td><td class="num">${fmtG(st.dgcs)}</td><td class="num">${fmtG(tr[0])}</td><td class="num">${fmtG(tr[1])}</td><td class="num">${fmtG(tr[2])}</td><td class="num">${fmtG(tr[2] - tr[0])}</td></tr>`; }).join('');
+  el('sim-table').innerHTML = `<thead><tr><th>Year</th><th>Policy yr</th><th>Avg shock (2018$/pupil)</th><th>Δ SD</th><th>Δ grade levels</th><th>Low-FRPL tercile</th><th>Middle</th><th>High-FRPL tercile</th><th>Gap change (high − low)</th></tr></thead><tbody>${rows}</tbody>`;
+  // district bars for the chosen year
+  const yi = r.fys.indexOf(S.simYear); const container = el('sim-chart');
+  const pts = r.towns.map(x => ({ t: x.t, v: x.byYear[yi].dgcs, share: x.share, d: x.byYear[yi].delta_2018 })).filter(p => Math.abs(p.v) > 1e-9).sort((a, b) => b.v - a.v);
+  if (!pts.length){ container.replaceChildren(); return; }
+  const W = Math.max(320, chartWidth(container)), rowH = 9, m = {t: 18, r: 16, b: 26, l: 110}, H = m.t + m.b + pts.length * rowH;
+  const x = d3.scaleLinear().domain([Math.min(0, d3.min(pts, p => p.v)), Math.max(0, d3.max(pts, p => p.v))]).nice().range([m.l, W - m.r]);
+  const y = d3.scaleBand().domain(pts.map(p => p.t.name)).range([m.t, H - m.b]).paddingInner(0.15);
+  const svg = d3.create('svg').attr('viewBox', `0 0 ${W} ${H}`).style('max-height', 'none').attr('role', 'img').attr('aria-label', 'Simulated change in achievement by town, FY' + S.simYear);
+  const g = svg.append('g');
+  g.append('g').attr('class', 'axis').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(6).tickFormat(v => (v > 0 ? '+' : '') + v.toFixed(2)).tickSize(0)).select('.domain').attr('stroke', 'var(--line-strong)');
+  g.append('text').attr('class', 'axis').attr('x', W - m.r).attr('y', H - 4).attr('text-anchor', 'end').attr('font-size', 11).attr('fill', 'var(--ink-3)').text('predicted change, grade levels, FY' + S.simYear);
+  g.append('line').attr('x1', x(0)).attr('x2', x(0)).attr('y1', m.t).attr('y2', H - m.b).attr('stroke', 'var(--ink-3)');
+  g.append('g').selectAll('rect').data(pts).join('rect').attr('class', 'pt').attr('x', p => Math.min(x(0), x(p.v))).attr('y', p => y(p.t.name)).attr('width', p => Math.abs(x(p.v) - x(0))).attr('height', y.bandwidth()).attr('rx', 2)
+    .attr('fill', p => p.v >= 0 ? 'var(--div-pos)' : 'var(--div-neg)').attr('fill-opacity', .85)
+    .on('mousemove', (ev, p) => showTip(`<b>${p.t.name}</b> · FY${S.simYear}<div>${fmtG(p.v)} grade levels</div><div>shock ${(p.d >= 0 ? '+' : '−')}$${Math.abs(Math.round(p.d)).toLocaleString()} per pupil (2018$)</div><div>FRPL share ${(p.share * 100).toFixed(0)}%</div>`, ev)).on('mouseleave', hideTip)
+    .on('click', (ev, p) => { selected = p.t; renderTown(); renderScatter(); renderAchievement(); if (mapPaths) mapPaths.classed('sel', d => d.properties.name === selected.name); });
+  g.append('g').selectAll('text.lbl').data(pts).join('text').attr('class', 'lbl').attr('x', m.l - 6).attr('y', p => y(p.t.name) + y.bandwidth() / 2 + 3).attr('text-anchor', 'end').attr('font-size', 8).attr('fill', 'var(--ink-2)').text(p => p.t.name);
+  container.replaceChildren(svg.node());
+}
+function renderAll(){ renderState(); renderMap(); renderTown(); renderScatter(); renderAchievement(); renderSim(); }
+
+// ---------- wiring ----------
+function syncControls(){
+  keys.forEach(k=>{ const inp=el('s-'+k); inp.value=S[k]; el('o-'+k).textContent=outFmt[k](+S[k]); inp.closest('.slider').classList.toggle('changed', Math.abs(S[k]-CURRENT[k])>1e-9); });
+  el('s-phase').value=S.phase; el('o-phase').textContent=outFmt.phase(S.phase); el('s-phase').closest('.slider').classList.toggle('changed',S.phase!==1);
+  el('s-hh').value=S.hh; el('t-ahi').checked=S.ahi; el('s-start').value=S.start;
+  document.querySelectorAll('.preset').forEach(b=>{ const k=b.dataset.preset; b.setAttribute('aria-pressed', String(k==='observed' ? isEnacted() : S.on.has(k))); });
+  el('reset').disabled = isEnacted();
+  const lock = S.on.has('inflation')||S.on.has('f13087'); el('s-foundation').disabled=lock; el('s-foundation').closest('.slider').style.opacity = lock?'.55':'';
+  const lockPhase = S.on.has('fullfund'); el('s-phase').disabled=lockPhase; el('s-hh').disabled=lockPhase; el('s-phase').closest('.slider').style.opacity = lockPhase?'.55':''; el('s-hh').closest('.slider').style.opacity = lockPhase?'.55':'';
+}
+function setObserved(){ keys.forEach(k=>S[k]=CURRENT[k]); S.phase=1; S.hh='alliance'; S.ahi=false; S.on.clear(); }
+const EXCLUSIVE = {inflation:'f13087', f13087:'inflation'};
+document.querySelectorAll('.preset').forEach(b=>b.addEventListener('click',()=>{ const k=b.dataset.preset;
+  if(k==='observed'){ setObserved(); }
+  else if(S.on.has(k)){ S.on.delete(k); }
+  else { S.on.add(k); if(EXCLUSIVE[k]) S.on.delete(EXCLUSIVE[k]); }
+  syncControls(); recompute(); }));
+el('reset').addEventListener('click',()=>{ setObserved(); syncControls(); recompute(); });
+document.querySelectorAll('input[type=range]').forEach(inp=>inp.addEventListener('input',()=>{ const k=inp.dataset.key; S[k]=+inp.value; syncControls(); recompute(); }));
+el('s-hh').addEventListener('change',()=>{ S.hh=el('s-hh').value; syncControls(); recompute(); });
+el('t-ahi').addEventListener('change',()=>{ S.ahi=el('t-ahi').checked; syncControls(); recompute(); });
+el('t-weight').addEventListener('change',()=>{ S.weight=el('t-weight').checked; renderScatter(); });
+el('s-yaxis').addEventListener('change',()=>{ S.yaxis=el('s-yaxis').value; renderScatter(); });
+const ay=el('ach-year'); YEARS.filter(fy=>fy<=2025).forEach(fy=>{ const o=document.createElement('option'); o.value=fy; o.textContent='Spring '+fy; if(fy===S.achYear) o.selected=true; ay.appendChild(o); });
+ay.addEventListener('change',()=>{ S.achYear=+ay.value; renderAchievement(); });
+el('ach-x').addEventListener('change',()=>{ S.achX=el('ach-x').value; renderAchievement(); });
+el('ach-subj').addEventListener('change',()=>{ S.achSubj=el('ach-subj').value; renderAchievement(); renderTown(); });
+el('t-ach-weight').addEventListener('change',()=>{ S.achWeight=el('t-ach-weight').checked; renderAchievement(); });
+el('t-sim-hetero').addEventListener('change',()=>{ S.simHetero=el('t-sim-hetero').checked; renderSim(); });
+el('sim-year').addEventListener('change',()=>{ S.simYear=+el('sim-year').value; renderSim(); });
+const ss=el('s-start'); YEARS.forEach(fy=>{ const o=document.createElement('option'); o.value=fy; o.textContent='FY'+fy+(fy===YEARS[0]?' (all years)':''); ss.appendChild(o); });
+ss.addEventListener('change',()=>{ S.start=+ss.value; syncControls(); recompute(); });
+const ys=el('map-year'); YEARS.forEach(fy=>{ const o=document.createElement('option'); o.value=fy; o.textContent='FY'+fy; if(fy===mapYear) o.selected=true; ys.appendChild(o); });
+ys.addEventListener('change',()=>{ mapYear=+ys.value; renderAll(); });
+const sy=el('scatter-year'); YEARS.forEach(fy=>{ const o=document.createElement('option'); o.value=fy; o.textContent='FY'+fy; if(fy===mapYear) o.selected=true; sy.appendChild(o); });
+sy.addEventListener('change',()=>{ mapYear=+sy.value; ys.value=mapYear; renderAll(); });
+el('map-mode').addEventListener('change',()=>{ mapMode=el('map-mode').value; renderMap(); });
+let rt; const rerender=()=>{ clearTimeout(rt); rt=setTimeout(()=>{ mapSvg=null; renderAll(); },150); };
+window.addEventListener('resize',rerender);
+if (window.ResizeObserver){ let lastW=0; const ro=new ResizeObserver(entries=>{ const w=Math.round(entries[0].contentRect.width); if(Math.abs(w-lastW)>8){ lastW=w; rerender(); } }); ro.observe(document.querySelector('.main')); }
+const mq = window.matchMedia('(prefers-color-scheme: dark)'); mq.addEventListener && mq.addEventListener('change',()=>renderAll());
+
+syncControls(); recompute(); renderRepro();
+})();
+</script>
