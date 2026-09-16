@@ -57,7 +57,7 @@ say(f"\n## Low-income basis sensitivity, FY2025\n")
 say("| basis | statewide low-income share | foundation budgets | aid under rule | towns gaining | Hartford aid | Danbury aid | Stamford aid | towns in groups 10-12 |")
 say("|---|---:|---:|---:|---:|---:|---:|---:|---:|")
 for basis, lab in [("frpl", "FRPL-eligible (ECS)"), ("free", "free-lunch eligible only"), ("dc", "direct certification (CEP)")]:
-    R.MA_LI[0] = basis; R.MA_CACHE.clear()
+    R.MA_LI[0] = basis; R.MA_CACHE.clear(); R.MA_SCALE[0] = None
     sm = {t["code"]: R.series(t, lambda fy: R.scenario_params(fy, {"ma"}, 2019, {})) for t in towns}
     c = R.MA_CACHE[2025]; sumB = sum(v["B"] for v in c.values()); a = sum(sm[t["code"]][2025] for t in towns)
     li = 0.0; res = 0.0
@@ -68,8 +68,30 @@ for basis, lab in [("frpl", "FRPL-eligible (ECS)"), ("free", "free-lunch eligibl
     hi = sum(1 for v in c.values() if v["group"] >= 10)
     g = {t["name"]: sm[t["code"]][2025] for t in towns if t["name"] in ("Hartford", "Danbury", "Stamford")}
     say(f"| {lab} | {100*li/res:.1f}% | ${sumB/1e9:.2f}B | ${a/1e9:.2f}B | {gain} | ${g['Hartford']/1e6:,.1f}M | ${g['Danbury']/1e6:,.1f}M | ${g['Stamford']/1e6:,.1f}M | {hi} |")
-R.MA_LI[0] = "frpl"; R.MA_CACHE.clear()
+R.MA_LI[0] = "frpl"; R.MA_CACHE.clear(); R.MA_SCALE[0] = None
 say("\nMassachusetts' own FY2025 low-income share is 45.6% of foundation enrollment (administrative matches at 185% of poverty plus verified forms), above all three Connecticut measures; the basis mainly moves towns near a tier boundary.")
+# foundation level: straight transplant vs spending-calibrated (FRPL basis)
+say(f"\n## Foundation level, FY2025: straight transplant vs spending-calibrated (FRPL basis)\n")
+say(f"Massachusetts FY{R.MA.get('cal_year', 2025)} (DESE compliance file): median district actual net school spending = {R.MA['nss_ratio_median']:.3f} x foundation budget and {R.MA['nss_req_ratio_median']:.3f} x required NSS. The calibrated option scales every foundation category by one factor so Connecticut's median town (NCE / foundation) matches the first ratio.\n")
+say("| foundation level | scale | median foundation $/pupil | foundation budgets | aid under rule | enacted ECS | towns gaining | towns at 82.5% cap | towns with NCE below required NSS (of 148) | shortfall | Hartford aid | Bridgeport aid | Danbury aid |")
+say("|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|")
+for cal, lab in [("transplant", "straight transplant"), ("calibrated", "spending-calibrated")]:
+    R.MA_CAL[0] = cal; R.MA_CACHE.clear(); R.MA_SCALE[0] = None
+    sm = {t["code"]: R.series(t, lambda fy: R.scenario_params(fy, {"ma"}, 2019, {})) for t in towns}
+    c = R.MA_CACHE[2025]; sumB = sum(v["B"] for v in c.values()); a = sum(sm[t["code"]][2025] for t in towns); e = sum(series_en[t["code"]][2025] for t in towns)
+    gain = sum(1 for t in towns if sm[t["code"]][2025] > series_en[t["code"]][2025] + 1)
+    capped = sum(1 for v in c.values() if v["T"] >= R.MA["cap"] * v["B"] - 1e-6)
+    bpp = [v["B"] / max(v["fe"], 1) for v in c.values()]
+    below = 0; short = 0.0; n_nce = 0
+    for t in towns:
+        y = t["yr"]["2025"]; v = c.get(t["code"])
+        if not v or not y.get("nce"): continue
+        n_nce += 1; req = v["T"] + sm[t["code"]][2025]
+        if y["nce"] < req: below += 1; short += req - y["nce"]
+    g = {t["name"]: sm[t["code"]][2025] for t in towns if t["name"] in ("Hartford", "Bridgeport", "Danbury")}
+    say(f"| {lab} | {R.MA_SCALE[0]:.3f} | ${float(np.median(bpp)):,.0f} | ${sumB/1e9:.2f}B | ${a/1e9:.2f}B | ${e/1e9:.2f}B | {gain} | {capped} | {below} (of {n_nce}) | ${short/1e6:,.0f}M | ${g['Hartford']/1e6:,.1f}M | ${g['Bridgeport']/1e6:,.1f}M | ${g['Danbury']/1e6:,.1f}M |")
+R.MA_CAL[0] = "transplant"; R.MA_CACHE.clear(); R.MA_SCALE[0] = None
+say("\nRequired NSS = required local contribution + aid under the rule; NCE (net current expenditures, CSDE) includes federal and other revenue that Massachusetts' net school spending excludes, so the count of towns below is a lower bound and the scale factor an upper bound. Enforcement of the requirement is not modeled.")
 say(f"\n## Test-score simulation, Chapter 70 rule from FY2019 (pooled beta, 100% pass-through, plateau)\n")
 say("See the logged run under output/ecs/sim/runs/*_ma_from2019 (statewide FY2025 +0.164 grade levels, test-weighted).")
 open(os.path.join(R.OUTROOT if not R.PUBLIC else os.path.dirname(R.OUTROOT), "..", "ma_chapter70_results.md") if False else os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "ma_chapter70_results.md"), "w", encoding="utf-8").write("\n".join(lines) + "\n")

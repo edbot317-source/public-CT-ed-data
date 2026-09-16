@@ -31,7 +31,7 @@ python inject.py               # writes ecs_formula_explorer.html (and ecs_dashb
 python sim/seda_spending_sim.py                              # unit tests
 python sim/run_sim.py --scenario f13087 --start 2023         # reference simulation run
 python sim/run_sim.py --scenario inflation+fullhh --start 2019 --index eci --passthrough 0.5 --linear   # every option
-python sim/run_sim.py --scenario ma --start 2019 --set ma_lam=0.59 --set ma_min=104 --li dc                 # Massachusetts Chapter 70 rule (--li frpl|free|dc)
+python sim/run_sim.py --scenario ma --start 2019 --set ma_lam=0.59 --set ma_min=104 --li dc --cal calibrated  # Massachusetts Chapter 70 rule (--li frpl|free|dc; --cal transplant|calibrated)
 ```
 
 Scripts detect this layout automatically (they also run inside the original analysis repository).
@@ -51,7 +51,7 @@ Scripts detect this layout automatically (they also run inside the original anal
 - **Scenarios.** Sliders on every weight, threshold, foundation and phase-in; stackable presets (inflation-adjusted foundation
   compounding from 2013 by CPI-U or by the state-and-local-government Employment Cost Index, the $13,087 foundation, full formula
   with no phase-in either holding every town harmless at its prior grant (the state's FY2026 approach) or paying exact formula
-  amounts with no hold-harmless; a Massachusetts Chapter 70 rule with sliders for the statewide local share and the minimum aid per pupil and a selector for the low-income basis: FRPL, free lunch only, or direct certification); hold-harmless for Alliance districts, none, or all; a start year for the change; mean instead
+  amounts with no hold-harmless; a Massachusetts Chapter 70 rule with sliders for the statewide local share and the minimum aid per pupil a selector for the low-income basis: FRPL, free lunch only, or direct certification; and a foundation level: straight transplant of the FY2025 rates or spending-calibrated, scaled so Connecticut's median town spends the same multiple of its foundation budget as Massachusetts' median district); hold-harmless for Alliance districts, none, or all; a start year for the change; mean instead
   of median household income. All dollars are constant 2025 dollars (CPI-U).
 - **Charts.** Statewide ECS and statewide achievement series (test-weighted mean of town SEDA scores, spring 2019-2025, with the scenario's simulated effect added); town series (FY2019-FY2027, with each town's SEDA achievement history from spring 2019). Achievement charts annotate the observed decline from the first to the last scored year and how much of it the scenario would have offset (omitted where scores did not fall); a clickable map; ECS per resident student (or CSDE net current expenditures per pupil)
   against the low-income share with fitted slopes under enacted and scenario policy; SEDA achievement in grade levels against

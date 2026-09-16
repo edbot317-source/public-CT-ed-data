@@ -235,7 +235,11 @@ def _ma_setup(t):
     # 79_build_ma_inputs.py: CCD grade enrollment, QCEW wages, ACS aggregate income and OPM grand list under raw/,
     # DESE's FY2025 workbook under raw/dese, and the clean ECS / SEDA panels it joins to
     copy_files(RAW/'ccd', t/'data'/'ma', '*.csv'); copy_files(RAW/'qcew', t/'data'/'ma', '*.csv')
-    copy_files(RAW/'dese', t/'data'/'ma'/'dese', '*.xlsm')
+    copy_files(RAW/'dese', t/'data'/'ma'/'dese', '*.xls*')
+    # 79 reads clean-data/ma_nss_compliance.csv (spending-calibration rows): replay 80 first from the DESE compliance files
+    if list((RAW/'dese').glob('comply-*.xlsx')):
+        shutil.copy2(RAW/'original_scripts'/'80_parse_ma_nss_compliance.py', t/'code'/'80_parse_ma_nss_compliance.py')
+        runpy.run_path(str(t/'code'/'80_parse_ma_nss_compliance.py'), run_name='__main__')
     copy_files(RAW/'acs', t/'data'/'ecs'/'acs', '*.csv'); copy_files(RAW/'ctdata', t/'data'/'ecs'/'ctdata', '*.csv')
     copy_files(RAW/'cep', t/'data'/'ma', '*.csv')
     for k in ('town_year_ecs_inputs', 'town_year_ecs_entitlement', 'district_year_seda_gcs', 'district_year_enrollment'):
@@ -251,6 +255,10 @@ def build_ma_fy2025_foundation_rates():
 
 def build_ma_chapter70_parameters():
     return replay_clean('79_build_ma_inputs.py', 'ma_chapter70_parameters.csv', _ma_setup)
+
+def build_ma_nss_compliance():
+    def setup(t): copy_files(RAW/'dese', t/'data'/'ma'/'dese', 'comply-*.xlsx')
+    return replay_clean('80_parse_ma_nss_compliance.py', 'ma_nss_compliance.csv', setup)
 
 BUILDERS={name:obj for name,obj in globals().items() if name.startswith('build_')}
 if __name__ == '__main__':

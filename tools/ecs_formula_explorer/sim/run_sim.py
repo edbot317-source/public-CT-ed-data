@@ -65,9 +65,35 @@ INDEX_SERIES = {"cpi": CPI, "eci": {int(k): v for k, v in (D.get("eci") or {}).i
 MA = D.get("ma") or {}
 MA_CACHE = {}
 MA_LI = ["frpl"]      # low-income basis for the Chapter 70 rule: frpl | free | dc (set by --li)
+MA_CAL = ["transplant"]   # foundation level: transplant | calibrated (set by --cal)
+MA_SCALE = [None]     # cached calibration factor (reset whenever the basis, index or option changes)
 
 
-def ma_precompute(fy, lam, min_aid, index_name="cpi", li_basis="frpl"):
+def ma_cal_scale(index_name="cpi", li_basis="frpl"):
+    """Spending calibration (mirrors the page): CT median NCE / transplanted foundation in the calibration year,
+    divided by Massachusetts' median actual net school spending / foundation budget (DESE compliance file)."""
+    if MA_CAL[0] != "calibrated":
+        return 1.0
+    fy = int(MA.get("cal_year", 2025))
+    R = {k: (v[0], v[1]) for k, v in MA["rates"].items()}
+    idx = MA70.price_index(INDEX_SERIES.get(index_name) or CPI, fy, MA["rates_year"] - 1, MA["inflation_cap"])
+    r = []
+    for t in D["towns"]:
+        m = (t.get("ma") or {}).get(str(fy)); y = t["yr"][str(fy)]
+        if not m or not y.get("nce"):
+            continue
+        share = dict(zip(("pk", "k", "el", "ms", "hs"), m["sh"]))
+        li = y["frpl"]
+        if li_basis == "free" and m.get("lif") is not None: li = m["lif"]
+        if li_basis == "dc" and m.get("lid") is not None: li = m["lid"]
+        B, _ = MA70.foundation_budget(y["res"], share, y["ell"], li, m["waf"], R, idx,
+                                      dict(MA70.DEFAULTS, sped_in=MA["sped_in"], sped_out=MA["sped_out"], pk_weight=MA["pk_weight"]))
+        if B > 0:
+            r.append(y["nce"] / B)
+    return float(np.median(r)) / float(MA["nss_ratio_median"]) if r else 1.0
+
+
+def ma_precompute(fy, lam, min_aid, index_name="cpi", li_basis="frpl", scale=1.0):
     """Foundation budgets and steady-state target contributions for every town in `fy` (mirrors the page)."""
     R = {k: (v[0], v[1]) for k, v in MA["rates"].items()}
     idx = MA70.price_index(INDEX_SERIES.get(index_name) or CPI, fy, MA["rates_year"] - 1, MA["inflation_cap"])
@@ -82,6 +108,7 @@ def ma_precompute(fy, lam, min_aid, index_name="cpi", li_basis="frpl"):
         if li_basis == "dc" and m.get("lid") is not None: li = m["lid"]
         B, comp = MA70.foundation_budget(y["res"], share, y["ell"], li, m["waf"], R, idx,
                                           dict(MA70.DEFAULTS, sped_in=MA["sped_in"], sped_out=MA["sped_out"], pk_weight=MA["pk_weight"]))
+        B *= scale
         items.append((t["code"], B, m["eqv"], m["inc"], comp["foundation_enrollment"], comp["li_group"]))
     T, rp, ry, H = MA70.target_contributions([i[1] for i in items], [i[2] for i in items], [i[3] for i in items], lam, MA["cap"])
     return {code: {"B": B, "T": float(Tc), "fe": fe, "group": g} for (code, B, _, _, fe, g), Tc in zip(items, T)}
@@ -113,7 +140,9 @@ def scenario_params(fy, on, start, sliders, hh_mode="alliance", phase=1.0, index
     if "ma" in on:                           # Massachusetts Chapter 70 rule replaces the formula
         p["ma"] = True; p["fy"] = fy; p["ma_min"] = sliders.get("ma_min", MA.get("min_aid", 104))
         if fy not in MA_CACHE:
-            MA_CACHE[fy] = ma_precompute(fy, sliders.get("ma_lam", MA.get("lam", 0.59)), p["ma_min"], index, MA_LI[0])
+            if MA_SCALE[0] is None:
+                MA_SCALE[0] = ma_cal_scale(index, MA_LI[0])
+            MA_CACHE[fy] = ma_precompute(fy, sliders.get("ma_lam", MA.get("lam", 0.59)), p["ma_min"], index, MA_LI[0], MA_SCALE[0])
     p["hh"] = "none" if full else hh_mode
     p["full"] = full
     return p
@@ -186,9 +215,10 @@ def main():
     ap.add_argument("--passthrough", type=float, default=1.0, help="share of the ECS change reaching school budgets in non-Alliance towns (Alliance/PSD always 1)")
     ap.add_argument("--linear", action="store_true", help="linear score growth: no plateau after four years of exposure")
     ap.add_argument("--li", choices=["frpl", "free", "dc"], default="frpl", help="Chapter 70 low-income basis: FRPL (ECS), free-lunch only, or direct certification (CEP)")
+    ap.add_argument("--cal", choices=["transplant", "calibrated"], default="transplant", help="Chapter 70 foundation level: straight transplant of MA rates, or scaled so CT's median NCE/foundation equals MA's median actual NSS/foundation")
     a = ap.parse_args()
     sliders = {kv.split("=")[0]: float(kv.split("=")[1]) for kv in a.set}
-    MA_LI[0] = a.li
+    MA_LI[0] = a.li; MA_CAL[0] = a.cal; MA_SCALE[0] = None
     on = set() if a.scenario == "observed" else set(a.scenario.split("+"))
     label = a.scenario if not a.shock else "shockfile"
     if a.shock:

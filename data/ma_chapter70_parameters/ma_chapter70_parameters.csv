@@ -13,3 +13,6 @@ min_aid_per_pupil,104,FY2025 general appropriations act ($30 statutory floor)
 inflation_cap,1.045,MGL c.70 s.2 foundation inflation index cap
 waf_rule,"1 + (area_wage/state_wage - 1)/3, not less than 1; county stands in for the labor market area",MGL c.70 s.2; DESE workbook
 rates_fiscal_year,2025,DESE chapter-2025.xlsm Rates sheet
+nss_calibration_year,2025,"DESE comply-fyYYYY.xlsx (ComplySum), actual net school spending"
+nss_actual_to_foundation_median,1.3887,"median over 319 operating districts, FY2025"
+nss_actual_to_required_median,1.3106,required NSS = required contribution + Chapter 70 aid; 18 districts below

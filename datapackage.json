@@ -1470,10 +1470,60 @@
       }
     },
     {
+      "name": "ma_nss_compliance",
+      "path": "data/ma_nss_compliance/ma_nss_compliance.csv",
+      "title": "Massachusetts net school spending compliance by district (FY2024-FY2025)",
+      "description": "Massachusetts net school spending compliance by district (FY2024-FY2025) (district x fiscal_year). Source: Massachusetts DESE Office of School Finance, net school spending compliance summaries (comply-fy2024.xlsx, comply-fy2025.xlsx, sheet ComplySum, data as of July 2026).",
+      "schema": {
+        "fields": [
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2026 corresponds to school year 2025-26."
+          },
+          {
+            "name": "lea_id",
+            "type": "string",
+            "description": "DESE four-digit LEA code (operating districts only)."
+          },
+          {
+            "name": "district",
+            "type": "string",
+            "description": "District name as printed in the CSDE report (title case)."
+          },
+          {
+            "name": "required_nss",
+            "type": "number",
+            "description": "Required net school spending: required local contribution plus Chapter 70 aid, nominal dollars."
+          },
+          {
+            "name": "actual_nss",
+            "type": "number",
+            "description": "Actual net school spending reported on the end-of-year financial report (spending from local revenue and Chapter 70 aid on the categories allowed by 603 CMR 10.06), nominal dollars."
+          },
+          {
+            "name": "foundation_budget",
+            "type": "number",
+            "description": "Chapter 70 foundation budget, nominal dollars."
+          },
+          {
+            "name": "actual_to_required",
+            "type": "number",
+            "description": "actual_nss / required_nss (below 1 = shortfall, carried forward under 603 CMR 10.06)."
+          },
+          {
+            "name": "actual_to_foundation",
+            "type": "number",
+            "description": "actual_nss / foundation_budget; the FY2025 median is the target of the explorer's spending-calibrated foundation level."
+          }
+        ]
+      }
+    },
+    {
       "name": "ma_chapter70_parameters",
       "path": "data/ma_chapter70_parameters/ma_chapter70_parameters.csv",
       "title": "Massachusetts Chapter 70 formula parameters (FY2025)",
-      "description": "Massachusetts Chapter 70 formula parameters (FY2025) (parameter). Source: Massachusetts DESE FY2025 Chapter 70 formula spreadsheet (parameters and Foundation Budget sheets); MGL c.70 s.2.",
+      "description": "Massachusetts Chapter 70 formula parameters (FY2025) (parameter). Source: Massachusetts DESE FY2025 Chapter 70 formula spreadsheet (parameters and Foundation Budget sheets); MGL c.70 s.2; DESE net school spending compliance summary (comply-fy2025.xlsx).",
       "schema": {
         "fields": [
           {

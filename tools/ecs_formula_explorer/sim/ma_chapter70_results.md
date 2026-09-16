@@ -82,6 +82,17 @@ Engine: sim/ma_chapter70.py (validated against DESE's FY2025 workbook: Plymouth 
 
 Massachusetts' own FY2025 low-income share is 45.6% of foundation enrollment (administrative matches at 185% of poverty plus verified forms), above all three Connecticut measures; the basis mainly moves towns near a tier boundary.
 
+## Foundation level, FY2025: straight transplant vs spending-calibrated (FRPL basis)
+
+Massachusetts FY2025 (DESE compliance file): median district actual net school spending = 1.389 x foundation budget and 1.311 x required NSS. The calibrated option scales every foundation category by one factor so Connecticut's median town (NCE / foundation) matches the first ratio.
+
+| foundation level | scale | median foundation $/pupil | foundation budgets | aid under rule | enacted ECS | towns gaining | towns at 82.5% cap | towns with NCE below required NSS (of 148) | shortfall | Hartford aid | Bridgeport aid | Danbury aid |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| straight transplant | 1.000 | $13,357 | $7.37B | $3.29B | $2.36B | 153 | 94 | 6 (of 148) | $87M | $296.1M | $298.1M | $103.7M |
+| spending-calibrated | 1.228 | $16,407 | $9.06B | $3.94B | $2.36B | 164 | 94 | 16 (of 148) | $488M | $363.7M | $366.2M | $127.4M |
+
+Required NSS = required local contribution + aid under the rule; NCE (net current expenditures, CSDE) includes federal and other revenue that Massachusetts' net school spending excludes, so the count of towns below is a lower bound and the scale factor an upper bound. Enforcement of the requirement is not modeled.
+
 ## Test-score simulation, Chapter 70 rule from FY2019 (pooled beta, 100% pass-through, plateau)
 
 See the logged run under output/ecs/sim/runs/*_ma_from2019 (statewide FY2025 +0.164 grade levels, test-weighted).

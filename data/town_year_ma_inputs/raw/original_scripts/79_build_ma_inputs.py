@@ -71,6 +71,14 @@ PARAMS = [
         {"parameter": "waf_rule", "value": "1 + (area_wage/state_wage - 1)/3, not less than 1; county stands in for the labor market area", "source": "MGL c.70 s.2; DESE workbook"},
         {"parameter": "rates_fiscal_year", "value": 2025, "source": "DESE chapter-2025.xlsm Rates sheet"},
     ]
+# Massachusetts' own spending relative to the foundation budget (80_parse_ma_nss_compliance.py), used by the
+# "spending-calibrated" foundation level: the CT foundation is scaled so CT's median NCE/foundation equals this.
+_NSS = os.path.join(BASE, "clean-data", "ma_nss_compliance.csv")
+if os.path.exists(_NSS):
+    _c = pd.read_csv(_NSS); _c = _c[_c.fiscal_year == _c.fiscal_year.max()]
+    PARAMS += [{"parameter": "nss_calibration_year", "value": int(_c.fiscal_year.max()), "source": "DESE comply-fyYYYY.xlsx (ComplySum), actual net school spending"},
+               {"parameter": "nss_actual_to_foundation_median", "value": round(float(_c.actual_to_foundation.median()), 4), "source": f"median over {len(_c)} operating districts, FY{int(_c.fiscal_year.max())}"},
+               {"parameter": "nss_actual_to_required_median", "value": round(float(_c.actual_to_required.median()), 4), "source": f"required NSS = required contribution + Chapter 70 aid; {(_c.actual_to_required < 1).sum()} districts below"}]
 
 RATES = CATS = None
 BANDS = {"pk": ["pk"], "k": ["k"], "el": ["1", "2", "3", "4", "5"], "ms": ["6", "7", "8"], "hs": ["9", "10", "11", "12"]}

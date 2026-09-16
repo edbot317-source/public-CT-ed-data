@@ -23,7 +23,8 @@ This repository releases a self-contained set of Connecticut education finance, 
 | `cpi_u_deflator` | CPI-U annual average deflator | calendar year | 2006-2025 | 20 |
 | `town_year_ma_inputs` | Town-year inputs for a Massachusetts Chapter 70 style rule | town x fiscal_year | FY2019-FY2027 | 1,521 |
 | `ma_fy2025_foundation_rates` | Massachusetts FY2025 Chapter 70 foundation budget rates | foundation enrollment column | FY2025 | 24 |
-| `ma_chapter70_parameters` | Massachusetts Chapter 70 formula parameters (FY2025) | parameter | FY2025 | 14 |
+| `ma_nss_compliance` | Massachusetts net school spending compliance by district (FY2024-FY2025) | district x fiscal_year | FY2024-FY2025 | 638 |
+| `ma_chapter70_parameters` | Massachusetts Chapter 70 formula parameters (FY2025) | parameter | FY2025 | 17 |
 | `seda_k_grade_subject` | Grade levels per standard deviation, by grade and subject (SEDA) | grade x subject | - | 12 |
 | `town_grade_subject_seda_baseline` | Town baseline achievement by grade and subject (SEDA) | town x grade x subject | - | 1,821 |
 | `district_year_seda_gcs` | District-year achievement in grade levels (SEDA) | district x fiscal_year x subgroup | FY2009-FY2025 | 18,353 |

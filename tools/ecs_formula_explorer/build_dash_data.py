@@ -161,6 +161,10 @@ if os.path.exists(MA_PATH) and os.path.exists(RATES_PATH):
                  "li_upper": [5.99, 11.99, 17.99, 23.99, 29.99, 35.99, 41.99, 47.99, 53.99, 69.99, 79.99, 100],
                  "sped_in": 0.0393, "sped_out": 0.01, "pk_weight": 0.5, "lam": 0.59, "cap": 0.825, "min_aid": 104,
                  "inflation_cap": 1.045, "rates_year": 2025,
+                 # spending calibration: Massachusetts' median actual net school spending / foundation budget (DESE compliance file)
+                 **({"cal_year": int(mp.loc["nss_calibration_year", "value"]), "nss_ratio_median": float(mp.loc["nss_actual_to_foundation_median", "value"]),
+                     "nss_req_ratio_median": float(mp.loc["nss_actual_to_required_median", "value"])}
+                    if (os.path.exists(MAP_PATH) and "nss_actual_to_foundation_median" in (mp := pd.read_csv(MAP_PATH).set_index("parameter")).index) else {"cal_year": 2025, "nss_ratio_median": 1.389, "nss_req_ratio_median": 1.311}),
                  "source": "DESE FY2025 Chapter 70 formula workbook (chapter-2025.xlsm, Rates and parameters sheets); MGL c.70 s.2"}
 out["sim"] = {"k": KTAB, "beta": 0.0343, "beta_se": 0.00681, "beta_tau": 0.0211, "beta_li": 0.0312, "beta_nli": 0.0161,
               "beta_col3": 0.0359, "dose_years": 4, "base_year": 2018, "baseline_years": [2023, 2024, 2025],

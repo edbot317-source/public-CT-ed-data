@@ -56,13 +56,19 @@ definitions. That is where the assumptions below live.
 | A10 | **Aid never falls** (prior aid plus minimum aid), chaining from the FY2018 ECS grant. | In FY2019 73 towns receive less than their enacted FY2019 ECS because the rule gives them minimum aid on a FY2018 base; by FY2025 only 16 towns are below enacted ECS (Hamden the largest, $8.2M). | Start the chain later, or from the fully funded ECS grant. |
 | A11 | **Only state aid changes spending** in the test-score simulation, at the pass-through rate; the required local contribution is not enforced as spending. | Massachusetts' net-school-spending requirement would also raise spending in towns below foundation, but almost no Connecticut town is below the transplanted foundation budget (A1), so this matters little here. | Model NSS enforcement if rates are scaled up. |
 | A12 | The **minimum aid** per pupil ($104) is applied to foundation pupils (pre-K at 0.5) and not indexed. | Small. | Index it. |
+| A13 | **Foundation level is selectable**: the straight transplant applies DESE's FY2025 rates as they are; the spending-calibrated option multiplies every category by one factor (about 1.23 with the FRPL basis) chosen so that Connecticut's median town spends the same multiple of its foundation budget (net current expenditures over foundation, FY2025) as Massachusetts' median district spends of its own (actual net school spending over foundation budget, 1.389 in FY2025 from DESE's compliance file, where the median district is 31% above its required NSS and 18 of 319 fall short). The factor is recomputed for the chosen low-income basis and price index. | Calibrated FY2025 foundation budgets total $9.06B (transplant $7.37B), aid under the rule $3.94B (transplant $3.29B, enacted ECS $2.36B); median foundation per pupil $16,407 vs $13,357. | The calibration treats the foundation as what it is in Massachusetts, a floor most districts clear, not a cost estimate. NCE counts federal and other revenue that net school spending excludes, so the factor is an upper bound; an NSS-style Connecticut spending measure (NCE less federal and non-ECS state grant spending, municipal-paid benefits included) would lower it. |
 
 ## 4. Limits
 
 - **Adequacy is defined by another state's costs.** Everything the rule says about "gaps" and "state share" is
   relative to a foundation budget calibrated to Massachusetts wages, class sizes and benefits in FY2025. Because
   Connecticut towns spend far more than that budget, the rule redistributes aid by wealth without asserting that
-  any town is underfunded. Do not read the foundation budget as an adequacy standard for Connecticut.
+  any town is underfunded. Do not read the foundation budget as an adequacy standard for Connecticut. The
+  Massachusetts standard itself is a 1993 model-school staffing budget (class sizes of 22, 25 and 17; fixed staff
+  per 1,000 pupils) priced at then-current salaries, reconstituted into per-pupil rates in FY2007 and patched by
+  the 2015 Foundation Budget Review Commission and the 2019 Student Opportunity Act (benefits at GIC trend,
+  special-education shares, English-learner and low-income increments); it is not tied to any outcome target. The
+  spending-calibrated option (A13) re-bases it to Connecticut spending rather than re-doing that construction.
 - **Distributional pattern.** The rule sends the largest gains to high-poverty, low-wealth cities (Bridgeport
   +$96M, Waterbury +$82M, Hartford +$72M in FY2025) and to high-need Fairfield County towns that also get the
   wage factor (Danbury +$50M, Norwalk +$37M, Stamford +$29M), and it guarantees every town 17.5% of its
@@ -126,3 +132,8 @@ same in Python and on the page.
   https://data.bls.gov/cew/data/api/.
 - Census ACS 5-year table B19025 (aggregate household income), county subdivisions, vintages 2015-2023.
 - OPM Equalized Net Grand List by Town (data.ct.gov 8rr8-a322); ECS worksheets (this repository).
+- DESE net school spending compliance summaries, `comply-fy2024.xlsx` and `comply-fy2025.xlsx` (required and actual
+  NSS and foundation budget by district; https://www.doe.mass.edu/finance/chapter70/; downloaded 2026-09-16, in
+  `data/ma/dese/`; parsed by `80_parse_ma_nss_compliance.py` to `clean-data/ma_nss_compliance.csv`), and 603 CMR
+  10.06 (what counts toward net school spending).
+- CSDE net current expenditures (`district_year_ncep`, CGS 10-261(a)(3)) for the Connecticut side of the calibration.
