@@ -5,9 +5,9 @@
 - **Year range:** FY2019-FY2027
 - **Source:** NCES Common Core of Data enrollment by grade (Urban Institute Education Data Portal API); BLS Quarterly Census of Employment and Wages; Census ACS 5-year table B19025; OPM Equalized Net Grand List by Town; ECS worksheets; https://educationdata.urban.org/api/v1/school-districts/ccd/enrollment/{year}/grade-{g}/?fips=9; https://data.bls.gov/cew/data/api/{year}/a/area/{fips}.csv; https://api.census.gov/data/{vintage}/acs/acs5 (B19025_001E, county subdivisions in state 09); https://data.ct.gov/resource/8rr8-a322
 - **Row count:** 1,521
-- **Column count:** 22
+- **Column count:** 28
 
-What a Massachusetts Chapter 70 foundation budget and required local contribution need for each Connecticut town, FY2019-FY2027: the grade mix of resident students (pre-K, kindergarten, 1-5, 6-8, 9-12) from the town's local district plus its share of each regional district it belongs to; the county wage ratio and the resulting wage adjustment factor; equalized valuation (OPM grand list, t-4) and aggregate household income (ACS, t-4); and the ECS resident, FRPL and English-learner counts the rule prices. Built for the Chapter 70 preset of the ECS Formula Explorer; see tools/ecs_formula_explorer/MA_CHAPTER70_ASSUMPTIONS.md for every assumption and limit.
+What a Massachusetts Chapter 70 foundation budget and required local contribution need for each Connecticut town, FY2019-FY2027: the grade mix of resident students (pre-K, kindergarten, 1-5, 6-8, 9-12) from the town's local district plus its share of each regional district it belongs to; the county wage ratio and the resulting wage adjustment factor; equalized valuation (OPM grand list, t-4) and aggregate household income (ACS, t-4); the ECS resident, FRPL and English-learner counts the rule prices; and two alternative low-income counts (free-lunch eligible only, from EdSight; directly certified students, from CSDE's Community Eligibility Provision notifications 2023-24 to 2025-26). Built for the Chapter 70 preset of the ECS Formula Explorer; see tools/ecs_formula_explorer/MA_CHAPTER70_ASSUMPTIONS.md for every assumption and limit.
 
 ## Codebook
 
@@ -18,6 +18,12 @@ What a Massachusetts Chapter 70 foundation budget and required local contributio
 | `fiscal_year` | Fiscal year ending in the listed calendar year; FY2026 corresponds to school year 2025-26. | integer |
 | `ccd_year` | NCES Common Core of Data school year (fall) whose enrollment by grade supplies the grade mix; fiscal year t uses t-2, the ECS count date. | integer |
 | `grade_source` | Where the grade mix comes from: local (the town's own district), region (its share of a regional district), both, or statewide shares when neither exists. | string |
+| `free_share_of_frpl` | Free-lunch-eligible students as a share of all FRPL-eligible students in the town's district(s), EdSight enrollment (latest year with data up to t). | number |
+| `free_share_year` | Fiscal year of the EdSight enrollment used for free_share_of_frpl. | integer |
+| `free_lunch_count` | Low-income basis 'free lunch only': frpl_count x free_share_of_frpl (130% of poverty or direct certification). | number |
+| `direct_cert_share` | Low-income basis 'direct certification': CSDE Community Eligibility Provision identified-student percentage of the town's district(s) (SNAP, Temporary Family Assistance, Medicaid, foster care, homeless, migrant matches), weighted by where resident students sit; nearest CEP year. | number |
+| `direct_cert_year` | Fiscal year of the CEP notification used (2024-2026). | integer |
+| `direct_cert_count` | resident_students x direct_cert_share; blank for towns absent from the CEP list (the explorer falls back to the free-lunch count). | number |
 | `share_pk` | Share of resident students in pre-kindergarten. | number |
 | `share_k` | Share of resident students in kindergarten. | number |
 | `share_el` | Share of resident students in grades 1-5. | number |
@@ -38,7 +44,7 @@ What a Massachusetts Chapter 70 foundation budget and required local contributio
 
 ## Provenance and Method
 
-Raw source workbooks are stored in `raw/` with a download log. The build script replays the original numbered cleaner from `raw/original_scripts/` in a temporary local layout and writes this formatted CSV. Original script(s): `75_download_ccd_grade_enrollment.py + 76_download_qcew_wages.py + 77_download_acs_aggregate_income.py + 79_build_ma_inputs.py`.
+Raw source workbooks are stored in `raw/` with a download log. The build script replays the original numbered cleaner from `raw/original_scripts/` in a temporary local layout and writes this formatted CSV. Original script(s): `75_download_ccd_grade_enrollment.py + 76_download_qcew_wages.py + 77_download_acs_aggregate_income.py + 78_parse_cep_isp.py + 79_build_ma_inputs.py`.
 
 ## Data completeness
 

@@ -237,7 +237,8 @@ def _ma_setup(t):
     copy_files(RAW/'ccd', t/'data'/'ma', '*.csv'); copy_files(RAW/'qcew', t/'data'/'ma', '*.csv')
     copy_files(RAW/'dese', t/'data'/'ma'/'dese', '*.xlsm')
     copy_files(RAW/'acs', t/'data'/'ecs'/'acs', '*.csv'); copy_files(RAW/'ctdata', t/'data'/'ecs'/'ctdata', '*.csv')
-    for k in ('town_year_ecs_inputs', 'town_year_ecs_entitlement', 'district_year_seda_gcs'):
+    copy_files(RAW/'cep', t/'data'/'ma', '*.csv')
+    for k in ('town_year_ecs_inputs', 'town_year_ecs_entitlement', 'district_year_seda_gcs', 'district_year_enrollment'):
         src = DATA/k/f'{k}.csv'
         if src.exists():
             shutil.copy2(src, t/'clean-data'/f'{k}.csv')

@@ -72,6 +72,16 @@ Engine: sim/ma_chapter70.py (validated against DESE's FY2025 workbook: Plymouth 
 - Below-foundation towns by FRPL share: FRPL<25%: 0/57; 25-50%: 0/60; 50%+: 5/31.
 - Caveat: NCE covers the town's own schools and tuition payments while the foundation budget covers all resident students, and NCE includes federal and other revenue; treat as indicative.
 
+## Low-income basis sensitivity, FY2025
+
+| basis | statewide low-income share | foundation budgets | aid under rule | towns gaining | Hartford aid | Danbury aid | Stamford aid | towns in groups 10-12 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| FRPL-eligible (ECS) | 43.2% | $7.37B | $3.29B | 153 | $296.1M | $103.7M | $49.0M | 24 |
+| free-lunch eligible only | 37.4% | $7.12B | $3.21B | 148 | $293.2M | $96.5M | $46.5M | 12 |
+| direct certification (CEP) | 34.7% | $6.97B | $3.16B | 156 | $252.6M | $103.4M | $44.8M | 14 |
+
+Massachusetts' own FY2025 low-income share is 45.6% of foundation enrollment (administrative matches at 185% of poverty plus verified forms), above all three Connecticut measures; the basis mainly moves towns near a tier boundary.
+
 ## Test-score simulation, Chapter 70 rule from FY2019 (pooled beta, 100% pass-through, plateau)
 
 See the logged run under output/ecs/sim/runs/*_ma_from2019 (statewide FY2025 +0.164 grade levels, test-weighted).

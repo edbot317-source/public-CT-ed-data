@@ -152,7 +152,10 @@ if os.path.exists(MA_PATH) and os.path.exists(RATES_PATH):
         d = ma[ma.town_code == t["code"]].set_index("fiscal_year")
         t["ma"] = {int(fy): {"sh": [round(float(d.loc[fy, c]), 5) for c in ("share_pk", "share_k", "share_el", "share_ms", "share_hs")],
                              "waf": round(float(d.loc[fy, "wage_adjustment_factor"]), 5), "eqv": f(d.loc[fy, "equalized_valuation"]),
-                             "inc": f(d.loc[fy, "aggregate_household_income"]), "county": str(d.loc[fy, "county"])}
+                             "inc": f(d.loc[fy, "aggregate_household_income"]), "county": str(d.loc[fy, "county"]),
+                             "lif": f(d.loc[fy, "free_lunch_count"]) if "free_lunch_count" in d.columns else None,
+                             # direct certification, falling back to the free-lunch count for towns absent from the CEP list
+                             "lid": (f(d.loc[fy, "direct_cert_count"]) if ("direct_cert_count" in d.columns and pd.notna(d.loc[fy, "direct_cert_count"])) else (f(d.loc[fy, "free_lunch_count"]) if "free_lunch_count" in d.columns else None))}
                    for fy in years if fy in d.index}
     out["ma"] = {"rates": {r.column: [round(float(r.total), 2), round(float(r.waf_applicable), 2)] for r in rates.itertuples()},
                  "li_upper": [5.99, 11.99, 17.99, 23.99, 29.99, 35.99, 41.99, 47.99, 53.99, 69.99, 79.99, 100],

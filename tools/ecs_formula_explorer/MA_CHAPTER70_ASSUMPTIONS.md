@@ -45,7 +45,7 @@ definitions. That is where the assumptions below live.
 | # | Assumption | Why it matters | Alternative |
 |---|---|---|---|
 | A1 | **Massachusetts' FY2025 dollar rates are used unchanged in Connecticut**, indexed to other years by CPI-U or the state-and-local ECI with the 4.5% cap. | The foundation budget is the "adequate" spending level. In FY2025 it comes to a median $13,357 per foundation pupil across Connecticut towns (Union $11,582 to Bridgeport $21,697), against Massachusetts' own average of $16,051 and Connecticut's actual median net current expenditure of about $22,700 per pupil. The rule therefore defines adequacy at roughly 60% of what Connecticut towns spend. Only 5 of 148 towns with local boards spend below it. | Scale the rates to Connecticut cost levels (e.g. to the statewide average NCE per pupil, or to a Connecticut cost study); the page's index selector only moves rates through time, not across states. |
-| A2 | **Low income = ECS FRPL-eligible students** (185% of poverty via school-meals eligibility). Massachusetts counts SNAP, TAFDC, MassHealth, foster care and homelessness matches, a narrower net. | Connecticut towns land in higher concentration groups than a strict transplant would give (4 towns in group 12, 15 in group 10); the low-income increment is the single largest driver of city foundation budgets. | Use EdSight free-lunch counts (direct certification plus free applications), which are closer to the Massachusetts definition. |
+| A2 | **Low-income basis is selectable**: ECS FRPL-eligible students (default; the same 185%-of-poverty line Massachusetts uses, identified partly through meal applications), free-lunch-eligible students only (EdSight; 130% of poverty or direct certification; a lower bound), or directly certified students (CSDE's CEP identified-student percentage, SNAP / TFA / Medicaid / foster / homeless / migrant matches, applied to resident students; CEP data cover 2023-24 to 2025-26 and the nearest year is used elsewhere; 31 small towns absent from the CEP list fall back to the free-lunch count). Massachusetts identifies low income through administrative matches at 185% of poverty plus a verification form, without meal applications. | Statewide FY2025 shares of resident students: FRPL 43.2%, free lunch 37.4%, direct certification 34.2%; Massachusetts' own share is 45.6%. The basis mainly moves towns near a tier boundary; see the sensitivity table in the results file. | Massachusetts' supplemental verification form has no Connecticut analogue; a survey-based 185% child-poverty share (ACS B17024) would be independent of school identification. |
 | A3 | **The town is the unit** for the foundation budget and the low-income group, using ECS resident students. Massachusetts computes foundation budgets by operating district (municipal or regional) and apportions regional contributions to member towns. | Per-pupil rates are additive, so the only differences are the concentration group (town-level FRPL share rather than the region's) and the wage factor; both are second-order. Charter and magnet residents are given the town's own grade mix. | Compute by operating district and apportion. |
 | A4 | **Grade mix** comes from the town's local district plus its share of each regional district it belongs to (share = students sent, from the ECS worksheet), CCD year t-2; 3 towns with no district data (27 town-years) use statewide shares. Pre-K is priced at the pre-school rate. | Rates differ by band (high school $11,334 vs elementary $9,806), so the mix moves a town's budget by a few percent. | Grade-level resident counts from PSIS if obtainable. |
 | A5 | **Special education** enters only as Massachusetts' assumed shares (3.93% in-district, 1% tuitioned-out of K-12) at Massachusetts' rates. Vocational enrollment is zero because Connecticut's technical high schools are state-run and outside the resident count. | Connecticut's identification rate (about 16%) is well above the assumed 3.93%; the foundation budget carries no town-specific special-education cost, exactly as in Massachusetts. | A Connecticut-specific special-education weight. |
@@ -88,8 +88,9 @@ same in Python and on the page.
    Massachusetts' only modestly while its actual spending per pupil is far higher; the foundation budget
    should be re-based before any adequacy claim is made (A1). The right first step is a scale factor that
    sets the statewide foundation total to a Connecticut benchmark.
-2. Massachusetts' low-income definition since the Student Opportunity Act is deliberately narrower than
-   school-meals eligibility; using FRPL inflates the concentration tiers (A2).
+2. Massachusetts' low-income definition since the Student Opportunity Act uses the same 185%-of-poverty line
+   as school-meals eligibility but identifies students through administrative matches; the selector offers the
+   Connecticut counts that bracket it, and the choice moves towns near tier boundaries (A2).
 3. The wage factor matters much less in Connecticut with a county proxy (one county above one) than in
    Massachusetts, where labor-market-area wages spread widely around Boston (A6).
 4. Chapter 70's local side is a *requirement*; the simulation treats it only as the aid offset. In
@@ -111,8 +112,7 @@ same in Python and on the page.
 4. The Alliance District set-aside, the minimum budget requirement and Connecticut's other categorical
    grants are unchanged in the simulation; a real transplant would replace or reconcile them.
 
-*Suggested next steps if the rule is to be taken seriously:* re-base the rates (A1), switch low income to
-free-lunch counts (A2), add the MRGF transition from current local education revenue (A8, using
+*Suggested next steps if the rule is to be taken seriously:* re-base the rates (A1), test the low-income bases against each other (A2), add the MRGF transition from current local education revenue (A8, using
 `district_year_revenue`), and compute regional districts as operating units (A3).
 
 ## 6. Data sources

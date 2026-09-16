@@ -53,6 +53,23 @@ say(f"\n## Adequacy check, FY2025: current net current expenditures vs the Chapt
 say(f"- Towns spending below their foundation budget: {int((d2.gap>0).sum())} of {len(d2)}; total shortfall ${d2.gap.clip(lower=0).sum()/1e9:.2f}B; median NCE per pupil ${d2.nce_pp.median():,.0f} vs median foundation per pupil ${d2.B_pp.median():,.0f}.")
 say(f"- Below-foundation towns by FRPL share: " + "; ".join(f"{lab}: {int(((d2.gap>0)&m).sum())}/{int(m.sum())}" for lab, m in [("FRPL<25%", d2.frpl_share<.25), ("25-50%", (d2.frpl_share>=.25)&(d2.frpl_share<.5)), ("50%+", d2.frpl_share>=.5)]) + ".")
 say("- Caveat: NCE covers the town's own schools and tuition payments while the foundation budget covers all resident students, and NCE includes federal and other revenue; treat as indicative.")
+say(f"\n## Low-income basis sensitivity, FY2025\n")
+say("| basis | statewide low-income share | foundation budgets | aid under rule | towns gaining | Hartford aid | Danbury aid | Stamford aid | towns in groups 10-12 |")
+say("|---|---:|---:|---:|---:|---:|---:|---:|---:|")
+for basis, lab in [("frpl", "FRPL-eligible (ECS)"), ("free", "free-lunch eligible only"), ("dc", "direct certification (CEP)")]:
+    R.MA_LI[0] = basis; R.MA_CACHE.clear()
+    sm = {t["code"]: R.series(t, lambda fy: R.scenario_params(fy, {"ma"}, 2019, {})) for t in towns}
+    c = R.MA_CACHE[2025]; sumB = sum(v["B"] for v in c.values()); a = sum(sm[t["code"]][2025] for t in towns)
+    li = 0.0; res = 0.0
+    for t in towns:
+        y = t["yr"]["2025"]; m = t["ma"].get("2025", {}); res += y["res"]
+        li += (m.get("lif") if (basis == "free" and m.get("lif") is not None) else (m.get("lid") if (basis == "dc" and m.get("lid") is not None) else y["frpl"]))
+    gain = sum(1 for t in towns if sm[t["code"]][2025] > series_en[t["code"]][2025] + 1)
+    hi = sum(1 for v in c.values() if v["group"] >= 10)
+    g = {t["name"]: sm[t["code"]][2025] for t in towns if t["name"] in ("Hartford", "Danbury", "Stamford")}
+    say(f"| {lab} | {100*li/res:.1f}% | ${sumB/1e9:.2f}B | ${a/1e9:.2f}B | {gain} | ${g['Hartford']/1e6:,.1f}M | ${g['Danbury']/1e6:,.1f}M | ${g['Stamford']/1e6:,.1f}M | {hi} |")
+R.MA_LI[0] = "frpl"; R.MA_CACHE.clear()
+say("\nMassachusetts' own FY2025 low-income share is 45.6% of foundation enrollment (administrative matches at 185% of poverty plus verified forms), above all three Connecticut measures; the basis mainly moves towns near a tier boundary.")
 say(f"\n## Test-score simulation, Chapter 70 rule from FY2019 (pooled beta, 100% pass-through, plateau)\n")
 say("See the logged run under output/ecs/sim/runs/*_ma_from2019 (statewide FY2025 +0.164 grade levels, test-weighted).")
 open(os.path.join(R.OUTROOT if not R.PUBLIC else os.path.dirname(R.OUTROOT), "..", "ma_chapter70_results.md") if False else os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "ma_chapter70_results.md"), "w", encoding="utf-8").write("\n".join(lines) + "\n")

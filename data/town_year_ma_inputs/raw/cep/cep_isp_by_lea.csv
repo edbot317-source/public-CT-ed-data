@@ -1,0 +1,477 @@
+school_year,fiscal_year,lea_id,lea_name,isp
+2023-24,2024,00200,Ansonia School District,0.5792
+2023-24,2024,00300,Ashford School District,0.2992
+2023-24,2024,00400,Avon School District,0.1081
+2023-24,2024,00700,Berlin School District,0.2433
+2023-24,2024,00800,Bethany School District,0.145
+2023-24,2024,00900,Bethel School District,0.23129999999999998
+2023-24,2024,01100,Bloomfield School District,0.5335
+2023-24,2024,01200,Bolton School District,0.2024
+2023-24,2024,01400,Branford School District,0.2561
+2023-24,2024,01500,Bridgeport School District,0.5724
+2023-24,2024,01700,Bristol School District,0.4866
+2023-24,2024,01800,Brookfield School District,0.21359999999999998
+2023-24,2024,02200,Canterbury School District,0.322
+2023-24,2024,02300,Canton School District,0.1643
+2023-24,2024,02400,Chaplin School District,0.4022
+2023-24,2024,02500,Cheshire School District,0.12140000000000001
+2023-24,2024,02600,Chester School District,0.2818
+2023-24,2024,02700,Clinton School District,0.2515
+2023-24,2024,02800,Colchester School District,0.2009
+2023-24,2024,03200,Coventry School District,0.198
+2023-24,2024,03300,Cromwell School District,0.23
+2023-24,2024,03400,Danbury School District,0.4396
+2023-24,2024,03600,Deep River School District,0.3469
+2023-24,2024,03700,Derby School District,0.5845
+2023-24,2024,04100,East Haddam School District,0.2187
+2023-24,2024,04200,East Hampton School District,0.16190000000000002
+2023-24,2024,04300,East Hartford School District,0.5704
+2023-24,2024,04400,East Haven School District,0.4929
+2023-24,2024,04500,East Lyme School District,0.1805
+2023-24,2024,04700,East Windsor School District,0.5379
+2023-24,2024,04800,Ellington School District,0.1594
+2023-24,2024,04900,Enfield School District,0.3679
+2023-24,2024,04903,St. Bernard School-Enfield,0.1932
+2023-24,2024,05000,Essex School District,0.2376
+2023-24,2024,05100,Fairfield School District,0.1242
+2023-24,2024,05200,Farmington School District,0.14679999999999999
+2023-24,2024,05400,Glastonbury School District,0.1432
+2023-24,2024,05600,Granby School District,0.1307
+2023-24,2024,05700,Greenwich School District,0.13699999999999998
+2023-24,2024,05800,Griswold School District,0.3845
+2023-24,2024,05900,Groton School District,0.3824
+2023-24,2024,06000,Guilford School District,0.1246
+2023-24,2024,06200,Hamden School District,0.3857
+2023-24,2024,06400,Hartford School District,0.6536
+2023-24,2024,06500,Hartland School District,0.1743
+2023-24,2024,06700,Hebron Public Schools,0.1567
+2023-24,2024,06800,Kent School District,0.2359
+2023-24,2024,06900,Killingly School District,0.4285
+2023-24,2024,06901,St. James School- Danielson,0.0925
+2023-24,2024,07100,Lebanon School District,0.223
+2023-24,2024,07200,Ledyard School District,0.1188
+2023-24,2024,07300,Lisbon School District,0.26940000000000003
+2023-24,2024,07700,Manchester School District,0.4611
+2023-24,2024,07800,Mansfield School District,0.1948
+2023-24,2024,07900,Marlborough School District,0.1383
+2023-24,2024,08000,Meriden School District,0.5957
+2023-24,2024,08300,Middletown School District,0.5597
+2023-24,2024,08400,Milford School District,0.2457
+2023-24,2024,08500,Monroe School District,0.1286
+2023-24,2024,08600,Montville School District,0.33880000000000005
+2023-24,2024,08800,Naugatuck School District,0.4899
+2023-24,2024,08900,New Britain School District,0.687
+2023-24,2024,09100,New Fairfield School District,0.1309
+2023-24,2024,09200,New Hartford School District,0.1816
+2023-24,2024,09300,New Haven School District,0.7188
+2023-24,2024,09316,Yeshiva Gedolah Rabbinical Institute of New England,0.5288
+2023-24,2024,09400,Newington School District,0.2614
+2023-24,2024,09500,New London School District,0.7231000000000001
+2023-24,2024,09600,New Milford School District,0.2888
+2023-24,2024,09700,Newtown School District,0.09140000000000001
+2023-24,2024,09900,North Branford School District,0.1943
+2023-24,2024,10000,North Canaan School District,0.3042
+2023-24,2024,10100,North Haven School District,0.2183
+2023-24,2024,10200,North Stonington School District,0.1943
+2023-24,2024,10300,Norwalk School District,0.41369999999999996
+2023-24,2024,10400,Norwich School District,0.6474
+2023-24,2024,10401,Sacred Heart School-Taftville,0.2586
+2023-24,2024,10600,Old Saybrook School District,0.2255
+2023-24,2024,10700,Orange School District,0.09820000000000001
+2023-24,2024,10800,Oxford School District,0.14429999999999998
+2023-24,2024,10900,Plainfield School District,0.4549
+2023-24,2024,11000,Plainville School District,0.3204
+2023-24,2024,11100,Plymouth School District,0.36869999999999997
+2023-24,2024,11300,Portland School District,0.2397
+2023-24,2024,11400,Preston School District,0.3356
+2023-24,2024,11600,Putnam School District,0.49829999999999997
+2023-24,2024,11800,Ridgefield School District,0.0545
+2023-24,2024,11900,Rocky Hill School District,0.2163
+2023-24,2024,12100,Salem School District,0.217
+2023-24,2024,12200,Salisbury School District,0.1684
+2023-24,2024,12400,Seymour School District,0.35969999999999996
+2023-24,2024,12500,Sharon School District,0.33
+2023-24,2024,12600,Shelton School District,0.2581
+2023-24,2024,12800,Simsbury School District,0.13
+2023-24,2024,13100,Southington School District,0.19820000000000002
+2023-24,2024,13200,South Windsor School District,0.1223
+2023-24,2024,13300,Sprague School District,0.6073
+2023-24,2024,13400,Stafford School District,0.3539
+2023-24,2024,13500,Stamford School District,0.4075
+2023-24,2024,13700,Stonington School District,0.2829
+2023-24,2024,13800,Stratford School District,0.4018
+2023-24,2024,13900,Suffield School District,0.1074
+2023-24,2024,14000,Thomaston School District,0.1531
+2023-24,2024,14100,Thompson School District,0.3444
+2023-24,2024,14200,Tolland School District,0.11359999999999999
+2023-24,2024,14300,Torrington School District,0.5852
+2023-24,2024,14400,Trumbull School District,0.192
+2023-24,2024,14600,Vernon School District,0.4497
+2023-24,2024,14700,Voluntown School District,0.0873
+2023-24,2024,14800,Wallingford School District,0.24489999999999998
+2023-24,2024,15100,Waterbury School District,0.6602
+2023-24,2024,15118,Congregation K'Tana of Waterbury,0.3759
+2023-24,2024,15200,Waterford School District,0.1056
+2023-24,2024,15300,Watertown School District,0.1288
+2023-24,2024,15400,Westbrook School District,0.3036
+2023-24,2024,15500,West Hartford School District,0.2043
+2023-24,2024,15600,West Haven School District,0.5652
+2023-24,2024,15900,Wethersfield School District,0.289
+2023-24,2024,16000,Willington School District,0.38439999999999996
+2023-24,2024,16200,Winchester School District,0.47950000000000004
+2023-24,2024,16300,Windham School District,0.6922
+2023-24,2024,16400,Windsor School District,0.33390000000000003
+2023-24,2024,16500,Windsor Locks School District,0.3982
+2023-24,2024,16600,Wolcott School District,0.122
+2023-24,2024,16700,Woodbridge School District,0.1103
+2023-24,2024,16900,Woodstock School District,0.2072
+2023-24,2024,20100,Regional School District 01,0.34759999999999996
+2023-24,2024,20400,Regional School District 04,0.249
+2023-24,2024,20500,Regional School District 05,0.1382
+2023-24,2024,20700,Regional School District 07,0.1611
+2023-24,2024,20800,Regional School District 08,0.1542
+2023-24,2024,20900,Regional School District 09,0.0993
+2023-24,2024,21000,Regional School District 10,0.1346
+2023-24,2024,21300,Regional School District 13,0.1309
+2023-24,2024,21400,Regional School District 14,0.235
+2023-24,2024,21500,Regional School District 15,0.1124
+2023-24,2024,21600,Regional School District 16,0.2198
+2023-24,2024,21700,Regional School District 17,0.1231
+2023-24,2024,21800,Regional School District 18,0.1429
+2023-24,2024,24100,Capitol Region Education Council (CREC),0.5152
+2023-24,2024,24200,EdAdvance,0.19190000000000002
+2023-24,2024,24400,Area Cooperative Educational Services (ACES),0.5846
+2023-24,2024,24500,LEARN,0.4982
+2023-24,2024,25300,Eastern Connecticut Regional Educational Service Center,0.2887
+2023-24,2024,26400,Integrated Day Charter School District,0.43579999999999997
+2023-24,2024,26500,Interdistrict School for Arts and Communication District,0.637
+2023-24,2024,26800,Common Ground High School District,0.76
+2023-24,2024,26900,The Bridge Academy District,0.6984999999999999
+2023-24,2024,27900,Amistad Academy District,0.8005
+2023-24,2024,28000,New Beginnings Inc Family Academy District,0.9842
+2023-24,2024,28300,Park City Prep Charter School District,0.6107
+2023-24,2024,28500,Achievement First Bridgeport Academy District,0.7748999999999999
+2023-24,2024,28600,Highville Charter School District,0.7143
+2023-24,2024,28900,Elm City College Preparatory School District,0.8062999999999999
+2023-24,2024,29000,Brass City Charter School District,0.5806
+2023-24,2024,29400,Great Oaks Charter School District,0.8373999999999999
+2023-24,2024,29600,Stamford Charter School,0.4226
+2023-24,2024,29700,Capital Preparatory Harbor School District,0.6191
+2023-24,2024,30101,Connecticut Technical Education & Career System (CTECS),0.45990000000000003
+2023-24,2024,90100,Norwich Free Academy,0.4233
+2023-24,2024,90200,The Gilbert School,0.419
+2023-24,2024,98601,Klingberg Family Center,0.5417000000000001
+2024-25,2025,00200,Ansonia School District,0.6086
+2024-25,2025,00300,Ashford School District,0.3204
+2024-25,2025,00400,Avon School District,0.11019999999999999
+2024-25,2025,00700,Berlin School District,0.2134
+2024-25,2025,00800,Bethany School District,0.1313
+2024-25,2025,00900,Bethel School District,0.2534
+2024-25,2025,01100,Bloomfield School District,0.5771999999999999
+2024-25,2025,01200,Bolton School District,0.2214
+2024-25,2025,01400,Branford School District,0.2853
+2024-25,2025,01500,Bridgeport School District,0.667
+2024-25,2025,01700,Bristol School District,0.5371
+2024-25,2025,01800,Brookfield School District,0.1765
+2024-25,2025,02200,Canterbury School District,0.26489999999999997
+2024-25,2025,02300,Canton School District,0.15289999999999998
+2024-25,2025,02400,Chaplin School District,0.3857
+2024-25,2025,02500,Cheshire School District,0.1288
+2024-25,2025,02700,Clinton School District,0.2857
+2024-25,2025,02800,Colchester School District,0.212
+2024-25,2025,03200,Coventry School District,0.1925
+2024-25,2025,03300,Cromwell School District,0.2348
+2024-25,2025,03400,Danbury School District,0.46049999999999996
+2024-25,2025,03700,Derby School District,0.536
+2024-25,2025,04100,East Haddam School District,0.2422
+2024-25,2025,04200,East Hampton School District,0.1624
+2024-25,2025,04300,East Hartford School District,0.5726
+2024-25,2025,04400,East Haven School District,0.49689999999999995
+2024-25,2025,04500,East Lyme School District,0.19440000000000002
+2024-25,2025,04700,East Windsor School District,0.523
+2024-25,2025,04900,Enfield School District,0.3968
+2024-25,2025,04903,St. Bernard School-Enfield,0.1629
+2024-25,2025,05100,Fairfield School District,0.1249
+2024-25,2025,05200,Farmington School District,0.1421
+2024-25,2025,05400,Glastonbury School District,0.1535
+2024-25,2025,05600,Granby School District,0.1374
+2024-25,2025,05700,Greenwich School District,0.1365
+2024-25,2025,05800,Griswold School District,0.4064
+2024-25,2025,05900,Groton School District,0.36560000000000004
+2024-25,2025,06000,Guilford School District,0.1233
+2024-25,2025,06200,Hamden School District,0.428
+2024-25,2025,06400,Hartford School District,0.6615000000000001
+2024-25,2025,06700,Hebron Public Schools,0.1523
+2024-25,2025,06800,Kent School District,0.1487
+2024-25,2025,06900,Killingly School District,0.4733
+2024-25,2025,06901,St. James School- Danielson,0.1222
+2024-25,2025,07100,Lebanon School District,0.245
+2024-25,2025,07200,Ledyard School District,0.2491
+2024-25,2025,07300,Lisbon School District,0.2784
+2024-25,2025,07700,Manchester School District,0.4863
+2024-25,2025,07800,Mansfield School District,0.2324
+2024-25,2025,07900,Marlborough School District,0.133
+2024-25,2025,08000,Meriden School District,0.6139
+2024-25,2025,08300,Middletown School District,0.5581
+2024-25,2025,08400,Milford School District,0.2261
+2024-25,2025,08500,Monroe School District,0.1335
+2024-25,2025,08600,Montville School District,0.37270000000000003
+2024-25,2025,08800,Naugatuck School District,0.4813
+2024-25,2025,08900,New Britain School District,0.6788
+2024-25,2025,09100,New Fairfield School District,0.0541
+2024-25,2025,09300,New Haven School District,0.7354999999999999
+2024-25,2025,09316,Yeshiva Gedolah Rabbinical Institute of New England,0.2877
+2024-25,2025,09400,Newington School District,0.301
+2024-25,2025,09500,New London School District,0.7696
+2024-25,2025,09600,New Milford School District,0.2913
+2024-25,2025,09700,Newtown School District,0.1267
+2024-25,2025,09900,North Branford School District,0.1913
+2024-25,2025,10000,North Canaan School District,0.3414
+2024-25,2025,10100,North Haven School District,0.17550000000000002
+2024-25,2025,10200,North Stonington School District,0.1648
+2024-25,2025,10300,Norwalk School District,0.42469999999999997
+2024-25,2025,10400,Norwich School District,0.6219
+2024-25,2025,10600,Old Saybrook School District,0.204
+2024-25,2025,10700,Orange School District,0.11779999999999999
+2024-25,2025,10800,Oxford School District,0.1594
+2024-25,2025,10900,Plainfield School District,0.46399999999999997
+2024-25,2025,11000,Plainville School District,0.3226
+2024-25,2025,11100,Plymouth School District,0.37479999999999997
+2024-25,2025,11300,Portland School District,0.2645
+2024-25,2025,11400,Preston School District,0.2958
+2024-25,2025,11600,Putnam School District,0.5234000000000001
+2024-25,2025,11800,Ridgefield School District,0.053200000000000004
+2024-25,2025,11900,Rocky Hill School District,0.17059999999999997
+2024-25,2025,12100,Salem School District,0.2077
+2024-25,2025,12200,Salisbury School District,0.1493
+2024-25,2025,12400,Seymour School District,0.3356
+2024-25,2025,12600,Shelton School District,0.2661
+2024-25,2025,12800,Simsbury School District,0.13970000000000002
+2024-25,2025,13100,Southington School District,0.2004
+2024-25,2025,13200,South Windsor School District,0.1273
+2024-25,2025,13300,Sprague School District,0.5871999999999999
+2024-25,2025,13400,Stafford School District,0.3579
+2024-25,2025,13500,Stamford School District,0.41009999999999996
+2024-25,2025,13700,Stonington School District,0.2229
+2024-25,2025,13800,Stratford School District,0.43229999999999996
+2024-25,2025,13900,Suffield School District,0.1167
+2024-25,2025,14000,Thomaston School District,0.3311
+2024-25,2025,14100,Thompson School District,0.33759999999999996
+2024-25,2025,14200,Tolland School District,0.1127
+2024-25,2025,14300,Torrington School District,0.5694
+2024-25,2025,14400,Trumbull School District,0.1924
+2024-25,2025,14600,Vernon School District,0.4594
+2024-25,2025,14700,Voluntown School District,0.1434
+2024-25,2025,14800,Wallingford School District,0.266
+2024-25,2025,15100,Waterbury School District,0.6999
+2024-25,2025,15200,Waterford School District,0.2541
+2024-25,2025,15300,Watertown School District,0.2977
+2024-25,2025,15400,Westbrook School District,0.24539999999999998
+2024-25,2025,15500,West Hartford School District,0.2168
+2024-25,2025,15600,West Haven School District,0.521
+2024-25,2025,15900,Wethersfield School District,0.2677
+2024-25,2025,16000,Willington School District,0.3532
+2024-25,2025,16200,Winchester School District,0.4732
+2024-25,2025,16300,Windham School District,0.7025
+2024-25,2025,16400,Windsor School District,0.385
+2024-25,2025,16500,Windsor Locks School District,0.4286
+2024-25,2025,16600,Wolcott School District,0.2579
+2024-25,2025,16700,Woodbridge School District,0.1061
+2024-25,2025,16900,Woodstock School District,0.2546
+2024-25,2025,20100,Regional School District 01,0.2354
+2024-25,2025,20500,Regional School District 05,0.1233
+2024-25,2025,20700,Regional School District 07,0.18030000000000002
+2024-25,2025,20800,Regional School District 08,0.1389
+2024-25,2025,20900,Regional School District 09,0.10529999999999999
+2024-25,2025,21000,Regional School District 10,0.1226
+2024-25,2025,21300,Regional School District 13,0.1386
+2024-25,2025,21400,Regional School District 14,0.1747
+2024-25,2025,21500,Regional School District 15,0.1174
+2024-25,2025,21600,Regional School District 16,0.183
+2024-25,2025,21700,Regional School District 17,0.1247
+2024-25,2025,21800,Regional School District 18,0.141
+2024-25,2025,24100,Capitol Region Education Council (CREC),0.5479999999999999
+2024-25,2025,24200,EdAdvance,0.20370000000000002
+2024-25,2025,24400,Area Cooperative Educational Services (ACES),0.6233
+2024-25,2025,24500,LEARN,0.5065
+2024-25,2025,25300,Eastern Connecticut Regional Educational Service Center,0.3654
+2024-25,2025,26400,Integrated Day Charter School District,0.4568
+2024-25,2025,26500,Interdistrict School for Arts and Communication District,0.6
+2024-25,2025,26800,Common Ground High School District,0.7441
+2024-25,2025,26900,The Bridge Academy District,0.6015
+2024-25,2025,27900,Amistad Academy District,0.7936
+2024-25,2025,28000,New Beginnings Inc Family Academy District,0.897
+2024-25,2025,28300,Park City Prep Charter School District,0.5985
+2024-25,2025,28500,Achievement First Bridgeport Academy District,0.7034999999999999
+2024-25,2025,28600,Highville Charter School District,0.6987000000000001
+2024-25,2025,28900,Elm City College Preparatory School District,0.7833
+2024-25,2025,29400,Great Oaks Charter School District,0.6866
+2024-25,2025,29600,Stamford Charter School for Excellence District,0.41619999999999996
+2024-25,2025,29700,Capital Preparatory Harbor School District,0.6403
+2024-25,2025,30101,Connecticut Technical Education & Career System (CTECS),0.4631
+2024-25,2025,90100,Norwich Free Academy,0.45039999999999997
+2024-25,2025,90200,The Gilbert School,0.46140000000000003
+2024-25,2025,98601,Klingberg Family Center,0.5474
+2025-26,2026,00200,Ansonia School District,0.6278
+2025-26,2026,00300,Ashford School District,0.2904
+2025-26,2026,00400,Avon School District,0.1253
+2025-26,2026,00700,Berlin School District,0.22820000000000001
+2025-26,2026,00800,Bethany School District,0.1063
+2025-26,2026,00900,Bethel School District,0.25980000000000003
+2025-26,2026,01100,Bloomfield School District,0.5364
+2025-26,2026,01200,Bolton School District,0.2296
+2025-26,2026,01300,Bozrah School District,0.16670000000000001
+2025-26,2026,01400,Branford School District,0.2905
+2025-26,2026,01500,Bridgeport School District,0.5982
+2025-26,2026,01700,Bristol School District,0.5114
+2025-26,2026,01800,Brookfield School District,0.18539999999999998
+2025-26,2026,02200,Canterbury School District,0.24760000000000001
+2025-26,2026,02300,Canton School District,0.1771
+2025-26,2026,02400,Chaplin School District,0.44079999999999997
+2025-26,2026,02500,Cheshire School District,0.106
+2025-26,2026,02600,Chester School District,0.2165
+2025-26,2026,02700,Clinton School District,0.2673
+2025-26,2026,02800,Colchester School District,0.19879999999999998
+2025-26,2026,03200,Coventry School District,0.1918
+2025-26,2026,03300,Cromwell School District,0.2349
+2025-26,2026,03400,Danbury School District,0.4412
+2025-26,2026,03600,Deep River School District,0.1968
+2025-26,2026,03700,Derby School District,0.5114
+2025-26,2026,04100,East Haddam School District,0.2291
+2025-26,2026,04200,East Hampton School District,0.17489999999999997
+2025-26,2026,04300,East Hartford School District,0.5732
+2025-26,2026,04400,East Haven School District,0.48960000000000004
+2025-26,2026,04500,East Lyme School District,0.2053
+2025-26,2026,04700,East Windsor School District,0.44420000000000004
+2025-26,2026,04800,Ellington School District,0.1791
+2025-26,2026,04900,Enfield School District,0.40630000000000005
+2025-26,2026,04903,St. Bernard School- Enfield,0.1329
+2025-26,2026,05000,Essex School District,0.17859999999999998
+2025-26,2026,05100,Fairfield School District,0.1359
+2025-26,2026,05200,Farmington School District,0.1562
+2025-26,2026,05300,Franklin School District,0.1967
+2025-26,2026,05400,Glastonbury School District,0.1549
+2025-26,2026,05600,Granby School District,0.1361
+2025-26,2026,05700,Greenwich School District,0.13140000000000002
+2025-26,2026,05800,Griswold School District,0.4238
+2025-26,2026,05900,Groton School District,0.34049999999999997
+2025-26,2026,06000,Guilford School District,0.12210000000000001
+2025-26,2026,06200,Hamden School District,0.4385
+2025-26,2026,06400,Hartford School District,0.644
+2025-26,2026,06700,Hebron Public Schools,0.13970000000000002
+2025-26,2026,06800,Kent School District,0.2
+2025-26,2026,06900,Killingly School District,0.4475
+2025-26,2026,06901,St. James School- Danielson,0.1592
+2025-26,2026,07100,Lebanon School District,0.2382
+2025-26,2026,07200,Ledyard School District,0.21489999999999998
+2025-26,2026,07300,Lisbon School District,0.336
+2025-26,2026,07700,Manchester School District,0.4996
+2025-26,2026,07800,Mansfield School District,0.18760000000000002
+2025-26,2026,07900,Marlborough School District,0.1457
+2025-26,2026,08000,Meriden School District,0.5961
+2025-26,2026,08300,Middletown School District,0.4879
+2025-26,2026,08400,Milford School District,0.17620000000000002
+2025-26,2026,08500,Monroe School District,0.12359999999999999
+2025-26,2026,08600,Montville School District,0.35359999999999997
+2025-26,2026,08800,Naugatuck School District,0.4671
+2025-26,2026,08900,New Britain School District,0.7056999999999999
+2025-26,2026,09300,New Haven School District,0.7291
+2025-26,2026,09316,Yeshiva Gedolah Rabbinical Institute of New England,0.46490000000000004
+2025-26,2026,09400,Newington School District,0.2862
+2025-26,2026,09500,New London School District,0.6990000000000001
+2025-26,2026,09600,New Milford School District,0.29059999999999997
+2025-26,2026,09700,Newtown School District,0.15869999999999998
+2025-26,2026,09900,North Branford School District,0.19649999999999998
+2025-26,2026,10000,North Canaan School District,0.3496
+2025-26,2026,10100,North Haven School District,0.1765
+2025-26,2026,10200,North Stonington School District,0.16079999999999997
+2025-26,2026,10300,Norwalk School District,0.4213
+2025-26,2026,10400,Norwich School District,0.6668999999999999
+2025-26,2026,10600,Old Saybrook School District,0.19039999999999999
+2025-26,2026,10700,Orange School District,0.1245
+2025-26,2026,10701,Southern Connecticut Hebrew Academy,0.3933
+2025-26,2026,10800,Oxford School District,0.1512
+2025-26,2026,10900,Plainfield School District,0.4567
+2025-26,2026,11000,Plainville School District,0.3383
+2025-26,2026,11100,Plymouth School District,0.3728
+2025-26,2026,11300,Portland School District,0.3322
+2025-26,2026,11400,Preston School District,0.3014
+2025-26,2026,11600,Putnam School District,0.4685
+2025-26,2026,11800,Ridgefield School District,0.055
+2025-26,2026,11900,Rocky Hill School District,0.2291
+2025-26,2026,12100,Salem School District,0.19440000000000002
+2025-26,2026,12200,Salisbury School District,0.1745
+2025-26,2026,12400,Seymour School District,0.3381
+2025-26,2026,12500,Sharon School District,0.2755
+2025-26,2026,12600,Shelton School District,0.2609
+2025-26,2026,12800,Simsbury School District,0.1288
+2025-26,2026,13100,Southington School District,0.2113
+2025-26,2026,13200,South Windsor School District,0.131
+2025-26,2026,13300,Sprague School District,0.5720000000000001
+2025-26,2026,13400,Stafford School District,0.3281
+2025-26,2026,13500,Stamford School District,0.4152
+2025-26,2026,13700,Stonington School District,0.2084
+2025-26,2026,13800,Stratford School District,0.4129
+2025-26,2026,13900,Suffield School District,0.0596
+2025-26,2026,14000,Thomaston School District,0.2793
+2025-26,2026,14100,Thompson School District,0.3284
+2025-26,2026,14200,Tolland School District,0.1367
+2025-26,2026,14300,Torrington School District,0.5378000000000001
+2025-26,2026,14400,Trumbull School District,0.2107
+2025-26,2026,14600,Vernon School District,0.46909999999999996
+2025-26,2026,14700,Voluntown School District,0.2639
+2025-26,2026,14800,Wallingford School District,0.2536
+2025-26,2026,15100,Waterbury School District,0.6711
+2025-26,2026,15114,Children's Community School,0.75
+2025-26,2026,15118,Congregation K'Tana of Waterbury,0.4214
+2025-26,2026,15200,Waterford School District,0.2438
+2025-26,2026,15300,Watertown School District,0.3097
+2025-26,2026,15400,Westbrook School District,0.22769999999999999
+2025-26,2026,15500,West Hartford School District,0.2159
+2025-26,2026,15600,West Haven School District,0.5107
+2025-26,2026,15900,Wethersfield School District,0.2297
+2025-26,2026,16000,Willington School District,0.2903
+2025-26,2026,16200,Winchester School District,0.5033
+2025-26,2026,16300,Windham School District,0.6866
+2025-26,2026,16400,Windsor School District,0.30329999999999996
+2025-26,2026,16500,Windsor Locks School District,0.4512
+2025-26,2026,16600,Wolcott School District,0.25329999999999997
+2025-26,2026,16700,Woodbridge School District,0.1284
+2025-26,2026,16900,Woodstock School District,0.1953
+2025-26,2026,20100,Regional School District 01,0.2266
+2025-26,2026,20400,Regional School District 04,0.1868
+2025-26,2026,20500,Regional School District 05,0.1322
+2025-26,2026,20700,Regional School District 07,0.184
+2025-26,2026,20800,Regional School District 08,0.1435
+2025-26,2026,20900,Regional School District 09,0.0795
+2025-26,2026,21000,Regional School District 10,0.1618
+2025-26,2026,21300,Regional School District 13,0.1389
+2025-26,2026,21400,Regional School District 14,0.1744
+2025-26,2026,21500,Regional School District 15,0.1201
+2025-26,2026,21600,Regional School District 16,0.1821
+2025-26,2026,21700,Regional School District 17,0.1318
+2025-26,2026,21800,Regional School District 18,0.1655
+2025-26,2026,23100,Goodwin University Educational Services (GUES),0.5239
+2025-26,2026,24100,Capitol Region Education Council (CREC),0.5559000000000001
+2025-26,2026,24200,EdAdvance,0.2041
+2025-26,2026,24400,Area Cooperative Educational Services (ACES),0.5903
+2025-26,2026,24500,LEARN,0.45990000000000003
+2025-26,2026,25300,Eastern Connecticut Regional Educational Service Center,0.32130000000000003
+2025-26,2026,26400,Integrated Day Charter School District,0.4215
+2025-26,2026,26500,Interdistrict School for Arts and Communication District,0.5719
+2025-26,2026,26800,Common Ground High School District,0.6117
+2025-26,2026,26900,The Bridge Academy District,0.6418
+2025-26,2026,27900,Amistad Academy District,0.7339
+2025-26,2026,28000,New Beginnings Inc Family Academy District,0.8085
+2025-26,2026,28300,Park City Prep Charter School District,0.6072
+2025-26,2026,28500,Achievement First Bridgeport Academy District,0.6859999999999999
+2025-26,2026,28600,Highville Charter School District,0.6431999999999999
+2025-26,2026,28900,Elm City College Preparatory School District,0.7368000000000001
+2025-26,2026,29000,Brass City Charter School District,0.6378
+2025-26,2026,29400,Great Oaks Charter School District,0.8054000000000001
+2025-26,2026,29600,Stamford Charter School for Excellence District,0.4143
+2025-26,2026,29700,Capital Preparatory Harbor School District,0.6445000000000001
+2025-26,2026,30101,Connecticut Technical Education & Career System (CTECS),0.44170000000000004
+2025-26,2026,90100,Norwich Free Academy,0.47159999999999996
+2025-26,2026,90200,The Gilbert School,0.44439999999999996
+2025-26,2026,98601,Klingberg Family Center,0.5172

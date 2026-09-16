@@ -1267,6 +1267,36 @@
             "description": "Where the grade mix comes from: local (the town's own district), region (its share of a regional district), both, or statewide shares when neither exists."
           },
           {
+            "name": "free_share_of_frpl",
+            "type": "number",
+            "description": "Free-lunch-eligible students as a share of all FRPL-eligible students in the town's district(s), EdSight enrollment (latest year with data up to t)."
+          },
+          {
+            "name": "free_share_year",
+            "type": "integer",
+            "description": "Fiscal year of the EdSight enrollment used for free_share_of_frpl."
+          },
+          {
+            "name": "free_lunch_count",
+            "type": "number",
+            "description": "Low-income basis 'free lunch only': frpl_count x free_share_of_frpl (130% of poverty or direct certification)."
+          },
+          {
+            "name": "direct_cert_share",
+            "type": "number",
+            "description": "Low-income basis 'direct certification': CSDE Community Eligibility Provision identified-student percentage of the town's district(s) (SNAP, Temporary Family Assistance, Medicaid, foster care, homeless, migrant matches), weighted by where resident students sit; nearest CEP year."
+          },
+          {
+            "name": "direct_cert_year",
+            "type": "integer",
+            "description": "Fiscal year of the CEP notification used (2024-2026)."
+          },
+          {
+            "name": "direct_cert_count",
+            "type": "number",
+            "description": "resident_students x direct_cert_share; blank for towns absent from the CEP list (the explorer falls back to the free-lunch count)."
+          },
+          {
             "name": "share_pk",
             "type": "number",
             "description": "Share of resident students in pre-kindergarten."

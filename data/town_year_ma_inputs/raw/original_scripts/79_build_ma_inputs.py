@@ -145,6 +145,47 @@ def main():
     local_lea = seda[seda.town_match == "local district"].drop_duplicates("town_code").set_index("town_code")["leaid"]
     # K-12 regional membership by fiscal year (SEDA mapping is by spring test year = fiscal year)
     k12 = seda[seda.town_match == "regional district"][["fiscal_year", "town_code", "district", "leaid"]].drop_duplicates()
+    # free-lunch share of FRPL by district (EdSight enrollment): free eligibility is 130% of poverty or direct
+    # certification, the narrower identification closest to Massachusetts' administrative matches
+    enr = pd.read_csv(os.path.join(CLEAN, "district_year_enrollment.csv"))
+    codes = enr["District Code"].astype(str).str.zfill(7)
+    enr["dc"] = pd.to_numeric(codes.str[:3], errors="coerce")
+    enr = enr[enr.dc.notna() & codes.str.endswith(("0011", "0012"))].copy(); enr["dc"] = enr.dc.astype(int)
+    FREE = {(int(r.dc), int(r.fiscal_year)): (float(r.n_free_lunch) if pd.notna(r.n_free_lunch) else np.nan, float(r.n_frpl) if pd.notna(r.n_frpl) else np.nan) for r in enr.itertuples()}
+    REG_CODE = {f"Regional School District {n:02d}": 200 + n for n in range(1, 21)}
+    def free_share(tc, fy, regions):
+        """free / (free + reduced) for the town's own district plus its regional districts, latest year <= fy with data."""
+        for y in range(min(fy, 2026), 2017, -1):
+            f = n = 0.0; ok = False
+            for code in [tc] + [REG_CODE[d] for d in regions if d in REG_CODE]:
+                v = FREE.get((code, y))
+                if v and pd.notna(v[0]) and pd.notna(v[1]) and v[1] > 0:
+                    f += v[0]; n += v[1]; ok = True
+            if ok:
+                return f / n, y
+        return np.nan, np.nan
+    # direct-certification share (CEP identified student percentage) by LEA and fiscal year (78_parse_cep_isp.py)
+    cep_path = os.path.join(MA, "cep_isp_by_lea.csv")
+    cep = pd.read_csv(cep_path, dtype={"lea_id": str}) if os.path.exists(cep_path) else pd.DataFrame(columns=["fiscal_year", "lea_id", "isp"])
+    ISP = {(int(r.lea_id[:3]), int(r.fiscal_year)): float(r.isp) for r in cep.itertuples()}
+    isp_years = sorted({y for _, y in ISP}) or [2025]
+
+    def dc_share(tc, fy, regions, w_local, w_region):
+        """Town ISP = the local district's ISP and each regional district's ISP weighted by where the town's
+        resident students sit (grade-mix weights); nearest CEP year (2024-2026) for other years."""
+        y = min(isp_years, key=lambda v: (abs(v - fy), -v))
+        parts = []
+        v = ISP.get((tc, y))
+        if v is not None and w_local > 0:
+            parts.append((v, w_local))
+        for d in regions:
+            code = REG_CODE.get(d); v = ISP.get((code, y)) if code else None
+            if v is not None and w_region.get(d, 0) > 0:
+                parts.append((v, w_region[d]))
+        if not parts:
+            return np.nan, y
+        w = sum(x[1] for x in parts)
+        return sum(x[0] * x[1] for x in parts) / w, y
     # wages
     q = pd.read_csv(os.path.join(MA, "qcew_ct_county_wages.csv"))
     state_pay = q[q.area_fips == 9000].set_index("year").avg_annual_pay
@@ -189,14 +230,14 @@ def main():
                 region_of_town.setdefault(tc, []).append(d)
         for tc in sorted(p.index):
             counts = {b: 0.0 for b in BANDS}
-            src = []
+            src = []; w_local = 0.0; w_region = {}
             lea = local_lea.get(tc)
             if lea is None:      # town not in the SEDA map (e.g. Litchfield): match the CCD name "<Town> School District"
                 lea = name_lea.get(f"{names[tc].lower()} school district")
             if lea is not None and lea in g.index:
                 for b, grades in BANDS.items():
                     counts[b] += float(sum(g.loc[lea].get(x, 0) for x in grades))
-                src.append("local")
+                w_local = sum(counts.values()); src.append("local")
             for d in region_of_town.get(tc, []):
                 rlea = name_lea.get(str(d).strip().lower())
                 if rlea is None or rlea not in g.index:
@@ -204,9 +245,10 @@ def main():
                 sent = {m: float(p.rsd_students.get(m, 0) or 0) for m in members[d]}
                 tot = sum(sent.values())
                 share = (sent.get(tc, 0) / tot) if tot > 0 else 1.0 / len(members[d])
+                before = sum(counts.values())
                 for b, grades in BANDS.items():
                     counts[b] += share * float(sum(g.loc[rlea].get(x, 0) for x in grades))
-                src.append("region")
+                w_region[d] = sum(counts.values()) - before; src.append("region")
             total = sum(counts.values())
             if total <= 0:
                 # no district data (a town tuitioning all pupils out): statewide shares
@@ -220,7 +262,13 @@ def main():
             gl = max(gl_years) if gl_years else fy - 4
             eqv = float(E.loc[tc, gl]) if (tc in E.index and gl in E.columns) else np.nan
             vint = int(p.mhi_year.get(tc)) if pd.notna(p.mhi_year.get(tc)) else fy - 4
+            fs, fs_year = free_share(tc, fy, region_of_town.get(tc, []))
+            ds, ds_year = dc_share(tc, fy, region_of_town.get(tc, []), w_local if (w_local > 0 or w_region) else 1.0, w_region)
             rows.append({"town_code": tc, "town": names[tc], "fiscal_year": fy, "ccd_year": ccd_year, "grade_source": "+".join(src),
+                         "free_share_of_frpl": fs, "free_share_year": fs_year,
+                         "free_lunch_count": (float(p.frpl_count.get(tc)) * fs) if pd.notna(fs) else np.nan,
+                         "direct_cert_share": ds, "direct_cert_year": ds_year,
+                         "direct_cert_count": (float(p.resident_students.get(tc)) * ds) if pd.notna(ds) else np.nan,
                          **shares, "county": cty, "wage_year": wy, "county_wage_ratio": wr,
                          "wage_adjustment_factor": max(1.0, 1 + (wr - 1) / 3) if pd.notna(wr) else 1.0,
                          "eqv_grand_list_year": gl, "equalized_valuation": eqv,
@@ -228,6 +276,8 @@ def main():
                          "resident_students": p.resident_students.get(tc), "frpl_count": p.frpl_count.get(tc), "ell_count": p.ell_count.get(tc),
                          "alliance_or_psd": int((p.alliance_flag.get(tc, 0) == 1) or (p.psd_flag.get(tc, 0) == 1))})
     out = pd.DataFrame(rows)
+    for c in ("free_share_year", "direct_cert_year", "eqv_grand_list_year", "income_vintage", "wage_year", "ccd_year"):
+        out[c] = pd.to_numeric(out[c], errors="coerce").round().astype("Int64")
     out.to_csv(os.path.join(CLEAN, "town_year_ma_inputs.csv"), index=False)
     print(f"[write] town_year_ma_inputs.csv ({len(out)} rows); rates {len(RATES)} columns x {len(CATS)} categories; params {len(PARAMS)}")
     print("  grade sources:", out.grade_source.value_counts().to_dict())

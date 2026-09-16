@@ -64,9 +64,10 @@ def enacted_params(fy):
 INDEX_SERIES = {"cpi": CPI, "eci": {int(k): v for k, v in (D.get("eci") or {}).items()}}
 MA = D.get("ma") or {}
 MA_CACHE = {}
+MA_LI = ["frpl"]      # low-income basis for the Chapter 70 rule: frpl | free | dc (set by --li)
 
 
-def ma_precompute(fy, lam, min_aid, index_name="cpi"):
+def ma_precompute(fy, lam, min_aid, index_name="cpi", li_basis="frpl"):
     """Foundation budgets and steady-state target contributions for every town in `fy` (mirrors the page)."""
     R = {k: (v[0], v[1]) for k, v in MA["rates"].items()}
     idx = MA70.price_index(INDEX_SERIES.get(index_name) or CPI, fy, MA["rates_year"] - 1, MA["inflation_cap"])
@@ -76,7 +77,10 @@ def ma_precompute(fy, lam, min_aid, index_name="cpi"):
         if not m or m["eqv"] is None or m["inc"] is None:
             continue
         share = dict(zip(("pk", "k", "el", "ms", "hs"), m["sh"]))
-        B, comp = MA70.foundation_budget(y["res"], share, y["ell"], y["frpl"], m["waf"], R, idx,
+        li = y["frpl"]
+        if li_basis == "free" and m.get("lif") is not None: li = m["lif"]
+        if li_basis == "dc" and m.get("lid") is not None: li = m["lid"]
+        B, comp = MA70.foundation_budget(y["res"], share, y["ell"], li, m["waf"], R, idx,
                                           dict(MA70.DEFAULTS, sped_in=MA["sped_in"], sped_out=MA["sped_out"], pk_weight=MA["pk_weight"]))
         items.append((t["code"], B, m["eqv"], m["inc"], comp["foundation_enrollment"], comp["li_group"]))
     T, rp, ry, H = MA70.target_contributions([i[1] for i in items], [i[2] for i in items], [i[3] for i in items], lam, MA["cap"])
@@ -109,7 +113,7 @@ def scenario_params(fy, on, start, sliders, hh_mode="alliance", phase=1.0, index
     if "ma" in on:                           # Massachusetts Chapter 70 rule replaces the formula
         p["ma"] = True; p["fy"] = fy; p["ma_min"] = sliders.get("ma_min", MA.get("min_aid", 104))
         if fy not in MA_CACHE:
-            MA_CACHE[fy] = ma_precompute(fy, sliders.get("ma_lam", MA.get("lam", 0.59)), p["ma_min"], index)
+            MA_CACHE[fy] = ma_precompute(fy, sliders.get("ma_lam", MA.get("lam", 0.59)), p["ma_min"], index, MA_LI[0])
     p["hh"] = "none" if full else hh_mode
     p["full"] = full
     return p
@@ -181,8 +185,10 @@ def main():
     ap.add_argument("--index", choices=["cpi", "eci"], default="cpi", help="index for the inflation-adjusted foundation")
     ap.add_argument("--passthrough", type=float, default=1.0, help="share of the ECS change reaching school budgets in non-Alliance towns (Alliance/PSD always 1)")
     ap.add_argument("--linear", action="store_true", help="linear score growth: no plateau after four years of exposure")
+    ap.add_argument("--li", choices=["frpl", "free", "dc"], default="frpl", help="Chapter 70 low-income basis: FRPL (ECS), free-lunch only, or direct certification (CEP)")
     a = ap.parse_args()
     sliders = {kv.split("=")[0]: float(kv.split("=")[1]) for kv in a.set}
+    MA_LI[0] = a.li
     on = set() if a.scenario == "observed" else set(a.scenario.split("+"))
     label = a.scenario if not a.shock else "shockfile"
     if a.shock:
