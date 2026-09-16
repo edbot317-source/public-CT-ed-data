@@ -151,13 +151,16 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);font-si
         <button class="preset" data-preset="f13087" aria-pressed="false"><span class="dot"></span><span>Foundation of $13,087<small>The FY2027 supplemental-aid figure, applied every year.</small></span></button>
         <button class="preset" data-preset="fullhh" aria-pressed="false"><span class="dot"></span><span>Full formula, no phase-in, hold-harmless<small>Underfunded towns fully funded; no town below its prior grant. The state's FY2026 approach.</small></span></button>
         <button class="preset" data-preset="fullfund" aria-pressed="false"><span class="dot"></span><span>Full formula, no phase-in, no hold-harmless<small>Every town paid exactly its formula amount, including cuts.</small></span></button>
+        <button class="preset" data-preset="ma" aria-pressed="false"><span class="dot"></span><span>Massachusetts Chapter 70 rule<small>Foundation budget, wealth-based required contribution, aid fills the gap; replaces the ECS formula and the other presets.</small></span></button>
       </div>
-      <div class="slider"><label for="s-infidx">Index for the inflation-adjusted foundation</label><select id="s-infidx"><option value="cpi">CPI-U (consumer prices)</option><option value="eci">ECI, state and local government compensation</option></select><span class="obs">From 2013. The ECI tracks the cost of employing the same staff and has outpaced consumer prices since 2021.</span></div>
+      <div class="slider ma-only"><label for="s-malam">Chapter 70: statewide local share of foundation budgets</label><output id="o-malam" class="num"></output><input type="range" id="s-malam" min="0.30" max="0.80" step="0.01"><span class="obs">Massachusetts uses 59%; the state pays the rest. Lower it to shift cost to the state.</span></div>
+      <div class="slider ma-only"><label for="s-mamin">Chapter 70: minimum aid increase per pupil</label><output id="o-mamin" class="num"></output><input type="range" id="s-mamin" min="0" max="300" step="2"><span class="obs">$104 in Massachusetts' FY2025 budget ($30 statutory floor); paid to towns whose prior aid already covers the gap.</span></div>
+      <div class="slider"><label for="s-infidx">Index for the inflation-adjusted foundation and the Chapter 70 rates</label><select id="s-infidx"><option value="cpi">CPI-U (consumer prices)</option><option value="eci">ECI, state and local government compensation</option></select><span class="obs">From 2013. The ECI tracks the cost of employing the same staff and has outpaced consumer prices since 2021.</span></div>
       <button class="reset" id="reset" disabled>Back to enacted policy</button>
       <div class="slider" style="margin-top:4px"><label for="s-start">Changes take effect from</label><select id="s-start"></select><span class="obs">Years before this follow enacted policy exactly; the change then chains forward from that year's actual prior-year grant.</span></div>
     </div>
 
-    <div class="group">
+    <div class="group ct-only">
       <h3>Need students</h3>
       <div class="slider" id="s-foundation-wrap"><label for="s-foundation">Foundation per need student (nominal)</label><output id="o-foundation" class="num"></output><input type="range" id="s-foundation" min="8000" max="16000" step="25" data-key="foundation"><span class="obs">Enacted: $11,525 every year</span></div>
       <div class="slider"><label for="s-w_frpl">Low-income weight</label><output id="o-w_frpl" class="num"></output><input type="range" id="s-w_frpl" min="0" max="0.6" step="0.01" data-key="w_frpl"><span class="obs">Enacted: 30% of FRPL-eligible students</span></div>
@@ -166,7 +169,7 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);font-si
       <div class="slider"><label for="s-w_ell">English-learner weight</label><output id="o-w_ell" class="num"></output><input type="range" id="s-w_ell" min="0" max="0.5" step="0.01" data-key="w_ell"><span class="obs">Enacted: 25%</span></div>
     </div>
 
-    <div class="group">
+    <div class="group ct-only">
       <h3>Base aid ratio</h3>
       <div class="slider"><label for="s-thr_factor">Wealth threshold factor</label><output id="o-thr_factor" class="num"></output><input type="range" id="s-thr_factor" min="1" max="2" step="0.01" data-key="thr_factor"><span class="obs">Enacted: 1.35 × statewide median (ENGL per capita and MHI)</span></div>
       <label class="toggle"><input type="checkbox" id="t-ahi">Use average household income instead of median (ACS S1901)</label>
@@ -175,7 +178,7 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);font-si
       <div class="slider"><label for="s-min_bar_hh">Minimum aid ratio, Alliance / Priority districts</label><output id="o-min_bar_hh" class="num"></output><input type="range" id="s-min_bar_hh" min="0" max="0.3" step="0.005" data-key="min_bar_hh"><span class="obs">Enacted: 10%</span></div>
     </div>
 
-    <div class="group">
+    <div class="group ct-only">
       <h3>Phase-in</h3>
       <div class="slider"><label for="s-phase">Phase-in speed</label><output id="o-phase" class="num"></output><input type="range" id="s-phase" min="0" max="3" step="0.05" data-key="phase"><span class="obs">1.0× = the schedule as applied (4.1% of the gap in FY2019, 10.66% a year in FY2020–FY2022, 16.67% in FY2023, 20% in FY2024, 56.5% in FY2025, 100% from FY2026; overfunded towns lost 25% in FY2019 and 8.33% a year in FY2020–FY2021, nothing after); 3× is capped at the full gap</span></div>
       <div class="slider"><label for="s-hh">Hold-harmless (never below the prior year)</label><select id="s-hh"><option value="alliance">Alliance / Priority districts (enacted)</option><option value="none">No district</option><option value="all">Every town</option></select><span class="obs">Enacted: Alliance and Priority School Districts only; membership follows each year's list (33 towns through FY2022, 36 from FY2023).</span></div>
@@ -195,6 +198,7 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);font-si
       <div class="card-head"><h2>Statewide ECS, constant 2025 dollars</h2><span class="muted" id="state-note"></span></div>
       <div class="stats" id="state-stats"></div>
       <div id="state-chart"></div>
+      <p class="muted" id="ma-note" style="margin-top:6px" hidden></p>
     </section>
 
     <section class="panel card">
@@ -268,6 +272,7 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);font-si
           <li><b>Need weights before FY2022.</b> Through FY2021 the enacted formula used PA 17-2's need weights: concentrated poverty counted FRPL students above 75% of residents at 5%, and English learners at 15%; the 60% / 15% / 25% weights enacted by PA 21-2 (June Special Session §§384-386) apply from FY2022. A slider left at its default applies each year's enacted weight, so the enacted rebuild is exact; moving one of those three sliders imposes its value in every year from the start year, which is how to ask what the FY2022 weights would have done earlier.</li>
           <li><b>Full-formula presets.</b> "Full formula, no phase-in, hold-harmless" pays every underfunded town its formula amount from the start year and lets no town fall below its prior grant; it is the approach the state adopted for FY2026, applied earlier. "Full formula, no phase-in, no hold-harmless" pays every town exactly its formula amount, so towns above their formula amount lose money from the first year; it costs less in total and redistributes rather than adds, which is why it produces negative simulated effects in some low-need towns.</li>
           <li><b>Statutory basis.</b> Every year's phase-in and hold-harmless rule was checked against CGS §10-262h as codified and the Office of Legislative Research analyses of the acts that set it (PA 17-2 June Special Session §§225-230; PA 21-2 June Special Session §§384-386; PA 23-204 §356; PA 25-168 §323). The statute confirms the two rules that had first been inferred from the grant files: overfunded towns are held at their prior amount from FY2022 (PA 21-2 suspended the decreases, PA 23-204 and PA 25-168 kept extending the pause, so reductions now begin in FY2028), and the FY2017 floor for Alliance districts appears in the FY2024 and later paragraphs added by PA 23-204 ("the greater of" the calculated amount, the base grant and the previous year), not in the FY2023 paragraph, which is why Plainfield's FY2023 grant sits below its FY2017 grant. One clause is not modeled: for FY2019 through FY2021 an Alliance district whose fully funded grant fell below its FY2017 base grant was entitled to exactly the base grant; the engine floors such towns at their prior grant instead, which differs only where a district's prior grant exceeded its base, and CSDE's payments match the engine in every such case except Windsor Locks in FY2021. The year-by-year citations are in the ecs_formula_parameters dataset (phase_in_statute) and below.<div class="tbl-wrap" style="margin-top:6px"><table id="statute-table"></table></div></li>
+          <li><b>Massachusetts Chapter 70 rule (preset).</b> Replaces the ECS formula with Massachusetts' aid rule applied to each town from the start year, chaining on the town's prior aid (its ECS grant before the start year). Foundation budget: DESE's FY2025 per-pupil rates for the eleven cost categories, applied to the town's ECS resident students split into pre-K, kindergarten, grades 1-5, 6-8 and 9-12 using the grade mix of its local district plus its share of any regional district (NCES Common Core of Data), with pre-K at the pre-school rate; assumed special-education enrollment of 3.93% in-district and 1% tuitioned-out of K-12 pupils at DESE's rates; English-learner increments by band, allocating the ECS English-learner count across bands in proportion to enrollment; the low-income increment for the town's concentration group (twelve groups by low-income share, DESE FY2025 tiers) applied to ECS FRPL-eligible students; and a wage adjustment factor of one plus a third of the county's excess of average pay over the state average (BLS QCEW; never below one; Fairfield County is the only county above the state average), applied to every category except materials, benefits and special-education tuition. Rates are FY2025 dollars moved to other years by the chosen index with the 4.5% annual cap of the foundation inflation index. Required local contribution: the steady-state target, the lesser of a uniform property rate on the town's equalized net grand list (OPM, latest grand list in the ECS window) plus a uniform income rate on its aggregate household income (ACS 5-year table B19025, vintage t-4) and 82.5% of its foundation budget; the two rates are solved each year so that property and income yield equal amounts and capped targets sum to the chosen statewide local share (59% in Massachusetts). Aid = foundation budget minus required contribution, never less than the prior year's aid plus the minimum per-pupil increase. Not modeled: Massachusetts' multi-year transition of contributions toward target (municipal revenue growth factors and effort increments), vocational enrollment (Connecticut's technical high schools are state-run and outside the resident count), the net-school-spending enforcement, and any local response. Massachusetts defines low income more narrowly (SNAP, TAFDC, MassHealth, foster care, homelessness) than FRPL eligibility, so Connecticut towns land in higher concentration groups than a strict transplant would give. See the assumptions document in the repository for the full list.</li>
           <li><b>Start year.</b> Years before the chosen start year follow enacted policy exactly; from the start year on, the scenario applies and chains forward on its own simulated prior-year grant.</li>
           <li><b>Per-student chart.</b> The student measure is the ECS resident-student count (students the town is fiscally responsible for on October 1), because it is the denominator the formula itself uses and it exists for every town and year; it excludes charter and technical-high-school students. The low-income share is FRPL-eligible students over resident students from the same worksheet. The fitted line is ordinary least squares across the 169 towns, unweighted unless the box is ticked; the slope is reported per 10-percentage-point rise in the FRPL share.</li>
           <li><b>Total spending per student (NCEP).</b> The second vertical-axis option uses CSDE's net current expenditures per pupil: all-source current spending (net of tuition revenue, capital, debt service and reimbursable transportation) divided by average daily membership. ADM is the resident-student count, the same count the ECS formula uses, so the denominator is consistent in construction. The two are one October apart: the FY2025 NCEP divides FY2025 spending by the October 2024 count, while the FY2025 ECS grant was computed on the October 2023 count (FY2025 ADM equals the FY2026 ECS resident count to the cent for 135 of 148 towns). Under a scenario, the town's spending is moved by its ECS change one for one, which assumes no offsetting local tax response. NCEP exists only for the 148 towns with a local board (regional-district members carry their tuition payments, not the region's spending) and is published through FY2025; FY2023 onward comes from CSDE's reports as archived by the School and State Finance Project, with the current year from CSDE's own file.</li>
@@ -314,10 +319,10 @@ const LEGACY_YEARS = new Set(YEARS.filter(fy=>fy<=2021));   // PA 17-2 need weig
 
 // ---------- controls state ----------
 const keys = ['foundation','w_frpl','cp_thr','w_cp','w_ell','thr_factor','w_engl','min_bar','min_bar_hh'];
-const S = {}; keys.forEach(k=>S[k]=CURRENT[k]); S.phase = 1; S.hh = 'alliance'; S.on = new Set(); S.start = YEARS[0]; S.ahi = false; S.weight = false; S.yaxis = 'ecs'; S.achYear = 2025; S.achX = 'frpl'; S.achSubj = 'gl'; S.achWeight = true; S.achFit = true; S.infIndex = 'cpi'; S.pass = 1; S.simLinear = false; S.simHetero = false; S.simYear = 2025;
+const S = {}; keys.forEach(k=>S[k]=CURRENT[k]); S.phase = 1; S.hh = 'alliance'; S.on = new Set(); S.start = YEARS[0]; S.ahi = false; S.weight = false; S.yaxis = 'ecs'; S.achYear = 2025; S.achX = 'frpl'; S.achSubj = 'gl'; S.achWeight = true; S.achFit = true; S.infIndex = 'cpi'; S.pass = 1; S.simLinear = false; S.maLam = 0.59; S.maMin = 104; S.simHetero = false; S.simYear = 2025;
 // statewide median of mean household income per year (median across the 169 towns, same construction as the MHI median)
 const AHI_MEDIAN = {}; YEARS.forEach(fy=>{ AHI_MEDIAN[fy] = D.policy[String(fy)].ahi_median; });
-const PRESET_NAMES = {inflation:'inflation-adjusted foundation', f13087:'$13,087 foundation', fullfund:'full formula, no phase-in, no hold-harmless', fullhh:'full formula, no phase-in, hold-harmless'};
+const PRESET_NAMES = {inflation:'inflation-adjusted foundation', f13087:'$13,087 foundation', fullfund:'full formula, no phase-in, no hold-harmless', fullhh:'full formula, no phase-in, hold-harmless', ma:'Massachusetts Chapter 70 rule'};
 function slidersDefault(){ return keys.every(k=>Math.abs(S[k]-CURRENT[k])<1e-9) && S.phase===1 && S.hh==='alliance' && !S.ahi; }
 const INDEX = () => (S.infIndex==='eci' && D.eci) ? D.eci : cpi;   // series used to index the foundation from 2013
 function isEnacted(){ return S.on.size===0 && slidersDefault(); }
@@ -346,6 +351,8 @@ function paramsFor(fy){
   p.foundation = S.foundation;
   if (S.on.has('inflation')){ const idx = INDEX(); const last = Math.max(...Object.keys(idx).map(Number)); const y = Math.min(fy-1, last); p.foundation = 11525 * idx[y] / idx[2013]; }
   if (S.on.has('f13087')){ p.foundation = 13087; }
+  p.fy = fy;
+  if (S.on.has('ma')){ p.ma = true; p.ma_lam = S.maLam; p.ma_cap = MA.cap; p.ma_min = S.maMin; p.ma_index = maIndex(fy); }
   const full = S.on.has('fullfund'), fullhh = S.on.has('fullhh');
   p.pct_under = Math.min(1, o.pct_under * S.phase);
   p.pct_over  = Math.min(1, o.pct_over  * S.phase);
@@ -358,7 +365,7 @@ function paramsFor(fy){
   p.mhi_median = S.ahi ? AHI_MEDIAN[fy] : o.mhi_median;
   return p;
 }
-function enactedParams(fy){ const o=OBS[fy]; return {w_frpl:o.w_frpl,cp_thr:o.cp_thr,w_cp:o.w_cp,w_ell:o.w_ell,thr_factor:o.thr_factor,w_engl:o.w_engl,w_mhi:o.w_mhi,min_bar:o.min_bar,min_bar_hh:o.min_bar_hh,foundation:o.foundation,pct_under:o.pct_under,pct_over:o.pct_over,gap_base:o.gap_base,start_base:o.start_base,hh_fy17:o.hh_fy17,full:false,hh:'alliance',income:'mhi',engl_median:o.engl_median,mhi_median:o.mhi_median}; }
+function enactedParams(fy){ const o=OBS[fy]; return {fy, w_frpl:o.w_frpl,cp_thr:o.cp_thr,w_cp:o.w_cp,w_ell:o.w_ell,thr_factor:o.thr_factor,w_engl:o.w_engl,w_mhi:o.w_mhi,min_bar:o.min_bar,min_bar_hh:o.min_bar_hh,foundation:o.foundation,pct_under:o.pct_under,pct_over:o.pct_over,gap_base:o.gap_base,start_base:o.start_base,hh_fy17:o.hh_fy17,full:false,hh:'alliance',income:'mhi',engl_median:o.engl_median,mhi_median:o.mhi_median}; }
 
 // ---------- the formula ----------
 function fullyFunded(y, p){
@@ -373,8 +380,44 @@ function fullyFunded(y, p){
   const base = Math.round(need*finalBar*p.foundation);
   return {need, finalBar, base, ff: base + (y.rsd||0) + (y.end||0)};
 }
-function step(y, p, prior){
+// ---------- Massachusetts Chapter 70 rule (mirrors sim/ma_chapter70.py) ----------
+const MA = D.ma || {};
+let MA_CACHE = {};
+function maIndex(fy){ // chained price index of the calendar year before the fiscal year relative to 2024 (FY2025 rates), each step capped at 4.5%
+  const idx = INDEX(); const years = Object.keys(idx).map(Number).sort((a,b)=>a-b); const y = Math.min(fy-1, years[years.length-1]); const base = MA.rates_year - 1;
+  if (y === base) return 1; let v = 1;
+  if (y > base){ for (let yy = base+1; yy <= y; yy++) v *= Math.min(idx[yy]/idx[yy-1], MA.inflation_cap); }
+  else { for (let yy = y+1; yy <= base; yy++) v /= Math.min(idx[yy]/idx[yy-1], MA.inflation_cap); }
+  return v;
+}
+function maFoundation(t, fy, index){
+  const m = t.ma && t.ma[fy]; if (!m) return null; const y = t.yr[fy]; const res = y.res; const sh = m.sh;
+  const n = {pk:res*sh[0], k:res*sh[1], el:res*sh[2], ms:res*sh[3], hs:res*sh[4]}; const k12 = n.k+n.el+n.ms+n.hs;
+  const allot = (col, q) => { const r = MA.rates[col]; return q * (r[1]*m.waf + (r[0]-r[1])) * index; };
+  let B = allot('pk',n.pk) + allot('k_full',n.k) + allot('el',n.el) + allot('ms',n.ms) + allot('hs',n.hs) + allot('sped_in', MA.sped_in*k12) + allot('sped_out', MA.sped_out*k12);
+  const tot = Math.max(n.pk+k12, 1e-9);
+  B += allot('el_pk5', y.ell*(n.pk+n.k+n.el)/tot) + allot('el_68', y.ell*n.ms/tot) + allot('el_hs', y.ell*n.hs/tot);
+  const pct = 100*y.frpl/Math.max(res,1e-9); let g = 12; for (let i=0;i<MA.li_upper.length;i++){ if (pct <= MA.li_upper[i]){ g = i+1; break; } }
+  B += allot('li_'+g, y.frpl);
+  return {B, group:g, fe: MA.pk_weight*n.pk + k12};
+}
+function maPrecompute(fy, lam, cap, index){
+  const items = towns.map(t=>({t, f:maFoundation(t,fy,index), m:t.ma && t.ma[fy]})).filter(x=>x.f && x.m && x.m.eqv!=null && x.m.inc!=null);
+  const sumB = d3.sum(items,x=>x.f.B), se = d3.sum(items,x=>x.m.eqv), si = d3.sum(items,x=>x.m.inc); const goal = lam*sumB;
+  const total = H => d3.sum(items, x=>Math.min(H*(x.m.eqv/se + x.m.inc/si), cap*x.f.B));
+  let lo = 0, hi = goal*10; for (let i=0;i<100;i++){ const mid=(lo+hi)/2; if (total(mid) < goal) lo = mid; else hi = mid; }
+  const H = (lo+hi)/2; const out = new Map();
+  items.forEach(x=>{ const T = Math.min(H*(x.m.eqv/se + x.m.inc/si), cap*x.f.B); out.set(x.t.code, {B:x.f.B, T, fe:x.f.fe, group:x.f.group, capped: T >= cap*x.f.B - 1e-6}); });
+  out.meta = {H, rhoP:H/se, rhoY:H/si, sumB, sumT:d3.sum([...out.values()],v=>v.T), n:items.length, capped:[...out.values()].filter(v=>v.capped).length};
+  return out;
+}
+function step(y, p, prior, t){
   const r = fullyFunded(y,p);
+  if (p.ma && t && MA_CACHE[p.fy] && MA_CACHE[p.fy].has(t.code)){
+    const c = MA_CACHE[p.fy].get(t.code);
+    const ent = Math.max(c.B - c.T, prior + p.ma_min*c.fe);   // foundation aid, else minimum aid; aid never falls
+    return Object.assign(r, {ent:Math.round(ent), start:prior, base:prior, ma:c});
+  }
   // FY2019: moves from the FY2017 grant; FY2020-FY2022: from the prior year, gap measured against FY2017 (PA 17-2);
   // FY2023 on: from the prior year, gap measured against the prior year. The phase-in never overshoots the fully funded grant.
   const start = p.start_base==='fy2017' ? (y.fy17!=null ? y.fy17 : prior) : prior;
@@ -390,7 +433,7 @@ function step(y, p, prior){
 // chained series for one town under a param function
 function simulate(t, pf){
   let prior = t.ent[START-1]; const out={};
-  YEARS.forEach(fy=>{ const y=t.yr[fy]; const p=pf(fy); const r=step(y,p,prior); out[fy]=r; prior=r.ent; });
+  YEARS.forEach(fy=>{ const y=t.yr[fy]; const p=pf(fy); const r=step(y,p,prior,t); out[fy]=r; prior=r.ent; });
   return out;
 }
 // reproduction flags: enacted params from ACTUAL prior
@@ -399,7 +442,7 @@ towns.forEach(t=>{
   const m={};
   YEARS.forEach(fy=>{
     const y=t.yr[fy]; const actual=t.ent[fy]; const prior=t.ent[fy-1];
-    const r=step(y,enactedParams(fy),prior);
+    const r=step(y,enactedParams(fy),prior,t);
     const diff=r.ent-actual; const rel=Math.abs(diff)/Math.max(actual,1);
     m[fy]={sim:r.ent, actual, diff, flag: Math.abs(diff)<=1 ? 'exact' : rel<=0.005 ? 'close' : 'off'};
   });
@@ -413,7 +456,13 @@ let selected = byName.get('Hartford') || towns[0];
 let mapYear = 2025, mapMode = 'pct';   // FY2025 is the latest year with both ECS and NCEP
 
 function recompute(){
+  MA_CACHE = {};
+  if (S.on.has('ma')){ YEARS.filter(fy=>fy>=S.start).forEach(fy=>{ MA_CACHE[fy] = maPrecompute(fy, S.maLam, MA.cap, maIndex(fy)); }); }
   SCEN = new Map(towns.map(t=>[t.code, simulate(t, paramsFor)]));
+  const mn = el('ma-note'); const last = S.on.has('ma') ? MA_CACHE[YEARS[YEARS.length-1]] : null;
+  if (last){ const m = last.meta; const fyl = YEARS[YEARS.length-1];
+    mn.hidden = false; mn.textContent = `Chapter 70 rule, FY${fyl}: statewide foundation budgets ${fmtB(m.sumB)} (nominal), required local contributions ${fmtB(m.sumT)} = ${Math.round(100*m.sumT/m.sumB)}% of foundation; uniform effort rates ${(m.rhoP*1000).toFixed(2)} mills on equalized valuation and ${(m.rhoY*100).toFixed(2)}% of aggregate household income; ${m.capped} of ${m.n} towns at the 82.5% cap. Aid = foundation budget minus required contribution, never below prior aid plus $${S.maMin} per pupil.`; }
+  else { mn.hidden = true; }
   renderAll();
 }
 function stateTotals(){
@@ -822,16 +871,23 @@ function syncControls(){
   document.querySelectorAll('.preset').forEach(b=>{ const k=b.dataset.preset; b.setAttribute('aria-pressed', String(k==='observed' ? isEnacted() : S.on.has(k))); });
   el('reset').disabled = isEnacted();
   const lock = S.on.has('inflation')||S.on.has('f13087'); el('s-foundation').disabled=lock; el('s-foundation').closest('.slider').style.opacity = lock?'.55':'';
-  el('s-infidx').value = S.infIndex; el('s-infidx').closest('.slider').style.opacity = S.on.has('inflation') ? '' : '.55';
+  el('s-infidx').value = S.infIndex; el('s-infidx').closest('.slider').style.opacity = (S.on.has('inflation') || S.on.has('ma')) ? '' : '.55';
+  const maOn = S.on.has('ma');
+  el('s-malam').value = S.maLam; el('o-malam').textContent = Math.round(S.maLam*100)+'%'; el('s-mamin').value = S.maMin; el('o-mamin').textContent = '$'+S.maMin;
+  document.querySelectorAll('.ma-only').forEach(x=>{ x.style.display = maOn ? '' : 'none'; });
+  document.querySelectorAll('.group.ct-only').forEach(x=>{ x.style.opacity = maOn ? '.4' : ''; x.querySelectorAll('input,select').forEach(i=>{ i.disabled = maOn || i.disabled; }); });
+  if (!maOn){ document.querySelectorAll('.group.ct-only input[type=range], .group.ct-only input[type=checkbox]').forEach(i=>{ i.disabled=false; }); }
   const lockPhase = S.on.has('fullfund') || S.on.has('fullhh'); el('s-phase').disabled=lockPhase; el('s-hh').disabled=S.on.has('fullfund'); el('s-phase').closest('.slider').style.opacity = lockPhase?'.55':''; el('s-hh').closest('.slider').style.opacity = lockPhase?'.55':'';
 }
 function setObserved(){ keys.forEach(k=>S[k]=CURRENT[k]); S.phase=1; S.hh='alliance'; S.ahi=false; S.on.clear(); }
 el('s-infidx').addEventListener('change',()=>{ S.infIndex=el('s-infidx').value; syncControls(); recompute(); });
+el('s-malam').addEventListener('input',()=>{ S.maLam=+el('s-malam').value; syncControls(); recompute(); });
+el('s-mamin').addEventListener('input',()=>{ S.maMin=+el('s-mamin').value; syncControls(); recompute(); });
 const EXCLUSIVE = {inflation:'f13087', f13087:'inflation', fullfund:'fullhh', fullhh:'fullfund'};
 document.querySelectorAll('.preset').forEach(b=>b.addEventListener('click',()=>{ const k=b.dataset.preset;
   if(k==='observed'){ setObserved(); }
   else if(S.on.has(k)){ S.on.delete(k); }
-  else { S.on.add(k); if(EXCLUSIVE[k]) S.on.delete(EXCLUSIVE[k]); }
+  else { if (k==='ma') S.on.clear(); else S.on.delete('ma'); S.on.add(k); if(EXCLUSIVE[k]) S.on.delete(EXCLUSIVE[k]); }
   syncControls(); recompute(); }));
 el('reset').addEventListener('click',()=>{ setObserved(); syncControls(); recompute(); });
 document.querySelectorAll('input[type=range]').forEach(inp=>inp.addEventListener('input',()=>{ const k=inp.dataset.key; S[k]=+inp.value; syncControls(); recompute(); }));

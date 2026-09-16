@@ -231,6 +231,26 @@ def build_seda_k_grade_subject():
 def build_town_grade_subject_seda_baseline():
     return replay_clean('73_seda_k_and_baselines.py', 'town_grade_subject_seda_baseline.csv', _seda73_setup)
 
+def _ma_setup(t):
+    # 79_build_ma_inputs.py: CCD grade enrollment, QCEW wages, ACS aggregate income and OPM grand list under raw/,
+    # DESE's FY2025 workbook under raw/dese, and the clean ECS / SEDA panels it joins to
+    copy_files(RAW/'ccd', t/'data'/'ma', '*.csv'); copy_files(RAW/'qcew', t/'data'/'ma', '*.csv')
+    copy_files(RAW/'dese', t/'data'/'ma'/'dese', '*.xlsm')
+    copy_files(RAW/'acs', t/'data'/'ecs'/'acs', '*.csv'); copy_files(RAW/'ctdata', t/'data'/'ecs'/'ctdata', '*.csv')
+    for k in ('town_year_ecs_inputs', 'town_year_ecs_entitlement', 'district_year_seda_gcs'):
+        src = DATA/k/f'{k}.csv'
+        if src.exists():
+            shutil.copy2(src, t/'clean-data'/f'{k}.csv')
+
+def build_town_year_ma_inputs():
+    return replay_clean('79_build_ma_inputs.py', 'town_year_ma_inputs.csv', _ma_setup, nullable_ints=True)
+
+def build_ma_fy2025_foundation_rates():
+    return replay_clean('79_build_ma_inputs.py', 'ma_fy2025_foundation_rates.csv', _ma_setup)
+
+def build_ma_chapter70_parameters():
+    return replay_clean('79_build_ma_inputs.py', 'ma_chapter70_parameters.csv', _ma_setup)
+
 BUILDERS={name:obj for name,obj in globals().items() if name.startswith('build_')}
 if __name__ == '__main__':
     out=BUILDERS['build_'+KEY](); out.to_csv(HERE/f'{KEY}.csv', index=False); print(f'Wrote {KEY}.csv: {len(out)} rows x {len(out.columns)} cols')

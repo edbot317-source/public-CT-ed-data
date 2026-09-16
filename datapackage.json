@@ -34,6 +34,18 @@
     {
       "title": "Office of Fiscal Analysis / CSDE per-town ECS calculation shells (received from the state by email, 2026-09-15; not posted online)",
       "path": "https://portal.ct.gov/SDE/Fiscal-Services/Education-Cost-Sharing-Grant-ECS-MBR/Documents"
+    },
+    {
+      "title": "Massachusetts DESE, FY2025 Chapter 70 formula spreadsheet and white paper",
+      "path": "https://www.doe.mass.edu/finance/chapter70/fy2025/"
+    },
+    {
+      "title": "NCES Common Core of Data via the Urban Institute Education Data Portal",
+      "path": "https://educationdata.urban.org/"
+    },
+    {
+      "title": "BLS Quarterly Census of Employment and Wages",
+      "path": "https://www.bls.gov/cew/"
     }
   ],
   "resources": [
@@ -1218,6 +1230,236 @@
             "name": "deflator",
             "type": "number",
             "description": "Inflation factor equal to CPI-U in 2025 divided by CPI-U in this year; multiply nominal dollars by this to express them in 2025 dollars."
+          }
+        ]
+      }
+    },
+    {
+      "name": "town_year_ma_inputs",
+      "path": "data/town_year_ma_inputs/town_year_ma_inputs.csv",
+      "title": "Town-year inputs for a Massachusetts Chapter 70 style rule",
+      "description": "Town-year inputs for a Massachusetts Chapter 70 style rule (town x fiscal_year). Source: NCES Common Core of Data enrollment by grade (Urban Institute Education Data Portal API); BLS Quarterly Census of Employment and Wages; Census ACS 5-year table B19025; OPM Equalized Net Grand List by Town; ECS worksheets.",
+      "schema": {
+        "fields": [
+          {
+            "name": "town_code",
+            "type": "integer",
+            "description": "Connecticut town code, 1-169 (alphabetical); equals the local board of education's CSDE district code."
+          },
+          {
+            "name": "town",
+            "type": "string",
+            "description": "Town name."
+          },
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2026 corresponds to school year 2025-26."
+          },
+          {
+            "name": "ccd_year",
+            "type": "integer",
+            "description": "NCES Common Core of Data school year (fall) whose enrollment by grade supplies the grade mix; fiscal year t uses t-2, the ECS count date."
+          },
+          {
+            "name": "grade_source",
+            "type": "string",
+            "description": "Where the grade mix comes from: local (the town's own district), region (its share of a regional district), both, or statewide shares when neither exists."
+          },
+          {
+            "name": "share_pk",
+            "type": "number",
+            "description": "Share of resident students in pre-kindergarten."
+          },
+          {
+            "name": "share_k",
+            "type": "number",
+            "description": "Share of resident students in kindergarten."
+          },
+          {
+            "name": "share_el",
+            "type": "number",
+            "description": "Share of resident students in grades 1-5."
+          },
+          {
+            "name": "share_ms",
+            "type": "number",
+            "description": "Share of resident students in grades 6-8."
+          },
+          {
+            "name": "share_hs",
+            "type": "number",
+            "description": "Share of resident students in grades 9-12."
+          },
+          {
+            "name": "county",
+            "type": "string",
+            "description": "County (the labor-market-area proxy for the wage adjustment factor)."
+          },
+          {
+            "name": "wage_year",
+            "type": "integer",
+            "description": "Calendar year of the QCEW average pay used (t-2; 2023 is the last county-coded year)."
+          },
+          {
+            "name": "county_wage_ratio",
+            "type": "number",
+            "description": "County average annual pay, all covered jobs, divided by the Connecticut average (BLS QCEW)."
+          },
+          {
+            "name": "wage_adjustment_factor",
+            "type": "number",
+            "description": "1 + (county_wage_ratio - 1)/3, not less than 1 (MGL c.70 s.2 rule with the county as labor market area)."
+          },
+          {
+            "name": "eqv_grand_list_year",
+            "type": "integer",
+            "description": "Grand-list year of the equalized net grand list used (the latest in the ECS window, t-4)."
+          },
+          {
+            "name": "equalized_valuation",
+            "type": "number",
+            "description": "OPM equalized net grand list, dollars (Chapter 70's equalized valuation)."
+          },
+          {
+            "name": "income_vintage",
+            "type": "integer",
+            "description": "ACS 5-year vintage of the aggregate household income (t-4)."
+          },
+          {
+            "name": "aggregate_household_income",
+            "type": "number",
+            "description": "ACS 5-year aggregate household income, table B19025, dollars (Chapter 70 uses tax-return personal income)."
+          },
+          {
+            "name": "resident_students",
+            "type": "number",
+            "description": "Resident students the town is fiscally responsible for (ECS definition), October-1 count."
+          },
+          {
+            "name": "frpl_count",
+            "type": "number",
+            "description": "Students eligible for free or reduced-price meals, October-1 PSIS."
+          },
+          {
+            "name": "ell_count",
+            "type": "number",
+            "description": "English learners, October-1 PSIS."
+          },
+          {
+            "name": "alliance_or_psd",
+            "type": "integer",
+            "description": "1 if an Alliance District or Priority School District that year (ECS worksheet)."
+          }
+        ]
+      }
+    },
+    {
+      "name": "ma_fy2025_foundation_rates",
+      "path": "data/ma_fy2025_foundation_rates/ma_fy2025_foundation_rates.csv",
+      "title": "Massachusetts FY2025 Chapter 70 foundation budget rates",
+      "description": "Massachusetts FY2025 Chapter 70 foundation budget rates (foundation enrollment column). Source: Massachusetts DESE FY2025 Chapter 70 complete formula spreadsheet, Rates sheet.",
+      "schema": {
+        "fields": [
+          {
+            "name": "column",
+            "type": "string",
+            "description": "Foundation enrollment column: pk, k_half, k_full, el, ms, hs, voc, sped_in, sped_out, el_pk5, el_68, el_hs, li_1 .. li_12."
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "description": "DESE's label for the enrollment column."
+          },
+          {
+            "name": "Adminis-tration",
+            "type": "number",
+            "description": "Adminis-tration"
+          },
+          {
+            "name": "Instructional Leadership",
+            "type": "number",
+            "description": "Instructional Leadership"
+          },
+          {
+            "name": "Classroom & Specialist Teachers",
+            "type": "number",
+            "description": "Classroom & Specialist Teachers"
+          },
+          {
+            "name": "Other Teaching Services",
+            "type": "number",
+            "description": "Other Teaching Services"
+          },
+          {
+            "name": "Professional Development",
+            "type": "number",
+            "description": "Professional Development"
+          },
+          {
+            "name": "Instructional Materials, Equipment & Technology",
+            "type": "number",
+            "description": "Instructional Materials, Equipment & Technology"
+          },
+          {
+            "name": "Guidance & Psychological Services",
+            "type": "number",
+            "description": "Guidance & Psychological Services"
+          },
+          {
+            "name": "Pupil Services",
+            "type": "number",
+            "description": "Pupil Services"
+          },
+          {
+            "name": "Operations & Maintenance",
+            "type": "number",
+            "description": "Operations & Maintenance"
+          },
+          {
+            "name": "Employee Benefits/Fixed Charges",
+            "type": "number",
+            "description": "Employee Benefits/Fixed Charges"
+          },
+          {
+            "name": "Special Education Tuition",
+            "type": "number",
+            "description": "Special Education Tuition"
+          },
+          {
+            "name": "total",
+            "type": "number",
+            "description": "Total FY2025 foundation allotment per pupil across the eleven categories, dollars."
+          },
+          {
+            "name": "waf_applicable",
+            "type": "number",
+            "description": "Part of the total to which the wage adjustment factor applies (all categories except instructional materials, employee benefits and special-education tuition), dollars."
+          }
+        ]
+      }
+    },
+    {
+      "name": "ma_chapter70_parameters",
+      "path": "data/ma_chapter70_parameters/ma_chapter70_parameters.csv",
+      "title": "Massachusetts Chapter 70 formula parameters (FY2025)",
+      "description": "Massachusetts Chapter 70 formula parameters (FY2025) (parameter). Source: Massachusetts DESE FY2025 Chapter 70 formula spreadsheet (parameters and Foundation Budget sheets); MGL c.70 s.2.",
+      "schema": {
+        "fields": [
+          {
+            "name": "parameter",
+            "type": "string",
+            "description": "Parameter name."
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "description": "Parameter value (number or comma-separated list)."
+          },
+          {
+            "name": "source",
+            "type": "string",
+            "description": "File the row was parsed from (CSDE current-year workbook, or an archived annual PDF)."
           }
         ]
       }

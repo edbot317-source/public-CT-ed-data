@@ -4,3 +4,4 @@
 - 20260915_215906 | f13087 from FY2019 | hh=alliance phase=1.0 set=- | statewide FY2019 +0.0010, FY2020 +0.0037, FY2021 +0.0079, FY2022 +0.0133, FY2023 +0.0188, FY2024 +0.0238, FY2025 +0.0300 | runs\20260915_215906_f13087_from2019
 - 20260916_090347 | inflation+fullfund from FY2019 | hh=alliance phase=1.0 set=- | statewide FY2019 +0.0270, FY2020 +0.0550, FY2021 +0.0807, FY2022 +0.1092, FY2023 +0.1152, FY2024 +0.1269, FY2025 +0.1382 | runs\20260916_090347_inflation+fullfund_from2019
 - 20260916_093632 | inflation+fullhh from FY2019 | hh=alliance phase=1.0 set=- | statewide FY2019 +0.0326, FY2020 +0.0672, FY2021 +0.1009, FY2022 +0.1335, FY2023 +0.1607, FY2024 +0.1877, FY2025 +0.2090 | runs\20260916_093632_inflation+fullhh_from2019
+- 20260916_102838 | ma from FY2019 | hh=alliance phase=1.0 set=- | statewide FY2019 +0.0339, FY2020 +0.0727, FY2021 +0.1133, FY2022 +0.1530, FY2023 +0.1598, FY2024 +0.1637, FY2025 +0.1643 | runs\20260916_102838_ma_from2019

@@ -41,6 +41,7 @@ def clean(key):
 
 sys.path.insert(0, HERE)
 from seda_spending_sim import CONFIG, simulate, deflate_to_base, income_multiplier  # noqa: E402
+import ma_chapter70 as MA70  # noqa: E402
 
 D = json.load(open(os.path.join(DASH, "ecs_dash_data.json")))
 HORIZON_END = 2025                     # dashboard horizon: ECS panel and SEDA scores both stop at FY2025
@@ -61,6 +62,25 @@ def enacted_params(fy):
 
 
 INDEX_SERIES = {"cpi": CPI, "eci": {int(k): v for k, v in (D.get("eci") or {}).items()}}
+MA = D.get("ma") or {}
+MA_CACHE = {}
+
+
+def ma_precompute(fy, lam, min_aid, index_name="cpi"):
+    """Foundation budgets and steady-state target contributions for every town in `fy` (mirrors the page)."""
+    R = {k: (v[0], v[1]) for k, v in MA["rates"].items()}
+    idx = MA70.price_index(INDEX_SERIES.get(index_name) or CPI, fy, MA["rates_year"] - 1, MA["inflation_cap"])
+    items = []
+    for t in D["towns"]:
+        m = (t.get("ma") or {}).get(str(fy)); y = t["yr"][str(fy)]
+        if not m or m["eqv"] is None or m["inc"] is None:
+            continue
+        share = dict(zip(("pk", "k", "el", "ms", "hs"), m["sh"]))
+        B, comp = MA70.foundation_budget(y["res"], share, y["ell"], y["frpl"], m["waf"], R, idx,
+                                          dict(MA70.DEFAULTS, sped_in=MA["sped_in"], sped_out=MA["sped_out"], pk_weight=MA["pk_weight"]))
+        items.append((t["code"], B, m["eqv"], m["inc"], comp["foundation_enrollment"], comp["li_group"]))
+    T, rp, ry, H = MA70.target_contributions([i[1] for i in items], [i[2] for i in items], [i[3] for i in items], lam, MA["cap"])
+    return {code: {"B": B, "T": float(Tc), "fe": fe, "group": g} for (code, B, _, _, fe, g), Tc in zip(items, T)}
 
 
 def scenario_params(fy, on, start, sliders, hh_mode="alliance", phase=1.0, index="cpi"):
@@ -86,6 +106,10 @@ def scenario_params(fy, on, start, sliders, hh_mode="alliance", phase=1.0, index
         p["pct_under"] = p["pct_over"] = 1
     if "fullhh" in on:                       # underfunded towns fully funded, no town below its prior grant
         p["pct_under"], p["pct_over"] = 1, 0
+    if "ma" in on:                           # Massachusetts Chapter 70 rule replaces the formula
+        p["ma"] = True; p["fy"] = fy; p["ma_min"] = sliders.get("ma_min", MA.get("min_aid", 104))
+        if fy not in MA_CACHE:
+            MA_CACHE[fy] = ma_precompute(fy, sliders.get("ma_lam", MA.get("lam", 0.59)), p["ma_min"], index)
     p["hh"] = "none" if full else hh_mode
     p["full"] = full
     return p
@@ -102,11 +126,14 @@ def fully_funded(y, p):
     return base + (y["rsd"] or 0) + (y["end"] or 0)
 
 
-def step(y, p, prior):
+def step(y, p, prior, t=None):
     """Same rule as the dashboard: FY2019 moves from the FY2017 grant; FY2020-FY2022 from the prior year with the gap
     measured against FY2017; FY2023 on from the prior year. Never overshoots the fully funded grant; Alliance/PSD
     hold-harmless = never below the starting point."""
     ff = fully_funded(y, p)
+    if p.get("ma") and t is not None and t["code"] in MA_CACHE.get(p["fy"], {}):
+        c = MA_CACHE[p["fy"]][t["code"]]
+        return round(float(MA70.aid(c["B"], c["T"], prior, c["fe"], p["ma_min"])))
     fy17 = y["fy17"] if y.get("fy17") is not None else prior
     start = fy17 if p.get("start_base") == "fy2017" else prior
     base = fy17 if p.get("gap_base") == "fy2017" else prior
@@ -124,7 +151,7 @@ def step(y, p, prior):
 def series(t, pf):
     prior = t["ent"][str(YEARS[0] - 1)]; out = {}
     for fy in YEARS:
-        e = step(t["yr"][str(fy)], pf(fy), prior); out[fy] = e; prior = e
+        e = step(t["yr"][str(fy)], pf(fy), prior, t); out[fy] = e; prior = e
     return out
 
 
@@ -144,7 +171,7 @@ def shock_from_scenario(on, start, sliders, hh_mode, phase, index="cpi", passthr
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--scenario", default="f13087", help="observed|inflation|f13087|fullfund, joined with +")
+    ap.add_argument("--scenario", default="f13087", help="observed|inflation|f13087|fullfund|fullhh|ma, joined with +  (ma = Massachusetts Chapter 70 rule; use --set ma_lam=0.59 --set ma_min=104)")
     ap.add_argument("--shock", help="CSV with town_code, fiscal_year, delta_nominal_per_student (overrides --scenario)")
     ap.add_argument("--start", type=int, default=2023)
     ap.add_argument("--hetero", choices=["none", "A", "both"], default="both", help="income-heterogeneity sensitivity (Option A multiplier)")

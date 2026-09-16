@@ -144,6 +144,21 @@ for tc in towns:
     t["simw"] = BASEW.get(int(tc))          # {grade_subject: [n_tests, baseline grade levels vs national]}
     t["sedah"] = SEDAH.get(int(tc), {})     # {spring year: [overall, math, reading, tests]}
     out["towns"].append(t)
+# Massachusetts Chapter 70 style rule: per-town inputs, the FY2025 DESE rate schedule and parameters (79_build_ma_inputs.py)
+MA_PATH = clean("town_year_ma_inputs"); RATES_PATH = clean("ma_fy2025_foundation_rates"); MAP_PATH = clean("ma_chapter70_parameters")
+if os.path.exists(MA_PATH) and os.path.exists(RATES_PATH):
+    ma = pd.read_csv(MA_PATH); rates = pd.read_csv(RATES_PATH)
+    for t in out["towns"]:
+        d = ma[ma.town_code == t["code"]].set_index("fiscal_year")
+        t["ma"] = {int(fy): {"sh": [round(float(d.loc[fy, c]), 5) for c in ("share_pk", "share_k", "share_el", "share_ms", "share_hs")],
+                             "waf": round(float(d.loc[fy, "wage_adjustment_factor"]), 5), "eqv": f(d.loc[fy, "equalized_valuation"]),
+                             "inc": f(d.loc[fy, "aggregate_household_income"]), "county": str(d.loc[fy, "county"])}
+                   for fy in years if fy in d.index}
+    out["ma"] = {"rates": {r.column: [round(float(r.total), 2), round(float(r.waf_applicable), 2)] for r in rates.itertuples()},
+                 "li_upper": [5.99, 11.99, 17.99, 23.99, 29.99, 35.99, 41.99, 47.99, 53.99, 69.99, 79.99, 100],
+                 "sped_in": 0.0393, "sped_out": 0.01, "pk_weight": 0.5, "lam": 0.59, "cap": 0.825, "min_aid": 104,
+                 "inflation_cap": 1.045, "rates_year": 2025,
+                 "source": "DESE FY2025 Chapter 70 formula workbook (chapter-2025.xlsm, Rates and parameters sheets); MGL c.70 s.2"}
 out["sim"] = {"k": KTAB, "beta": 0.0343, "beta_se": 0.00681, "beta_tau": 0.0211, "beta_li": 0.0312, "beta_nli": 0.0161,
               "beta_col3": 0.0359, "dose_years": 4, "base_year": 2018, "baseline_years": [2023, 2024, 2025],
               "source": "Jackson & Mackevicius (2024) AEJ: Applied 16(1) Table 3; SEDA 2025.2"}
