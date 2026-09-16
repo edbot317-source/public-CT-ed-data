@@ -4,3 +4,4 @@ _cookies.txt
 *.png
 .DS_Store
 !tools/ecs_formula_explorer/sim/runs/**/*.png
+data/*.zip

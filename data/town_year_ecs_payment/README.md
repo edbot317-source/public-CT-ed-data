@@ -14,7 +14,7 @@ FY2026 ECS payment list by town: entitlement, Alliance District and compensatory
 | Column | Definition | Type |
 |---|---|---|
 | `town_code` | Connecticut town code, 1-169 (alphabetical); equals the local board of education's CSDE district code. | integer |
-| `entitlement` | ECS entitlement, nominal dollars (CSDE; excludes prior-year adjustments). | number |
+| `entitlement` | ECS entitlement, nominal dollars (CSDE; excludes prior-year adjustments). In town_year_ecs_inputs: the entitlement the worksheet computed at the time. | number |
 | `alliance_setaside` | Alliance District set-aside paid to the board of education rather than the town, nominal dollars. | number |
 | `comp_ed_setaside` | Compensatory-education ECS set-aside, nominal dollars. | number |
 | `local_entitlement` | Entitlement paid to the town: entitlement minus the two set-asides. | number |

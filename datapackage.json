@@ -2,7 +2,7 @@
   "profile": "data-package",
   "name": "public-ct-ed-data",
   "title": "Public Connecticut Education Data Release",
-  "description": "Public Connecticut education datasets from CT EdSight, with CPI-U deflators from FRED and Education Cost Sharing (ECS) grant amounts and formula inputs from CSDE and the School and State Finance Project.",
+  "description": "Public Connecticut education datasets from CT EdSight, with CPI-U deflators from FRED, Education Cost Sharing (ECS) grant amounts from CSDE, ECS formula inputs from the official OFA/CSDE calculation shells (FY2019-FY2027) and the School and State Finance Project, CSDE net current expenditures per pupil, and SEDA achievement estimates.",
   "licenses": [
     {
       "name": "CC-BY-4.0",
@@ -30,6 +30,10 @@
     {
       "title": "School and State Finance Project, ECS formula tools",
       "path": "https://schoolstatefinance.org/issues/ecs-formula"
+    },
+    {
+      "title": "Office of Fiscal Analysis / CSDE per-town ECS calculation shells (received from the state by email, 2026-09-15; not posted online)",
+      "path": "https://portal.ct.gov/SDE/Fiscal-Services/Education-Cost-Sharing-Grant-ECS-MBR/Documents"
     }
   ],
   "resources": [
@@ -1538,7 +1542,7 @@
           {
             "name": "entitlement",
             "type": "number",
-            "description": "ECS entitlement, nominal dollars (CSDE; excludes prior-year adjustments)."
+            "description": "ECS entitlement, nominal dollars (CSDE; excludes prior-year adjustments). In town_year_ecs_inputs: the entitlement the worksheet computed at the time."
           },
           {
             "name": "alliance_portion",
@@ -1573,7 +1577,7 @@
           {
             "name": "entitlement",
             "type": "number",
-            "description": "ECS entitlement, nominal dollars (CSDE; excludes prior-year adjustments)."
+            "description": "ECS entitlement, nominal dollars (CSDE; excludes prior-year adjustments). In town_year_ecs_inputs: the entitlement the worksheet computed at the time."
           },
           {
             "name": "alliance_setaside",
@@ -1622,7 +1626,7 @@
       "name": "town_year_ecs_inputs",
       "path": "data/town_year_ecs_inputs/town_year_ecs_inputs.csv",
       "title": "Town-year ECS formula inputs and calculation",
-      "description": "Town-year ECS formula inputs and calculation (town x fiscal_year). Source: School and State Finance Project workbooks republishing the Office of Fiscal Analysis ECS calculation shells.",
+      "description": "Town-year ECS formula inputs and calculation (town x fiscal_year). Source: Official Office of Fiscal Analysis / CSDE per-town ECS calculation shells (FY2019-FY2021, FY2023-FY2027), the School and State Finance Project's republished copy of the FY2022 shell, and SSFP's backend table for FY2018 core inputs.",
       "schema": {
         "fields": [
           {
@@ -1654,6 +1658,11 @@
             "name": "source_file",
             "type": "string",
             "description": "Workbook the row was parsed from."
+          },
+          {
+            "name": "source_type",
+            "type": "string",
+            "description": "Provenance of the worksheet: official OFA shell received from the state (2026-09-15), or the School and State Finance Project's republished copy."
           },
           {
             "name": "count_date",
@@ -1906,19 +1915,39 @@
             "description": "FY2017 ECS entitlement (statutory base grant), dollars."
           },
           {
+            "name": "fy2018_statutory_pre_holdback",
+            "type": "number",
+            "description": "FY2018 only: statutory FY2018 grant before the November-2017 holdbacks (FY2017 for Alliance towns, 95% of FY2017 otherwise), dollars."
+          },
+          {
             "name": "prior_year_entitlement",
             "type": "number",
-            "description": "Prior fiscal year's ECS entitlement (CSDE final), dollars."
+            "description": "Prior fiscal year's ECS entitlement as carried in the worksheet (CSDE final; filled from CSDE where the sheet has no such column), dollars."
+          },
+          {
+            "name": "phase_in_gap_base",
+            "type": "string",
+            "description": "Amount the phase-in gap is measured against that year: fy2017 (FY2019-FY2022, PA 17-2) or prior (FY2023 on)."
+          },
+          {
+            "name": "phase_in_start_base",
+            "type": "string",
+            "description": "Amount the phase-in moves from that year: fy2017 (FY2019 only) or prior."
+          },
+          {
+            "name": "hh_floor_fy2017",
+            "type": "boolean",
+            "description": "True if the Alliance/PSD hold-harmless also floors the grant at the FY2017 amount that year (the \"greater of\" clause in the FY2024 and later paragraphs of CGS 10-262h, PA 23-204 sec. 356)."
           },
           {
             "name": "grant_adjustment",
             "type": "number",
-            "description": "Absolute gap between the fully funded grant and the prior-year entitlement, dollars."
+            "description": "Absolute gap between the fully funded grant and the phase-in gap base (FY2017 grant through FY2022, prior year after), dollars."
           },
           {
             "name": "ff_greater_than_prior",
             "type": "string",
-            "description": "Yes if the fully funded grant exceeds the prior-year entitlement (underfunded town)."
+            "description": "Yes if the fully funded grant exceeds the phase-in gap base (underfunded town)."
           },
           {
             "name": "phase_in_amount",
@@ -1933,22 +1962,12 @@
           {
             "name": "entitlement",
             "type": "number",
-            "description": "ECS entitlement, nominal dollars (CSDE; excludes prior-year adjustments)."
+            "description": "ECS entitlement, nominal dollars (CSDE; excludes prior-year adjustments). In town_year_ecs_inputs: the entitlement the worksheet computed at the time."
           },
           {
-            "name": "excess_frpl_weighted_note",
+            "name": "derived_columns",
             "type": "string",
-            "description": "Set when the concentrated-poverty weighted term was derived from the shell's own arithmetic."
-          },
-          {
-            "name": "ell_weighted_note",
-            "type": "string",
-            "description": "Set when ell_weighted was derived from ell_count x 0.25 (FY2022-FY2023 OFA shells lack the column)."
-          },
-          {
-            "name": "entitlement_note",
-            "type": "string",
-            "description": "Set when the shell has no hold-harmless column (entitlement = entitlement_no_hh)."
+            "description": "Columns of this row filled from the worksheet's own arithmetic or from CSDE because the sheet lacks them (semicolon-separated, e.g. ell_weighted=ell_count x 0.15)."
           },
           {
             "name": "backend_resident_students",
@@ -1997,13 +2016,58 @@
       "name": "ecs_formula_parameters",
       "path": "data/ecs_formula_parameters/ecs_formula_parameters.csv",
       "title": "ECS formula parameters by shell",
-      "description": "ECS formula parameters by shell (shell (fiscal_year x source sheet)). Source: School and State Finance Project workbooks republishing the Office of Fiscal Analysis ECS calculation shells.",
+      "description": "ECS formula parameters by shell (shell (fiscal_year x source sheet)). Source: Official Office of Fiscal Analysis / CSDE per-town ECS calculation shells and the School and State Finance Project's republished copies.",
       "schema": {
         "fields": [
+          {
+            "name": "fiscal_year",
+            "type": "integer",
+            "description": "Fiscal year ending in the listed calendar year; FY2026 corresponds to school year 2025-26."
+          },
+          {
+            "name": "source_sheet",
+            "type": "string",
+            "description": "Worksheet the row was parsed from (OFA/SSFP shell name)."
+          },
+          {
+            "name": "source_file",
+            "type": "string",
+            "description": "Workbook the row was parsed from."
+          },
+          {
+            "name": "source_type",
+            "type": "string",
+            "description": "Provenance of the worksheet: official OFA shell received from the state (2026-09-15), or the School and State Finance Project's republished copy."
+          },
+          {
+            "name": "is_primary",
+            "type": "boolean",
+            "description": "True if this shell feeds the main inputs panel for its fiscal year."
+          },
+          {
+            "name": "n_towns",
+            "type": "integer",
+            "description": "Number of town rows parsed from the shell."
+          },
           {
             "name": "need_weight_frpl",
             "type": "number",
             "description": "Weight on FRPL students in need students."
+          },
+          {
+            "name": "need_weight_conc_pov",
+            "type": "number",
+            "description": "Weight on FRPL students above the concentrated-poverty threshold (0.05 through FY2021, 0.15 after)."
+          },
+          {
+            "name": "need_weight_ell",
+            "type": "number",
+            "description": "Weight on English learners in need students (0.15 through FY2021, 0.25 after)."
+          },
+          {
+            "name": "conc_pov_threshold",
+            "type": "number",
+            "description": "Concentrated-poverty threshold share of resident students (0.75 through FY2021; 0.60 after)."
           },
           {
             "name": "wealth_threshold_factor",
@@ -2036,14 +2100,44 @@
             "description": "Foundation amount per need student, dollars ($11,525)."
           },
           {
-            "name": "adj_pct_overfunded",
-            "type": "number",
-            "description": "Share of the gap phased out for overfunded towns that year."
-          },
-          {
             "name": "adj_pct_underfunded",
             "type": "number",
-            "description": "Share of the gap phased in for underfunded towns that year."
+            "description": "Phase-in share for towns below full funding as printed in the worksheet's parameter block (blank where the sheet states it only in a column header)."
+          },
+          {
+            "name": "adj_pct_overfunded",
+            "type": "number",
+            "description": "Phase-out share for towns above full funding as printed in the worksheet's parameter block; not applied where the budget act held towns harmless (see pct_over_applied)."
+          },
+          {
+            "name": "pct_under_applied",
+            "type": "number",
+            "description": "Share of the gap actually phased in for underfunded towns that year (verified against CSDE's grants)."
+          },
+          {
+            "name": "pct_over_applied",
+            "type": "number",
+            "description": "Share of the gap actually phased out for overfunded towns that year (0 = held harmless)."
+          },
+          {
+            "name": "phase_in_gap_base",
+            "type": "string",
+            "description": "Amount the phase-in gap is measured against that year: fy2017 (FY2019-FY2022, PA 17-2) or prior (FY2023 on)."
+          },
+          {
+            "name": "phase_in_start_base",
+            "type": "string",
+            "description": "Amount the phase-in moves from that year: fy2017 (FY2019 only) or prior."
+          },
+          {
+            "name": "hh_floor_fy2017",
+            "type": "boolean",
+            "description": "True if the Alliance/PSD hold-harmless also floors the grant at the FY2017 amount that year (the \"greater of\" clause in the FY2024 and later paragraphs of CGS 10-262h, PA 23-204 sec. 356)."
+          },
+          {
+            "name": "phase_in_statute",
+            "type": "string",
+            "description": "Statutory basis of the year's phase-in and hold-harmless rule: CGS 10-262h paragraph and the public act(s) that set it, checked against the codified statute and the OLR bill analyses on 2026-09-16."
           },
           {
             "name": "engl_median",
@@ -2086,39 +2180,9 @@
             "description": "ACS 5-year vintage of the median household income input."
           },
           {
-            "name": "conc_pov_threshold",
-            "type": "number",
-            "description": "Concentrated-poverty threshold share of resident students (0.75 through FY2021; 0.60 after)."
-          },
-          {
-            "name": "fiscal_year",
-            "type": "integer",
-            "description": "Fiscal year ending in the listed calendar year; FY2026 corresponds to school year 2025-26."
-          },
-          {
-            "name": "source_sheet",
-            "type": "string",
-            "description": "Worksheet the row was parsed from (OFA/SSFP shell name)."
-          },
-          {
-            "name": "source_file",
-            "type": "string",
-            "description": "Workbook the row was parsed from."
-          },
-          {
-            "name": "n_towns",
-            "type": "integer",
-            "description": "Number of town rows parsed from the shell."
-          },
-          {
             "name": "missing_columns",
             "type": "string",
             "description": "Canonical columns absent from this shell's layout (semicolon-separated)."
-          },
-          {
-            "name": "is_primary",
-            "type": "boolean",
-            "description": "True if this shell feeds the main inputs panel for its fiscal year."
           }
         ]
       }

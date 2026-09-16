@@ -30,4 +30,4 @@ Raw source workbooks are stored in `raw/` with a download log. The build script 
 - **Panel span:** FY2008-FY2025 (2675 district-years across 187 districts).
 - **Method:** only *interior* gaps are counted as missing -- years before a district first appears or after it last appears are treated as not reported, not as missing data.
 - **Statewide gaps:** FY2015 and FY2021 reports are not in the archive (every district); regional districts are listed only from FY2016.
-- **District-by-district missing years** (FY2015 and FY2021 are statewide gaps, listed once above and omitted here):
+- **District-by-district missing years:** none beyond the statewide gaps listed above.

@@ -49,14 +49,16 @@ def effect_sd(delta_dollars_2018: float, exposure: float, beta: float = CONFIG["
     return beta * (delta_dollars_2018 / 1000.0) * dose(exposure)
 
 
-def effect_sd_path(delta_path_2018: list[float], policy_year: int, grade: int, beta: float = CONFIG["beta"]) -> float:
+def effect_sd_path(delta_path_2018: list[float], policy_year: int, grade: int, beta: float = CONFIG["beta"],
+                   plateau: bool = True) -> float:
     """Same mapping when the per-pupil increase varies by year (e.g. a phase-in).
     delta_path_2018[i] is the increase in policy year i+1. A student's dose is the sum of
     1/dose_years per exposed year, so the effect is beta/dose_years x sum over the last
     min(exposure, dose_years) policy years of (delta/1000). With a constant delta this
-    equals effect_sd()."""
+    equals effect_sd(). plateau=False ("linear score growth") drops the cap, so the effect
+    keeps accumulating over every exposed year."""
     e = exposure_years(policy_year, grade)
-    n = int(min(e, CONFIG["dose_years"]))
+    n = int(e if not plateau else min(e, CONFIG["dose_years"]))
     if n <= 0:
         return 0.0
     window = delta_path_2018[policy_year - n:policy_year]
@@ -120,7 +122,7 @@ def estimate_k(gcs: pd.DataFrame, cs: pd.DataFrame, years=None) -> pd.DataFrame:
 
 
 def simulate(baseline: pd.DataFrame, shock: pd.DataFrame, k: pd.DataFrame, start_year: int,
-             beta: float = CONFIG["beta"], multiplier: pd.Series | None = None) -> pd.DataFrame:
+             beta: float = CONFIG["beta"], multiplier: pd.Series | None = None, plateau: bool = True) -> pd.DataFrame:
     """
     baseline: one row per (town_code, grade, subject) with gcs_baseline, n_tests.
     shock:    one row per (town_code, fiscal_year) with delta_2018 (per-pupil operating change, 2018$);
@@ -140,7 +142,7 @@ def simulate(baseline: pd.DataFrame, shock: pd.DataFrame, k: pd.DataFrame, start
         for t_idx, fy in enumerate(years, start=1):
             for r in base.itertuples():
                 e = exposure_years(t_idx, int(r.grade))
-                dsd = effect_sd_path(deltas, t_idx, int(r.grade), b_d)
+                dsd = effect_sd_path(deltas, t_idx, int(r.grade), b_d, plateau=plateau)
                 kk = kmap.get((int(r.grade), r.subject), CONFIG["k_fallback"])
                 out.append({"town_code": tc, "grade": int(r.grade), "subject": r.subject, "fiscal_year": fy,
                             "policy_year": t_idx, "delta_2018": deltas[t_idx - 1], "exposure": e,
@@ -158,6 +160,8 @@ def _tests():
     assert effect_sd(1000, 6) == effect_sd(1000, 4), "no growth after 4 years"
     assert abs(effect_sd_path([1000] * 6, 6, 8) - 0.0343) < 1e-12
     assert abs(effect_sd_path([1000, 1000], 2, 5) - 0.01715) < 1e-12
+    assert abs(effect_sd_path([1000] * 6, 6, 8, plateau=False) - 0.0343 * 6 / 4) < 1e-12   # linear growth: six exposed years
+    assert abs(effect_sd_path([1000] * 6, 6, 3, plateau=False) - 0.0343) < 1e-12           # grade 3: exposure capped at 4 by grade+1
     cpi = {2018: 251.107, 2023: 304.702, 2025: 320.0}
     assert abs(deflate_to_base(304.702, 2023, cpi) - 251.107) < 1e-9
     assert abs(deflate_to_base(100, 2027, cpi) - 100 * 251.107 / 320.0) < 1e-9, "years past the last CPI use the last CPI"

@@ -182,7 +182,13 @@ def _ecs_csde_setup(t):
     copy_files(RAW, t/'data'/'ecs'/'csde', '*.xlsx')
 
 def _ecs_ssfp_setup(t):
+    # 65_parse_ecs_shells.py: official OFA shells (raw/ofa, primary) + SSFP copies (raw, alternates and FY2018/FY2022),
+    # and CSDE's entitlement panel for town names and the FY2017 base
     copy_files(RAW, t/'data'/'ecs'/'ssfp', '*.xls*')
+    copy_files(RAW/'ofa', t/'data'/'ecs'/'ofa', '*.xls*')
+    ent = DATA/'town_year_ecs_entitlement'/'town_year_ecs_entitlement.csv'
+    if ent.exists():
+        shutil.copy2(ent, t/'clean-data'/'town_year_ecs_entitlement.csv')
 
 def build_town_year_ecs_entitlement():
     return replay_clean('64_clean_ecs_csde.py', 'town_year_ecs_entitlement.csv', _ecs_csde_setup, nullable_ints=True)

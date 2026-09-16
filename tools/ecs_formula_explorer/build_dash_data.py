@@ -25,6 +25,11 @@ e = pd.read_csv(clean("town_year_ecs_entitlement"))
 cpi = pd.read_csv(CPI_PATH)
 cpi["year"] = pd.to_datetime(cpi.observation_date).dt.year
 cpi = cpi.dropna(subset=["CPIAUCSL"])
+# Employment Cost Index, state and local government total compensation (BLS CIU3010000000000I via FRED),
+# calendar-year averages (74_download_eci.py); an alternative to CPI-U for indexing the foundation
+ECI_PATH = os.path.join(HERE, "inputs", "eci-state-local-govt-fred.csv") if PUBLIC else os.path.join(BASE, "data", "eci-state-local-govt-fred.csv")
+eci = pd.read_csv(ECI_PATH) if os.path.exists(ECI_PATH) else None
+eci_complete = eci[eci.quarters == 4] if eci is not None else None
 
 # mean household income by town and ACS vintage (S1901_C01_013E)
 ahi = {}
@@ -68,9 +73,16 @@ if os.path.exists(kpath) and os.path.exists(bpath):
 
 towns = sorted(p.town_code.unique())
 names = p.drop_duplicates("town_code").set_index("town_code").town.to_dict()
-years = list(range(2020, 2028))
-PCT_UNDER = {2020: 0.1066, 2021: 0.1066, 2022: 0.1066, 2023: 0.1667, 2024: 0.20, 2025: 0.565, 2026: 1.0, 2027: 1.0}
-PCT_OVER = {2020: 0.0833, 2021: 0.0833, 2022: 0.0833, 2023: 0.0, 2024: 0.0, 2025: 0.0, 2026: 0.0, 2027: 0.0}
+# every year with a full calculation worksheet: FY2019 (first PA 17-2 formula year) through FY2027.
+# FY2018 grants were legislated with holdbacks, not computed, so the dashboard starts at FY2019.
+START_YEAR = 2019
+years = [int(fy) for fy in sorted(p.fiscal_year.unique()) if fy >= START_YEAR]
+prm = pd.read_csv(clean("ecs_parameters" if not PUBLIC else "ecs_formula_parameters"))
+prm = prm[prm.is_primary].set_index("fiscal_year")
+NOTES = {2020: "CSDE's final used revised Public Investment Community rankings for a few Alliance towns",
+         2021: "same PIC revision carried in the prior-year grant",
+         2022: "worksheet is the School and State Finance Project's copy (no official FY2022 shell in hand)",
+         2027: "awaits CSDE's final calculation"}
 
 policy = {}
 for fy in years:
@@ -78,10 +90,14 @@ for fy in years:
     mhi_year = int(d.mhi_year.iloc[0])
     ahi_vals = [ahi.get(mhi_year, {}).get(names[tc]) for tc in towns]
     ahi_vals = [v for v in ahi_vals if v is not None and not np.isnan(v)]
-    policy[fy] = {"w_frpl": 0.30, "cp_thr": float(d.conc_pov_threshold.iloc[0]),
-                  "w_cp": 0.05 if fy <= 2021 else 0.15, "w_ell": 0.15 if fy <= 2021 else 0.25,
-                  "thr_factor": 1.35, "w_engl": 0.70, "w_mhi": 0.30, "min_bar": 0.01, "min_bar_hh": 0.10,
-                  "foundation": 11525, "pct_under": PCT_UNDER[fy], "pct_over": PCT_OVER[fy],
+    q = prm.loc[fy]
+    policy[fy] = {"w_frpl": float(q.need_weight_frpl), "cp_thr": float(q.conc_pov_threshold),
+                  "w_cp": float(q.need_weight_conc_pov), "w_ell": float(q.need_weight_ell),
+                  "thr_factor": float(q.wealth_threshold_factor), "w_engl": float(q.engl_weight), "w_mhi": float(q.mhi_weight),
+                  "min_bar": float(q.min_bar_nonalliance), "min_bar_hh": float(q.min_bar_alliance),
+                  "foundation": float(q.foundation), "pct_under": float(q.pct_under_applied), "pct_over": float(q.pct_over_applied),
+                  "gap_base": str(q.phase_in_gap_base), "start_base": str(q.phase_in_start_base), "hh_fy17": bool(q.hh_floor_fy2017),
+                  "source_type": str(q.source_type), "note": NOTES.get(fy, ""), "statute": str(q.phase_in_statute),
                   "engl_median": float(d.engl_median.iloc[0]) if pd.notna(d.engl_median.iloc[0]) else float(d.engl_per_capita.median()),
                   "mhi_median": float(d.mhi_median.iloc[0]) if pd.notna(d.mhi_median.iloc[0]) else float(d.mhi.median()),
                   "ahi_median": float(np.median(ahi_vals)) if ahi_vals else None, "ahi_n": len(ahi_vals),
@@ -96,8 +112,9 @@ def f(v):
 
 
 E = e.pivot(index="town_code", columns="fiscal_year", values="entitlement")
-out = {"towns": [], "years": years, "policy": {str(k): v for k, v in policy.items()},
+out = {"towns": [], "years": years, "start_year": START_YEAR, "policy": {str(k): v for k, v in policy.items()},
        "cpi": {int(r.year): float(r.CPIAUCSL) for r in cpi.itertuples()},
+       "eci": ({int(r.year): float(r.eci_avg) for r in eci_complete.itertuples()} if eci_complete is not None else None),
        "ent_years": sorted(int(x) for x in e.fiscal_year.unique())}
 FIELDS = [("res", "resident_students"), ("frpl", "frpl_count"), ("ell", "ell_count"), ("engl", "engl_avg"),
           ("pop", "population"), ("eepc", "engl_per_capita"), ("mhi", "mhi"), ("pic", "pic_bar_adjustment"),

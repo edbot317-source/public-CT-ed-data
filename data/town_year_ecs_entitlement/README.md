@@ -17,7 +17,7 @@ Education Cost Sharing (ECS) grant entitlements by town, FY2001-FY2027, as publi
 | `district_code` | Local board of education district code (= town_code). Regional school districts receive no ECS directly. | integer |
 | `town` | Town name. | string |
 | `fiscal_year` | Fiscal year ending in the listed calendar year; FY2026 corresponds to school year 2025-26. | integer |
-| `entitlement` | ECS entitlement, nominal dollars (CSDE; excludes prior-year adjustments). | number |
+| `entitlement` | ECS entitlement, nominal dollars (CSDE; excludes prior-year adjustments). In town_year_ecs_inputs: the entitlement the worksheet computed at the time. | number |
 | `alliance_portion` | Alliance District portion of the entitlement, nominal dollars (FY2012+). | number |
 | `education_diversity_portion` | Education Diversity portion of the entitlement, nominal dollars (FY2025+). | number |
 | `non_alliance_portion` | Non-Alliance portion of the entitlement, nominal dollars (FY2012+). | number |

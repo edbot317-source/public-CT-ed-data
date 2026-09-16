@@ -5,6 +5,7 @@ writing the outputs and the assumptions log the instructions call for.
     python run_sim.py --scenario f13087 --start 2023
     python run_sim.py --scenario inflation --start 2024 --hetero A
     python run_sim.py --shock my_shock.csv --start 2023      # town_code, fiscal_year, delta_nominal_per_student
+    python run_sim.py --scenario inflation+fullhh --start 2019 --index eci --passthrough 0.5 --linear
 
 The scenario engine here is a line-for-line port of the dashboard's JavaScript (paramsFor /
 fullyFunded / step / simulate), reading the same ecs_dash_data.json, so a Python run and the
@@ -43,7 +44,8 @@ from seda_spending_sim import CONFIG, simulate, deflate_to_base, income_multipli
 
 D = json.load(open(os.path.join(DASH, "ecs_dash_data.json")))
 HORIZON_END = 2025                     # dashboard horizon: ECS panel and SEDA scores both stop at FY2025
-YEARS = [fy for fy in D["years"] if 2023 <= fy <= HORIZON_END]
+START = D.get("start_year", D["years"][0])   # first formula year rebuilt by the dashboard (FY2019)
+YEARS = [fy for fy in D["years"] if START <= fy <= HORIZON_END]
 CPI = {int(k): v for k, v in D["cpi"].items()}
 OBS = {fy: D["policy"][str(fy)] for fy in YEARS}
 CURRENT = {"w_frpl": 0.30, "cp_thr": 0.60, "w_cp": 0.15, "w_ell": 0.25, "thr_factor": 1.35, "w_engl": 0.70,
@@ -54,27 +56,38 @@ def enacted_params(fy):
     o = OBS[fy]
     return dict(w_frpl=o["w_frpl"], cp_thr=o["cp_thr"], w_cp=o["w_cp"], w_ell=o["w_ell"], thr_factor=o["thr_factor"],
                 w_engl=o["w_engl"], w_mhi=o["w_mhi"], min_bar=o["min_bar"], min_bar_hh=o["min_bar_hh"], foundation=o["foundation"],
-                pct_under=o["pct_under"], pct_over=o["pct_over"], hh="alliance", engl_median=o["engl_median"], mhi_median=o["mhi_median"])
+                pct_under=o["pct_under"], pct_over=o["pct_over"], gap_base=o.get("gap_base", "prior"), start_base=o.get("start_base", "prior"), hh_fy17=bool(o.get("hh_fy17", False)),
+                full=False, hh="alliance", engl_median=o["engl_median"], mhi_median=o["mhi_median"])
 
 
-def scenario_params(fy, on, start, sliders, hh_mode="alliance", phase=1.0):
+INDEX_SERIES = {"cpi": CPI, "eci": {int(k): v for k, v in (D.get("eci") or {}).items()}}
+
+
+def scenario_params(fy, on, start, sliders, hh_mode="alliance", phase=1.0, index="cpi"):
     if fy < start:
         return enacted_params(fy)
     o = OBS[fy]
     p = enacted_params(fy)
     for k in CURRENT:
-        p[k] = sliders.get(k, CURRENT[k])
+        # same rule as the page: a slider at its default keeps each year's enacted need weight
+        # (PA 17-2 weights through FY2021); a moved slider applies in every year from the start year
+        enacted_default = k in ("cp_thr", "w_cp", "w_ell")
+        p[k] = sliders[k] if k in sliders else (o[k] if enacted_default else CURRENT[k])
     p["w_mhi"] = 1 - p["w_engl"]
     if "inflation" in on:
-        y = min(fy - 1, max(CPI))
-        p["foundation"] = 11525 * CPI[y] / CPI[2013]
+        idx = INDEX_SERIES.get(index) or CPI
+        y = min(fy - 1, max(idx))
+        p["foundation"] = 11525 * idx[y] / idx[2013]
     if "f13087" in on:
         p["foundation"] = 13087
     full = "fullfund" in on
     p["pct_under"] = min(1, o["pct_under"] * phase); p["pct_over"] = min(1, o["pct_over"] * phase)
     if full:
         p["pct_under"] = p["pct_over"] = 1
+    if "fullhh" in on:                       # underfunded towns fully funded, no town below its prior grant
+        p["pct_under"], p["pct_over"] = 1, 0
     p["hh"] = "none" if full else hh_mode
+    p["full"] = full
     return p
 
 
@@ -90,10 +103,21 @@ def fully_funded(y, p):
 
 
 def step(y, p, prior):
+    """Same rule as the dashboard: FY2019 moves from the FY2017 grant; FY2020-FY2022 from the prior year with the gap
+    measured against FY2017; FY2023 on from the prior year. Never overshoots the fully funded grant; Alliance/PSD
+    hold-harmless = never below the starting point."""
     ff = fully_funded(y, p)
-    ent = prior + p["pct_under"] * (ff - prior) if ff > prior else prior - p["pct_over"] * (prior - ff)
+    fy17 = y["fy17"] if y.get("fy17") is not None else prior
+    start = fy17 if p.get("start_base") == "fy2017" else prior
+    base = fy17 if p.get("gap_base") == "fy2017" else prior
+    if p.get("full"):
+        ent = ff
+    elif ff > base:
+        ent = min(start + p["pct_under"] * (ff - base), max(ff, start))
+    else:
+        ent = max(start - p["pct_over"] * (base - ff), min(ff, start))
     if p["hh"] == "all" or (p["hh"] == "alliance" and y["hh"]):
-        ent = max(ent, prior, y["fy17"] or 0)
+        ent = max(ent, start, fy17 if p.get("hh_fy17") else 0)     # FY2017 floor applied by CSDE from FY2024
     return round(ent)
 
 
@@ -104,15 +128,16 @@ def series(t, pf):
     return out
 
 
-def shock_from_scenario(on, start, sliders, hh_mode, phase):
+def shock_from_scenario(on, start, sliders, hh_mode, phase, index="cpi", passthrough=1.0):
     rows = []
     for t in D["towns"]:
         obs = series(t, enacted_params)
-        scn = series(t, lambda fy: scenario_params(fy, on, start, sliders, hh_mode, phase))
+        scn = series(t, lambda fy: scenario_params(fy, on, start, sliders, hh_mode, phase, index))
         for fy in YEARS:
-            res = t["yr"][str(fy)]["res"]
-            rows.append({"town_code": t["code"], "town": t["name"], "fiscal_year": fy,
-                         "delta_nominal_per_student": (scn[fy] - obs[fy]) / max(res, 1), "resident_students": res,
+            y = t["yr"][str(fy)]; res = y["res"]
+            pt = 1.0 if y["hh"] else passthrough          # Alliance/PSD towns pass the full change to the board
+            rows.append({"town_code": t["code"], "town": t["name"], "fiscal_year": fy, "passthrough": pt,
+                         "delta_nominal_per_student": pt * (scn[fy] - obs[fy]) / max(res, 1), "resident_students": res,
                          "frpl_share": t["yr"][str(fy)]["frpl"] / max(res, 1)})
     return pd.DataFrame(rows)
 
@@ -126,6 +151,9 @@ def main():
     ap.add_argument("--hh", choices=["alliance", "none", "all"], default="alliance")
     ap.add_argument("--phase", type=float, default=1.0)
     ap.add_argument("--set", action="append", default=[], help="slider override key=value")
+    ap.add_argument("--index", choices=["cpi", "eci"], default="cpi", help="index for the inflation-adjusted foundation")
+    ap.add_argument("--passthrough", type=float, default=1.0, help="share of the ECS change reaching school budgets in non-Alliance towns (Alliance/PSD always 1)")
+    ap.add_argument("--linear", action="store_true", help="linear score growth: no plateau after four years of exposure")
     a = ap.parse_args()
     sliders = {kv.split("=")[0]: float(kv.split("=")[1]) for kv in a.set}
     on = set() if a.scenario == "observed" else set(a.scenario.split("+"))
@@ -136,17 +164,17 @@ def main():
                               "frpl_share": t["yr"][str(fy)]["frpl"] / max(t["yr"][str(fy)]["res"], 1)} for t in D["towns"] for fy in YEARS])
         shock = shock.merge(info, on=["town_code", "fiscal_year"], how="left")
     else:
-        shock = shock_from_scenario(on, a.start, sliders, a.hh, a.phase)
+        shock = shock_from_scenario(on, a.start, sliders, a.hh, a.phase, a.index, a.passthrough)
     shock = shock[shock.fiscal_year >= a.start].copy()
     shock["delta_2018"] = [deflate_to_base(v, fy, CPI) for v, fy in zip(shock.delta_nominal_per_student, shock.fiscal_year)]
 
     k = pd.read_csv(clean("seda_k_grade_subject"))
     base = pd.read_csv(clean("town_grade_subject_seda_baseline"))
     fr = shock[shock.fiscal_year == shock.fiscal_year.max()].set_index("town_code")["frpl_share"]
-    runs = {"pooled": simulate(base, shock[["town_code", "fiscal_year", "delta_2018"]], k, a.start)}
+    runs = {"pooled": simulate(base, shock[["town_code", "fiscal_year", "delta_2018"]], k, a.start, plateau=not a.linear)}
     if a.hetero in ("A", "both"):
         mult = fr.map(income_multiplier)
-        runs["optionA"] = simulate(base, shock[["town_code", "fiscal_year", "delta_2018"]], k, a.start, multiplier=mult)
+        runs["optionA"] = simulate(base, shock[["town_code", "fiscal_year", "delta_2018"]], k, a.start, multiplier=mult, plateau=not a.linear)
 
     stamp = dt.datetime.now().strftime("%Y%m%d_%H%M%S")
     outdir = os.path.join(OUTROOT, "runs", f"{stamp}_{label}_from{a.start}")
@@ -195,7 +223,7 @@ def main():
     mult_mean = float(np.average(fr.map(income_multiplier), weights=shock[shock.fiscal_year == shock.fiscal_year.max()].set_index("town_code").loc[fr.index, "resident_students"]))
     log = f"""# Assumptions log -- test-score simulation run {stamp}
 
-- Scenario: **{a.scenario if not a.shock else a.shock}**, changes take effect from FY{a.start}; hold-harmless mode {a.hh}; phase-in multiplier {a.phase}; slider overrides {sliders or 'none'}.
+- Scenario: **{a.scenario if not a.shock else a.shock}**, changes take effect from FY{a.start}; hold-harmless mode {a.hh}; phase-in multiplier {a.phase}; slider overrides {sliders or 'none'}; foundation index {a.index}; pass-through {a.passthrough:.0%} in non-Alliance towns (100% Alliance/PSD); dose {'linear growth, no plateau' if a.linear else 'linear ramp to 4 years, plateau after'}.
 - Shock: scenario ECS entitlement minus enacted, per ECS resident student, by fiscal year (from the dashboard's engine and data, ecs_dash_data.json). Treated as an OPERATING (noncapital) spending change spent one for one; no capital component. Partial-equilibrium: no behavioral responses (enrollment, local tax offsets, teacher labor markets) beyond what the reduced-form estimates embed.
 - Dollars: nominal fiscal-year dollars deflated to {CONFIG['dollar_base_year']} dollars with CPI-U annual averages (FRED CPIAUCSL); fiscal year t uses calendar-year t CPI; years past the last complete CPI year ({max(CPI)}) use that year.
 - Effect size: beta = {CONFIG['beta']} student-level SD per $1,000 per pupil (2018$) at four years of exposure (Jackson & Mackevicius 2024, AEJ: Applied 16(1), Table 3 col 2 constant = noncapital marginal effect; se {CONFIG['beta_se']}, tau {CONFIG['beta_tau']}). The pooled headline {CONFIG['beta_pooled_reference']} (col 1) is not used.

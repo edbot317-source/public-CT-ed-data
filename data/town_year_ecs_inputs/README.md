@@ -3,11 +3,11 @@
 - **Series name:** Town-year ECS formula inputs and calculation
 - **Grain:** one row per town x fiscal_year
 - **Year range:** FY2018-FY2027
-- **Source:** School and State Finance Project workbooks republishing the Office of Fiscal Analysis ECS calculation shells; https://schoolstatefinance.org/hubfs/Reports/ECS%20Formula%20Component%20Comparison%20Tool%20and%20Data%20Trend%20Model.xlsx; https://schoolstatefinance.org/reports/interactive-model-of-ecs-formula (FY 2027 Town ECS Model .xlsm)
+- **Source:** Official Office of Fiscal Analysis / CSDE per-town ECS calculation shells (FY2019-FY2021, FY2023-FY2027), the School and State Finance Project's republished copy of the FY2022 shell, and SSFP's backend table for FY2018 core inputs; official OFA/CSDE per-town ECS calculation shells FY2018-FY2027 (except FY2022), received from the state by email on 2026-09-15, not posted online; copies with SHA-256 hashes in raw/ofa/; https://schoolstatefinance.org/hubfs/Reports/ECS%20Formula%20Component%20Comparison%20Tool%20and%20Data%20Trend%20Model.xlsx; https://schoolstatefinance.org/reports/interactive-model-of-ecs-formula (FY 2027 Town ECS Model .xlsm)
 - **Row count:** 1,690
-- **Column count:** 73
+- **Column count:** 76
 
-Every input and intermediate column of the per-town ECS grant calculation (resident students, low-income and English-learner counts, need students, three-year equalized net grand list, population, median household income, wealth factors, base aid ratio, regional and endowed-academy bonuses, fully funded grant, phase-in and entitlement), FY2018-FY2027. Full worksheets are available from FY2020; FY2018-FY2019 carry core inputs only. Parsed from the OFA shells republished by the School and State Finance Project because CSDE does not post per-town worksheets; validated against the statutory formula, CSDE's published entitlements, OPM's equalized-net-grand-list file and Census ACS (see VALIDATION.md).
+Every input and intermediate column of the per-town ECS grant calculation (resident students, low-income and English-learner counts, need students, three-year equalized net grand list, population, median household income, wealth factors, base aid ratio, regional and endowed-academy bonuses, fully funded grant, phase-in and entitlement), FY2018-FY2027. Full worksheets for every formula year FY2019-FY2027: the official OFA/CSDE shells for FY2019-FY2021 and FY2023-FY2027 (received from the state on 2026-09-15; CSDE does not post them) and the School and State Finance Project's copy for FY2022, which equals the official shells to the cent wherever both exist. FY2018 grants were legislated by PA 17-2 with holdbacks rather than computed, so FY2018 carries core inputs only. Each row records the phase-in rule applied that year (gap base, starting point, hold-harmless floor) and which columns were derived. Validated against the statutory formula, CSDE's published entitlements, OPM's equalized-net-grand-list file and Census ACS; the rebuild test in VALIDATION.md reproduces CSDE's grant within 0.5% for 163-169 of 169 towns in every year FY2019-FY2027.
 
 ## Codebook
 
@@ -19,6 +19,7 @@ Every input and intermediate column of the per-town ECS grant calculation (resid
 | `fiscal_year` | Fiscal year ending in the listed calendar year; FY2026 corresponds to school year 2025-26. | integer |
 | `source_sheet` | Worksheet the row was parsed from (OFA/SSFP shell name). | string |
 | `source_file` | Workbook the row was parsed from. | string |
+| `source_type` | Provenance of the worksheet: official OFA shell received from the state (2026-09-15), or the School and State Finance Project's republished copy. | string |
 | `count_date` | October-1 PSIS count date used for the student inputs (MM/YYYY). | string |
 | `drg` | District Reference Group (A-I). | string |
 | `wealth_decile` | OFA wealth decile of the town (1 = poorest). | integer |
@@ -69,15 +70,17 @@ Every input and intermediate column of the per-town ECS grant calculation (resid
 | `fully_funded_grant` | base_formula_aid + rsd_bonus + endowed_bonus, dollars. | number |
 | `fully_funded_grant_hh` | Fully funded grant with the Alliance/PSD hold-harmless applied, dollars. | number |
 | `fy2017_actual` | FY2017 ECS entitlement (statutory base grant), dollars. | number |
-| `prior_year_entitlement` | Prior fiscal year's ECS entitlement (CSDE final), dollars. | number |
-| `grant_adjustment` | Absolute gap between the fully funded grant and the prior-year entitlement, dollars. | number |
-| `ff_greater_than_prior` | Yes if the fully funded grant exceeds the prior-year entitlement (underfunded town). | string |
+| `fy2018_statutory_pre_holdback` | FY2018 only: statutory FY2018 grant before the November-2017 holdbacks (FY2017 for Alliance towns, 95% of FY2017 otherwise), dollars. | number |
+| `prior_year_entitlement` | Prior fiscal year's ECS entitlement as carried in the worksheet (CSDE final; filled from CSDE where the sheet has no such column), dollars. | number |
+| `phase_in_gap_base` | Amount the phase-in gap is measured against that year: fy2017 (FY2019-FY2022, PA 17-2) or prior (FY2023 on). | string |
+| `phase_in_start_base` | Amount the phase-in moves from that year: fy2017 (FY2019 only) or prior. | string |
+| `hh_floor_fy2017` | True if the Alliance/PSD hold-harmless also floors the grant at the FY2017 amount that year (the "greater of" clause in the FY2024 and later paragraphs of CGS 10-262h, PA 23-204 sec. 356). | boolean |
+| `grant_adjustment` | Absolute gap between the fully funded grant and the phase-in gap base (FY2017 grant through FY2022, prior year after), dollars. | number |
+| `ff_greater_than_prior` | Yes if the fully funded grant exceeds the phase-in gap base (underfunded town). | string |
 | `phase_in_amount` | Dollars of the gap phased in that year under the statutory schedule. | number |
 | `entitlement_no_hh` | Entitlement computed by the shell before the Alliance/PSD hold-harmless, dollars. | number |
-| `entitlement` | ECS entitlement, nominal dollars (CSDE; excludes prior-year adjustments). | number |
-| `excess_frpl_weighted_note` | Set when the concentrated-poverty weighted term was derived from the shell's own arithmetic. | string |
-| `ell_weighted_note` | Set when ell_weighted was derived from ell_count x 0.25 (FY2022-FY2023 OFA shells lack the column). | string |
-| `entitlement_note` | Set when the shell has no hold-harmless column (entitlement = entitlement_no_hh). | string |
+| `entitlement` | ECS entitlement, nominal dollars (CSDE; excludes prior-year adjustments). In town_year_ecs_inputs: the entitlement the worksheet computed at the time. | number |
+| `derived_columns` | Columns of this row filled from the worksheet's own arithmetic or from CSDE because the sheet lacks them (semicolon-separated, e.g. ell_weighted=ell_count x 0.15). | string |
 | `backend_resident_students` | Cross-check: resident students from SSFP's backend_data table. | number |
 | `backend_frpl_count` | Cross-check: FRPL count from SSFP's backend_data table. | number |
 | `backend_ell_count` | Cross-check: ELL count from SSFP's backend_data table. | number |
@@ -89,17 +92,19 @@ Every input and intermediate column of the per-town ECS grant calculation (resid
 
 ## Source sheets by fiscal year
 
-| FY | source_sheet | October count | Grand lists | MHI year | Formula variant |
-|---|---|---|---|---|---|
-| 2018, 2019 | `backend_data` | 10/2016, 10/2017 | (per-capita only) | 2014, 2015 | PA 17-2 |
-| 2020 | `Clean Data (FY 2020)` | 10/2018 | 2014-2016 | 2016 | PA 17-2: 75% threshold, 5% weight, ELL 15% |
-| 2021 | `FY 21 OFA Shell` | 10/2019 | 2015-2017 | 2017 | PA 17-2 |
-| 2022 | `FY 22 OFA Shell` | 10/2020 | 2016-2018 | 2018 | PA 19-117: 60% threshold, 15% weight, ELL 25% |
-| 2023-2027 | `FY 23` ... `FY 27` | 10/2021 ... 10/2025 | t-4 to t-2 | t-4 | PA 19-117; formula fully funded from FY2026 |
+| FY | source_sheet | source | October count | Grand lists | MHI year | Formula variant | Phase-in rule |
+|---|---|---|---|---|---|---|---|
+| 2018 | `backend_data` | SSFP (core inputs only) | 10/2016 | (per-capita only) | 2014 | grants legislated (PA 17-2 amounts and holdbacks) | none |
+| 2019 | `FY 2018-19` | official OFA shell | 10/2017 | 2013-2015 | 2015 | PA 17-2: 75% threshold, 5% weight, ELL 15% | from FY2017: +4.1% / -25% of gap |
+| 2020 | `FY 2019-20` | official OFA shell | 10/2018 | 2014-2016 | 2016 | PA 17-2 | from prior year: +10.66% / -8.33% of gap vs FY2017 |
+| 2021 | `FY 2020-21` | official OFA shell | 10/2019 | 2015-2017 | 2017 | PA 17-2 | same |
+| 2022 | `FY 22 OFA Shell` | SSFP copy | 10/2020 | 2016-2018 | 2018 | PA 21-2 JSS secs. 384-386: 60% threshold, 15% weight, ELL 25% | +10.66% of gap vs FY2017; overfunded held harmless (PA 21-2) |
+| 2023 | `Current Law` | official OFA shell | 10/2021 | 2017-2019 | 2019 | PA 21-2 JSS weights | from prior year: +16.67% of gap vs prior; held harmless (PA 21-2) |
+| 2024-2027 | `FY 24` ... `FY 27` | official OFA shells | 10/2022 ... 10/2025 | t-4 to t-2 | t-4 | PA 21-2 JSS weights; PA 23-204 sec. 356 schedule | +20%, 56.5%, 100%, 100%; held harmless (PA 23-204, PA 25-168 sec. 323); Alliance floor at the FY2017 base grant (PA 23-204) |
 
-For grant **amounts** use `town_year_ecs_entitlement` (CSDE final). The `entitlement` column here is what the worksheet computed at the time; it equals the CSDE final within $1 for 155-169 towns per year from FY2022 (FY2023: 124, a projection built on preliminary counts), and differs for 25-31 towns in FY2020-FY2021 because of the revised-PIC-ranking recalculation. The FY2027 sheet is a projection until CSDE finalizes.
+For grant **amounts** use `town_year_ecs_entitlement` (CSDE final). The `entitlement` column here is what the worksheet computed at the time; it equals the CSDE final within $50 for every town in FY2019, FY2021-FY2023 and FY2027 and for 160-168 towns in the other years. The FY2020 worksheet differs from CSDE's final for nine Alliance towns because CSDE recalculated that grant with revised Public Investment Community rankings; the gap carries into FY2021 and disappears in FY2022. The FY2027 sheet awaits CSDE's final calculation.
 
-**Validation** (`VALIDATION.md`): recomputing the formula from the parsed inputs reproduces every intermediate column for all 169 towns in every year FY2020-FY2027; ENGL equals OPM's Equalized Net Grand List by Town (data.ct.gov 8rr8-a322) within $1 for all towns and years; MHI equals the cited ACS 5-year vintage for 165-169 towns per year; population follows the DPH/OPM estimate series, not ACS.
+**Validation** (`VALIDATION.md`): recomputing the formula from the parsed inputs reproduces every intermediate column for all 169 towns in every year FY2019-FY2027, and the phase-in rule reproduces each worksheet's own entitlement; the rebuild test (grant recomputed from inputs and the enacted rule, starting from CSDE's actual prior-year grant) lands within 0.5% of CSDE's final for 169/169 towns in FY2019, FY2022, FY2023 and FY2025-FY2027, 168 in FY2024, and 165 / 163 in FY2020 / FY2021. ENGL equals OPM's Equalized Net Grand List by Town (data.ct.gov 8rr8-a322) within $1 for all towns and years; MHI equals the cited ACS 5-year vintage for 165-169 towns per year; population follows the DPH/OPM estimate series, not ACS. The SSFP copies equal the official shells to the cent wherever both exist (except SSFP's FY2023 projection).
 
 ## Provenance and Method
 
